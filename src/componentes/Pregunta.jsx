@@ -1,4 +1,4 @@
-export default function Pregunta({ titulo, descripcion, opciones, alSeleccionar }) {
+export default function Pregunta({ titulo, descripcion, opciones, alSeleccionar, alVolver }) {
   return (
     <section className="panel-pregunta">
       <span className="etiqueta-seccion">ASISTENTE DE PERMISOS</span>
@@ -15,6 +15,7 @@ export default function Pregunta({ titulo, descripcion, opciones, alSeleccionar 
           </button>
         ))}
       </div>
+      {alVolver && <button className="boton boton--secundario boton--volver" onClick={alVolver}>← Volver a la pregunta anterior</button>}
     </section>
   );
 }
