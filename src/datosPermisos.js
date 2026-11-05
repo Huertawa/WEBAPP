@@ -191,4 +191,16 @@ export const resultados = {
     actuacion: "Comprobar fecha de adquisición de residencia normal, grupo de permiso, periodo de vigencia original y si se ha realizado la renovación o anotación correspondiente en España. Consultar el Registro de Conductores e Infractores y confirmar la situación administrativa antes de formular denuncia.",
     observaciones: "Resultado de comprobación, no una declaración automática de pérdida de validez. La DGT indica que la renovación es obligatoria tras dos años de residencia para permisos indefinidos o superiores a 15 años en grupo 1 y a 5 años en grupo 2."
   },
+  PER017: {
+    codigo: "PER017",
+    nombre: "Permiso de tercer país: posible superación del plazo desde la entrada",
+    puedeConducir: null,
+    motivo: "El titular no acredita residencia normal en España, pero puede haber superado el plazo máximo de seis meses desde su entrada en territorio español en situación regular.",
+    normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
+    articulo: "Artículo 21.2.c).",
+    euros: "No determinar hasta comprobar la validez del permiso y la infracción concreta.",
+    puntos: "No determinar hasta identificar la infracción concreta.",
+    actuacion: "Verificar documentalmente la fecha de entrada y la situación regular del titular. Comprobar si existe un convenio internacional que establezca una regla específica distinta y revisar los restantes requisitos del permiso antes de formular denuncia.",
+    observaciones: "Resultado pendiente: el plazo general de seis meses puede estar sujeto a reglas específicas de determinados convenios. No concluir automáticamente sin revisar el país y el reconocimiento aplicable."
+  },
 };
