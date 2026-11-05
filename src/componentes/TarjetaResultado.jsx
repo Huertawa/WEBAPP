@@ -28,6 +28,8 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
       ? "estado-conduccion--positivo"
       : "estado-conduccion--negativo";
 
+  const textoInmovilizacion = resultado.inmovilizacion || "La inmovilización no es automática por la mera falta de habilitación para conducir. Valorar el artículo 104.1.k de la Ley de Tráfico cuando se conduzca un vehículo que exija permiso C o D sin la autorización correspondiente. El artículo 104.1.a se refiere a la falta de autorización administrativa del propio vehículo para circular. Si no concurre un supuesto legal de inmovilización, impedir que continúe conduciendo y comprobar si puede hacerse cargo otro conductor habilitado.";
+
   return (
     <section className={`tarjeta-resultado tarjeta-resultado--${estadoPendiente ? "pendiente" : puedeConducir ? "positivo" : "negativo"}`}>
       <div className="tarjeta-resultado__cabecera">
@@ -58,6 +60,7 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
             <div><dt>Importe</dt><dd>{euros || "Pendiente de verificar"}</dd></div>
             <div><dt>Puntos</dt><dd>{puntos || "Pendiente de verificar"}</dd></div>
             <div><dt>Actuación</dt><dd>{actuacion || "Pendiente de verificar"}</dd></div>
+            {puedeConducir !== true && <div><dt>Inmovilización</dt><dd>{textoInmovilizacion}</dd></div>}
             <div><dt>Observaciones</dt><dd>{observaciones || "—"}</dd></div>
           </dl>
         </div>
