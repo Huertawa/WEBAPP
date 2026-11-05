@@ -1,32 +1,19 @@
 export default function TarjetaResultado({ resultado, historial, alReiniciar }) {
   const {
-    nombre,
-    puedeConducir,
-    motivo,
-    normativa,
-    articulo,
-    euros,
-    puntos,
-    actuacion,
-    observaciones,
+    nombre, puedeConducir, motivo, normativa, articulo, euros, puntos,
+    actuacion, observaciones, denuncia,
   } = resultado;
 
   const estadoPendiente = puedeConducir === null || puedeConducir === undefined;
   const tituloEstado = estadoPendiente
     ? "Situación pendiente de comprobar"
-    : puedeConducir
-      ? "Puede conducir"
-      : "No puede conducir";
+    : puedeConducir ? "Puede conducir" : "No puede conducir";
   const etiquetaEstado = estadoPendiente
     ? "COMPROBACIÓN NECESARIA"
-    : puedeConducir
-      ? "AUTORIZADO"
-      : "NO AUTORIZADO";
+    : puedeConducir ? "AUTORIZADO" : "NO AUTORIZADO";
   const claseEstado = estadoPendiente
     ? "estado-conduccion--pendiente"
-    : puedeConducir
-      ? "estado-conduccion--positivo"
-      : "estado-conduccion--negativo";
+    : puedeConducir ? "estado-conduccion--positivo" : "estado-conduccion--negativo";
 
   const textoInmovilizacion = resultado.inmovilizacion
     || (puedeConducir === true
@@ -35,15 +22,16 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
         ? "Pendiente de comprobar el supuesto legal concreto. No debe acordarse automáticamente."
         : "Valorar según el vehículo y el supuesto legal aplicable. El artículo 104.1.k de la Ley de Tráfico contempla específicamente vehículos que exigen permiso C o D conducidos sin la autorización correspondiente. No presupone la inmovilización automática en cualquier falta de permiso.");
 
+  const importeVisible = denuncia?.importe || euros || "No procede / por determinar";
+  const puntosVisibles = denuncia?.puntos || puntos || "Pendiente de verificar";
+
   return (
     <section className={`tarjeta-resultado tarjeta-resultado--${estadoPendiente ? "pendiente" : puedeConducir ? "positivo" : "negativo"}`}>
       <div className="tarjeta-resultado__cabecera">
         <span className="etiqueta-seccion">RESULTADO DE LA CONSULTA</span>
         <h2>{tituloEstado}</h2>
         {nombre && <p className="resultado-nombre">{nombre}</p>}
-        <span className={`estado-conduccion ${claseEstado}`}>
-          {etiquetaEstado}
-        </span>
+        <span className={`estado-conduccion ${claseEstado}`}>{etiquetaEstado}</span>
       </div>
 
       <div className="resumen-operativo">
@@ -51,13 +39,13 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
           <span>ARTÍCULO APLICABLE</span>
           <strong>{articulo || "Pendiente de verificar"}</strong>
         </article>
-        <article className="dato-destacado">
-          <span>IMPORTE</span>
-          <strong>{euros || "No procede / por determinar"}</strong>
+        <article className="dato-destacado dato-destacado--importe">
+          <span>IMPORTE DE REFERENCIA</span>
+          <strong>{importeVisible}</strong>
         </article>
-        <article className="dato-destacado">
-          <span>PUNTOS</span>
-          <strong>{puntos || "Pendiente de verificar"}</strong>
+        <article className="dato-destacado dato-destacado--puntos">
+          <span>DETRACCIÓN DE PUNTOS</span>
+          <strong>{puntosVisibles}</strong>
         </article>
         <article className="dato-destacado dato-destacado--inmovilizacion">
           <span>INMOVILIZACIÓN</span>
@@ -65,22 +53,34 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
         </article>
       </div>
 
-      {resultado.denuncia && (
+      {denuncia ? (
         <section className="propuesta-denuncia">
           <div className="propuesta-denuncia__cabecera">
-            <span>PROPUESTA DE DENUNCIA</span>
-            <strong>{resultado.denuncia.calificacion}</strong>
+            <div>
+              <span>PROPUESTA DE DENUNCIA</span>
+              <p>Datos aplicables al supuesto identificado</p>
+            </div>
+            <strong>{denuncia.calificacion}</strong>
           </div>
           <div className="propuesta-denuncia__grid">
-            <div><small>PRECEPTO INFRINGIDO</small><strong>{resultado.denuncia.preceptoInfringido}</strong></div>
-            <div><small>PRECEPTO SANCIONADOR</small><strong>{resultado.denuncia.preceptoSancionador}</strong></div>
-            <div><small>IMPORTE</small><strong>{resultado.denuncia.importe}</strong></div>
-            <div><small>DETRACCIÓN</small><strong>{resultado.denuncia.puntos}</strong></div>
-            <div className="propuesta-denuncia__codigo"><small>CÓDIGO DE BOLETÍN</small><strong>{resultado.denuncia.codificado}</strong></div>
+            <div><small>PRECEPTO INFRINGIDO</small><strong>{denuncia.preceptoInfringido}</strong></div>
+            <div><small>PRECEPTO SANCIONADOR</small><strong>{denuncia.preceptoSancionador}</strong></div>
+            <div><small>IMPORTE</small><strong>{denuncia.importe}</strong></div>
+            <div><small>DETRACCIÓN</small><strong>{denuncia.puntos}</strong></div>
+            <div className="propuesta-denuncia__codigo">
+              <small>CODIFICACIÓN DE REFERENCIA</small>
+              <strong>{denuncia.codificado}</strong>
+            </div>
           </div>
-          <p>{resultado.denuncia.fundamento}</p>
+          <p>{denuncia.fundamento}</p>
+          <p className="propuesta-denuncia__aviso">Antes de extender el boletín, contrasta el código y la redacción exacta con el catálogo sancionador vigente y con los hechos acreditados.</p>
         </section>
-      )}
+      ) : !puedeConducir ? (
+        <section className="sancion-pendiente">
+          <strong>No se asigna automáticamente una denuncia</strong>
+          <p>Con los datos disponibles no es seguro fijar todavía un importe, una detracción de puntos o un código de boletín. Primero hay que concretar la causa y descartar que los hechos tengan relevancia penal.</p>
+        </section>
+      ) : null}
 
       <section className="actuacion-destacada">
         <span>QUÉ HACER EN LA INTERVENCIÓN</span>
@@ -91,12 +91,9 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
         <div className="bloque-datos">
           <h3>Datos comprobados en el cuestionario</h3>
           <ol className="historial-consulta">
-            {historial.map((elemento, indice) => (
-              <li key={indice}>{elemento}</li>
-            ))}
+            {historial.map((elemento, indice) => <li key={indice}>{elemento}</li>)}
           </ol>
         </div>
-
         <div className="bloque-datos">
           <h3>Fundamento jurídico</h3>
           <dl className="datos-juridicos">
@@ -110,14 +107,13 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
       <div className="fuentes-juridicas">
         <h3>Fuentes oficiales para contrastar</h3>
         <ul>
-          <li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2009-9481" target="_blank" rel="noreferrer">Reglamento General de Conductores · artículos 15, 21, 22 y 23</a></li>
-          <li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2015-11722" target="_blank" rel="noreferrer">Ley de Tráfico · artículos 59, 77, 104 y 105</a></li>
+          <li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2009-9481" target="_blank" rel="noreferrer">Reglamento General de Conductores</a></li>
+          <li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2015-11722" target="_blank" rel="noreferrer">Ley de Tráfico · texto consolidado</a></li>
           <li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-1995-25444" target="_blank" rel="noreferrer">Código Penal · artículo 384</a></li>
-          <li><a href="https://www.boe.es/buscar/doc.php?id=FIS-Q-2026-00001" target="_blank" rel="noreferrer">Fiscalía General del Estado · Consulta 1/2026</a></li>
           <li><a href="https://www.dgt.es/nuestros-servicios/permisos-de-conducir/permisos-extranjeros-y-de-fuerzas-y-cuerpos-de-seguridad/conducir-con-un-permiso-extranjero/" target="_blank" rel="noreferrer">DGT · Conducir con un permiso extranjero</a></li>
         </ul>
       </div>
-      <p className="aviso-juridico">La información jurídica debe contrastarse con la normativa vigente y las circunstancias concretas del caso.</p>
+      <p className="aviso-juridico">Herramienta de apoyo. Comprueba siempre la vigencia normativa, la codificación y las circunstancias concretas antes de formular una denuncia.</p>
       <div className="acciones-resultado">
         <button className="boton boton--principal" onClick={alReiniciar}>Iniciar nueva consulta</button>
       </div>
