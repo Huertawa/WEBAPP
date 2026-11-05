@@ -62,7 +62,7 @@ export const resultados = {
   PER006: {
     codigo: "PER006",
     nombre: "Permiso de tercer país: titular no residente",
-    puedeConducir: true,
+    puedeConducir: null,
     motivo: "La ausencia de residencia en España no basta por sí sola para confirmar la validez.",
     normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
     articulo: "Artículo 21.1 y 21.2.",
@@ -74,7 +74,7 @@ export const resultados = {
   PER007: {
     codigo: "PER007",
     nombre: "Permiso de tercer país: dentro del plazo de seis meses",
-    puedeConducir: true,
+    puedeConducir: null,
     motivo: "No han transcurrido más de seis meses desde la adquisición de la residencia normal, sujeto al cumplimiento de los demás requisitos.",
     normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
     articulo: "Artículo 21.1 y 21.2.",
