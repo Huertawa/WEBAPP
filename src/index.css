@@ -379,3 +379,8 @@ p {
     flex-direction: column;
   }
 }
+
+.estado-conduccion--pendiente {
+  background: rgba(242, 193, 78, .14);
+  color: var(--amarillo);
+}
