@@ -8,7 +8,7 @@ export const resultados = {
     articulo: "Artículo 1.1.",
     euros: "",
     puntos: "Sin detracción de puntos.",
-    actuacion: "Comprobar la situación administrativa y documentar la clase de vehículo y autorización exigida.",
+    actuacion: "Comprobar en el Registro de Conductores e Infractores si el conductor obtuvo alguna vez permiso, si existe pérdida de vigencia por pérdida total de puntos, suspensión o privación judicial. Si nunca lo obtuvo, perdió la vigencia por pérdida total de puntos o conduce durante una privación judicial, valorar la posible relevancia penal del artículo 384 del Código Penal antes de tramitar únicamente una infracción administrativa. Identificar la situación exacta y documentarla.",
     observaciones: "La calificación y el importe deben determinarse según el supuesto concreto y el cuadro de infracciones vigente."
   },
   PER002: {
@@ -202,5 +202,17 @@ export const resultados = {
     puntos: "No determinar hasta identificar la infracción concreta.",
     actuacion: "Verificar documentalmente la fecha de entrada y la situación regular del titular. Comprobar si existe un convenio internacional que establezca una regla específica distinta y revisar los restantes requisitos del permiso antes de formular denuncia.",
     observaciones: "Resultado pendiente: el plazo general de seis meses puede estar sujeto a reglas específicas de determinados convenios. No concluir automáticamente sin revisar el país y el reconocimiento aplicable."
+  },
+  PER018: {
+    codigo: "PER018",
+    nombre: "Posible canje por vía de conductor profesional",
+    puedeConducir: null,
+    motivo: "Puede existir una vía excepcional de canje para determinados permisos de terceros países, aunque no exista convenio bilateral de canje identificado.",
+    normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
+    articulo: "Artículos 21.1.a) o b) y 22.1.b) y 22.2.",
+    euros: "No determinar hasta comprobar la validez del permiso y la infracción concreta.",
+    puntos: "No determinar hasta identificar la infracción concreta.",
+    actuacion: "Verificar que el permiso está comprendido en el artículo 21.1.a) o b); acreditar contratación como conductor profesional durante al menos seis meses por empresa legalmente establecida o con sucursal en España, con afiliación y cotización a la Seguridad Social; comprobar la superación de la prueba de circulación de hasta 30 minutos y que el titular no está privado judicialmente del derecho a conducir ni sometido a suspensión o intervención administrativa. Confirmar con la Jefatura Provincial de Tráfico el alcance del posible canje y la situación habilitante antes de cerrar la actuación.",
+    observaciones: "Resultado pendiente y no habilitante por sí mismo. La posibilidad de solicitar el canje no equivale a que el canje ya se haya concedido ni acredita automáticamente la validez del permiso para circular. La vía profesional del artículo 22.1.b) se refiere a permisos de los apartados a) y b) del artículo 21.1."
   },
 };
