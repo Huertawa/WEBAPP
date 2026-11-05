@@ -83,7 +83,7 @@ function App() {
     conConvenio: "PER008",
     convenioAnteriorFirma: "PER008",
     obtenidoDespuesNoAcreditado: "PER010",
-    profesionalNoCanje: "PER009",
+    sinConvenio: "PER009",
     profesionalPendiente: "PER018",
     obtenidoDespuesNoCanjeable: "PER010",
     coreaPosteriorResidencia: "PER012",
@@ -165,7 +165,13 @@ function App() {
             titulo={preguntas.profesionalTercero.titulo}
             descripcion={preguntas.profesionalTercero.descripcion}
             opciones={preguntas.profesionalTercero.opciones}
-            alSeleccionar={(destino, texto) => avanzar(destino, texto)}
+            alSeleccionar={(destino, texto) => {
+              const pais = paises.find((elemento) => elemento.nombre === paisSeleccionado);
+              const destinoFinal = destino === "profesionalNoCanje"
+                ? (pais?.convenio ? "obtenidoDespuesNoCanjeable" : "sinConvenio")
+                : destino;
+              avanzar(destinoFinal, texto);
+            }}
             alVolver={retroceder}
           />
         )}
