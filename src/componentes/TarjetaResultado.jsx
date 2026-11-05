@@ -75,6 +75,21 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
           <p>{denuncia.fundamento}</p>
           <p className="propuesta-denuncia__aviso">Antes de extender el boletín, contrasta el código y la redacción exacta con el catálogo sancionador vigente y con los hechos acreditados.</p>
         </section>
+      ) : resultado.orientacionSancion ? (
+        <section className="orientacion-sancion">
+          <div className="orientacion-sancion__cabecera">
+            <span>ORIENTACIÓN SANCIONADORA</span>
+            <strong>{resultado.orientacionSancion.calificacion}</strong>
+          </div>
+          <div className="propuesta-denuncia__grid">
+            <div><small>IMPORTE ORIENTATIVO</small><strong>{resultado.orientacionSancion.importe}</strong></div>
+            <div><small>PUNTOS</small><strong>{resultado.orientacionSancion.puntos}</strong></div>
+            <div><small>PRECEPTO INFRINGIDO</small><strong>{resultado.orientacionSancion.preceptoInfringido}</strong></div>
+            <div><small>PRECEPTO SANCIONADOR</small><strong>{resultado.orientacionSancion.preceptoSancionador}</strong></div>
+          </div>
+          <p>{resultado.orientacionSancion.fundamento}</p>
+          <p className="orientacion-sancion__aviso">Orientación condicionada: este resultado no confirma por sí solo la infracción ni sustituye la comprobación del país, convenio, permiso y circunstancias concretas.</p>
+        </section>
       ) : !puedeConducir ? (
         <section className="sancion-pendiente">
           <strong>No se asigna automáticamente una denuncia</strong>
