@@ -797,3 +797,38 @@ p {
   .lista-comprobacion__cabecera { align-items: flex-start; flex-direction: column; }
   .tarjeta-resultado__cabecera { padding-left: 14px; }
 }
+
+
+/* Inmovilización: respuesta rápida y diferenciada */
+.dato-destacado--inmovilizacion {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  border-left: 4px solid var(--amarillo);
+}
+.inmovilizacion__estado {
+  font-size: clamp(18px, 2.5vw, 23px) !important;
+  letter-spacing: .2px;
+}
+.inmovilizacion__detalle {
+  margin: 0;
+  color: var(--texto-secundario);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.inmovilizacion--no {
+  border-color: rgba(65,190,112,.55);
+  border-left-color: #48c77c;
+  background: rgba(65,190,112,.07);
+}
+.inmovilizacion--no .inmovilizacion__estado { color: #70e39a; }
+.inmovilizacion--depende {
+  border-color: rgba(242,168,78,.55);
+  border-left-color: var(--amarillo);
+}
+.inmovilizacion--depende .inmovilizacion__estado { color: #ffc078; }
+.inmovilizacion--pendiente {
+  border-color: rgba(242,168,78,.55);
+  border-left-color: var(--amarillo);
+}
+.inmovilizacion--pendiente .inmovilizacion__estado { color: #ffc078; }
