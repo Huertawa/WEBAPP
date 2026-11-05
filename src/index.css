@@ -412,3 +412,39 @@ p {
 .estado-conduccion--positivo { background: rgba(65,190,112,.18); color: #70e39a; }
 .estado-conduccion--negativo { background: rgba(230,75,75,.18); color: #ff8585; }
 .estado-conduccion--pendiente { background: rgba(242,168,78,.18); color: #ffc078; }
+
+
+/* Fuentes oficiales enlazadas desde cada resultado */
+.fuentes-juridicas {
+  margin: 18px 0;
+  padding: 16px 18px;
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  background: rgba(8, 13, 9, .38);
+}
+.fuentes-juridicas h3 {
+  margin: 0 0 10px;
+  font-size: 13px;
+  color: var(--texto);
+}
+.fuentes-juridicas ul {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 8px;
+  color: var(--texto-secundario);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.fuentes-juridicas a {
+  color: #b7ed45;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.fuentes-juridicas a:hover {
+  color: #d4ff7b;
+}
+@media (max-width: 650px) {
+  .fuentes-juridicas { padding: 14px; }
+  .fuentes-juridicas a { overflow-wrap: anywhere; }
+}
