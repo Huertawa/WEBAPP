@@ -27,16 +27,28 @@ function App() {
   const [pantalla, setPantalla] = useState("inicio");
   const [historial, setHistorial] = useState([]);
   const [paisSeleccionado, setPaisSeleccionado] = useState("");
+  const [pilaNavegacion, setPilaNavegacion] = useState([]);
 
   const avanzar = (destino, texto) => {
+    setPilaNavegacion((anterior) => [...anterior, { pantalla, historial, paisSeleccionado }]);
     if (texto) setHistorial((anterior) => [...anterior, texto]);
     setPantalla(destino);
+  };
+
+  const retroceder = () => {
+    const anterior = pilaNavegacion[pilaNavegacion.length - 1];
+    if (!anterior) return;
+    setPantalla(anterior.pantalla);
+    setHistorial(anterior.historial);
+    setPaisSeleccionado(anterior.paisSeleccionado);
+    setPilaNavegacion((pila) => pila.slice(0, -1));
   };
 
   const reiniciar = () => {
     setPantalla("inicio");
     setHistorial([]);
     setPaisSeleccionado("");
+    setPilaNavegacion([]);
   };
 
   const resultadosPorPantalla = {
@@ -60,6 +72,7 @@ function App() {
     const pais = paises.find((elemento) => elemento.nombre === paisSeleccionado);
     if (!pais) return;
     // Registrar una sola vez la respuesta elegida para evitar duplicados en el resultado.
+    setPilaNavegacion((anterior) => [...anterior, { pantalla, historial, paisSeleccionado }]);
     setHistorial((anterior) => [...anterior, texto]);
     if (destino === "obtenidoAntes") {
       setPantalla(pais.convenio ? "conConvenio" : "sinConvenio");
@@ -97,6 +110,7 @@ function App() {
             descripcion={preguntas[pantalla].descripcion}
             opciones={preguntas[pantalla].opciones}
             alSeleccionar={(destino, texto) => avanzar(destino, texto)}
+            alVolver={pilaNavegacion.length ? retroceder : null}
           />
         )}
 
@@ -110,9 +124,10 @@ function App() {
               <option value="">Selecciona un país...</option>
               {paises.map((pais) => <option key={pais.nombre} value={pais.nombre}>{pais.nombre}</option>)}
             </select>
-            <button className="boton boton--principal" disabled={!paisSeleccionado} onClick={() => avanzar("fechaPermiso", `País de expedición: ${paisSeleccionado}`)}>
-              Continuar
-            </button>
+            <div className="acciones-pregunta">
+              <button className="boton boton--secundario" onClick={retroceder}>Volver</button>
+              <button className="boton boton--principal" disabled={!paisSeleccionado} onClick={() => avanzar("fechaPermiso", `País de expedición: ${paisSeleccionado}`)}>Continuar</button>
+            </div>
           </section>
         )}
 
@@ -122,6 +137,7 @@ function App() {
             descripcion={preguntas.fechaPermiso.descripcion}
             opciones={preguntas.fechaPermiso.opciones}
             alSeleccionar={seleccionarFechaObtencion}
+            alVolver={retroceder}
           />
         )}
       </div>
