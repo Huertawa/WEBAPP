@@ -179,4 +179,16 @@ export const resultados = {
     actuacion: "Comprobar si el permiso está redactado en castellano o acompañado de traducción oficial, si se ajusta a los modelos de los convenios de Ginebra o Viena, si se aporta permiso internacional válido junto con el nacional, o si existe reconocimiento por convenio específico. Verificar autenticidad y documentación antes de cerrar la actuación.",
     observaciones: "La falta de acreditación durante la consulta no permite por sí sola concluir que el documento sea falso o que no exista un reconocimiento especial."
   },
+  PER016: {
+    codigo: "PER016",
+    nombre: "Permiso UE/EEE sujeto a posible renovación obligatoria en España",
+    puedeConducir: null,
+    motivo: "El titular reúne los datos que pueden activar la obligación de renovar en España un permiso UE/EEE de vigencia indefinida o de larga duración tras dos años de residencia normal.",
+    normativa: "Real Decreto 818/2009, Reglamento General de Conductores; normativa de la Unión Europea.",
+    articulo: "Artículo 15.4.",
+    euros: "No asignar importe hasta comprobar el incumplimiento y la codificación vigente.",
+    puntos: "No determinar sin identificar la infracción concreta.",
+    actuacion: "Comprobar fecha de adquisición de residencia normal, grupo de permiso, periodo de vigencia original y si se ha realizado la renovación o anotación correspondiente en España. Consultar el Registro de Conductores e Infractores y confirmar la situación administrativa antes de formular denuncia.",
+    observaciones: "Resultado de comprobación, no una declaración automática de pérdida de validez. La DGT indica que la renovación es obligatoria tras dos años de residencia para permisos indefinidos o superiores a 15 años en grupo 1 y a 5 años en grupo 2."
+  },
 };
