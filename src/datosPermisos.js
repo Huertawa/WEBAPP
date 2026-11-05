@@ -108,8 +108,16 @@ export const resultados = {
     motivo: "Transcurridos seis meses desde la residencia normal, el permiso de tercer país deja de ser válido para conducir en España, salvo que exista un canje ya realizado u otra regla específica aplicable. La existencia de convenio no confirma por sí sola que este permiso sea canjeable. También debe comprobarse si se obtuvo antes de adquirir la residencia en España o antes de la fecha de firma del convenio aplicable.",
     normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
     articulo: "Artículos 21.2.c), 21.3 y 22.",
-    euros: "Pendiente de determinar según posibilidad real de canje y codificación vigente.",
-    puntos: "Sin detracción de puntos, con carácter general.",
+    euros: "200 € si se confirma que el permiso es susceptible de canje.",
+    puntos: "0 puntos, con carácter general para esta infracción grave.",
+    orientacionSancion: {
+      calificacion: "Grave (si se confirma la susceptibilidad de canje)",
+      importe: "200 €",
+      puntos: "0 puntos",
+      preceptoInfringido: "Artículo 21.2.c) del Reglamento General de Conductores, en relación con el artículo 22.",
+      preceptoSancionador: "Artículo 76.ll) de la Ley de Tráfico.",
+      fundamento: "La DGT señala que, superado el plazo de seis meses, cuando el permiso es susceptible de canje, la sanción puede ser de 200 €. No aplicar hasta comprobar que ese permiso concreto reúne los requisitos del convenio y que no existe una excepción."
+    },
     actuacion: "Comprobar el convenio concreto y su fecha de firma, la fecha de obtención del permiso, las categorías y los requisitos de canje. Verificar si el canje ya se ha realizado y si existe alguna excepción aplicable antes de concluir si puede conducir.",
     observaciones: "El convenio puede permitir el canje en determinados supuestos, incluidos los permisos obtenidos antes de su firma. No mantiene por sí solo la validez del permiso extranjero una vez agotado el plazo."
   },
@@ -120,8 +128,16 @@ export const resultados = {
     motivo: "Transcurridos seis meses desde la residencia normal, el permiso de tercer país deja de ser válido para conducir en España, salvo que exista una excepción normativa aplicable o un reconocimiento válido. La falta de convenio general no resuelve por sí sola todos los supuestos.",
     normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
     articulo: "Artículos 21.2.c) y 21.3.",
-    euros: "Pendiente de determinar tras verificar el permiso y el cuadro sancionador vigente.",
-    puntos: "Sin detracción de puntos, con carácter general.",
+    euros: "Hasta 500 € si se confirma que no es susceptible de canje ni existe convenio aplicable.",
+    puntos: "Pendiente de confirmar; no fijar detracción automáticamente.",
+    orientacionSancion: {
+      calificacion: "Pendiente de calificación definitiva",
+      importe: "Hasta 500 €",
+      puntos: "Comprobar anexo II y codificación aplicable.",
+      preceptoInfringido: "Artículo 21 del Reglamento General de Conductores, en relación con la falta de reconocimiento o canje.",
+      preceptoSancionador: "Pendiente de concretar según la causa exacta de invalidez.",
+      fundamento: "La DGT indica que la sanción puede alcanzar 500 € cuando el permiso no es susceptible de canje o no existe convenio. Verificar previamente el modelo, reconocimiento internacional, requisitos esenciales y posibles vías especiales de canje profesional."
+    },
     actuacion: "Comprobar si existe convenio aplicable y si el permiso permite un canje. Para permisos profesionales, verificar además los supuestos especiales admitidos por la DGT. No concluir que puede o no puede conducir hasta comprobar esas circunstancias y la situación del permiso.",
     observaciones: "La ausencia de convenio general no excluye todos los supuestos de canje: la DGT contempla determinados permisos profesionales de países sin convenio. Verificar siempre país, clase y requisitos concretos."
   },
@@ -213,8 +229,16 @@ export const resultados = {
     motivo: "El titular reúne los datos que pueden activar la obligación de renovar en España un permiso UE/EEE de vigencia indefinida o de larga duración tras dos años de residencia normal.",
     normativa: "Real Decreto 818/2009, Reglamento General de Conductores; normativa de la Unión Europea.",
     articulo: "Artículo 15.4.",
-    euros: "No asignar importe hasta comprobar el incumplimiento y la codificación vigente.",
-    puntos: "No determinar sin identificar la infracción concreta.",
+    euros: "200 € si se confirma el incumplimiento de la obligación de renovación.",
+    puntos: "0 puntos, con carácter general para esta infracción grave.",
+    orientacionSancion: {
+      calificacion: "Grave (si se confirma el incumplimiento)",
+      importe: "200 €",
+      puntos: "0 puntos",
+      preceptoInfringido: "Artículo 15.4 del Reglamento General de Conductores.",
+      preceptoSancionador: "Artículo 76.ll) de la Ley de Tráfico.",
+      fundamento: "La DGT confirma que el incumplimiento de la obligación de renovar en España determinados permisos UE/EEE tras dos años de residencia constituye infracción grave sancionada con 200 €. Comprobar grupo, periodo de vigencia y fecha de residencia antes de denunciar."
+    },
     actuacion: "Comprobar fecha de adquisición de residencia normal, grupo de permiso, periodo de vigencia original y si se ha realizado la renovación o anotación correspondiente en España. Consultar el Registro de Conductores e Infractores y confirmar la situación administrativa antes de formular denuncia.",
     observaciones: "Resultado de comprobación, no una declaración automática de pérdida de validez. La DGT indica que la renovación es obligatoria tras dos años de residencia para permisos indefinidos o superiores a 15 años en grupo 1 y a 5 años en grupo 2."
   },
