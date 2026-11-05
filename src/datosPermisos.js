@@ -30,10 +30,10 @@ export const resultados = {
     motivo: "Permiso español caducado.",
     normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
     articulo: "Artículo 12.",
-    euros: "Pendiente de codificación vigente.",
-    puntos: "Sin detracción de puntos.",
+    euros: "200 €",
+    puntos: "0 puntos",
     actuacion: "Impedir que continúe conduciendo con esa autorización caducada y tramitar la denuncia que corresponda.",
-    observaciones: "La caducidad no equivale por sí sola a carecer de permiso; verificar el precepto sancionador y la codificación aplicable."
+    observaciones: "La caducidad no equivale por sí sola a carecer de permiso; verificar el precepto sancionador y la codificación aplicable.",
     denuncia: {
       calificacion: "Grave",
       preceptoInfringido: "Artículo 12.4 del Reglamento General de Conductores",
@@ -63,10 +63,10 @@ export const resultados = {
     motivo: "El permiso UE/EEE indicado no está en vigor.",
     normativa: "Reglamento General de Conductores.",
     articulo: "Artículo 15.",
-    euros: "Pendiente de codificación vigente.",
-    puntos: "Sin detracción de puntos.",
+    euros: "200 €",
+    puntos: "0 puntos",
     actuacion: "Comprobar la fecha de caducidad y si existe renovación, prórroga o reconocimiento válido antes de formular denuncia.",
-    observaciones: "No confundir caducidad del documento con una pérdida o retirada del derecho a conducir."
+    observaciones: "No confundir caducidad del documento con una pérdida o retirada del derecho a conducir.",
     denuncia: {
       calificacion: "Grave",
       preceptoInfringido: "Artículo 15 del Reglamento General de Conductores",
@@ -156,10 +156,10 @@ export const resultados = {
     motivo: "La categoría declarada no habilita para el vehículo que se conduce. Es necesario comprobar la clase exacta del vehículo y las categorías y restricciones que figuran en el permiso.",
     normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
     articulo: "Comprobar las clases y categorías aplicables y las condiciones particulares de la autorización.",
-    euros: "Pendiente de determinar tras identificar la infracción concreta.",
-    puntos: "Pendiente de determinar según la infracción que resulte.",
+    euros: "500 €",
+    puntos: "4 puntos",
     actuacion: "Identificar el vehículo, comprobar su clasificación y contrastarla con las categorías autorizadas y sus fechas de vigencia. Verificar restricciones, códigos armonizados y posibles autorizaciones complementarias antes de formular denuncia.",
-    observaciones: "Resultado de comprobación: no asigna automáticamente importe, puntos ni calificación sancionadora."
+    observaciones: "Resultado de comprobación: no asigna automáticamente importe, puntos ni calificación sancionadora.",
     denuncia: {
       calificacion: "Muy grave",
       preceptoInfringido: "Artículo 1.1 del Reglamento General de Conductores",
