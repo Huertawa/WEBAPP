@@ -119,6 +119,18 @@ export const resultados = {
     actuacion: "Comprobar documentalmente la fecha de adquisición de la residencia y la fecha de obtención del permiso. Verificar la excepción específica de Corea del Sur y los supuestos de conductores profesionales antes de cerrar la actuación.",
     observaciones: "La DGT publica una excepción para permisos de Corea del Sur, cuya fecha de obtención puede ser posterior a la residencia legal. No aplicar este resultado a ese país ni a supuestos profesionales especiales sin revisar sus condiciones."
   },
+  PER012: {
+    codigo: "PER012",
+    nombre: "Permiso de Corea del Sur obtenido después de adquirir residencia",
+    puedeConducir: null,
+    motivo: "Corea del Sur cuenta con una regla específica en materia de canje que permite contemplar permisos obtenidos después de adquirir residencia en España. Este dato, por sí solo, no confirma que el permiso concreto habilite para conducir.",
+    normativa: "Real Decreto 818/2009, Reglamento General de Conductores; convenio bilateral España–República de Corea e información oficial de la DGT.",
+    articulo: "Comprobar las condiciones específicas del convenio bilateral y del artículo 22.",
+    euros: "No determinar sin completar la comprobación.",
+    puntos: "No determinar sin completar la comprobación.",
+    actuacion: "Verificar documentalmente la fecha de residencia y de obtención del permiso; comprobar categorías, vigencia, autenticidad, restricciones y requisitos específicos del convenio. Confirmar con la DGT si procede el canje antes de cerrar la actuación.",
+    observaciones: "Resultado deliberadamente pendiente: la excepción relativa a la fecha de obtención no equivale a un reconocimiento automático ni permite afirmar por sí sola que el titular pueda conducir."
+  },
   PER011: {
     codigo: "PER011",
     nombre: "Permiso de tercer país caducado",
