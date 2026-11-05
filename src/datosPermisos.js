@@ -131,6 +131,18 @@ export const resultados = {
     actuacion: "Verificar documentalmente la fecha de residencia y de obtención del permiso; comprobar categorías, vigencia, autenticidad, restricciones y requisitos específicos del convenio. Confirmar con la DGT si procede el canje antes de cerrar la actuación.",
     observaciones: "Resultado deliberadamente pendiente: la excepción relativa a la fecha de obtención no equivale a un reconocimiento automático ni permite afirmar por sí sola que el titular pueda conducir."
   },
+  PER013: {
+    codigo: "PER013",
+    nombre: "Categoría del permiso no habilita para el vehículo",
+    puedeConducir: null,
+    motivo: "La categoría declarada no parece habilitar para el vehículo que se conduce. Es necesario comprobar la clase exacta del vehículo y las categorías y restricciones que figuran en el permiso.",
+    normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
+    articulo: "Comprobar las clases y categorías aplicables y las condiciones particulares de la autorización.",
+    euros: "Pendiente de determinar tras identificar la infracción concreta.",
+    puntos: "Pendiente de determinar según la infracción que resulte.",
+    actuacion: "Identificar el vehículo, comprobar su clasificación y contrastarla con las categorías autorizadas y sus fechas de vigencia. Verificar restricciones, códigos armonizados y posibles autorizaciones complementarias antes de formular denuncia.",
+    observaciones: "Resultado de comprobación: no asigna automáticamente importe, puntos ni calificación sancionadora."
+  },
   PER011: {
     codigo: "PER011",
     nombre: "Permiso de tercer país caducado",
