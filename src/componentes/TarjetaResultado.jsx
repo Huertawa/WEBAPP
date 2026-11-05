@@ -81,8 +81,8 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
         <section className="propuesta-denuncia">
           <div className="propuesta-denuncia__cabecera">
             <div>
-              <span>PROPUESTA DE DENUNCIA</span>
-              <p>Datos aplicables al supuesto identificado</p>
+              <span>{estadoPendiente ? "ORIENTACIÓN DE DENUNCIA" : "PROPUESTA DE DENUNCIA"}</span>
+              <p>{estadoPendiente ? "Encuadre y codificación condicionados a las comprobaciones pendientes" : "Datos de referencia para el supuesto identificado"}</p>
             </div>
             <strong>{denuncia.calificacion}</strong>
           </div>
@@ -97,7 +97,7 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
             </div>
           </div>
           <p>{denuncia.fundamento}</p>
-          <p className="propuesta-denuncia__aviso">Antes de extender el boletín, contrasta el código y la redacción exacta con el catálogo sancionador vigente y con los hechos acreditados.</p>
+          <p className="propuesta-denuncia__aviso">{estadoPendiente ? "No extender denuncia basándose únicamente en esta orientación: confirma primero la validez del permiso, el país, la categoría, el convenio y todos los requisitos del supuesto." : "Antes de extender el boletín, contrasta el código y la redacción exacta con el catálogo sancionador vigente y con los hechos acreditados."}</p>
         </section>
       ) : resultado.orientacionSancion ? (
         <section className="orientacion-sancion">
