@@ -109,15 +109,15 @@ export const resultados = {
   },
   PER010: {
     codigo: "PER010",
-    nombre: "Permiso obtenido siendo residente en España",
+    nombre: "Permiso de tercer país obtenido siendo residente en España",
     puedeConducir: false,
-    motivo: "Supuesto que requiere comprobar la fecha de obtención, residencia y convenio aplicable.",
-    normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
-    articulo: "Artículos 21 y 22.",
-    euros: "Pendiente de verificar.",
-    puntos: "Pendiente de verificar.",
-    actuacion: "Comprobar individualmente la fecha de obtención del permiso y las condiciones del convenio antes de calificar la conducta.",
-    observaciones: "No emitir una conclusión automática."
+    motivo: "La DGT indica que, con carácter general, no es canjeable el permiso extracomunitario obtenido cuando su titular ya era residente legal en España. Superado el plazo de seis meses, no habilita para conducir en España.",
+    normativa: "Real Decreto 818/2009, Reglamento General de Conductores; información oficial de la DGT sobre canjes.",
+    articulo: "Artículos 21.2.c) y 22.1.",
+    euros: "Pendiente de determinar según la calificación y el cuadro sancionador vigente.",
+    puntos: "Sin detracción de puntos, con carácter general.",
+    actuacion: "Comprobar documentalmente la fecha de adquisición de la residencia y la fecha de obtención del permiso. Verificar la excepción específica de Corea del Sur y los supuestos de conductores profesionales antes de cerrar la actuación.",
+    observaciones: "La DGT publica una excepción para permisos de Corea del Sur, cuya fecha de obtención puede ser posterior a la residencia legal. No aplicar este resultado a ese país ni a supuestos profesionales especiales sin revisar sus condiciones."
   },
   PER011: {
     codigo: "PER011",
