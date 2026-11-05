@@ -559,49 +559,74 @@ p {
     grid-template-columns: 1fr;
   }
 }
-@media print {
-  @page { margin: 14mm; }
-  body, html {
-    background: #fff !important;
-    color: #111 !important;
-    min-width: 0;
-  }
-  .cabecera-aplicacion, .pie-aplicacion,
-  .acciones-resultado, .aviso-juridico {
-    display: none !important;
-  }
-  .contenido-principal {
-    width: 100% !important;
-    max-width: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-  .tarjeta-resultado {
-    padding: 0 !important;
-    border: 0 !important;
-    box-shadow: none !important;
-    background: #fff !important;
-    color: #111 !important;
-  }
-  .tarjeta-resultado h2, .dato-destacado > strong,
-  .actuacion-destacada p, .datos-juridicos dd,
-  .historial-consulta {
-    color: #111 !important;
-  }
-  .dato-destacado, .actuacion-destacada, .fuentes-juridicas {
-    break-inside: avoid;
-    background: #fff !important;
-    border-color: #bbb !important;
-  }
-  .dato-destacado > span, .actuacion-destacada > span,
-  .datos-juridicos dt, .fuentes-juridicas h3,
-  .fuentes-juridicas ul {
-    color: #333 !important;
-  }
-  .fuentes-juridicas a {
-    color: #111 !important;
-  }
-  .tarjeta-resultado__contenido {
-    grid-template-columns: 1fr 1.4fr;
-  }
+
+
+/* Propuesta de denuncia: datos sancionadores separados del resultado jurídico */
+.propuesta-denuncia {
+  margin: 18px 0;
+  padding: 20px;
+  border: 1px solid rgba(242, 168, 78, .5);
+  border-radius: 12px;
+  background: rgba(242, 168, 78, .07);
+}
+.propuesta-denuncia__cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.propuesta-denuncia__cabecera span {
+  color: #ffc078;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+.propuesta-denuncia__cabecera strong {
+  color: #ffc078;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+.propuesta-denuncia__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.propuesta-denuncia__grid > div {
+  min-width: 0;
+  padding: 13px;
+  border: 1px solid var(--borde);
+  border-radius: 9px;
+  background: rgba(8, 13, 9, .42);
+}
+.propuesta-denuncia__grid small {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--texto-secundario);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .7px;
+}
+.propuesta-denuncia__grid strong {
+  display: block;
+  color: var(--texto);
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.propuesta-denuncia__codigo { grid-column: 1 / -1; }
+.propuesta-denuncia__codigo strong {
+  color: #ffc078;
+  font-size: 12px;
+}
+.propuesta-denuncia > p {
+  margin: 14px 0 0;
+  color: var(--texto-secundario);
+  font-size: 13px;
+  line-height: 1.6;
+}
+@media (max-width: 520px) {
+  .propuesta-denuncia { padding: 15px; }
+  .propuesta-denuncia__grid { grid-template-columns: 1fr; }
+  .propuesta-denuncia__codigo { grid-column: auto; }
 }
