@@ -4,128 +4,131 @@ export const resultados = {
     nombre: "No posee permiso",
     puedeConducir: false,
     motivo: "No posee permiso de conducción.",
-    normativa: "",
-    articulo: "",
+    normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
+    articulo: "Artículo 1.1.",
     euros: "",
-    puntos: "",
-    actuacion: "Procede denuncia.",
-    observaciones: ""
+    puntos: "Sin detracción de puntos.",
+    actuacion: "Comprobar la situación administrativa y documentar la clase de vehículo y autorización exigida.",
+    observaciones: "La calificación y el importe deben determinarse según el supuesto concreto y el cuadro de infracciones vigente."
   },
-
   PER002: {
     codigo: "PER002",
     nombre: "Permiso español vigente",
     puedeConducir: true,
-    motivo: "Permiso español vigente.",
-    normativa: "",
-    articulo: "",
-    euros: "0",
-    puntos: "0",
-    actuacion: "Sin actuación.",
+    motivo: "Permiso español en vigor.",
+    normativa: "Reglamento General de Conductores.",
+    articulo: "Según clase y condiciones del permiso.",
+    euros: "—",
+    puntos: "—",
+    actuacion: "Ninguna actuación por este motivo.",
     observaciones: ""
   },
-
   PER003: {
     codigo: "PER003",
     nombre: "Permiso español caducado",
     puedeConducir: false,
     motivo: "Permiso español caducado.",
-    normativa: "",
-    articulo: "",
-    euros: "",
-    puntos: "",
-    actuacion: "Pendiente verificar.",
-    observaciones: ""
+    normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
+    articulo: "Artículo 12.",
+    euros: "Pendiente de codificación vigente.",
+    puntos: "Sin detracción de puntos.",
+    actuacion: "Impedir que continúe conduciendo con esa autorización caducada y tramitar la denuncia que corresponda.",
+    observaciones: "La caducidad no equivale por sí sola a carecer de permiso; verificar el precepto sancionador y la codificación aplicable."
   },
-
   PER004: {
     codigo: "PER004",
-    nombre: "Permiso UE vigente",
+    nombre: "Permiso UE/EEE en vigor",
     puedeConducir: true,
-    motivo: "Permiso UE/EEE válido.",
-    normativa: "",
-    articulo: "",
-    euros: "0",
-    puntos: "0",
-    actuacion: "Sin actuación.",
-    observaciones: ""
+    motivo: "Permiso expedido por un Estado de la UE o del EEE y en vigor.",
+    normativa: "Reglamento General de Conductores y normativa de la Unión Europea.",
+    articulo: "Artículo 15 del Reglamento General de Conductores.",
+    euros: "—",
+    puntos: "—",
+    actuacion: "Comprobar vigencia, categorías y posibles obligaciones de renovación o inscripción en España.",
+    observaciones: "La validez puede estar condicionada por las reglas españolas de renovación aplicables a determinados permisos tras establecer residencia."
   },
-
   PER005: {
     codigo: "PER005",
-    nombre: "Permiso UE caducado",
+    nombre: "Permiso UE/EEE caducado",
     puedeConducir: false,
-    motivo: "Permiso UE/EEE caducado.",
-    normativa: "",
-    articulo: "",
-    euros: "",
-    puntos: "",
-    actuacion: "Pendiente verificar.",
-    observaciones: ""
+    motivo: "El permiso UE/EEE indicado no está en vigor.",
+    normativa: "Reglamento General de Conductores.",
+    articulo: "Artículo 15.",
+    euros: "Pendiente de codificación vigente.",
+    puntos: "Sin detracción de puntos.",
+    actuacion: "Comprobar la fecha de caducidad y si existe renovación, prórroga o reconocimiento válido antes de formular denuncia.",
+    observaciones: "No confundir caducidad del documento con una pérdida o retirada del derecho a conducir."
   },
-
   PER006: {
     codigo: "PER006",
-    nombre: "Extranjero no residente",
+    nombre: "Permiso de tercer país: titular no residente",
     puedeConducir: true,
-    motivo: "No residente en España.",
-    normativa: "",
-    articulo: "",
-    euros: "0",
-    puntos: "0",
-    actuacion: "Sin actuación.",
-    observaciones: ""
+    motivo: "La ausencia de residencia en España no basta por sí sola para confirmar la validez.",
+    normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
+    articulo: "Artículo 21.1 y 21.2.",
+    euros: "—",
+    puntos: "—",
+    actuacion: "Comprobar que el permiso se ajusta a alguno de los modelos o convenios admitidos, está en vigor, el titular tiene la edad exigida y no ha superado el plazo aplicable desde su entrada regular en España.",
+    observaciones: "Resultado provisional: verificar documentación de entrada y los requisitos del artículo 21. No dar por válida la conducción solo por declarar que no es residente."
   },
-
   PER007: {
     codigo: "PER007",
-    nombre: "Residente menos de 6 meses",
+    nombre: "Permiso de tercer país: dentro del plazo de seis meses",
     puedeConducir: true,
-    motivo: "Residente en España desde hace menos de 6 meses.",
-    normativa: "",
-    articulo: "",
-    euros: "0",
-    puntos: "0",
-    actuacion: "Sin actuación.",
-    observaciones: ""
+    motivo: "No han transcurrido más de seis meses desde la adquisición de la residencia normal, sujeto al cumplimiento de los demás requisitos.",
+    normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
+    articulo: "Artículo 21.1 y 21.2.",
+    euros: "—",
+    puntos: "—",
+    actuacion: "Comprobar vigencia, edad exigida en España y que el permiso cumple los requisitos formales del artículo 21.",
+    observaciones: "La respuesta no es automática: deben verificarse todos los requisitos del permiso extranjero."
   },
-
   PER008: {
     codigo: "PER008",
-    nombre: "Residente más de 6 meses con convenio",
+    nombre: "Tercer país con posible convenio de canje",
     puedeConducir: false,
-    motivo: "País con convenio de canje.",
-    normativa: "",
-    articulo: "",
-    euros: "",
-    puntos: "",
-    actuacion: "Comprobar requisitos de canje.",
-    observaciones: ""
+    motivo: "Transcurridos seis meses desde la residencia normal, el permiso de tercer país deja de ser válido para conducir en España, salvo regla específica aplicable del convenio.",
+    normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
+    articulo: "Artículos 21.2.c), 21.3 y 22.",
+    euros: "Pendiente de determinar según posibilidad real de canje y codificación vigente.",
+    puntos: "Sin detracción de puntos, con carácter general.",
+    actuacion: "Comprobar el convenio concreto, la fecha de obtención del permiso, las categorías y los requisitos de canje. Si no existe canje ya efectuado ni excepción aplicable, no debe continuar conduciendo.",
+    observaciones: "La existencia de convenio no mantiene por sí sola la validez del permiso extranjero una vez agotado el plazo."
   },
-
   PER009: {
     codigo: "PER009",
-    nombre: "Residente más de 6 meses sin convenio",
+    nombre: "Tercer país sin convenio de canje identificado",
     puedeConducir: false,
-    motivo: "País sin convenio de canje.",
-    normativa: "",
-    articulo: "",
-    euros: "",
-    puntos: "",
-    actuacion: "Pendiente verificar.",
-    observaciones: ""
+    motivo: "Transcurridos seis meses desde la residencia normal, el permiso de tercer país deja de ser válido para conducir en España, salvo excepción normativa aplicable.",
+    normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
+    articulo: "Artículos 21.2.c) y 21.3.",
+    euros: "Pendiente de determinar tras verificar el permiso y el cuadro sancionador vigente.",
+    puntos: "Sin detracción de puntos, con carácter general.",
+    actuacion: "Verificar que el permiso cumple el artículo 21 y que no existe convenio o supuesto especial de canje. Si no puede canjearse, deberá obtener un permiso español.",
+    observaciones: "La lista de países del proyecto es incompleta. No concluir que no existe convenio hasta consultar la relación oficial de la DGT."
   },
-
   PER010: {
     codigo: "PER010",
-    nombre: "Permiso obtenido siendo residente",
+    nombre: "Permiso obtenido siendo residente en España",
     puedeConducir: false,
-    motivo: "Supuesto pendiente de validación jurídica.",
-    normativa: "",
-    articulo: "",
-    euros: "",
-    puntos: "",
-    actuacion: "Pendiente verificar.",
-    observaciones: ""
+    motivo: "Supuesto que requiere comprobar la fecha de obtención, residencia y convenio aplicable.",
+    normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
+    articulo: "Artículos 21 y 22.",
+    euros: "Pendiente de verificar.",
+    puntos: "Pendiente de verificar.",
+    actuacion: "Comprobar individualmente la fecha de obtención del permiso y las condiciones del convenio antes de calificar la conducta.",
+    observaciones: "No emitir una conclusión automática."
+  },
+  PER011: {
+    codigo: "PER011",
+    nombre: "Permiso de tercer país caducado",
+    puedeConducir: false,
+    motivo: "El permiso extranjero no se encuentra en vigor.",
+    normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
+    articulo: "Artículo 21.2.a).",
+    euros: "Pendiente de determinar según el supuesto y la codificación vigente.",
+    puntos: "Sin detracción de puntos, con carácter general.",
+    actuacion: "Comprobar el documento y la eventual renovación o sustitución reconocida por el Estado expedidor. No permitir que continúe conduciendo con un permiso no vigente.",
+    observaciones: "También deben verificarse los restantes requisitos de validez en España."
   }
 };
