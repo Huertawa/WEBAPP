@@ -224,7 +224,7 @@ export const resultados = {
     articulo: "Artículo 384, párrafo primero, del Código Penal.",
     euros: "No procede fijar una sanción administrativa en esta pantalla: comprobar posible ilícito penal.",
     puntos: "No aplicar detracción adicional sin determinar el procedimiento que corresponda.",
-    actuacion: "Comprobar la resolución administrativa de pérdida de vigencia por pérdida total de puntos, su firmeza y notificación al interesado, así como la fecha de efectos. Verificar identidad, vehículo y situación actual en el Registro de Conductores e Infractores. Si concurren los elementos del artículo 384 CP, actuar conforme al protocolo de diligencias penales y consultar los criterios vigentes de Fiscalía.",
+    actuacion: "Comprobar la resolución administrativa de pérdida de vigencia por pérdida total de puntos, su eficacia y notificación al interesado, así como la fecha de efectos. Verificar identidad, vehículo y situación actual en el Registro de Conductores e Infractores. Si concurren los elementos del artículo 384 CP, actuar conforme al protocolo de diligencias penales y consultar los criterios vigentes de Fiscalía.",
     observaciones: "No confundir la pérdida total de puntos con otras causas de pérdida de vigencia, caducidad o suspensión. La Consulta 1/2026 de la Fiscalía General del Estado analiza los requisitos de tipicidad."
   },
   PER020: {
@@ -249,6 +249,6 @@ export const resultados = {
     euros: "No determinar hasta identificar el supuesto y el precepto sancionador.",
     puntos: "No determinar hasta identificar la infracción concreta.",
     actuacion: "Consultar el Registro de Conductores e Infractores y comprobar si se trata de caducidad, suspensión administrativa, pérdida de aptitudes, retirada cautelar, pérdida de vigencia por causa distinta de la pérdida total de puntos, permiso extranjero no reconocido u otra circunstancia. Separar siempre las causas administrativas de las judiciales y penales.",
-    observaciones: "No utilizar automáticamente el artículo 384 CP. La falta de validez de un permiso previamente obtenido no equivale necesariamente a conducir sin haberlo obtenido nunca."
+    observaciones: "No utilizar automáticamente el artículo 384 CP. La falta de validez de un permiso previamente obtenido no equivale necesariamente a conducir sin haberlo obtenido nunca. Si la pérdida de vigencia deriva de una condena ya cumplida, aplicar el criterio de la Consulta 1/2026 de la Fiscalía General del Estado y remitir, en su caso, la información a la autoridad administrativa."
   },
 };
