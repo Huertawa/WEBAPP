@@ -21,7 +21,15 @@ const preguntas = {
     titulo: "¿El permiso ha sido expedido en la UE o el EEE?",
     opciones: [{ valor: "ue", texto: "Sí" }, { valor: "noUE", texto: "No" }],
   },
+  ue: {
+    titulo: "¿El permiso de la UE o del EEE está en vigor?",
+    opciones: [{ valor: "ueVigente", texto: "Sí, está en vigor" }, { valor: "ueCaducado", texto: "No, está caducado" }],
+  },
   noUE: {
+    titulo: "¿El permiso de un tercer país está en vigor?",
+    opciones: [{ valor: "terceroVigente", texto: "Sí, está en vigor" }, { valor: "terceroCaducado", texto: "No, está caducado" }],
+  },
+  terceroVigente: {
     titulo: "¿El titular es residente en España?",
     opciones: [{ valor: "residente", texto: "Sí" }, { valor: "noResidente", texto: "No" }],
   },
@@ -51,9 +59,11 @@ function App() {
     sinPermiso: "PER001",
     espanolValido: "PER002",
     espanolCaducado: "PER003",
-    ue: "PER004",
+    ueVigente: "PER004",
+    ueCaducado: "PER005",
     noResidente: "PER006",
     menos6meses: "PER007",
+    terceroCaducado: "PER011",
     conConvenio: "PER008",
     sinConvenio: "PER009",
   };
@@ -93,13 +103,11 @@ function App() {
           />
         )}
 
-        {pantalla === "sinPermiso" && null}
-
         {pantalla === "mas6meses" && (
           <section className="panel-pregunta">
             <span className="etiqueta-seccion">PERMISO EXTRANJERO</span>
             <h2>Selecciona el país que expidió el permiso</h2>
-            <p className="texto-secundario">La relación de países disponible es provisional y no sustituye la comprobación de los requisitos del canje.</p>
+            <p className="texto-secundario">La relación de países disponible es provisional. El convenio no garantiza por sí solo que el permiso pueda canjearse: también deben comprobarse la fecha de obtención y los requisitos del acuerdo.</p>
             <label className="etiqueta-campo" htmlFor="pais-permiso">País de expedición</label>
             <select id="pais-permiso" className="selector-pais" value={paisSeleccionado} onChange={(evento) => setPaisSeleccionado(evento.target.value)}>
               <option value="">Selecciona un país...</option>
