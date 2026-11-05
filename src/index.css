@@ -448,3 +448,60 @@ p {
   .fuentes-juridicas { padding: 14px; }
   .fuentes-juridicas a { overflow-wrap: anywhere; }
 }
+
+
+/* Resumen operativo del resultado: artículo, importe e inmovilización */
+.resumen-operativo {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 24px 0 8px;
+}
+.dato-destacado {
+  min-width: 0;
+  padding: 18px 20px;
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  background: rgba(8, 13, 9, .48);
+}
+.dato-destacado > span {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--texto-secundario);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+.dato-destacado > strong {
+  display: block;
+  color: var(--texto);
+  font-size: clamp(17px, 2.2vw, 21px);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+.dato-destacado--articulo {
+  border-color: rgba(183, 237, 69, .45);
+}
+.dato-destacado--articulo > strong {
+  color: var(--verde);
+}
+.dato-destacado--inmovilizacion {
+  grid-column: 1 / -1;
+  border-color: rgba(242, 168, 78, .42);
+}
+.dato-destacado--inmovilizacion > strong {
+  font-size: 15px;
+  font-weight: 650;
+}
+@media (max-width: 650px) {
+  .resumen-operativo {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .dato-destacado--inmovilizacion {
+    grid-column: auto;
+  }
+  .dato-destacado {
+    padding: 16px;
+  }
+}
