@@ -160,6 +160,7 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
           <li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2015-11722" target="_blank" rel="noreferrer">Ley de Tráfico · texto consolidado</a></li>
           <li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-1995-25444" target="_blank" rel="noreferrer">Código Penal · artículo 384</a></li>
           <li><a href="https://www.dgt.es/nuestros-servicios/permisos-de-conducir/permisos-extranjeros-y-de-fuerzas-y-cuerpos-de-seguridad/conducir-con-un-permiso-extranjero/" target="_blank" rel="noreferrer">DGT · Conducir con un permiso extranjero</a></li>
+          <li><a href="https://sede.dgt.gob.es/export/sites/dgt/.galleries/multas/ARCI/Guia-codificada-de-infracciones-ARCI-Vigente-a-partir-del-01-07-2025.pdf" target="_blank" rel="noreferrer">DGT · Guía codificada ARCI (vigente desde 01/07/2025)</a></li>
         </ul>
       </div>
       <p className="aviso-juridico">Herramienta de apoyo. Comprueba siempre la vigencia normativa, la codificación y las circunstancias concretas antes de formular una denuncia.</p>
