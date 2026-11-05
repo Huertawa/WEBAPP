@@ -1052,3 +1052,130 @@ a, .fuentes-juridicas a { color: #9bb6d0; }
   .tarjeta-resultado--positivo, .tarjeta-resultado--negativo,
   .tarjeta-resultado--pendiente { background-color: #1b2226; }
 }
+
+
+/* Segunda propuesta cromática: botones neutros y acentos menos saturados */
+.boton--opcion,
+.boton--principal {
+  background: #526575;
+  color: #f3f5f6;
+  border: 1px solid #718596;
+  box-shadow: 0 2px 8px rgba(0,0,0,.16);
+}
+.boton--opcion:hover:not(:disabled),
+.boton--principal:hover:not(:disabled) {
+  background: #617789;
+  border-color: #8da0af;
+}
+.boton--secundario {
+  background: #252e35;
+  border-color: #46535e;
+  color: #dce2e7;
+}
+.boton--secundario:hover:not(:disabled) {
+  background: #303c45;
+  border-color: #718596;
+}
+.marca__simbolo {
+  background: #526575;
+  color: #f3f5f6;
+}
+.comprobador-inmovilizacion__opciones .seleccionado {
+  outline: 2px solid #91a8bb;
+  background: #394b59;
+}
+:focus-visible { outline-color: #91a8bb; }
+
+/* Paleta funcional: azul pizarra, salvia, ocre y malva apagados */
+.dato-destacado--articulo {
+  border-color: rgba(117,151,181,.42);
+  background: linear-gradient(145deg, rgba(83,119,151,.13), rgba(8,13,9,.42));
+}
+.dato-destacado--articulo > strong { color: #a9c2d8; }
+.dato-destacado--importe {
+  border-color: rgba(112,157,139,.42);
+  background: linear-gradient(145deg, rgba(78,127,108,.12), rgba(8,13,9,.42));
+}
+.dato-destacado--importe > strong { color: #a4c5b4; }
+.dato-destacado--puntos {
+  border-color: rgba(158,143,174,.42);
+  background: linear-gradient(145deg, rgba(119,102,139,.12), rgba(8,13,9,.42));
+}
+.dato-destacado--puntos > strong { color: #c2b5d0; }
+.dato-destacado--inmovilizacion {
+  border-color: rgba(174,147,105,.42);
+  border-left-color: #ae9369;
+  background: linear-gradient(145deg, rgba(132,107,67,.10), rgba(8,13,9,.42));
+}
+.inmovilizacion--depende, .inmovilizacion--pendiente {
+  border-color: rgba(174,147,105,.42);
+  border-left-color: #ae9369;
+}
+.inmovilizacion--depende .inmovilizacion__estado,
+.inmovilizacion--pendiente .inmovilizacion__estado { color: #cbb58e; }
+.inmovilizacion--no {
+  border-color: rgba(112,157,139,.42);
+  border-left-color: #709d8b;
+  background: rgba(78,127,108,.07);
+}
+.inmovilizacion--no .inmovilizacion__estado { color: #a4c5b4; }
+
+/* La ficha de denuncia sigue la misma codificación cromática */
+.propuesta-denuncia {
+  border-color: rgba(117,151,181,.34);
+  background: rgba(83,119,151,.045);
+}
+.propuesta-denuncia__grid > div:nth-child(1),
+.propuesta-denuncia__grid > div:nth-child(2) {
+  border-color: rgba(117,151,181,.32);
+}
+.propuesta-denuncia__grid > div:nth-child(1) strong,
+.propuesta-denuncia__grid > div:nth-child(2) strong { color: #a9c2d8; }
+.propuesta-denuncia__grid > div:nth-child(3) {
+  border-color: rgba(112,157,139,.34);
+}
+.propuesta-denuncia__grid > div:nth-child(3) strong { color: #a4c5b4; }
+.propuesta-denuncia__grid > div:nth-child(4) {
+  border-color: rgba(158,143,174,.34);
+}
+.propuesta-denuncia__grid > div:nth-child(4) strong { color: #c2b5d0; }
+.propuesta-denuncia__codigo {
+  border-color: rgba(174,147,105,.38) !important;
+}
+.propuesta-denuncia__codigo strong { color: #cbb58e !important; }
+.propuesta-denuncia__cabecera span,
+.propuesta-denuncia__cabecera > strong { color: #cbb58e; }
+
+.actuacion-destacada {
+  border-color: rgba(112,157,139,.32);
+  border-left-color: #709d8b;
+  background: linear-gradient(110deg, rgba(78,127,108,.085), rgba(78,127,108,.02));
+}
+.actuacion-destacada > span { color: #a4c5b4; }
+.lista-comprobacion__cabecera span,
+.lista-comprobacion li::before { color: #a9c2d8; }
+.comprobador-inmovilizacion { border-color: rgba(117,151,181,.28); }
+.comprobador-inmovilizacion__resultado.es-posible {
+  border-color: rgba(174,147,105,.42);
+  background: rgba(132,107,67,.08);
+}
+.comprobador-inmovilizacion__resultado.es-posible strong { color: #cbb58e; }
+.comprobador-inmovilizacion__resultado.no-aplica {
+  border-color: rgba(112,157,139,.38);
+  background: rgba(78,127,108,.06);
+}
+.comprobador-inmovilizacion__resultado.no-aplica strong { color: #a4c5b4; }
+
+/* Estado global claramente visible sin convertir toda la pantalla en un bloque chillón */
+.tarjeta-resultado--positivo {
+  border-color: rgba(91,166,121,.72);
+  background: linear-gradient(145deg, rgba(34,65,49,.30), rgba(24,31,34,.99) 52%);
+}
+.tarjeta-resultado--negativo {
+  border-color: rgba(190,91,94,.76);
+  background: linear-gradient(145deg, rgba(75,37,40,.32), rgba(27,29,33,.99) 52%);
+}
+.tarjeta-resultado--pendiente {
+  border-color: rgba(190,154,93,.68);
+  background: linear-gradient(145deg, rgba(70,57,37,.25), rgba(27,31,34,.99) 52%);
+}
