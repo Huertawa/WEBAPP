@@ -1,4 +1,8 @@
+import { useEffect, useState } from "react";
+
 export default function TarjetaResultado({ resultado, historial, alReiniciar }) {
+  const [claseVehiculo, setClaseVehiculo] = useState("");
+  useEffect(() => setClaseVehiculo(""), [resultado.codigo]);
   const {
     nombre, puedeConducir, motivo, normativa, articulo, euros, puntos,
     actuacion, observaciones, denuncia,
@@ -31,6 +35,12 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
       tipo: "depende"
     };
   })();
+
+  const decisionInmovilizacion = claseVehiculo === "cd"
+    ? { titulo: "PUEDE ACORDARSE", detalle: "Si el vehículo exige permiso C o D y el conductor carece de esa autorización, el artículo 104.1.k permite a los agentes inmovilizarlo. La medida se levanta cuando cese la causa." }
+    : claseVehiculo === "otro"
+      ? { titulo: "NO POR EL ART. 104.1.K", detalle: "Ese apartado se limita a vehículos que exigen permiso C o D. Comprueba si concurre otro motivo legal de inmovilización." }
+      : null;
 
   const importeVisible = denuncia?.importe || euros || "No procede / por determinar";
   const puntosVisibles = denuncia?.puntos || puntos || "Pendiente de verificar";
@@ -87,6 +97,25 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
           <p className="inmovilizacion__detalle">{inmovilizacion.detalle}</p>
         </article>
       </div>
+
+      {!estadoPendiente && puedeConducir === false && (
+        <section className="comprobador-inmovilizacion">
+          <div className="comprobador-inmovilizacion__cabecera">
+            <span>COMPROBACIÓN RÁPIDA DE INMOVILIZACIÓN</span>
+            <p>Selecciona qué tipo de vehículo está conduciendo. La consulta aplica el artículo 104.1.k de la Ley de Tráfico.</p>
+          </div>
+          <div className="comprobador-inmovilizacion__opciones">
+            <button type="button" className={`boton boton--opcion ${claseVehiculo === "cd" ? "seleccionado" : ""}`} aria-pressed={claseVehiculo === "cd"} onClick={() => setClaseVehiculo("cd")}>Exige permiso C o D</button>
+            <button type="button" className={`boton boton--secundario ${claseVehiculo === "otro" ? "seleccionado" : ""}`} aria-pressed={claseVehiculo === "otro"} onClick={() => setClaseVehiculo("otro")}>Otra categoría (A, B, etc.)</button>
+          </div>
+          {decisionInmovilizacion && (
+            <div className={`comprobador-inmovilizacion__resultado ${claseVehiculo === "cd" ? "es-posible" : "no-aplica"}`}>
+              <strong>{decisionInmovilizacion.titulo}</strong>
+              <p>{decisionInmovilizacion.detalle}</p>
+            </div>
+          )}
+        </section>
+      )}
 
       {denuncia ? (
         <section className="propuesta-denuncia">
