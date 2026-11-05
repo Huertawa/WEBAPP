@@ -24,6 +24,7 @@ const preguntas = {
   terceroMenos6Edad: { titulo: "¿El titular tiene la edad mínima exigida en España para esa categoría?", descripcion: "La edad exigida es la correspondiente al permiso español equivalente. Comprueba la edad del conductor y la categoría concreta.", opciones: [{ valor: "terceroMenos6Formato", texto: "Sí, cumple la edad mínima" }, { valor: "requisitoEdadNoCumplido", texto: "No, no cumple la edad mínima" }] },
   terceroNoResidenteFormato: { titulo: "¿El documento cumple alguno de los formatos o reconocimientos admitidos en España?", descripcion: "Por ejemplo: permiso en castellano o con traducción oficial, modelo conforme a los convenios de Ginebra o Viena, permiso internacional válido acompañado del permiso nacional, o reconocimiento por convenio específico.", opciones: [{ valor: "terceroNoResidentePlazo", texto: "Sí, cumple uno de esos requisitos" }, { valor: "requisitoFormatoNoAcreditado", texto: "No / no puedo acreditarlo" }] },
   terceroMenos6Formato: { titulo: "¿El documento cumple alguno de los formatos o reconocimientos admitidos en España?", descripcion: "Por ejemplo: permiso en castellano o con traducción oficial, modelo conforme a los convenios de Ginebra o Viena, permiso internacional válido acompañado del permiso nacional, o reconocimiento por convenio específico.", opciones: [{ valor: "terceroMenos6Categoria", texto: "Sí, cumple uno de esos requisitos" }, { valor: "requisitoFormatoNoAcreditado", texto: "No / no puedo acreditarlo" }] },
+  fechaFirmaConvenio: { titulo: "¿El permiso se obtuvo antes de la fecha de firma del convenio entre España y el país expedidor?", descripcion: "Algunos convenios permiten el canje si el permiso se obtuvo antes de la firma del acuerdo, aunque fuera después de adquirir la residencia en España. Comprueba la fecha exacta del convenio aplicable a ese país.", opciones: [{ valor: "convenioAnteriorFirma", texto: "Sí, antes de la firma del convenio" }, { valor: "obtenidoDespuesNoCanjeable", texto: "No, después de la firma" }, { valor: "obtenidoDespuesNoAcreditado", texto: "No puedo acreditarlo" }] },
   fechaPermiso: {
     titulo: "¿Cuándo obtuvo el permiso extranjero respecto a la fecha en que adquirió la residencia legal en España?",
     descripcion: "La fecha de obtención puede determinar si el permiso es canjeable. Comprueba la documentación acreditativa, no solo la declaración del conductor.",
@@ -79,6 +80,8 @@ function App() {
     terceroMenos6Categoria: "PER007",
     terceroCaducado: "PER011",
     conConvenio: "PER008",
+    convenioAnteriorFirma: "PER008",
+    obtenidoDespuesNoAcreditado: "PER010",
     sinConvenio: "PER009",
     obtenidoDespuesNoCanjeable: "PER010",
     coreaPosteriorResidencia: "PER012",
@@ -97,7 +100,11 @@ function App() {
       return;
     }
     // La DGT contempla una excepción específica para permisos de Corea del Sur.
-    setPantalla(pais.nombre.includes("Corea del Sur") ? "coreaPosteriorResidencia" : "obtenidoDespuesNoCanjeable");
+    if (pais.nombre.includes("Corea del Sur")) {
+      setPantalla("coreaPosteriorResidencia");
+      return;
+    }
+    setPantalla(pais.convenio ? "fechaFirmaConvenio" : "obtenidoDespuesNoCanjeable");
   };
 
   return (
@@ -148,6 +155,17 @@ function App() {
               <button className="boton boton--principal" disabled={!paisSeleccionado} onClick={() => avanzar("fechaPermiso", `País de expedición: ${paisSeleccionado}`)}>Continuar</button>
             </div>
           </section>
+        )}
+
+        {pantalla === "fechaFirmaConvenio" && (
+          <Pregunta
+            pasoActual={pilaNavegacion.length + 1}
+            titulo={preguntas.fechaFirmaConvenio.titulo}
+            descripcion={preguntas.fechaFirmaConvenio.descripcion}
+            opciones={preguntas.fechaFirmaConvenio.opciones}
+            alSeleccionar={(destino, texto) => avanzar(destino, texto)}
+            alVolver={retroceder}
+          />
         )}
 
         {pantalla === "fechaPermiso" && (
