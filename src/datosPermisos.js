@@ -33,11 +33,11 @@ export const resultados = {
     euros: "200 €",
     puntos: "0 puntos",
     actuacion: "Impedir que continúe conduciendo con esa autorización caducada y tramitar la denuncia que corresponda.",
-    observaciones: "La caducidad no equivale por sí sola a carecer de permiso; verificar el precepto sancionador y la codificación aplicable.",
+    observaciones: "La caducidad no equivale a no haber obtenido nunca permiso. La conducta se encuadra como infracción grave en el artículo 76.ll) de la Ley de Tráfico, con la sanción general del artículo 80.1.",
     denuncia: {
       calificacion: "Grave",
       preceptoInfringido: "Artículo 12.4 del Reglamento General de Conductores",
-      preceptoSancionador: "Artículo 76.l) de la Ley de Tráfico",
+      preceptoSancionador: "Artículo 76.ll) de la Ley de Tráfico",
       importe: "200 €",
       puntos: "0 puntos",
       codificado: "CON · Art. 012 · Apt. 4 · Opción 5B · 0 puntos",
@@ -70,7 +70,7 @@ export const resultados = {
     denuncia: {
       calificacion: "Grave",
       preceptoInfringido: "Artículo 12.4 del Reglamento General de Conductores",
-      preceptoSancionador: "Artículo 76.l) de la Ley de Tráfico",
+      preceptoSancionador: "Artículo 76.ll) de la Ley de Tráfico",
       importe: "200 €",
       puntos: "0 puntos",
       codificado: "CON · Art. 012 · Apt. 4 · Opción 5B · 0 puntos",
