@@ -29,7 +29,7 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
       : "estado-conduccion--negativo";
 
   return (
-    <section className="tarjeta-resultado">
+    <section className={`tarjeta-resultado tarjeta-resultado--${estadoPendiente ? "pendiente" : puedeConducir ? "positivo" : "negativo"}`}>
       <div className="tarjeta-resultado__cabecera">
         <span className="etiqueta-seccion">RESULTADO DE LA CONSULTA</span>
         <h2>{tituloEstado}</h2>
