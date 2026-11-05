@@ -34,6 +34,15 @@ export const resultados = {
     puntos: "Sin detracción de puntos.",
     actuacion: "Impedir que continúe conduciendo con esa autorización caducada y tramitar la denuncia que corresponda.",
     observaciones: "La caducidad no equivale por sí sola a carecer de permiso; verificar el precepto sancionador y la codificación aplicable."
+    denuncia: {
+      calificacion: "Grave",
+      preceptoInfringido: "Artículo 12.4 del Reglamento General de Conductores",
+      preceptoSancionador: "Artículo 76.c) de la Ley de Tráfico",
+      importe: "200 €",
+      puntos: "0 puntos",
+      codificado: "Pendiente de incorporar el código exacto tras contraste con el cuadro codificado vigente",
+      fundamento: "La DGT identifica expresamente la conducción con el permiso caducado como infracción grave sancionada con 200 euros. No lleva detracción de puntos."
+    },
   },
   PER004: {
     codigo: "PER004",
@@ -58,6 +67,15 @@ export const resultados = {
     puntos: "Sin detracción de puntos.",
     actuacion: "Comprobar la fecha de caducidad y si existe renovación, prórroga o reconocimiento válido antes de formular denuncia.",
     observaciones: "No confundir caducidad del documento con una pérdida o retirada del derecho a conducir."
+    denuncia: {
+      calificacion: "Grave",
+      preceptoInfringido: "Artículo 15 del Reglamento General de Conductores",
+      preceptoSancionador: "Artículo 76.c) de la Ley de Tráfico, sujeto a comprobación del supuesto concreto",
+      importe: "200 €",
+      puntos: "0 puntos",
+      codificado: "Pendiente de incorporar el código exacto tras contraste con el cuadro codificado vigente",
+      fundamento: "Aplicable cuando se confirma que el permiso comunitario ha perdido su vigencia y no existe renovación o reconocimiento válido."
+    },
   },
   PER006: {
     codigo: "PER006",
@@ -142,6 +160,15 @@ export const resultados = {
     puntos: "Pendiente de determinar según la infracción que resulte.",
     actuacion: "Identificar el vehículo, comprobar su clasificación y contrastarla con las categorías autorizadas y sus fechas de vigencia. Verificar restricciones, códigos armonizados y posibles autorizaciones complementarias antes de formular denuncia.",
     observaciones: "Resultado de comprobación: no asigna automáticamente importe, puntos ni calificación sancionadora."
+    denuncia: {
+      calificacion: "Muy grave",
+      preceptoInfringido: "Artículo 1.1 del Reglamento General de Conductores",
+      preceptoSancionador: "Conducción sin el permiso o licencia adecuado para el vehículo",
+      importe: "500 €",
+      puntos: "4 puntos",
+      codificado: "Pendiente de incorporar el código exacto tras contraste con el cuadro codificado vigente",
+      fundamento: "La DGT publica esta conducta con sanción de 500 euros y detracción de 4 puntos. Antes de denunciar, comprobar que la categoría realmente no habilita y descartar una calificación penal u otra autorización complementaria."
+    },
   },
   PER011: {
     codigo: "PER011",
