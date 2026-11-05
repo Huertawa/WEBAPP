@@ -155,4 +155,28 @@ export const resultados = {
     actuacion: "Comprobar el documento y la eventual renovación o sustitución reconocida por el Estado expedidor. No permitir que continúe conduciendo con un permiso no vigente.",
     observaciones: "También deben verificarse los restantes requisitos de validez en España."
   }
+  PER014: {
+    codigo: "PER014",
+    nombre: "No cumple la edad mínima exigida para la categoría",
+    puedeConducir: false,
+    motivo: "El titular no alcanza la edad mínima exigida en España para obtener el permiso español equivalente a la categoría que pretende utilizar.",
+    normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
+    articulo: "Artículo 21.2.b).",
+    euros: "No determinar sin identificar la infracción concreta y su codificación vigente.",
+    puntos: "No determinar sin identificar la infracción concreta.",
+    actuacion: "Comprobar la edad del conductor, la categoría extranjera y la edad mínima española aplicable. Documentar la comprobación y evitar que continúe conduciendo esa categoría mientras no reúna el requisito.",
+    observaciones: "Resultado limitado al requisito de edad. No sustituye la comprobación de la vigencia, formato, autenticidad y demás condiciones del permiso."
+  },
+  PER015: {
+    codigo: "PER015",
+    nombre: "Formato o reconocimiento del permiso no acreditado",
+    puedeConducir: null,
+    motivo: "No se ha podido confirmar que el permiso extranjero esté expedido en un modelo o formato reconocido en España o que esté amparado por un convenio aplicable.",
+    normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
+    articulo: "Artículo 21.1.",
+    euros: "No determinar hasta confirmar si el permiso es válido y cuál es, en su caso, la infracción concreta.",
+    puntos: "No determinar hasta confirmar la infracción concreta.",
+    actuacion: "Comprobar si el permiso está redactado en castellano o acompañado de traducción oficial, si se ajusta a los modelos de los convenios de Ginebra o Viena, si se aporta permiso internacional válido junto con el nacional, o si existe reconocimiento por convenio específico. Verificar autenticidad y documentación antes de cerrar la actuación.",
+    observaciones: "La falta de acreditación durante la consulta no permite por sí sola concluir que el documento sea falso o que no exista un reconocimiento especial."
+  },
 };
