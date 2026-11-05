@@ -207,7 +207,7 @@ export const resultados = {
     codigo: "PER018",
     nombre: "Posible canje por vía de conductor profesional",
     puedeConducir: null,
-    motivo: "Puede existir una vía excepcional de canje para determinados permisos de terceros países, aunque no exista convenio bilateral de canje identificado.",
+    motivo: "Puede existir una vía excepcional de canje para determinados permisos de terceros países cuando no resulte aplicable el canje ordinario por convenio o por la fecha de obtención del permiso.",
     normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
     articulo: "Artículos 21.1.a) o b) y 22.1.b) y 22.2.",
     euros: "No determinar hasta comprobar la validez del permiso y la infracción concreta.",
