@@ -1,15 +1,15 @@
 export const resultados = {
   PER001: {
     codigo: "PER001",
-    nombre: "No posee permiso",
+    nombre: "Conduce sin haber obtenido nunca permiso",
     puedeConducir: false,
     motivo: "No posee permiso de conducción.",
-    normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
-    articulo: "Artículo 1.1.",
+    normativa: "Real Decreto 818/2009, Reglamento General de Conductores; Ley Orgánica 10/1995, Código Penal, cuando proceda.",
+    articulo: "Artículo 1.1 del Reglamento General de Conductores y artículo 384 del Código Penal, si concurren sus elementos.",
     euros: "",
     puntos: "Sin detracción de puntos.",
     actuacion: "Comprobar en el Registro de Conductores e Infractores si el conductor obtuvo alguna vez permiso, si existe pérdida de vigencia por pérdida total de puntos, suspensión o privación judicial. Si nunca lo obtuvo, perdió la vigencia por pérdida total de puntos o conduce durante una privación judicial, valorar la posible relevancia penal del artículo 384 del Código Penal antes de tramitar únicamente una infracción administrativa. Identificar la situación exacta y documentarla.",
-    observaciones: "La calificación y el importe deben determinarse según el supuesto concreto y el cuadro de infracciones vigente."
+    observaciones: "La conducción sin haber obtenido nunca permiso de conducción de vehículo a motor o ciclomotor puede integrar el delito del artículo 384 del Código Penal. Verificar que nunca obtuvo autorización en ningún Estado y que el vehículo está incluido en el tipo penal. No tramitar automáticamente una denuncia administrativa."
   },
   PER002: {
     codigo: "PER002",
@@ -214,5 +214,41 @@ export const resultados = {
     puntos: "No determinar hasta identificar la infracción concreta.",
     actuacion: "Verificar que el permiso está comprendido en el artículo 21.1.a) o b); acreditar contratación como conductor profesional durante al menos seis meses por empresa legalmente establecida o con sucursal en España, con afiliación y cotización a la Seguridad Social; comprobar la superación de la prueba de circulación de hasta 30 minutos y que el titular no está privado judicialmente del derecho a conducir ni sometido a suspensión o intervención administrativa. Confirmar con la Jefatura Provincial de Tráfico el alcance del posible canje y la situación habilitante antes de cerrar la actuación.",
     observaciones: "Resultado pendiente y no habilitante por sí mismo. La posibilidad de solicitar el canje no equivale a que el canje ya se haya concedido ni acredita automáticamente la validez del permiso para circular. La vía profesional del artículo 22.1.b) se refiere a permisos de los apartados a) y b) del artículo 21.1."
+  },
+  PER019: {
+    codigo: "PER019",
+    nombre: "Pérdida de vigencia por pérdida total de puntos",
+    puedeConducir: null,
+    motivo: "El conductor manifiesta que tiene declarada la pérdida de vigencia por agotamiento de todos los puntos.",
+    normativa: "Ley Orgánica 10/1995, Código Penal; Real Decreto Legislativo 6/2015, Ley de Tráfico.",
+    articulo: "Artículo 384, párrafo primero, del Código Penal.",
+    euros: "No procede fijar una sanción administrativa en esta pantalla: comprobar posible ilícito penal.",
+    puntos: "No aplicar detracción adicional sin determinar el procedimiento que corresponda.",
+    actuacion: "Comprobar la resolución administrativa de pérdida de vigencia por pérdida total de puntos, su firmeza y notificación al interesado, así como la fecha de efectos. Verificar identidad, vehículo y situación actual en el Registro de Conductores e Infractores. Si concurren los elementos del artículo 384 CP, actuar conforme al protocolo de diligencias penales y consultar los criterios vigentes de Fiscalía.",
+    observaciones: "No confundir la pérdida total de puntos con otras causas de pérdida de vigencia, caducidad o suspensión. La Consulta 1/2026 de la Fiscalía General del Estado analiza los requisitos de tipicidad."
+  },
+  PER020: {
+    codigo: "PER020",
+    nombre: "Conducción durante privación judicial del derecho a conducir",
+    puedeConducir: null,
+    motivo: "El conductor manifiesta que existe una resolución judicial que le priva del derecho a conducir.",
+    normativa: "Ley Orgánica 10/1995, Código Penal.",
+    articulo: "Artículo 384, párrafo segundo, del Código Penal.",
+    euros: "No procede fijar una sanción administrativa en esta pantalla: comprobar posible ilícito penal.",
+    puntos: "No aplicar detracción administrativa sin determinar el procedimiento que corresponda.",
+    actuacion: "Comprobar testimonio o consulta de la resolución judicial, alcance de la privación, fecha de inicio y finalización, firmeza o carácter cautelar y que la medida se encontraba vigente en el momento de la conducción. Verificar la identidad del conductor y documentar la consulta antes de calificar los hechos.",
+    observaciones: "Resultado pendiente de comprobación documental. No equiparar una privación judicial vigente con una suspensión administrativa."
+  },
+  PER021: {
+    codigo: "PER021",
+    nombre: "Permiso sin validez por otra causa o situación no determinada",
+    puedeConducir: null,
+    motivo: "No se ha podido identificar con precisión la causa por la que el conductor carece de una autorización válida.",
+    normativa: "Real Decreto 818/2009, Reglamento General de Conductores; Ley de Tráfico y Código Penal, si procede.",
+    articulo: "Pendiente de concretar según la causa de pérdida o falta de validez.",
+    euros: "No determinar hasta identificar el supuesto y el precepto sancionador.",
+    puntos: "No determinar hasta identificar la infracción concreta.",
+    actuacion: "Consultar el Registro de Conductores e Infractores y comprobar si se trata de caducidad, suspensión administrativa, pérdida de aptitudes, retirada cautelar, pérdida de vigencia por causa distinta de la pérdida total de puntos, permiso extranjero no reconocido u otra circunstancia. Separar siempre las causas administrativas de las judiciales y penales.",
+    observaciones: "No utilizar automáticamente el artículo 384 CP. La falta de validez de un permiso previamente obtenido no equivale necesariamente a conducir sin haberlo obtenido nunca."
   },
 };
