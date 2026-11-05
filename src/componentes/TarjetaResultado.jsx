@@ -1,6 +1,5 @@
 export default function TarjetaResultado({ resultado, historial, alReiniciar }) {
   const {
-    codigo,
     puedeConducir,
     motivo,
     normativa,
@@ -28,7 +27,12 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
       ? "estado-conduccion--positivo"
       : "estado-conduccion--negativo";
 
-  const textoInmovilizacion = resultado.inmovilizacion || "La falta de habilitación del conductor no permite aplicar automáticamente cualquier supuesto de inmovilización. El artículo 104.1.k de la Ley de Tráfico contempla específicamente conducir un vehículo que exige permiso de clase C o D careciendo de la autorización correspondiente. El artículo 104.1.a se refiere a la autorización administrativa del propio vehículo, no al permiso del conductor. Para otras clases, comprobar el supuesto legal concreto, impedir que continúe conduciendo si no está habilitado y valorar que se haga cargo otro conductor autorizado.";
+  const textoInmovilizacion = resultado.inmovilizacion
+    || (puedeConducir === true
+      ? "No procede por falta de habilitación: el resultado indica que puede conducir."
+      : estadoPendiente
+        ? "Pendiente de comprobar el supuesto legal concreto. No debe acordarse automáticamente."
+        : "Valorar según el vehículo y el supuesto legal aplicable. El artículo 104.1.k de la Ley de Tráfico contempla específicamente vehículos que exigen permiso C o D conducidos sin la autorización correspondiente. No presupone la inmovilización automática en cualquier falta de permiso.");
 
   return (
     <section className={`tarjeta-resultado tarjeta-resultado--${estadoPendiente ? "pendiente" : puedeConducir ? "positivo" : "negativo"}`}>
@@ -38,6 +42,21 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
         <span className={`estado-conduccion ${claseEstado}`}>
           {etiquetaEstado}
         </span>
+      </div>
+
+      <div className="resumen-operativo">
+        <article className="dato-destacado dato-destacado--articulo">
+          <span>ARTÍCULO APLICABLE</span>
+          <strong>{articulo || "Pendiente de verificar"}</strong>
+        </article>
+        <article className="dato-destacado">
+          <span>IMPORTE</span>
+          <strong>{euros || "No procede / por determinar"}</strong>
+        </article>
+        <article className="dato-destacado dato-destacado--inmovilizacion">
+          <span>INMOVILIZACIÓN</span>
+          <strong>{textoInmovilizacion}</strong>
+        </article>
       </div>
 
       <div className="tarjeta-resultado__contenido">
@@ -51,16 +70,12 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
         </div>
 
         <div className="bloque-datos">
-          <h3>Fundamento y actuación</h3>
+          <h3>Fundamento jurídico y actuación</h3>
           <dl className="datos-juridicos">
-            <div><dt>Código</dt><dd>{codigo || "Pendiente"}</dd></div>
             <div><dt>Motivo</dt><dd>{motivo || "Pendiente de verificar"}</dd></div>
             <div><dt>Normativa</dt><dd>{normativa || "Pendiente de verificar"}</dd></div>
-            <div><dt>Artículo</dt><dd>{articulo || "Pendiente de verificar"}</dd></div>
-            <div><dt>Importe</dt><dd>{euros || "Pendiente de verificar"}</dd></div>
             <div><dt>Puntos</dt><dd>{puntos || "Pendiente de verificar"}</dd></div>
             <div><dt>Actuación</dt><dd>{actuacion || "Pendiente de verificar"}</dd></div>
-            {puedeConducir !== true && <div><dt>Inmovilización</dt><dd>{textoInmovilizacion}</dd></div>}
             <div><dt>Observaciones</dt><dd>{observaciones || "—"}</dd></div>
           </dl>
         </div>
