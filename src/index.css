@@ -651,3 +651,42 @@ p {
   .resumen-operativo { grid-template-columns: 1fr; }
   .dato-destacado--inmovilizacion { grid-column: auto; }
 }
+
+
+/* Orientación sancionadora condicionada para supuestos que requieren verificación */
+.orientacion-sancion {
+  margin: 18px 0;
+  padding: 20px;
+  border: 1px solid rgba(242, 168, 78, .55);
+  border-radius: 12px;
+  background: rgba(242, 168, 78, .075);
+}
+.orientacion-sancion__cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+.orientacion-sancion__cabecera span {
+  color: #ffc078;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+.orientacion-sancion__cabecera strong {
+  color: #ffc078;
+  font-size: 12px;
+  text-align: right;
+}
+.orientacion-sancion > p {
+  margin: 13px 0 0;
+  color: var(--texto-secundario);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.orientacion-sancion__aviso {
+  padding: 10px 12px;
+  border-left: 3px solid var(--amarillo);
+  background: rgba(242, 193, 78, .07);
+}
