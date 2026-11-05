@@ -15,12 +15,22 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
     ? "estado-conduccion--pendiente"
     : puedeConducir ? "estado-conduccion--positivo" : "estado-conduccion--negativo";
 
-  const textoInmovilizacion = resultado.inmovilizacion
-    || (puedeConducir === true
-      ? "No procede por falta de habilitación: el resultado indica que puede conducir."
-      : estadoPendiente
-        ? "Pendiente de comprobar el supuesto legal concreto. No debe acordarse automáticamente."
-        : "Valorar según el vehículo y el supuesto legal aplicable. El artículo 104.1.k de la Ley de Tráfico contempla específicamente vehículos que exigen permiso C o D conducidos sin la autorización correspondiente. No presupone la inmovilización automática en cualquier falta de permiso.");
+  const inmovilizacion = (() => {
+    if (resultado.inmovilizacion) {
+      return { estado: "COMPROBAR SUPUESTO", detalle: resultado.inmovilizacion, tipo: "pendiente" };
+    }
+    if (puedeConducir === true) {
+      return { estado: "NO PROCEDE", detalle: "El resultado confirma que el permiso habilita para conducir. No hay motivo de inmovilización por falta de autorización.", tipo: "no" };
+    }
+    if (resultado.codigo === "PER013") {
+      return { estado: "DEPENDE DEL VEHÍCULO", detalle: "Si conduce un vehículo que exige permiso C o D y carece de esa autorización, puede acordarse conforme al artículo 104.1.k de la Ley de Tráfico. Para otras categorías, no se aplica automáticamente este apartado.", tipo: "depende" };
+    }
+    return {
+      estado: "NO ES AUTOMÁTICA",
+      detalle: "La falta o invalidez del permiso no implica por sí sola inmovilizar. El artículo 104.1.k contempla específicamente vehículos que requieren permiso C o D y se conducen sin la autorización correspondiente. Comprueba la clase del vehículo y la causa concreta.",
+      tipo: "depende"
+    };
+  })();
 
   const importeVisible = denuncia?.importe || euros || "No procede / por determinar";
   const puntosVisibles = denuncia?.puntos || puntos || "Pendiente de verificar";
@@ -71,9 +81,10 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
           <span>DETRACCIÓN DE PUNTOS</span>
           <strong>{puntosVisibles}</strong>
         </article>
-        <article className="dato-destacado dato-destacado--inmovilizacion">
+        <article className={`dato-destacado dato-destacado--inmovilizacion inmovilizacion--${inmovilizacion.tipo}`}>
           <span>INMOVILIZACIÓN</span>
-          <strong>{textoInmovilizacion}</strong>
+          <strong className="inmovilizacion__estado">{inmovilizacion.estado}</strong>
+          <p className="inmovilizacion__detalle">{inmovilizacion.detalle}</p>
         </article>
       </div>
 
