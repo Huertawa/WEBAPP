@@ -24,6 +24,30 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
 
   const importeVisible = denuncia?.importe || euros || "No procede / por determinar";
   const puntosVisibles = denuncia?.puntos || puntos || "Pendiente de verificar";
+  const comprobacionesPorCaso = {
+    PER001: ["Consultar el Registro de Conductores e Infractores y comprobar si obtuvo permiso en España o en otro Estado.", "Descartar pérdida total de puntos y privación judicial: son supuestos diferenciados del artículo 384 CP.", "Identificar el vehículo y documentar los elementos del posible ilícito penal."],
+    PER003: ["Verificar fecha de caducidad y que no exista renovación o prórroga vigente.", "Comprobar que se trata de caducidad y no de suspensión, pérdida de vigencia o privación judicial.", "Contrastar la codificación y los datos del permiso antes de formular el boletín."],
+    PER005: ["Comprobar la fecha de vigencia del permiso y si existe renovación o sustitución válida.", "Verificar restricciones, retirada o suspensión en el Estado expedidor y, si procede, el reconocimiento en España.", "No confundir caducidad documental con privación del derecho a conducir."],
+    PER008: ["Confirmar la fecha de adquisición de residencia normal y el cómputo del plazo de seis meses.", "Consultar el convenio vigente con el país y comprobar que esa categoría concreta es canjeable.", "Verificar fecha de obtención, restricciones, vigencia y posibles excepciones profesionales."],
+    PER009: ["Comprobar en la relación oficial de la DGT si existe convenio aplicable o reconocimiento específico.", "Verificar el modelo internacional del permiso, traducción y requisitos esenciales.", "Descartar la vía excepcional de canje profesional antes de cerrar la calificación."],
+    PER010: ["Acreditar documentalmente las fechas de residencia y obtención del permiso.", "Comprobar la excepción específica de Corea del Sur y el convenio del país expedidor.", "Valorar la vía de canje profesional si reúne todos los requisitos legales."],
+    PER011: ["Verificar que el permiso extranjero está realmente caducado y no renovado.", "Comprobar el reconocimiento del documento y las reglas del país expedidor.", "Determinar la infracción concreta antes de asignar importe, puntos o código."],
+    PER013: ["Identificar la clasificación técnica del vehículo y la categoría que exige.", "Comprobar categorías, fechas de vigencia, restricciones y códigos armonizados del permiso.", "Descartar autorización complementaria o supuesto penal antes de extender denuncia."],
+    PER014: ["Acreditar la edad del conductor y la categoría extranjera concreta.", "Aplicar la edad mínima española del permiso equivalente y revisar excepciones.", "No fijar sanción ni puntos hasta determinar el encaje administrativo exacto."],
+    PER015: ["Comprobar si el permiso está redactado en castellano o acompañado de traducción oficial.", "Verificar los modelos de Ginebra/Viena o permiso internacional acompañado del nacional.", "Consultar si existe convenio o reconocimiento específico para ese país."],
+    PER016: ["Confirmar residencia normal en España durante al menos dos años.", "Identificar grupo 1 o grupo 2 y comprobar los límites de vigencia del artículo 15.4 RGC.", "Verificar que no se ha renovado o sustituido el permiso y que el supuesto encaja en la infracción grave."],
+    PER017: ["Acreditar la fecha de entrada regular y la situación de residencia del titular.", "Comprobar vigencia, edad mínima, formato reconocido y condiciones del artículo 21 RGC.", "Consultar convenio y circunstancias concretas antes de concluir que el permiso carece de validez."],
+    PER018: ["Comprobar que el permiso encaja en los modelos del artículo 21.1.a) o b).", "Acreditar al menos seis meses de contratación como conductor profesional y la relación laboral exigida.", "Verificar prueba de circulación, cotización y ausencia de privación, suspensión o intervención."],
+    PER019: ["Obtener y comprobar la resolución de pérdida de vigencia por pérdida total de puntos.", "Verificar notificación, fecha de efectos y que la conducción fue posterior.", "Diferenciarlo de otras causas de pérdida de vigencia y aplicar el criterio penal vigente."],
+    PER020: ["Comprobar la resolución judicial y si la privación era efectiva en el momento de conducir.", "Verificar alcance, fechas, carácter cautelar o firmeza e identidad del conductor.", "No confundir privación judicial con suspensión administrativa."],
+    PER021: ["Consultar el registro y concretar la causa exacta de falta de validez.", "Diferenciar caducidad, suspensión, pérdida de vigencia, retirada judicial y permiso extranjero no reconocido.", "No aplicar automáticamente el artículo 384 CP ni asignar sanción sin identificar el supuesto."]
+  };
+  const comprobaciones = resultado.comprobaciones || comprobacionesPorCaso[resultado.codigo] || [
+    "Comprobar la identidad del conductor y la autenticidad del documento.",
+    "Verificar en el Registro de Conductores e Infractores la situación administrativa actual.",
+    "Contrastar la normativa y la codificación vigente antes de cerrar la intervención."
+  ];
+
 
   return (
     <section className={`tarjeta-resultado tarjeta-resultado--${estadoPendiente ? "pendiente" : puedeConducir ? "positivo" : "negativo"}`}>
@@ -96,6 +120,16 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
           <p>Con los datos disponibles no es seguro fijar todavía un importe, una detracción de puntos o un código de boletín. Primero hay que concretar la causa y descartar que los hechos tengan relevancia penal.</p>
         </section>
       ) : null}
+
+      <section className="lista-comprobacion">
+        <div className="lista-comprobacion__cabecera">
+          <span>CONTROL DE LA INTERVENCIÓN</span>
+          <small>{comprobaciones.length} comprobaciones recomendadas</small>
+        </div>
+        <ol>
+          {comprobaciones.map((item, indice) => <li key={indice}>{item}</li>)}
+        </ol>
+      </section>
 
       <section className="actuacion-destacada">
         <span>QUÉ HACER EN LA INTERVENCIÓN</span>
