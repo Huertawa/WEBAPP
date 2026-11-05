@@ -898,3 +898,157 @@ p {
   .comprobador-inmovilizacion__opciones { flex-direction: column; }
   .comprobador-inmovilizacion__opciones .boton { width: 100%; }
 }
+
+
+/* Identidad visual renovada: tonos sobrios y códigos de color por dato */
+:root {
+  --verde: #79a98c;
+  --verde-oscuro: #5f8d73;
+  --rojo: #c66f70;
+  --amarillo: #c6a56a;
+  --fondo: #111519;
+  --panel: #191f24;
+  --panel-secundario: #20282e;
+  --borde: #354047;
+  --texto: #edf0f2;
+  --texto-secundario: #aab4bb;
+}
+body {
+  background:
+    radial-gradient(ellipse at 85% 0%, rgba(121,169,140,.045), transparent 34rem),
+    var(--fondo);
+}
+a, .fuentes-juridicas a { color: #9bb6d0; }
+.fuentes-juridicas a:hover { color: #c2d5e8; }
+.marca__simbolo {
+  background: #718f83;
+  color: #101719;
+}
+.boton--opcion, .boton--principal {
+  background: #718f83;
+  color: #101719;
+}
+.boton--opcion:hover:not(:disabled), .boton--principal:hover:not(:disabled) {
+  background: #86a899;
+}
+.etiqueta-seccion, .lista-comprobacion__cabecera span,
+.comprobador-inmovilizacion__cabecera > span {
+  color: #9bb6a8;
+}
+.tarjeta-resultado--positivo {
+  border-color: rgba(91,166,121,.82);
+  background: linear-gradient(145deg, rgba(34,65,49,.48), rgba(24,31,34,.99) 48%);
+  box-shadow: 0 0 0 1px rgba(91,166,121,.10), 0 16px 42px rgba(0,0,0,.22);
+}
+.tarjeta-resultado--negativo {
+  border-color: rgba(190,91,94,.88);
+  background: linear-gradient(145deg, rgba(75,37,40,.48), rgba(27,29,33,.99) 48%);
+  box-shadow: 0 0 0 1px rgba(190,91,94,.11), 0 16px 42px rgba(0,0,0,.22);
+}
+.tarjeta-resultado--pendiente {
+  border-color: rgba(190,154,93,.78);
+  background: linear-gradient(145deg, rgba(70,57,37,.38), rgba(27,31,34,.99) 48%);
+}
+.tarjeta-resultado--positivo .tarjeta-resultado__cabecera::before { background: #65ad82; }
+.tarjeta-resultado--negativo .tarjeta-resultado__cabecera::before { background: #c66f70; }
+.tarjeta-resultado--pendiente .tarjeta-resultado__cabecera::before { background: #c6a56a; }
+.estado-conduccion--positivo {
+  color: #8bc9a2;
+  background: rgba(91,166,121,.16);
+}
+.estado-conduccion--negativo {
+  color: #e38c8d;
+  background: rgba(190,91,94,.17);
+}
+.estado-conduccion--pendiente {
+  color: #d7b77e;
+  background: rgba(190,154,93,.16);
+}
+
+/* Cada bloque de la ficha tiene su propio color funcional */
+.dato-destacado--articulo {
+  border-color: rgba(111,155,199,.48);
+  background: linear-gradient(145deg, rgba(76,116,157,.12), rgba(8,13,9,.42));
+}
+.dato-destacado--articulo > strong { color: #9bbbe0; }
+.dato-destacado--importe {
+  border-color: rgba(91,166,143,.48);
+  background: linear-gradient(145deg, rgba(71,139,117,.13), rgba(8,13,9,.42));
+}
+.dato-destacado--importe > strong { color: #8bc9b5; }
+.dato-destacado--puntos {
+  border-color: rgba(157,132,190,.48);
+  background: linear-gradient(145deg, rgba(126,99,160,.13), rgba(8,13,9,.42));
+}
+.dato-destacado--puntos > strong { color: #c0a9df; }
+.dato-destacado--inmovilizacion {
+  border-color: rgba(190,154,93,.48);
+  border-left-color: #c6a56a;
+  background: linear-gradient(145deg, rgba(155,119,62,.10), rgba(8,13,9,.42));
+}
+.inmovilizacion--no {
+  border-color: rgba(91,166,121,.48);
+  border-left-color: #65ad82;
+  background: rgba(91,166,121,.07);
+}
+.inmovilizacion--no .inmovilizacion__estado { color: #8bc9a2; }
+.inmovilizacion--depende, .inmovilizacion--pendiente {
+  border-color: rgba(190,154,93,.48);
+  border-left-color: #c6a56a;
+}
+.inmovilizacion--depende .inmovilizacion__estado,
+.inmovilizacion--pendiente .inmovilizacion__estado { color: #d7b77e; }
+
+/* Datos sancionadores: azul para preceptos, violeta para puntos y ámbar para codificación */
+.propuesta-denuncia {
+  border-color: rgba(111,155,199,.4);
+  background: rgba(76,116,157,.055);
+}
+.propuesta-denuncia__cabecera span,
+.propuesta-denuncia__cabecera > strong { color: #d2b47d; }
+.propuesta-denuncia__grid > div:nth-child(1),
+.propuesta-denuncia__grid > div:nth-child(2) { border-color: rgba(111,155,199,.32); }
+.propuesta-denuncia__grid > div:nth-child(1) strong,
+.propuesta-denuncia__grid > div:nth-child(2) strong { color: #a9c5e3; }
+.propuesta-denuncia__grid > div:nth-child(3) { border-color: rgba(91,166,143,.36); }
+.propuesta-denuncia__grid > div:nth-child(3) strong { color: #8bc9b5; }
+.propuesta-denuncia__grid > div:nth-child(4) { border-color: rgba(157,132,190,.36); }
+.propuesta-denuncia__grid > div:nth-child(4) strong { color: #c0a9df; }
+.propuesta-denuncia__codigo { border-color: rgba(190,154,93,.4) !important; }
+.propuesta-denuncia__codigo strong { color: #d7b77e !important; }
+.propuesta-denuncia__aviso, .orientacion-sancion__aviso {
+  border-left-color: #c6a56a;
+}
+.actuacion-destacada {
+  border-color: rgba(91,166,143,.35);
+  border-left-color: #6cae98;
+  background: linear-gradient(110deg, rgba(71,139,117,.10), rgba(71,139,117,.025));
+}
+.actuacion-destacada > span { color: #8bc9b5; }
+.lista-comprobacion__cabecera span { color: #9bb6d0; }
+.lista-comprobacion li::before { color: #9bb6d0; }
+.comprobador-inmovilizacion { border-color: rgba(111,155,199,.30); }
+.comprobador-inmovilizacion__opciones .seleccionado {
+  outline-color: #9bb6d0;
+}
+.comprobador-inmovilizacion__resultado.es-posible {
+  border-color: rgba(190,154,93,.48);
+  background: rgba(155,119,62,.09);
+}
+.comprobador-inmovilizacion__resultado.es-posible strong { color: #d7b77e; }
+.comprobador-inmovilizacion__resultado.no-aplica {
+  border-color: rgba(91,166,121,.42);
+  background: rgba(91,166,121,.07);
+}
+.comprobador-inmovilizacion__resultado.no-aplica strong { color: #8bc9a2; }
+.sancion-pendiente {
+  border-color: rgba(190,154,93,.45);
+  background: rgba(155,119,62,.07);
+}
+.sancion-pendiente strong { color: #d7b77e; }
+:focus-visible { outline-color: #9bb6d0; }
+
+@media (max-width: 650px) {
+  .tarjeta-resultado--positivo, .tarjeta-resultado--negativo,
+  .tarjeta-resultado--pendiente { background-color: #1b2226; }
+}
