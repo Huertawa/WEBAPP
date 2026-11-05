@@ -118,6 +118,7 @@ function App() {
 
         {preguntas[pantalla] && (
           <Pregunta
+            pasoActual={pilaNavegacion.length + 1}
             titulo={preguntas[pantalla].titulo}
             descripcion={preguntas[pantalla].descripcion}
             opciones={preguntas[pantalla].opciones}
@@ -128,7 +129,7 @@ function App() {
 
         {pantalla === "mas6meses" && (
           <section className="panel-pregunta">
-            <span className="etiqueta-seccion">PERMISO EXTRANJERO</span>
+            <span className="etiqueta-seccion">PASO {pilaNavegacion.length + 1} · PERMISO EXTRANJERO</span>
             <h2>Selecciona el país que expidió el permiso</h2>
             <p className="texto-secundario">La relación de países se basa en la información publicada por la DGT. El convenio no garantiza por sí solo que un permiso concreto sea canjeable.</p>
             <label className="etiqueta-campo" htmlFor="pais-permiso">País de expedición</label>
@@ -145,6 +146,7 @@ function App() {
 
         {pantalla === "fechaPermiso" && (
           <Pregunta
+            pasoActual={pilaNavegacion.length + 1}
             titulo={preguntas.fechaPermiso.titulo}
             descripcion={preguntas.fechaPermiso.descripcion}
             opciones={preguntas.fechaPermiso.opciones}
