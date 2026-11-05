@@ -1,350 +1,130 @@
 import { useState } from "react";
 import { resultados } from "./datosPermisos";
 import { paises } from "./paises";
-import { normativaPermisos } from "./normativaPermisos";
+import TarjetaResultado from "./componentes/TarjetaResultado";
+import Pregunta from "./componentes/Pregunta";
+
+const preguntas = {
+  inicio: {
+    titulo: "¿El conductor posee permiso de conducción?",
+    opciones: [{ valor: "tipoPermiso", texto: "Sí, posee permiso" }, { valor: "sinPermiso", texto: "No posee permiso" }],
+  },
+  tipoPermiso: {
+    titulo: "¿El permiso es español o extranjero?",
+    opciones: [{ valor: "espanol", texto: "Español" }, { valor: "extranjero", texto: "Extranjero" }],
+  },
+  espanol: {
+    titulo: "¿El permiso español está vigente?",
+    opciones: [{ valor: "espanolValido", texto: "Sí, está vigente" }, { valor: "espanolCaducado", texto: "No, está caducado" }],
+  },
+  extranjero: {
+    titulo: "¿El permiso ha sido expedido en la UE o el EEE?",
+    opciones: [{ valor: "ue", texto: "Sí" }, { valor: "noUE", texto: "No" }],
+  },
+  noUE: {
+    titulo: "¿El titular es residente en España?",
+    opciones: [{ valor: "residente", texto: "Sí" }, { valor: "noResidente", texto: "No" }],
+  },
+  residente: {
+    titulo: "¿Han transcurrido más de seis meses desde que adquirió la residencia normal en España?",
+    opciones: [{ valor: "mas6meses", texto: "Sí" }, { valor: "menos6meses", texto: "No" }],
+  },
+};
+
 function App() {
   const [pantalla, setPantalla] = useState("inicio");
   const [historial, setHistorial] = useState([]);
-const [paisSeleccionado, setPaisSeleccionado] = useState("");
+  const [paisSeleccionado, setPaisSeleccionado] = useState("");
+
+  const avanzar = (destino, texto) => {
+    if (texto) setHistorial((anterior) => [...anterior, texto]);
+    setPantalla(destino);
+  };
+
   const reiniciar = () => {
     setPantalla("inicio");
     setHistorial([]);
+    setPaisSeleccionado("");
   };
 
-  const botonStyle = {
-    padding: "12px 20px",
-    margin: "5px",
-    border: "none",
-    borderRadius: "8px",
-    backgroundColor: "#1f4e79",
-    color: "white",
-    cursor: "pointer",
-    fontSize: "16px",
+  const resultadosPorPantalla = {
+    sinPermiso: "PER001",
+    espanolValido: "PER002",
+    espanolCaducado: "PER003",
+    ue: "PER004",
+    noResidente: "PER006",
+    menos6meses: "PER007",
+    conConvenio: "PER008",
+    sinConvenio: "PER009",
   };
 
-  const cardStyle = {
-    backgroundColor: "#f5f5f5",
-    padding: "20px",
-    borderRadius: "10px",
-    boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
-    marginTop: "20px",
-  };
-
-  const Resultado = ({
-    codigo,
-    puedeConducir,
-    motivo,
-    normativa,
-    articulo,
-    euros,
-    puntos,
-    actuacion,
-    observaciones,
-  }) => (
-    <div style={cardStyle}>
-      <h2>🚔 RESULTADO</h2>
-
-      <div
-        style={{
-          backgroundColor: puedeConducir ? "#d4edda" : "#f8d7da",
-          padding: "10px",
-          borderRadius: "8px",
-          marginBottom: "15px",
-        }}
-      >
-        <strong>
-          {puedeConducir
-            ? "✅ PUEDE CONDUCIR"
-            : "❌ NO PUEDE CONDUCIR"}
-        </strong>
-      </div>
-
-      <h3>Consulta realizada</h3>
-
-      <ul>
-        {historial.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
-
-      <hr />
-
-      <p>
-        <strong>Código:</strong> {codigo}
-      </p>
-
-      <p>
-        <strong>Motivo:</strong> {motivo}
-      </p>
-
-      <p>
-        <strong>Normativa:</strong> {normativa}
-      </p>
-
-      <p>
-        <strong>Artículo:</strong> {articulo}
-      </p>
-
-      <p>
-        <strong>Importe:</strong> {euros}
-      </p>
-
-      <p>
-        <strong>Puntos:</strong> {puntos}
-      </p>
-
-      <p>
-        <strong>Actuación:</strong> {actuacion}
-      </p>
-
-      <p>
-        <strong>Observaciones:</strong> {observaciones}
-      </p>
-
-      <button style={botonStyle} onClick={reiniciar}>
-        🔄 Nueva consulta
-      </button>
-    </div>
-  );
+  const codigoResultado = resultadosPorPantalla[pantalla];
+  const resultado = codigoResultado ? resultados[codigoResultado] : null;
 
   return (
-    <div
-      style={{
-        maxWidth: "900px",
-        margin: "auto",
-        padding: "20px",
-        fontFamily: "Arial",
-      }}
-    >
-      <h1>🚔 Asistente de Permisos</h1>
-<p>Países cargados: {paises.length}</p>
-      {pantalla === "inicio" && (
-        <>
-          <h2>¿Posee permiso de conducción?</h2>
+    <main className="aplicacion">
+      <header className="cabecera-aplicacion">
+        <div className="marca">
+          <span className="marca__simbolo">M</span>
+          <div>
+            <p className="marca__nombre">MOTOLISTOS</p>
+            <span className="marca__descripcion">Herramienta de consulta de permisos</span>
+          </div>
+        </div>
+        <span className="cabecera-aplicacion__estado">VERSIÓN DE TRABAJO</span>
+      </header>
 
-          <button
-            style={botonStyle}
-            onClick={() => {
-              setHistorial([
-                ...historial,
-                "✅ Posee permiso de conducción",
-              ]);
-              setPantalla("tipoPermiso");
-            }}
-          >
-            Sí
-          </button>
+      <div className="contenido-principal">
+        <div className="titulo-pagina">
+          <span className="etiqueta-seccion">MÓDULO 01 · CONDUCCIÓN</span>
+          <h1>Consulta de permisos</h1>
+          <p>Asistente guiado para comprobar las circunstancias del permiso de conducción.</p>
+        </div>
 
-          <button
-            style={botonStyle}
-            onClick={() => {
-              setHistorial([
-                ...historial,
-                "❌ No posee permiso de conducción",
-              ]);
-              setPantalla("sinPermiso");
-            }}
-          >
-            No
-          </button>
-        </>
-      )}
+        {resultado && (
+          <TarjetaResultado resultado={resultado} historial={historial} alReiniciar={reiniciar} />
+        )}
 
-      {pantalla === "sinPermiso" && (
-        <Resultado {...resultados.PER001} />
-      )}
+        {preguntas[pantalla] && (
+          <Pregunta
+            titulo={preguntas[pantalla].titulo}
+            opciones={preguntas[pantalla].opciones}
+            alSeleccionar={(destino, texto) => avanzar(destino, texto)}
+          />
+        )}
 
-      {pantalla === "tipoPermiso" && (
-        <>
-          <h2>¿El permiso es español o extranjero?</h2>
+        {pantalla === "sinPermiso" && null}
 
-          <button
-            style={botonStyle}
-            onClick={() => {
-              setHistorial([
-                ...historial,
-                "🇪🇸 Permiso español",
-              ]);
-              setPantalla("espanol");
-            }}
-          >
-            Español
-          </button>
+        {pantalla === "mas6meses" && (
+          <section className="panel-pregunta">
+            <span className="etiqueta-seccion">PERMISO EXTRANJERO</span>
+            <h2>Selecciona el país que expidió el permiso</h2>
+            <p className="texto-secundario">La relación de países disponible es provisional y no sustituye la comprobación de los requisitos del canje.</p>
+            <label className="etiqueta-campo" htmlFor="pais-permiso">País de expedición</label>
+            <select id="pais-permiso" className="selector-pais" value={paisSeleccionado} onChange={(evento) => setPaisSeleccionado(evento.target.value)}>
+              <option value="">Selecciona un país...</option>
+              {paises.map((pais) => <option key={pais.nombre} value={pais.nombre}>{pais.nombre}</option>)}
+            </select>
+            <button
+              className="boton boton--principal"
+              disabled={!paisSeleccionado}
+              onClick={() => {
+                const pais = paises.find((elemento) => elemento.nombre === paisSeleccionado);
+                if (!pais) return;
+                avanzar(pais.convenio ? "conConvenio" : "sinConvenio", `País de expedición: ${pais.nombre}`);
+              }}
+            >
+              Continuar
+            </button>
+          </section>
+        )}
+      </div>
 
-          <button
-            style={botonStyle}
-            onClick={() => {
-              setHistorial([
-                ...historial,
-                "🌍 Permiso extranjero",
-              ]);
-              setPantalla("extranjero");
-            }}
-          >
-            Extranjero
-          </button>
-        </>
-      )}
-
-      {pantalla === "espanol" && (
-        <>
-          <h2>¿Está vigente?</h2>
-
-          <button
-            style={botonStyle}
-            onClick={() => setPantalla("espanolValido")}
-          >
-            Sí
-          </button>
-
-          <button
-            style={botonStyle}
-            onClick={() => setPantalla("espanolCaducado")}
-          >
-            No
-          </button>
-        </>
-      )}
-
-      {pantalla === "espanolValido" && (
-        <Resultado {...resultados.PER002} />
-      )}
-
-      {pantalla === "espanolCaducado" && (
-        <Resultado {...resultados.PER003} />
-      )}
-
-      {pantalla === "extranjero" && (
-        <>
-          <h2>¿Pertenece a la UE / EEE?</h2>
-
-          <button
-            style={botonStyle}
-            onClick={() => setPantalla("ue")}
-          >
-            Sí
-          </button>
-
-          <button
-            style={botonStyle}
-            onClick={() => setPantalla("noUE")}
-          >
-            No
-          </button>
-        </>
-      )}
-
-      {pantalla === "ue" && (
-        <Resultado {...resultados.PER004} />
-      )}
-
-      {pantalla === "noUE" && (
-        <>
-          <h2>¿Es residente en España?</h2>
-
-          <button
-            style={botonStyle}
-            onClick={() => setPantalla("residente")}
-          >
-            Sí
-          </button>
-
-          <button
-            style={botonStyle}
-            onClick={() => setPantalla("noResidente")}
-          >
-            No
-          </button>
-        </>
-      )}
-
-      {pantalla === "noResidente" && (
-        <Resultado {...resultados.PER006} />
-      )}
-
-      {pantalla === "residente" && (
-        <>
-          <h2>¿Lleva más de 6 meses residiendo?</h2>
-
-          <button
-            style={botonStyle}
-            onClick={() => setPantalla("mas6meses")}
-          >
-            Sí
-          </button>
-
-          <button
-            style={botonStyle}
-            onClick={() => setPantalla("menos6meses")}
-          >
-            No
-          </button>
-        </>
-      )}
-
-      {pantalla === "menos6meses" && (
-        <Resultado {...resultados.PER007} />
-      )}
-
-      {pantalla === "mas6meses" && (
-  <>
-    <h2>🌍 Seleccione el país del permiso</h2>
-
-    <select
-      value={paisSeleccionado}
-      onChange={(e) => setPaisSeleccionado(e.target.value)}
-      style={{
-        padding: "10px",
-        fontSize: "16px",
-        width: "300px",
-        marginBottom: "20px",
-      }}
-    >
-      <option value="">
-        Seleccione país...
-      </option>
-
-      {paises.map((pais) => (
-        <option
-          key={pais.nombre}
-          value={pais.nombre}
-        >
-          {pais.nombre}
-        </option>
-      ))}
-    </select>
-
-    <br />
-
-    <button
-      style={botonStyle}
-      onClick={() => {
-        const pais = paises.find(
-          (p) => p.nombre === paisSeleccionado
-        );
-
-        if (!pais) return;
-
-        if (pais.convenio) {
-          setPantalla("conConvenio");
-        } else {
-          setPantalla("sinConvenio");
-        }
-      }}
-    >
-      Comprobar
-    </button>
-  </>
-)}
-
-      {pantalla === "conConvenio" && (
-        <Resultado {...resultados.PER008} />
-      )}
-
-      {pantalla === "sinConvenio" && (
-        <Resultado {...resultados.PER009} />
-      )}
-    </div>
+      <footer className="pie-aplicacion">
+        <span>MOTOLISTOS</span>
+        <span>Herramienta de apoyo · Verificar siempre la normativa vigente</span>
+      </footer>
+    </main>
   );
 }
 
