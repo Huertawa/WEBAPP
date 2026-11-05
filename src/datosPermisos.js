@@ -86,25 +86,25 @@ export const resultados = {
   PER008: {
     codigo: "PER008",
     nombre: "Tercer país con posible convenio de canje",
-    puedeConducir: false,
-    motivo: "Transcurridos seis meses desde la residencia normal, el permiso de tercer país deja de ser válido para conducir en España, salvo regla específica aplicable del convenio.",
+    puedeConducir: null,
+    motivo: "Transcurridos seis meses desde la residencia normal, el permiso de tercer país deja de ser válido para conducir en España, salvo que exista un canje ya realizado u otra regla específica aplicable. La existencia de convenio no confirma por sí sola que este permiso sea canjeable.",
     normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
     articulo: "Artículos 21.2.c), 21.3 y 22.",
     euros: "Pendiente de determinar según posibilidad real de canje y codificación vigente.",
     puntos: "Sin detracción de puntos, con carácter general.",
-    actuacion: "Comprobar el convenio concreto, la fecha de obtención del permiso, las categorías y los requisitos de canje. Si no existe canje ya efectuado ni excepción aplicable, no debe continuar conduciendo.",
+    actuacion: "Comprobar el convenio concreto, la fecha de obtención del permiso, las categorías y los requisitos de canje. Verificar si el canje ya se ha realizado y si existe alguna excepción aplicable antes de concluir si puede conducir.",
     observaciones: "La existencia de convenio no mantiene por sí sola la validez del permiso extranjero una vez agotado el plazo."
   },
   PER009: {
     codigo: "PER009",
     nombre: "Tercer país sin convenio de canje identificado",
-    puedeConducir: false,
-    motivo: "Transcurridos seis meses desde la residencia normal, el permiso de tercer país deja de ser válido para conducir en España, salvo excepción normativa aplicable.",
+    puedeConducir: null,
+    motivo: "Transcurridos seis meses desde la residencia normal, el permiso de tercer país deja de ser válido para conducir en España, salvo que exista una excepción normativa aplicable o un reconocimiento válido. La falta de convenio general no resuelve por sí sola todos los supuestos.",
     normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
     articulo: "Artículos 21.2.c) y 21.3.",
     euros: "Pendiente de determinar tras verificar el permiso y el cuadro sancionador vigente.",
     puntos: "Sin detracción de puntos, con carácter general.",
-    actuacion: "Comprobar si existe convenio aplicable y si el permiso permite un canje. Para permisos profesionales, verificar además los supuestos especiales admitidos por la DGT. Si no existe vía de canje, deberá obtener un permiso español.",
+    actuacion: "Comprobar si existe convenio aplicable y si el permiso permite un canje. Para permisos profesionales, verificar además los supuestos especiales admitidos por la DGT. No concluir que puede o no puede conducir hasta comprobar esas circunstancias y la situación del permiso.",
     observaciones: "La ausencia de convenio general no excluye todos los supuestos de canje: la DGT contempla determinados permisos profesionales de países sin convenio. Verificar siempre país, clase y requisitos concretos."
   },
   PER010: {
