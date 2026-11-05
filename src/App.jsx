@@ -15,7 +15,7 @@ const preguntas = {
   ueResidenciaDosAnos: { titulo: "¿El titular lleva dos años o más de residencia normal en España?", descripcion: "Esta comprobación es relevante para determinados permisos de la UE o del EEE con periodos de vigencia muy largos o indefinidos.", opciones: [{ valor: "uePlazoLargo", texto: "Sí, lleva dos años o más" }, { valor: "ueRenovacionNo", texto: "No, lleva menos de dos años o no reside en España" }] },
   uePlazoLargo: { titulo: "¿El permiso tiene vigencia indefinida o un periodo superior al límite aplicable?", descripcion: "Límite: más de 15 años para el grupo 1 (motos y turismos) o más de 5 años para el grupo 2 (camiones y autobuses).", opciones: [{ valor: "ueRenovacionSi", texto: "Sí, supera el límite o es indefinido" }, { valor: "ueRenovacionNo", texto: "No, no supera ese límite" }] },
   noUE: { titulo: "¿El permiso de un tercer país está en vigor?", opciones: [{ valor: "terceroVigente", texto: "Sí, está en vigor" }, { valor: "terceroCaducado", texto: "No, está caducado" }] },
-  terceroVigente: { titulo: "¿El titular es residente en España?", opciones: [{ valor: "residente", texto: "Sí" }, { valor: "categoriaTerceroNoResidente", texto: "No" }] },
+  terceroVigente: { titulo: "¿El titular es residente en España?", opciones: [{ valor: "residente", texto: "Sí" }, { valor: "paisTerceroNoResidente", texto: "No" }] },
   residente: { titulo: "¿Han transcurrido más de seis meses desde que adquirió la residencia normal en España?", opciones: [{ valor: "mas6meses", texto: "Sí" }, { valor: "categoriaTerceroMenos6", texto: "No" }] },
   categoriaTerceroNoResidente: { titulo: "¿La categoría del permiso habilita para el vehículo que conduce?", descripcion: "Comprueba la clase del vehículo, las categorías autorizadas, las restricciones y la vigencia del permiso.", opciones: [{ valor: "terceroNoResidenteEdad", texto: "Sí, la categoría es adecuada" }, { valor: "categoriaNoCoincide", texto: "No, no habilita" }] },
   categoriaTerceroMenos6: { titulo: "¿La categoría del permiso habilita para el vehículo que conduce?", descripcion: "Comprueba la clase del vehículo, las categorías autorizadas, las restricciones y la vigencia del permiso.", opciones: [{ valor: "terceroMenos6Edad", texto: "Sí, la categoría es adecuada" }, { valor: "categoriaNoCoincide", texto: "No, no habilita" }] },
@@ -24,7 +24,8 @@ const preguntas = {
   terceroMenos6Edad: { titulo: "¿El titular tiene la edad mínima exigida en España para esa categoría?", descripcion: "La edad exigida es la correspondiente al permiso español equivalente. Comprueba la edad del conductor y la categoría concreta.", opciones: [{ valor: "terceroMenos6Formato", texto: "Sí, cumple la edad mínima" }, { valor: "requisitoEdadNoCumplido", texto: "No, no cumple la edad mínima" }] },
   terceroNoResidenteFormato: { titulo: "¿El documento cumple alguno de los formatos o reconocimientos admitidos en España?", descripcion: "Por ejemplo: permiso en castellano o con traducción oficial, modelo conforme a los convenios de Ginebra o Viena, permiso internacional válido acompañado del permiso nacional, o reconocimiento por convenio específico.", opciones: [{ valor: "terceroNoResidentePlazo", texto: "Sí, cumple uno de esos requisitos" }, { valor: "requisitoFormatoNoAcreditado", texto: "No / no puedo acreditarlo" }] },
   terceroMenos6Formato: { titulo: "¿El documento cumple alguno de los formatos o reconocimientos admitidos en España?", descripcion: "Por ejemplo: permiso en castellano o con traducción oficial, modelo conforme a los convenios de Ginebra o Viena, permiso internacional válido acompañado del permiso nacional, o reconocimiento por convenio específico.", opciones: [{ valor: "terceroMenos6Categoria", texto: "Sí, cumple uno de esos requisitos" }, { valor: "requisitoFormatoNoAcreditado", texto: "No / no puedo acreditarlo" }] },
-  fechaFirmaConvenio: { titulo: "¿El permiso se obtuvo antes de la fecha de firma del convenio entre España y el país expedidor?", descripcion: "Algunos convenios permiten el canje si el permiso se obtuvo antes de la firma del acuerdo, aunque fuera después de adquirir la residencia en España. Comprueba la fecha exacta del convenio aplicable a ese país.", opciones: [{ valor: "convenioAnteriorFirma", texto: "Sí, antes de la firma del convenio" }, { valor: "obtenidoDespuesNoCanjeable", texto: "No, después de la firma" }, { valor: "obtenidoDespuesNoAcreditado", texto: "No puedo acreditarlo" }] },
+  fechaFirmaConvenio: { titulo: "¿El permiso se obtuvo antes de la fecha de firma del convenio entre España y el país expedidor?", descripcion: "Algunos convenios permiten el canje si el permiso se obtuvo antes de la firma del acuerdo, aunque fuera después de adquirir la residencia en España. Comprueba la fecha exacta del convenio aplicable a ese país.", opciones: [{ valor: "convenioAnteriorFirma", texto: "Sí, antes de la firma del convenio" }, { valor: "profesionalTercero", texto: "No, después de la firma" }, { valor: "obtenidoDespuesNoAcreditado", texto: "No puedo acreditarlo" }] },
+  profesionalTercero: { titulo: "¿Puede acogerse a la vía de canje para conductores profesionales?", descripcion: "Comprueba conjuntamente que el permiso esté comprendido en el artículo 21.1.a) o b), que acredita al menos seis meses contratado como conductor profesional por empresa legalmente establecida en España, que ha superado la prueba de circulación exigida y que no está privado, suspendido ni intervenido del derecho a conducir.", opciones: [{ valor: "profesionalPendiente", texto: "Sí, reúne y acredita todos los requisitos" }, { valor: "profesionalNoCanje", texto: "No / no reúne todos los requisitos" }] },
   fechaPermiso: {
     titulo: "¿Cuándo obtuvo el permiso extranjero respecto a la fecha en que adquirió la residencia legal en España?",
     descripcion: "La fecha de obtención puede determinar si el permiso es canjeable. Comprueba la documentación acreditativa, no solo la declaración del conductor.",
@@ -82,7 +83,8 @@ function App() {
     conConvenio: "PER008",
     convenioAnteriorFirma: "PER008",
     obtenidoDespuesNoAcreditado: "PER010",
-    sinConvenio: "PER009",
+    profesionalNoCanje: "PER009",
+    profesionalPendiente: "PER018",
     obtenidoDespuesNoCanjeable: "PER010",
     coreaPosteriorResidencia: "PER012",
   };
@@ -96,7 +98,7 @@ function App() {
     setPilaNavegacion((anterior) => [...anterior, { pantalla, historial, paisSeleccionado }]);
     setHistorial((anterior) => [...anterior, texto]);
     if (destino === "obtenidoAntes") {
-      setPantalla(pais.convenio ? "conConvenio" : "sinConvenio");
+      setPantalla(pais.convenio ? "conConvenio" : "profesionalTercero");
       return;
     }
     // La DGT contempla una excepción específica para permisos de Corea del Sur.
@@ -104,7 +106,7 @@ function App() {
       setPantalla("coreaPosteriorResidencia");
       return;
     }
-    setPantalla(pais.convenio ? "fechaFirmaConvenio" : "obtenidoDespuesNoCanjeable");
+    setPantalla(pais.convenio ? "fechaFirmaConvenio" : "profesionalTercero");
   };
 
   return (
@@ -140,11 +142,11 @@ function App() {
           />
         )}
 
-        {pantalla === "mas6meses" && (
+        {(pantalla === "mas6meses" || pantalla === "paisTerceroNoResidente") && (
           <section className="panel-pregunta">
             <span className="etiqueta-seccion">PASO {pilaNavegacion.length + 1} · PERMISO EXTRANJERO</span>
             <h2>Selecciona el país que expidió el permiso</h2>
-            <p className="texto-secundario">La relación de países se basa en la información publicada por la DGT. El convenio no garantiza por sí solo que un permiso concreto sea canjeable.</p>
+            <p className="texto-secundario">La relación de países se basa en la información publicada por la DGT. El convenio no garantiza por sí solo que un permiso concreto sea canjeable. Si no aparece, selecciona «Otro país» y verifica el reconocimiento internacional aplicable.</p>
             <label className="etiqueta-campo" htmlFor="pais-permiso">País de expedición</label>
             <select id="pais-permiso" className="selector-pais" value={paisSeleccionado} onChange={(evento) => setPaisSeleccionado(evento.target.value)}>
               <option value="">Selecciona un país...</option>
@@ -152,9 +154,20 @@ function App() {
             </select>
             <div className="acciones-pregunta">
               <button className="boton boton--secundario" onClick={retroceder}>Volver</button>
-              <button className="boton boton--principal" disabled={!paisSeleccionado} onClick={() => avanzar("fechaPermiso", `País de expedición: ${paisSeleccionado}`)}>Continuar</button>
+              <button className="boton boton--principal" disabled={!paisSeleccionado} onClick={() => avanzar(pantalla === "paisTerceroNoResidente" ? "categoriaTerceroNoResidente" : "fechaPermiso", `País de expedición: ${paisSeleccionado}`)}>Continuar</button>
             </div>
           </section>
+        )}
+
+        {pantalla === "profesionalTercero" && (
+          <Pregunta
+            pasoActual={pilaNavegacion.length + 1}
+            titulo={preguntas.profesionalTercero.titulo}
+            descripcion={preguntas.profesionalTercero.descripcion}
+            opciones={preguntas.profesionalTercero.opciones}
+            alSeleccionar={(destino, texto) => avanzar(destino, texto)}
+            alVolver={retroceder}
+          />
         )}
 
         {pantalla === "fechaFirmaConvenio" && (
