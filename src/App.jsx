@@ -5,7 +5,8 @@ import TarjetaResultado from "./componentes/TarjetaResultado";
 import Pregunta from "./componentes/Pregunta";
 
 const preguntas = {
-  inicio: { titulo: "¿El conductor posee permiso de conducción?", opciones: [{ valor: "tipoPermiso", texto: "Sí, posee permiso" }, { valor: "sinPermiso", texto: "No posee permiso" }] },
+  inicio: { titulo: "¿El conductor posee permiso de conducción?", opciones: [{ valor: "tipoPermiso", texto: "Sí, posee permiso" }, { valor: "situacionSinPermiso", texto: "No dispone de un permiso válido" }] },
+  situacionSinPermiso: { titulo: "¿Cuál es la situación administrativa o judicial del permiso?", descripcion: "Esta distinción es esencial: no haber obtenido nunca permiso, perder todos los puntos y conducir durante una privación judicial pueden tener relevancia penal distinta de una caducidad o suspensión administrativa.", opciones: [{ valor: "sinPermisoNunca", texto: "Nunca ha obtenido permiso de conducción" }, { valor: "sinPermisoPuntos", texto: "Tiene declarada la pérdida de vigencia por pérdida total de puntos" }, { valor: "sinPermisoPrivacion", texto: "Está privado del derecho a conducir por resolución judicial" }, { valor: "sinPermisoOtraSituacion", texto: "Otra causa / no está claro" }] },
   tipoPermiso: { titulo: "¿El permiso es español o extranjero?", opciones: [{ valor: "espanol", texto: "Español" }, { valor: "extranjero", texto: "Extranjero" }] },
   espanol: { titulo: "¿El permiso español está vigente?", opciones: [{ valor: "categoriaEspanol", texto: "Sí, está vigente" }, { valor: "espanolCaducado", texto: "No, está caducado" }] },
   extranjero: { titulo: "¿El permiso ha sido expedido en la UE o el EEE?", opciones: [{ valor: "ue", texto: "Sí" }, { valor: "noUE", texto: "No" }] },
@@ -65,7 +66,10 @@ function App() {
   };
 
   const resultadosPorPantalla = {
-    sinPermiso: "PER001",
+    sinPermisoNunca: "PER001",
+    sinPermisoPuntos: "PER019",
+    sinPermisoPrivacion: "PER020",
+    sinPermisoOtraSituacion: "PER021",
     categoriaCorrectaEspanol: "PER002",
     categoriaCorrectaUE: "PER004",
     ueRenovacionNo: "PER004",
