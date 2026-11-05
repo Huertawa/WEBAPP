@@ -13,7 +13,7 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
 
   const estadoPendiente = puedeConducir === null || puedeConducir === undefined;
   const tituloEstado = estadoPendiente
-    ? "Validez pendiente de comprobar"
+    ? "Situación pendiente de comprobar"
     : puedeConducir
       ? "Puede conducir"
       : "No puede conducir";
