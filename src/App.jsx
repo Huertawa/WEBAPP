@@ -7,9 +7,11 @@ import Pregunta from "./componentes/Pregunta";
 const preguntas = {
   inicio: { titulo: "¿El conductor posee permiso de conducción?", opciones: [{ valor: "tipoPermiso", texto: "Sí, posee permiso" }, { valor: "sinPermiso", texto: "No posee permiso" }] },
   tipoPermiso: { titulo: "¿El permiso es español o extranjero?", opciones: [{ valor: "espanol", texto: "Español" }, { valor: "extranjero", texto: "Extranjero" }] },
-  espanol: { titulo: "¿El permiso español está vigente?", opciones: [{ valor: "espanolValido", texto: "Sí, está vigente" }, { valor: "espanolCaducado", texto: "No, está caducado" }] },
+  espanol: { titulo: "¿El permiso español está vigente?", opciones: [{ valor: "categoriaEspanol", texto: "Sí, está vigente" }, { valor: "espanolCaducado", texto: "No, está caducado" }] },
   extranjero: { titulo: "¿El permiso ha sido expedido en la UE o el EEE?", opciones: [{ valor: "ue", texto: "Sí" }, { valor: "noUE", texto: "No" }] },
-  ue: { titulo: "¿El permiso de la UE o del EEE está en vigor?", opciones: [{ valor: "ueVigente", texto: "Sí, está en vigor" }, { valor: "ueCaducado", texto: "No, está caducado" }] },
+  ue: { titulo: "¿El permiso de la UE o del EEE está en vigor?", opciones: [{ valor: "categoriaUE", texto: "Sí, está en vigor" }, { valor: "ueCaducado", texto: "No, está caducado" }] },
+  categoriaEspanol: { titulo: "¿La categoría que figura en el permiso habilita para conducir el vehículo que utiliza?", descripcion: "Comprueba la clase del vehículo, las categorías autorizadas y sus fechas de vigencia. No basta con que el documento esté en vigor.", opciones: [{ valor: "categoriaCorrectaEspanol", texto: "Sí, la categoría es adecuada" }, { valor: "categoriaNoCoincide", texto: "No, la categoría no habilita" }] },
+  categoriaUE: { titulo: "¿La categoría que figura en el permiso habilita para conducir el vehículo que utiliza?", descripcion: "Comprueba la equivalencia de categorías, las fechas de vigencia y las posibles restricciones del permiso extranjero.", opciones: [{ valor: "categoriaCorrectaUE", texto: "Sí, la categoría es adecuada" }, { valor: "categoriaNoCoincide", texto: "No, la categoría no habilita" }] },
   noUE: { titulo: "¿El permiso de un tercer país está en vigor?", opciones: [{ valor: "terceroVigente", texto: "Sí, está en vigor" }, { valor: "terceroCaducado", texto: "No, está caducado" }] },
   terceroVigente: { titulo: "¿El titular es residente en España?", opciones: [{ valor: "residente", texto: "Sí" }, { valor: "noResidente", texto: "No" }] },
   residente: { titulo: "¿Han transcurrido más de seis meses desde que adquirió la residencia normal en España?", opciones: [{ valor: "mas6meses", texto: "Sí" }, { valor: "menos6meses", texto: "No" }] },
@@ -53,7 +55,9 @@ function App() {
 
   const resultadosPorPantalla = {
     sinPermiso: "PER001",
-    espanolValido: "PER002",
+    categoriaCorrectaEspanol: "PER002",
+    categoriaCorrectaUE: "PER004",
+    categoriaNoCoincide: "PER013",
     espanolCaducado: "PER003",
     ueVigente: "PER004",
     ueCaducado: "PER005",
