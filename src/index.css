@@ -630,3 +630,24 @@ p {
   .propuesta-denuncia__grid { grid-template-columns: 1fr; }
   .propuesta-denuncia__codigo { grid-column: auto; }
 }
+
+
+/* Mejora de lectura: sanción, puntos y propuesta operativa */
+.resumen-operativo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.dato-destacado--importe { border-color: rgba(183, 237, 69, .4); }
+.dato-destacado--importe > strong { color: var(--verde); font-size: clamp(23px, 3vw, 30px); }
+.dato-destacado--puntos > strong { font-size: clamp(20px, 2.6vw, 26px); }
+.propuesta-denuncia { border-color: rgba(183, 237, 69, .45); background: rgba(183, 237, 69, .055); }
+.propuesta-denuncia__cabecera { align-items: flex-start; }
+.propuesta-denuncia__cabecera p { margin: 6px 0 0; color: var(--texto-secundario); font-size: 12px; }
+.propuesta-denuncia__cabecera > strong { padding: 7px 10px; border-radius: 7px; background: rgba(242, 168, 78, .13); }
+.propuesta-denuncia__codigo { border-color: rgba(183, 237, 69, .35) !important; }
+.propuesta-denuncia__codigo strong { color: var(--verde) !important; font-size: 14px !important; }
+.propuesta-denuncia__aviso { padding: 10px 12px; border-left: 3px solid var(--amarillo); background: rgba(242, 193, 78, .07); }
+.sancion-pendiente { margin: 18px 0; padding: 17px 19px; border: 1px solid rgba(242, 168, 78, .5); border-radius: 11px; background: rgba(242, 168, 78, .07); }
+.sancion-pendiente strong { display: block; margin-bottom: 7px; color: #ffc078; font-size: 14px; }
+.sancion-pendiente p { margin: 0; color: var(--texto-secundario); font-size: 13px; line-height: 1.6; }
+@media (max-width: 650px) {
+  .resumen-operativo { grid-template-columns: 1fr; }
+  .dato-destacado--inmovilizacion { grid-column: auto; }
+}
