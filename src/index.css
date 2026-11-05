@@ -384,3 +384,21 @@ p {
   background: rgba(242, 193, 78, .14);
   color: var(--amarillo);
 }
+
+
+/* Navegación del asistente */
+.boton--volver {
+  margin-top: 18px;
+}
+
+.acciones-pregunta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.acciones-pregunta .boton--principal {
+  margin-top: 0;
+}
