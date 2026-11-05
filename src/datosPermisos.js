@@ -159,14 +159,14 @@ export const resultados = {
     euros: "500 €",
     puntos: "4 puntos",
     actuacion: "Identificar el vehículo, comprobar su clasificación y contrastarla con las categorías autorizadas y sus fechas de vigencia. Verificar restricciones, códigos armonizados y posibles autorizaciones complementarias antes de formular denuncia.",
-    observaciones: "Resultado de comprobación: no asigna automáticamente importe, puntos ni calificación sancionadora.",
+    observaciones: "La guía codificada DGT contempla la opción CON 001.1.5C para conducir un vehículo con un permiso o licencia que no habilita para ello. Aplicar únicamente cuando se haya comprobado que la categoría no autoriza ese vehículo y no exista una habilitación complementaria.",
     denuncia: {
       calificacion: "Muy grave",
       preceptoInfringido: "Artículo 1.1 del Reglamento General de Conductores",
-      preceptoSancionador: "Conducción sin el permiso o licencia adecuado para el vehículo",
+      preceptoSancionador: "Artículo 77.k) de la Ley de Tráfico",
       importe: "500 €",
       puntos: "4 puntos",
-      codificado: "Pendiente de incorporar el código exacto tras contraste con el cuadro codificado vigente",
+      codificado: "CON · Art. 001 · Apt. 1 · Opción 5C · 4 puntos",
       fundamento: "La DGT publica esta conducta con sanción de 500 euros y detracción de 4 puntos. Antes de denunciar, comprobar que la categoría realmente no habilita y descartar una calificación penal u otra autorización complementaria."
     },
   },
