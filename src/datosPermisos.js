@@ -37,10 +37,10 @@ export const resultados = {
     denuncia: {
       calificacion: "Grave",
       preceptoInfringido: "Artículo 12.4 del Reglamento General de Conductores",
-      preceptoSancionador: "Artículo 76.c) de la Ley de Tráfico",
+      preceptoSancionador: "Artículo 76.l) de la Ley de Tráfico",
       importe: "200 €",
       puntos: "0 puntos",
-      codificado: "Pendiente de incorporar el código exacto tras contraste con el cuadro codificado vigente",
+      codificado: "CON · Art. 012 · Apt. 4 · Opción 5B · 0 puntos",
       fundamento: "La DGT identifica expresamente la conducción con el permiso caducado como infracción grave sancionada con 200 euros. No lleva detracción de puntos."
     },
   },
@@ -69,11 +69,11 @@ export const resultados = {
     observaciones: "No confundir caducidad del documento con una pérdida o retirada del derecho a conducir.",
     denuncia: {
       calificacion: "Grave",
-      preceptoInfringido: "Artículo 15 del Reglamento General de Conductores",
-      preceptoSancionador: "Artículo 76.c) de la Ley de Tráfico, sujeto a comprobación del supuesto concreto",
+      preceptoInfringido: "Artículo 12.4 del Reglamento General de Conductores",
+      preceptoSancionador: "Artículo 76.l) de la Ley de Tráfico",
       importe: "200 €",
       puntos: "0 puntos",
-      codificado: "Pendiente de incorporar el código exacto tras contraste con el cuadro codificado vigente",
+      codificado: "CON · Art. 012 · Apt. 4 · Opción 5B · 0 puntos",
       fundamento: "Aplicable cuando se confirma que el permiso comunitario ha perdido su vigencia y no existe renovación o reconocimiento válido."
     },
   },
