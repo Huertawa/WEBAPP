@@ -1,5 +1,6 @@
 export default function TarjetaResultado({ resultado, historial, alReiniciar }) {
   const {
+    nombre,
     puedeConducir,
     motivo,
     normativa,
@@ -39,6 +40,7 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
       <div className="tarjeta-resultado__cabecera">
         <span className="etiqueta-seccion">RESULTADO DE LA CONSULTA</span>
         <h2>{tituloEstado}</h2>
+        {nombre && <p className="resultado-nombre">{nombre}</p>}
         <span className={`estado-conduccion ${claseEstado}`}>
           {etiquetaEstado}
         </span>
@@ -53,15 +55,24 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
           <span>IMPORTE</span>
           <strong>{euros || "No procede / por determinar"}</strong>
         </article>
+        <article className="dato-destacado">
+          <span>PUNTOS</span>
+          <strong>{puntos || "Pendiente de verificar"}</strong>
+        </article>
         <article className="dato-destacado dato-destacado--inmovilizacion">
           <span>INMOVILIZACIÓN</span>
           <strong>{textoInmovilizacion}</strong>
         </article>
       </div>
 
+      <section className="actuacion-destacada">
+        <span>QUÉ HACER EN LA INTERVENCIÓN</span>
+        <p>{actuacion || "Actuación pendiente de determinar."}</p>
+      </section>
+
       <div className="tarjeta-resultado__contenido">
         <div className="bloque-datos">
-          <h3>Datos de la consulta</h3>
+          <h3>Datos comprobados en el cuestionario</h3>
           <ol className="historial-consulta">
             {historial.map((elemento, indice) => (
               <li key={indice}>{elemento}</li>
@@ -70,12 +81,10 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
         </div>
 
         <div className="bloque-datos">
-          <h3>Fundamento jurídico y actuación</h3>
+          <h3>Fundamento jurídico</h3>
           <dl className="datos-juridicos">
             <div><dt>Motivo</dt><dd>{motivo || "Pendiente de verificar"}</dd></div>
             <div><dt>Normativa</dt><dd>{normativa || "Pendiente de verificar"}</dd></div>
-            <div><dt>Puntos</dt><dd>{puntos || "Pendiente de verificar"}</dd></div>
-            <div><dt>Actuación</dt><dd>{actuacion || "Pendiente de verificar"}</dd></div>
             <div><dt>Observaciones</dt><dd>{observaciones || "—"}</dd></div>
           </dl>
         </div>
@@ -92,7 +101,10 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
         </ul>
       </div>
       <p className="aviso-juridico">La información jurídica debe contrastarse con la normativa vigente y las circunstancias concretas del caso.</p>
-      <button className="boton boton--principal" onClick={alReiniciar}>Iniciar nueva consulta</button>
+      <div className="acciones-resultado">
+        <button className="boton boton--secundario" onClick={() => window.print()}>Imprimir / Guardar en PDF</button>
+        <button className="boton boton--principal" onClick={alReiniciar}>Iniciar nueva consulta</button>
+      </div>
     </section>
   );
 }
