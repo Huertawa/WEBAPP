@@ -59,13 +59,12 @@ function App() {
   const seleccionarFechaObtencion = (destino, texto) => {
     const pais = paises.find((elemento) => elemento.nombre === paisSeleccionado);
     if (!pais) return;
+    // Registrar una sola vez la respuesta elegida para evitar duplicados en el resultado.
     setHistorial((anterior) => [...anterior, texto]);
     if (destino === "obtenidoAntes") {
-      setHistorial((anterior) => [...anterior, "El permiso se obtuvo antes de adquirir la residencia legal."]);
       setPantalla(pais.convenio ? "conConvenio" : "sinConvenio");
       return;
     }
-    setHistorial((anterior) => [...anterior, "El permiso se obtuvo después de adquirir la residencia legal."]);
     // La DGT contempla una excepción específica para permisos de Corea del Sur.
     setPantalla(pais.nombre.includes("Corea del Sur") ? "coreaPosteriorResidencia" : "obtenidoDespuesNoCanjeable");
   };
