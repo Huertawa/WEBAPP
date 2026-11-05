@@ -109,7 +109,16 @@ export const resultados = {
     normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
     articulo: "Artículos 21.2.c), 21.3 y 22.",
     euros: "200 € si se confirma que el permiso es susceptible de canje.",
-    puntos: "0 puntos, con carácter general para esta infracción grave.",
+    puntos: "0 puntos",
+    denuncia: {
+      calificacion: "Grave",
+      preceptoInfringido: "Artículo 21.2.c) del Reglamento General de Conductores.",
+      preceptoSancionador: "Artículo 76.ll) de la Ley de Tráfico.",
+      importe: "200 €",
+      puntos: "0 puntos",
+      codificado: "CON · Art. 001 · Apt. 1 · Opción 5B · 0 puntos",
+      fundamento: "La guía codificada ARCI de la DGT (vigente desde 01/07/2025) recoge esta opción para permiso extranjero equivalente susceptible de canje, incluyendo los supuestos del artículo 21.2.c) del Reglamento General de Conductores. Confirmar que el permiso concreto pertenece al grupo canjeable y que se cumplen los requisitos."
+    },
     orientacionSancion: {
       calificacion: "Grave (si se confirma la susceptibilidad de canje)",
       importe: "200 €",
@@ -129,7 +138,16 @@ export const resultados = {
     normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
     articulo: "Artículos 21.2.c) y 21.3.",
     euros: "Hasta 500 € si se confirma que no es susceptible de canje ni existe convenio aplicable.",
-    puntos: "Pendiente de confirmar; no fijar detracción automáticamente.",
+    puntos: "0 puntos",
+    denuncia: {
+      calificacion: "Muy grave",
+      preceptoInfringido: "Artículo 21 del Reglamento General de Conductores y, en su caso, artículo 22.",
+      preceptoSancionador: "Artículo 77.k) de la Ley de Tráfico.",
+      importe: "500 €",
+      puntos: "0 puntos",
+      codificado: "CON · Art. 001 · Apt. 1 · Opción 5E · 0 puntos",
+      fundamento: "La guía codificada ARCI de la DGT (vigente desde 01/07/2025) contempla esta opción para permisos extranjeros equivalentes no susceptibles de canje por incumplir las condiciones o requisitos reglamentarios. Confirmar previamente la inexistencia de convenio o la falta de requisitos esenciales y descartar una vía excepcional de canje profesional."
+    },
     orientacionSancion: {
       calificacion: "Pendiente de calificación definitiva",
       importe: "Hasta 500 €",
@@ -231,6 +249,15 @@ export const resultados = {
     articulo: "Artículo 15.4.",
     euros: "200 € si se confirma el incumplimiento de la obligación de renovación.",
     puntos: "0 puntos, con carácter general para esta infracción grave.",
+    denuncia: {
+      calificacion: "Grave",
+      preceptoInfringido: "Artículo 15.4 del Reglamento General de Conductores.",
+      preceptoSancionador: "Artículo 76.ll) de la Ley de Tráfico.",
+      importe: "200 €",
+      puntos: "0 puntos",
+      codificado: "CON · Art. 015 · Apt. 4 · Opción 5B · 0 puntos",
+      fundamento: "La guía codificada ARCI de la DGT recoge específicamente la conducción con permiso comunitario sin renovar su periodo de vigencia una vez adquirida residencia en España. Aplicar solo si se cumplen las condiciones del artículo 15.4 RGC."
+    },
     orientacionSancion: {
       calificacion: "Grave (si se confirma el incumplimiento)",
       importe: "200 €",
