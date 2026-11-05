@@ -104,8 +104,8 @@ export const resultados = {
     articulo: "Artículos 21.2.c) y 21.3.",
     euros: "Pendiente de determinar tras verificar el permiso y el cuadro sancionador vigente.",
     puntos: "Sin detracción de puntos, con carácter general.",
-    actuacion: "Verificar que el permiso cumple el artículo 21 y que no existe convenio o supuesto especial de canje. Si no puede canjearse, deberá obtener un permiso español.",
-    observaciones: "La lista de países del proyecto es incompleta. No concluir que no existe convenio hasta consultar la relación oficial de la DGT."
+    actuacion: "Comprobar si existe convenio aplicable y si el permiso permite un canje. Para permisos profesionales, verificar además los supuestos especiales admitidos por la DGT. Si no existe vía de canje, deberá obtener un permiso español.",
+    observaciones: "La ausencia de convenio general no excluye todos los supuestos de canje: la DGT contempla determinados permisos profesionales de países sin convenio. Verificar siempre país, clase y requisitos concretos."
   },
   PER010: {
     codigo: "PER010",
