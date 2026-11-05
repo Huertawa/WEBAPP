@@ -11,13 +11,30 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
     observaciones,
   } = resultado;
 
+  const estadoPendiente = puedeConducir === null || puedeConducir === undefined;
+  const tituloEstado = estadoPendiente
+    ? "Validez pendiente de comprobar"
+    : puedeConducir
+      ? "Puede conducir"
+      : "No puede conducir";
+  const etiquetaEstado = estadoPendiente
+    ? "COMPROBACIÓN NECESARIA"
+    : puedeConducir
+      ? "AUTORIZADO"
+      : "NO AUTORIZADO";
+  const claseEstado = estadoPendiente
+    ? "estado-conduccion--pendiente"
+    : puedeConducir
+      ? "estado-conduccion--positivo"
+      : "estado-conduccion--negativo";
+
   return (
     <section className="tarjeta-resultado">
       <div className="tarjeta-resultado__cabecera">
         <span className="etiqueta-seccion">RESULTADO DE LA CONSULTA</span>
-        <h2>{puedeConducir ? "Puede conducir" : "No puede conducir"}</h2>
-        <span className={`estado-conduccion ${puedeConducir ? "estado-conduccion--positivo" : "estado-conduccion--negativo"}`}>
-          {puedeConducir ? "AUTORIZADO" : "NO AUTORIZADO"}
+        <h2>{tituloEstado}</h2>
+        <span className={`estado-conduccion ${claseEstado}`}>
+          {etiquetaEstado}
         </span>
       </div>
 
