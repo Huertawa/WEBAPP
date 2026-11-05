@@ -51,6 +51,7 @@ function App() {
     conConvenio: "PER008",
     sinConvenio: "PER009",
     obtenidoDespuesNoCanjeable: "PER010",
+    coreaPosteriorResidencia: "PER012",
   };
 
   const resultado = resultados[resultadosPorPantalla[pantalla]];
@@ -66,7 +67,7 @@ function App() {
     }
     setHistorial((anterior) => [...anterior, "El permiso se obtuvo después de adquirir la residencia legal."]);
     // La DGT contempla una excepción específica para permisos de Corea del Sur.
-    setPantalla(pais.nombre.includes("Corea del Sur") ? "conConvenio" : "obtenidoDespuesNoCanjeable");
+    setPantalla(pais.nombre.includes("Corea del Sur") ? "coreaPosteriorResidencia" : "obtenidoDespuesNoCanjeable");
   };
 
   return (
