@@ -832,3 +832,69 @@ p {
   border-left-color: var(--amarillo);
 }
 .inmovilizacion--pendiente .inmovilizacion__estado { color: #ffc078; }
+
+
+/* Selector operativo: aplicación práctica del art. 104.1.k */
+.comprobador-inmovilizacion {
+  margin: 18px 0 22px;
+  padding: 20px;
+  border: 1px solid rgba(183,237,69,.32);
+  border-radius: 12px;
+  background: rgba(8,13,9,.48);
+}
+.comprobador-inmovilizacion__cabecera > span {
+  display: block;
+  color: var(--verde);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .9px;
+}
+.comprobador-inmovilizacion__cabecera p {
+  margin: 8px 0 15px;
+  color: var(--texto-secundario);
+  font-size: 13px;
+  line-height: 1.55;
+}
+.comprobador-inmovilizacion__opciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.comprobador-inmovilizacion__opciones .boton {
+  flex: 1 1 220px;
+  margin: 0;
+}
+.comprobador-inmovilizacion__opciones .seleccionado {
+  outline: 2px solid var(--verde);
+  outline-offset: 2px;
+}
+.comprobador-inmovilizacion__resultado {
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: 9px;
+}
+.comprobador-inmovilizacion__resultado strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+.comprobador-inmovilizacion__resultado p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.comprobador-inmovilizacion__resultado.es-posible {
+  border: 1px solid rgba(242,168,78,.5);
+  background: rgba(242,168,78,.09);
+}
+.comprobador-inmovilizacion__resultado.es-posible strong { color: #ffc078; }
+.comprobador-inmovilizacion__resultado.no-aplica {
+  border: 1px solid rgba(65,190,112,.45);
+  background: rgba(65,190,112,.07);
+}
+.comprobador-inmovilizacion__resultado.no-aplica strong { color: #70e39a; }
+@media (max-width: 520px) {
+  .comprobador-inmovilizacion { padding: 15px; }
+  .comprobador-inmovilizacion__opciones { flex-direction: column; }
+  .comprobador-inmovilizacion__opciones .boton { width: 100%; }
+}
