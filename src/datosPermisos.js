@@ -134,8 +134,8 @@ export const resultados = {
   PER013: {
     codigo: "PER013",
     nombre: "Categoría del permiso no habilita para el vehículo",
-    puedeConducir: null,
-    motivo: "La categoría declarada no parece habilitar para el vehículo que se conduce. Es necesario comprobar la clase exacta del vehículo y las categorías y restricciones que figuran en el permiso.",
+    puedeConducir: false,
+    motivo: "La categoría declarada no habilita para el vehículo que se conduce. Es necesario comprobar la clase exacta del vehículo y las categorías y restricciones que figuran en el permiso.",
     normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
     articulo: "Comprobar las clases y categorías aplicables y las condiciones particulares de la autorización.",
     euros: "Pendiente de determinar tras identificar la infracción concreta.",
