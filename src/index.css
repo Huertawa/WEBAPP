@@ -402,3 +402,13 @@ p {
 .acciones-pregunta .boton--principal {
   margin-top: 0;
 }
+
+/* MOTOLISTOS: bandera española sutil y estados de resultado */
+.aplicacion { position: relative; isolation: isolate; }
+.aplicacion::before { content: ''; position: fixed; z-index: -1; top: 24vh; right: -12vw; width: min(58vw, 760px); height: min(34vw, 440px); min-height: 190px; border-radius: 18px; opacity: .075; transform: rotate(-17deg); background: linear-gradient(to bottom, #aa151b 0 25%, #f1bf00 25% 75%, #aa151b 75% 100%); filter: blur(1px); pointer-events: none; }
+.tarjeta-resultado--positivo { border-color: rgba(65,190,112,.78); box-shadow: 0 0 0 1px rgba(65,190,112,.13), 0 18px 48px rgba(20,130,75,.14); }
+.tarjeta-resultado--negativo { border-color: rgba(230,75,75,.82); box-shadow: 0 0 0 1px rgba(230,75,75,.13), 0 18px 48px rgba(170,35,35,.16); }
+.tarjeta-resultado--pendiente { border-color: rgba(242,168,78,.85); box-shadow: 0 0 0 1px rgba(242,168,78,.14), 0 18px 48px rgba(170,105,25,.15); }
+.estado-conduccion--positivo { background: rgba(65,190,112,.18); color: #70e39a; }
+.estado-conduccion--negativo { background: rgba(230,75,75,.18); color: #ff8585; }
+.estado-conduccion--pendiente { background: rgba(242,168,78,.18); color: #ffc078; }
