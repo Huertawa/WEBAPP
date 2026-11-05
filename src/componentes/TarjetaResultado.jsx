@@ -65,6 +65,23 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
         </article>
       </div>
 
+      {resultado.denuncia && (
+        <section className="propuesta-denuncia">
+          <div className="propuesta-denuncia__cabecera">
+            <span>PROPUESTA DE DENUNCIA</span>
+            <strong>{resultado.denuncia.calificacion}</strong>
+          </div>
+          <div className="propuesta-denuncia__grid">
+            <div><small>PRECEPTO INFRINGIDO</small><strong>{resultado.denuncia.preceptoInfringido}</strong></div>
+            <div><small>PRECEPTO SANCIONADOR</small><strong>{resultado.denuncia.preceptoSancionador}</strong></div>
+            <div><small>IMPORTE</small><strong>{resultado.denuncia.importe}</strong></div>
+            <div><small>DETRACCIÓN</small><strong>{resultado.denuncia.puntos}</strong></div>
+            <div className="propuesta-denuncia__codigo"><small>CÓDIGO DE BOLETÍN</small><strong>{resultado.denuncia.codificado}</strong></div>
+          </div>
+          <p>{resultado.denuncia.fundamento}</p>
+        </section>
+      )}
+
       <section className="actuacion-destacada">
         <span>QUÉ HACER EN LA INTERVENCIÓN</span>
         <p>{actuacion || "Actuación pendiente de determinar."}</p>
@@ -102,7 +119,6 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
       </div>
       <p className="aviso-juridico">La información jurídica debe contrastarse con la normativa vigente y las circunstancias concretas del caso.</p>
       <div className="acciones-resultado">
-        <button className="boton boton--secundario" onClick={() => window.print()}>Imprimir / Guardar en PDF</button>
         <button className="boton boton--principal" onClick={alReiniciar}>Iniciar nueva consulta</button>
       </div>
     </section>
