@@ -87,13 +87,13 @@ export const resultados = {
     codigo: "PER008",
     nombre: "Tercer país con posible convenio de canje",
     puedeConducir: null,
-    motivo: "Transcurridos seis meses desde la residencia normal, el permiso de tercer país deja de ser válido para conducir en España, salvo que exista un canje ya realizado u otra regla específica aplicable. La existencia de convenio no confirma por sí sola que este permiso sea canjeable.",
+    motivo: "Transcurridos seis meses desde la residencia normal, el permiso de tercer país deja de ser válido para conducir en España, salvo que exista un canje ya realizado u otra regla específica aplicable. La existencia de convenio no confirma por sí sola que este permiso sea canjeable. También debe comprobarse si se obtuvo antes de adquirir la residencia en España o antes de la fecha de firma del convenio aplicable.",
     normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
     articulo: "Artículos 21.2.c), 21.3 y 22.",
     euros: "Pendiente de determinar según posibilidad real de canje y codificación vigente.",
     puntos: "Sin detracción de puntos, con carácter general.",
-    actuacion: "Comprobar el convenio concreto, la fecha de obtención del permiso, las categorías y los requisitos de canje. Verificar si el canje ya se ha realizado y si existe alguna excepción aplicable antes de concluir si puede conducir.",
-    observaciones: "La existencia de convenio no mantiene por sí sola la validez del permiso extranjero una vez agotado el plazo."
+    actuacion: "Comprobar el convenio concreto y su fecha de firma, la fecha de obtención del permiso, las categorías y los requisitos de canje. Verificar si el canje ya se ha realizado y si existe alguna excepción aplicable antes de concluir si puede conducir.",
+    observaciones: "El convenio puede permitir el canje en determinados supuestos, incluidos los permisos obtenidos antes de su firma. No mantiene por sí solo la validez del permiso extranjero una vez agotado el plazo."
   },
   PER009: {
     codigo: "PER009",
