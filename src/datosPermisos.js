@@ -154,7 +154,7 @@ export const resultados = {
     puntos: "Sin detracción de puntos, con carácter general.",
     actuacion: "Comprobar el documento y la eventual renovación o sustitución reconocida por el Estado expedidor. No permitir que continúe conduciendo con un permiso no vigente.",
     observaciones: "También deben verificarse los restantes requisitos de validez en España."
-  }
+  },
   PER014: {
     codigo: "PER014",
     nombre: "No cumple la edad mínima exigida para la categoría",
