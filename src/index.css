@@ -505,3 +505,103 @@ p {
     padding: 16px;
   }
 }
+
+
+/* Ficha operativa ampliada */
+.resultado-nombre {
+  margin: -2px 0 8px;
+  color: var(--texto-secundario);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.resumen-operativo {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.actuacion-destacada {
+  margin: 18px 0 6px;
+  padding: 20px 22px;
+  border: 1px solid rgba(183, 237, 69, .42);
+  border-left: 4px solid var(--verde);
+  border-radius: 11px;
+  background: rgba(183, 237, 69, .07);
+}
+.actuacion-destacada > span {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--verde);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+.actuacion-destacada p {
+  margin: 0;
+  color: var(--texto);
+  font-size: 15px;
+  line-height: 1.7;
+  white-space: pre-line;
+}
+.acciones-resultado {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+.acciones-resultado .boton {
+  margin-top: 12px;
+}
+@media (max-width: 760px) {
+  .resumen-operativo {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 520px) {
+  .resumen-operativo {
+    grid-template-columns: 1fr;
+  }
+}
+@media print {
+  @page { margin: 14mm; }
+  body, html {
+    background: #fff !important;
+    color: #111 !important;
+    min-width: 0;
+  }
+  .cabecera-aplicacion, .pie-aplicacion,
+  .acciones-resultado, .aviso-juridico {
+    display: none !important;
+  }
+  .contenido-principal {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .tarjeta-resultado {
+    padding: 0 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    background: #fff !important;
+    color: #111 !important;
+  }
+  .tarjeta-resultado h2, .dato-destacado > strong,
+  .actuacion-destacada p, .datos-juridicos dd,
+  .historial-consulta {
+    color: #111 !important;
+  }
+  .dato-destacado, .actuacion-destacada, .fuentes-juridicas {
+    break-inside: avoid;
+    background: #fff !important;
+    border-color: #bbb !important;
+  }
+  .dato-destacado > span, .actuacion-destacada > span,
+  .datos-juridicos dt, .fuentes-juridicas h3,
+  .fuentes-juridicas ul {
+    color: #333 !important;
+  }
+  .fuentes-juridicas a {
+    color: #111 !important;
+  }
+  .tarjeta-resultado__contenido {
+    grid-template-columns: 1fr 1.4fr;
+  }
+}
