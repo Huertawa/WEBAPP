@@ -171,7 +171,8 @@ export default function MapaIbiza({ volver }) {
           styles: "",
           format: "image/png",
           transparent: true,
-          version: "1.3.0",
+          version: "1.1.1",
+          crs: L.CRS.EPSG4326,
           attribution: 'Cartografía viaria: <a href="https://ideib.caib.es">ICGIB / IDEIB</a>',
           opacity: 0.95,
         });
