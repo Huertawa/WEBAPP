@@ -368,4 +368,16 @@ export const resultados = {
     actuacion: "Solicitar y comprobar documentación que acredite la fecha de expedición del permiso y la fecha de adquisición de residencia normal en España. Si existe convenio, consultar su fecha de firma y las condiciones específicas para la categoría. No elegir la opción 5B o 5E ni formular denuncia sin determinar primero si el permiso es susceptible de canje.",
     observaciones: "Resultado pendiente. La falta de acreditación de la fecha no permite afirmar que el permiso se obtuviera después de adquirir residencia ni que sea necesariamente no canjeable. Comprobar también la vía excepcional para conductores profesionales cuando proceda."
   },
+  PER023: {
+    codigo: "PER023",
+    nombre: "No se acredita el origen de un permiso extranjero canjeado",
+    puedeConducir: null,
+    motivo: "No se ha podido confirmar si el permiso fue expedido directamente por el país que figura en el documento o si procede del canje de una autorización de otro Estado.",
+    normativa: "Real Decreto 818/2009, Reglamento General de Conductores; información oficial de la DGT sobre canjes de permisos extranjeros.",
+    articulo: "Artículos 21 y 22 del Reglamento General de Conductores, junto con las condiciones del convenio aplicable.",
+    euros: "No determinar hasta comprobar el origen y la validez del permiso.",
+    puntos: "No determinar hasta identificar la infracción concreta.",
+    actuacion: "Solicitar documentación del país expedidor que permita reconstruir el origen del permiso. Si hubo canje, identificar el Estado que expidió la autorización original y comprobar si España mantiene convenio con él. Verificar también vigencia, categoría y requisitos del acuerdo antes de decidir si procede denuncia.",
+    observaciones: "La falta de documentación sobre el origen no permite afirmar por sí sola que el permiso sea no canjeable ni asignar automáticamente una sanción. Mantener el resultado como comprobación necesaria."
+  },
 };
