@@ -113,7 +113,7 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
 
       {(denuncia?.codificado || resultado.orientacionSancion?.codificado) && (
         <div className="propuesta-denuncia__codigo codificacion-principal">
-          <small>{estadoPendiente ? "CODIFICACIÓN ORIENTATIVA · PENDIENTE DE COMPROBACIÓN" : "CODIFICACIÓN DE REFERENCIA"}</small>
+          <small>{estadoPendiente || denuncia?.calificacion?.includes("referencia administrativa") ? "CODIFICACIÓN ORIENTATIVA · PENDIENTE DE CONFIRMACIÓN" : "CODIFICACIÓN DE REFERENCIA"}</small>
           <strong>{normalizarCodificacion(denuncia?.codificado || resultado.orientacionSancion.codificado)}</strong>
         </div>
       )}
@@ -169,7 +169,7 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
         <section className="propuesta-denuncia">
           <div className="propuesta-denuncia__cabecera">
             <div>
-              <span>{estadoPendiente ? "ORIENTACIÓN DE DENUNCIA" : "PROPUESTA DE DENUNCIA"}</span>
+              <span>{estadoPendiente || denuncia?.calificacion?.includes("referencia administrativa") ? "ORIENTACIÓN DE DENUNCIA" : "PROPUESTA DE DENUNCIA"}</span>
               <p>{estadoPendiente ? "Encuadre y codificación condicionados a las comprobaciones pendientes" : "Datos de referencia para el supuesto identificado"}</p>
             </div>
             <strong>{denuncia.calificacion}</strong>
