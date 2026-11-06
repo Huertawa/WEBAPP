@@ -52,6 +52,37 @@ const elementos = [
 {"nombre":"Plataforma","grupo":"Partes de la vía","texto":"Zona formada por calzada y arcenes cuando existen, que soporta la circulación.","imagen":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Road_platform.jpg/640px-Road_platform.jpg"},
 {"nombre":"Boca de salida de emergencia","grupo":"Obras de fábrica","texto":"Acceso de evacuación en túneles que conduce a zona segura o galería de emergencia.","imagen":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Tunnel_emergency_exit.jpg/640px-Tunnel_emergency_exit.jpg"}];
 
+
+const FOTOS_ELEMENTOS = {
+  kilometro: "https://jica.es/wp-content/webp-express/webp-images/uploads/2020/07/dispositivos_fijos_2-225x300-1.jpg.webp",
+  arista: "https://jica.es/wp-content/webp-express/webp-images/uploads/2020/07/dispositivos_fijos_3.jpg.webp",
+  panel: "https://jica.es/wp-content/webp-express/webp-images/uploads/2020/07/dispositivos_fijos_4-300x225.jpg.webp",
+  barrera: "https://jica.es/wp-content/webp-express/webp-images/uploads/2020/07/dispositivos_fijos_5.jpg.webp",
+  captafaro: "https://jica.es/wp-content/webp-express/webp-images/uploads/2020/07/dispositivos_fijos_6.jpg.webp",
+  vertice: "https://jica.es/wp-content/webp-express/webp-images/uploads/2020/07/dispositivos_fijos_7-unsmushed.jpg.webp",
+  baliza: "https://jica.es/wp-content/webp-express/webp-images/uploads/2020/07/dispositivos_fijos_8-271x300-1.jpg.webp",
+  carretera: "https://img.edilportale.com/News/86166_01.jpg",
+  glorieta: "https://izarvi.com/portals/0/ficheros/galeria/urbanizaciones/durango/5410d242-f3b4-4426-bbcc-76344367466ew1024.jpg",
+  cuneta: "https://img.europapress.es/fotoweb/fotonoticia_20220104152828_1200.jpg",
+  conos: "https://fotografias.antena3.com/clipping/cmsimages02/2026/06/09/33E3784A-C55B-439B-B5DB-8450D1FDD68A/imagen-cono-trafico_69.jpg?crop=1000%2C563%2Cx0%2Cy54&format=webply&height=720&optimize=low&width=1280",
+  viaducto: "https://img.edilportale.com/News/86166_01.jpg",
+  marcas: "https://jica.es/wp-content/webp-express/webp-images/uploads/2020/07/dispositivos_fijos_6.jpg.webp"
+};
+function imagenElemento(e) {
+  const n=e.nombre.toLocaleLowerCase("es");
+  if(n.includes("kilométr")||n.includes("kilometr")) return FOTOS_ELEMENTOS.kilometro;
+  if(n.includes("hito de arista")) return FOTOS_ELEMENTOS.arista;
+  if(n.includes("panel de curva")||n.includes("panel direccional")) return FOTOS_ELEMENTOS.panel;
+  if(n.includes("captafaro")||n.includes("ojo de gato")) return FOTOS_ELEMENTOS.captafaro;
+  if(n.includes("hito de vértice")) return FOTOS_ELEMENTOS.vertice;
+  if(n.includes("baliza")||n.includes("cono")||n.includes("obras")||n.includes("semáforo portátil")) return FOTOS_ELEMENTOS.conos;
+  if(n.includes("barrera")||n.includes("bionda")||n.includes("pretil")||n.includes("motoristas")||n.includes("atenuador")) return FOTOS_ELEMENTOS.barrera;
+  if(n.includes("cuneta")||n.includes("drenaje")||n.includes("alcantarilla")||n.includes("tajea")) return FOTOS_ELEMENTOS.cuneta;
+  if(n.includes("glorieta")||n.includes("isleta")) return FOTOS_ELEMENTOS.glorieta;
+  if(n.includes("túnel")||n.includes("tunel")||n.includes("paso superior")||n.includes("paso inferior")||n.includes("viaducto")||n.includes("muro")) return FOTOS_ELEMENTOS.viaducto;
+  if(n.includes("marca")||n.includes("paso de peatones")||n.includes("línea de detención")||n.includes("flechas")) return FOTOS_ELEMENTOS.marcas;
+  return FOTOS_ELEMENTOS.carretera;
+}
 const grupos=["Todos",...new Set(elementos.map(e=>e.grupo))];
 const estilosElementos = `
 .elementos-via{color:var(--texto,#f4f5f6);width:100%}
@@ -97,13 +128,13 @@ export default function ElementosVia({volver}){
   <div className="ev-panel"><div className="ev-controles"><input type="search" value={busqueda} onChange={e=>setBusqueda(e.target.value)} placeholder="Buscar por nombre, grupo o descripción…" aria-label="Buscar elementos de la vía"/><select value={filtro} onChange={e=>setFiltro(e.target.value)} aria-label="Filtrar por grupo">{grupos.map(g=><option key={g}>{g}</option>)}</select></div></div>
   <div className="ev-resumen"><strong>{lista.length} elementos</strong><span>{filtro==="Todos"?"Todos los grupos":filtro}</span></div>
   {lista.length>0?<div className="ev-grid">{lista.map(e=><button type="button" className="ev-card" key={e.nombre} onClick={()=>setSeleccionado(e)}>
-   <div className="ev-img"><img src={e.imagen} alt={e.nombre} loading="lazy" decoding="async" onError={evento=>{evento.currentTarget.style.display="none";const caja=evento.currentTarget.parentElement;if(caja&&!caja.querySelector(".ev-fallback")){const aviso=document.createElement("span");aviso.className="ev-fallback";aviso.textContent="Fotografía no disponible";caja.appendChild(aviso)}}}/></div>
+   <div className="ev-img"><img src={imagenElemento(e)} alt={e.nombre} loading="lazy" decoding="async" onError={evento=>{const img=evento.currentTarget;const respaldo=FOTOS_ELEMENTOS.carretera;if(img.dataset.respaldo!=="si"&&img.src!==respaldo){img.dataset.respaldo="si";img.src=respaldo;return;}img.style.display="none";const caja=img.parentElement;if(caja&&!caja.querySelector(".ev-fallback")){const aviso=document.createElement("span");aviso.className="ev-fallback";aviso.textContent="Fotografía no disponible";caja.appendChild(aviso)}}}/></div>
    <span className="ev-grupo">{e.grupo}</span><h3>{e.nombre}</h3><p>{e.texto}</p>
   </button>)}</div>:<div className="ev-vacio">No hay elementos que coincidan con la búsqueda.</div>}
   <p className="ev-nota">Las fotografías son ejemplos visuales orientativos. La denominación y la descripción ayudan a reconocer cada elemento; no sustituyen la normativa técnica ni la inspección de la vía.</p>
   {seleccionado&&<div className="ev-detalle-fondo" onClick={()=>setSeleccionado(null)}><article className="ev-detalle" role="dialog" aria-modal="true" aria-label={`Ficha de ${seleccionado.nombre}`} onClick={e=>e.stopPropagation()}>
    <button className="ev-cerrar" onClick={()=>setSeleccionado(null)}>Cerrar ✕</button><span className="ev-kicker">{seleccionado.grupo}</span><h2>{seleccionado.nombre}</h2>
-   <div className="ev-detalle-img"><img src={seleccionado.imagen} alt={seleccionado.nombre} onError={evento=>{evento.currentTarget.style.display="none";}}/></div>
+   <div className="ev-detalle-img"><img src={imagenElemento(seleccionado)} alt={seleccionado.nombre} onError={evento=>{const img=evento.currentTarget;if(img.dataset.respaldo!=="si"&&img.src!==FOTOS_ELEMENTOS.carretera){img.dataset.respaldo="si";img.src=FOTOS_ELEMENTOS.carretera;return;}img.style.display="none";}}/></div>
    <p>{seleccionado.texto}</p>
   </article></div>}
  </section>;
