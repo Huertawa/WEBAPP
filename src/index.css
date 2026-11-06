@@ -2759,3 +2759,61 @@ a, .fuentes-juridicas a { color: #76c5e6; }
   .senal-card__imagen img { height: 100px; }
   .senal-card__texto strong { font-size: 13px; }
 }
+
+
+/* Optimización prioritaria para móviles: MOTOLISTOS se consulta principalmente desde teléfono */
+.senales-modulo, .herramientas-modulo, .elementos-fotos-grid,
+.portada-modulos, .contenido-principal { min-width: 0; width: 100%; }
+.senales-cabecera { align-items: flex-start; gap: 14px; }
+.senales-cabecera > div { min-width: 0; }
+.senales-cabecera h1 { overflow-wrap: anywhere; }
+.senales-controles { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .72fr); gap: 10px; }
+.senales-controles input, .senales-controles select { min-width: 0; width: 100%; }
+.senales-grid { grid-template-columns: minmax(0, 1fr); }
+.senal-card { min-width: 0; display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 12px; align-items: center; }
+.senal-card__imagen { min-width: 0; width: 104px; min-height: 100px; }
+.senal-card__texto { min-width: 0; overflow-wrap: anywhere; }
+.senal-card__texto strong { display: block; overflow-wrap: anywhere; }
+.elementos-fotos-grid { grid-template-columns: minmax(0, 1fr); }
+.elemento-foto-simple { min-width: 0; display: grid; grid-template-columns: 116px minmax(0, 1fr); gap: 12px; align-items: start; }
+.elemento-foto-simple img { width: 116px; height: 104px; object-fit: cover; border-radius: 9px; }
+.elemento-foto-simple > div { min-width: 0; overflow-wrap: anywhere; }
+.elemento-foto-simple p { font-size: 13px; line-height: 1.48; }
+.herramientas-lista { grid-template-columns: minmax(0, 1fr); }
+.herramienta-acceso { min-width: 0; grid-template-columns: 100px minmax(0, 1fr); gap: 12px; }
+.herramienta-acceso__arte { min-width: 0; width: 100px; }
+.modulos-grid { grid-template-columns: minmax(0, 1fr); }
+.modulo-acceso { min-width: 0; }
+.pie-aplicacion { display: grid; gap: 10px; }
+.aviso-independencia { max-width: 900px; margin: 0; color: var(--texto-secundario); font-size: 11px; line-height: 1.55; }
+.imagen-no-disponible { object-fit: contain !important; background: #202a32; }
+@media (max-width: 700px) {
+  .cabecera-aplicacion { padding: 12px 15px; gap: 10px; }
+  .contenido-principal, .herramientas-modulo, .senales-modulo { padding-left: 14px; padding-right: 14px; }
+  .senales-cabecera { display: grid; grid-template-columns: minmax(0, 1fr); }
+  .senales-cabecera .boton { width: 100%; min-height: 44px; }
+  .senales-controles { grid-template-columns: minmax(0, 1fr); }
+  .senales-controles input, .senales-controles select { min-height: 46px; font-size: 16px; }
+  .senal-card { grid-template-columns: 88px minmax(0, 1fr); padding: 12px; gap: 10px; }
+  .senal-card__imagen { width: 88px; min-height: 88px; }
+  .senal-card__texto strong { font-size: 14px; line-height: 1.35; }
+  .senal-card__texto p { font-size: 12px; line-height: 1.45; }
+  .elemento-foto-simple { grid-template-columns: 104px minmax(0, 1fr); padding: 10px; gap: 10px; }
+  .elemento-foto-simple img { width: 104px; height: 96px; }
+  .elemento-foto-simple p { font-size: 12px; line-height: 1.45; }
+  .herramienta-acceso { grid-template-columns: 82px minmax(0, 1fr); padding: 12px; gap: 10px; }
+  .herramienta-acceso__arte { width: 82px; }
+  .herramienta-acceso__texto strong { font-size: 17px; }
+  .herramienta-acceso__texto > span:not(.modulo-acceso__numero) { font-size: 12px; line-height: 1.4; }
+  .pie-aplicacion { padding: 18px 14px calc(22px + env(safe-area-inset-bottom)); }
+  .aviso-independencia { font-size: 10px; }
+  .modulo-acceso__arte { min-height: 135px; }
+}
+@media (max-width: 360px) {
+  .senal-card { grid-template-columns: 76px minmax(0, 1fr); }
+  .senal-card__imagen { width: 76px; }
+  .elemento-foto-simple { grid-template-columns: 88px minmax(0, 1fr); }
+  .elemento-foto-simple img { width: 88px; height: 88px; }
+  .herramienta-acceso { grid-template-columns: 70px minmax(0, 1fr); }
+  .herramienta-acceso__arte { width: 70px; }
+}
