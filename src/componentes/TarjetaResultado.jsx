@@ -23,7 +23,7 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
       `Actuación: ${actuacion || "Pendiente"}`,
       `Fundamento: ${motivo || ""} ${normativa || ""} ${observaciones || ""}`,
       "Verificar normativa y circunstancias concretas antes de formular denuncia."
-    ].filter(Boolean).join("\\n");
+    ].filter(Boolean).join("\n");
     try {
       await navigator.clipboard.writeText(lineas);
       setEstadoCopia("Ficha copiada al portapapeles");
