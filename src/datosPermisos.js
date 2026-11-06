@@ -32,7 +32,7 @@ export const resultados = {
     articulo: "Artículo 12.4 del Reglamento General de Conductores, en relación con los artículos 76.ll) y 80.1 de la Ley de Tráfico.",
     euros: "200 €",
     puntos: "0 puntos",
-    actuacion: "No permitir que el titular continúe conduciendo: el permiso caducado ya no le habilita. Intervenir inmediatamente el permiso conforme al artículo 12.4 RGC y formular denuncia por infracción grave. Si acredita otro permiso o clase en vigor que le habilite para el vehículo, comprobar el alcance de la intervención antes de retirar el documento. Si el vehículo puede continuar, deberá hacerse cargo otro conductor que esté debidamente habilitado; no confundir la intervención del documento con la inmovilización del vehículo.",
+    actuacion: "No permitir que el titular continúe conduciendo: el permiso caducado ya no le habilita. Intervenir inmediatamente el permiso conforme al artículo 12.4 RGC y formular denuncia por infracción grave. Salvo que sea titular de otra clase de permiso o licencia en vigor, no debe intervenirse el documento caducado; comprueba ese extremo antes de retirarlo. Si el vehículo puede continuar, deberá hacerse cargo otro conductor que esté debidamente habilitado; no confundir la intervención del documento con la inmovilización del vehículo.",
     observaciones: "La DGT confirma expresamente que conducir con el permiso caducado es infracción grave sancionada con 200 €. No lleva detracción de puntos y no constituye por sí solo el delito del artículo 384 CP, porque el conductor sí obtuvo previamente el permiso. La caducidad tampoco equivale a una pérdida de vigencia por pérdida total de puntos. El artículo 12.4 RGC ordena intervenir el permiso caducado. La inmovilización del vehículo no es automática por esta sola circunstancia: valorar únicamente si concurre un supuesto legal específico adicional.",
     denuncia: {
       calificacion: "Grave",
@@ -206,7 +206,7 @@ export const resultados = {
     articulo: "Artículo 12.4 del Reglamento General de Conductores, en relación con los artículos 76.ll) y 80.1 de la Ley de Tráfico.",
     euros: "200 €",
     puntos: "0 puntos",
-    actuacion: "Comprobar que el permiso nacional está efectivamente caducado y que no existe renovación o prórroga reconocida. El documento caducado no habilita para conducir: intervenirlo conforme al artículo 12.4 RGC y tramitar denuncia grave por 200 €, salvo que exista otra autorización en vigor que habilite al conductor.",
+    actuacion: "Comprobar que el permiso nacional está efectivamente caducado y que no existe renovación o prórroga reconocida. El documento caducado no habilita para conducir: intervenirlo conforme al artículo 12.4 RGC y tramitar denuncia grave por 200 €, salvo que sea titular de otra clase de permiso o licencia en vigor, supuesto en el que no debe intervenirse el documento caducado.",
     observaciones: "La caducidad del permiso extranjero no equivale a conducir sin haber obtenido nunca permiso y no constituye por sí sola el delito del artículo 384 CP. La inmovilización del vehículo no es automática por la mera caducidad; no confundir intervención del documento con inmovilización.",
     denuncia: {
       calificacion: "Grave",
