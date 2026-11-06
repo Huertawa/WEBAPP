@@ -2391,3 +2391,78 @@ a, .fuentes-juridicas a { color: #76c5e6; }
   .mapa-marco .motolistos-pueblo--principal { font-size: 10px; }
   .mapa-marco .motolistos-carretera-nombre { font-size: 12px; }
 }
+
+
+/* Cartografía satelital: eliminar etiquetas de localidades y reforzar lectura de vías/PK */
+.mapa-marco--satelital,
+.mapa-marco--satelital .leaflet-container {
+  background: #17231d;
+}
+.mapa-marco--satelital .leaflet-tile {
+  filter: none !important;
+}
+.mapa-marco--satelital .motolistos-carretera-icono,
+.mapa-marco--satelital .motolistos-pk-icono {
+  background: transparent !important;
+  border: 0 !important;
+}
+.mapa-marco--satelital .motolistos-carretera-nombre {
+  display: inline-block;
+  transform: translate(-50%, -50%);
+  max-width: 230px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 4px 9px;
+  border: 1px solid rgba(255,255,255,.72);
+  border-radius: 5px;
+  background: rgba(13,22,18,.84);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,.72);
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: .35px;
+  text-shadow: 0 1px 2px #000;
+  white-space: nowrap;
+}
+.mapa-marco--satelital .motolistos-pk {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  transform: translate(5px, -50%);
+  padding: 3px 6px 4px;
+  border: 1px solid rgba(255,255,255,.85);
+  border-radius: 5px;
+  background: rgba(135,35,27,.94);
+  color: #fff;
+  box-shadow: 0 2px 7px rgba(0,0,0,.8);
+  line-height: 1.15;
+  white-space: nowrap;
+}
+.mapa-marco--satelital .motolistos-pk b {
+  max-width: 150px;
+  overflow: hidden;
+  color: #ffe6a6;
+  font-size: 9px;
+  font-weight: 850;
+  text-overflow: ellipsis;
+}
+.mapa-marco--satelital .motolistos-pk span {
+  color: #fff;
+  font-size: 11px;
+  font-weight: 950;
+}
+.mapa-marco--satelital .leaflet-popup-content-wrapper,
+.mapa-marco--satelital .leaflet-popup-tip {
+  background: #17211b;
+  color: #f4f7f2;
+}
+.mapa-marco--satelital .leaflet-popup-content {
+  font-size: 12px;
+  line-height: 1.55;
+}
+@media(max-width:720px) {
+  .mapa-marco--satelital .motolistos-carretera-nombre { font-size: 11px; padding: 3px 6px; }
+  .mapa-marco--satelital .motolistos-pk b { font-size: 8px; }
+  .mapa-marco--satelital .motolistos-pk span { font-size: 10px; }
+}
