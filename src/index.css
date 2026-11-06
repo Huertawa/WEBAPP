@@ -1500,3 +1500,7 @@ a, .fuentes-juridicas a { color: #76c5e6; }
 .lista-paises__vacio{grid-column:1/-1;padding:14px;color:#b5c1cc;font-size:13px}
 .opcion-pais:focus-visible{outline:3px solid rgba(118,197,230,.75);outline-offset:2px}
 @media(max-width:620px){.lista-paises{grid-template-columns:1fr;max-height:360px}.opcion-pais{min-height:50px}}
+
+.consecuencia-penal{margin:18px 0;padding:16px 18px;border:1px solid rgba(224,82,82,.48);border-left:4px solid #e05252;border-radius:11px;background:linear-gradient(110deg,rgba(112,37,42,.18),rgba(8,14,20,.28))}
+.consecuencia-penal strong{display:block;margin-bottom:7px;color:#ff9292;font-size:12px;letter-spacing:.07em}
+.consecuencia-penal p{margin:0;color:#e9edf1;font-size:14px;line-height:1.6}
