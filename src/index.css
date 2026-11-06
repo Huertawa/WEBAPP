@@ -3648,3 +3648,160 @@ a, .fuentes-juridicas a { color: #76c5e6; }
  .portada-marca .portada-modulos__distintivo{min-height:76px}
  .semaforo-foto{width:14px;height:14px}
 }
+
+
+/* IDENTIDAD VISUAL GLOBAL · interfaz MOTOLISTOS estilo boceto */
+:root{
+  --fondo:#090d0b;
+  --panel:#121a15;
+  --panel-secundario:#19231c;
+  --borde:rgba(177,197,179,.19);
+  --texto:#f3f5ef;
+  --texto-secundario:#aab7ab;
+  --verde:#b7ed45;
+  --verde-oscuro:#8fbd2d;
+  --sombra:0 16px 42px rgba(0,0,0,.34);
+}
+body{
+  background:
+    radial-gradient(ellipse at 50% -12%,rgba(183,237,69,.10),transparent 38rem),
+    radial-gradient(ellipse at 100% 48%,rgba(183,45,49,.055),transparent 34rem),
+    #090d0b;
+}
+.aplicacion{background:linear-gradient(180deg,rgba(10,15,12,.18),rgba(7,11,9,.4))}
+.contenido-principal{
+  position:relative;
+  width:min(100% - 40px,1040px);
+  padding-top:42px;
+}
+.titulo-pagina{
+  position:relative;
+  margin-bottom:26px;
+  padding:0 0 17px 18px;
+  border-bottom:1px solid rgba(183,237,69,.18);
+}
+.titulo-pagina:before{
+  content:"";position:absolute;left:0;top:2px;bottom:18px;width:4px;
+  border-radius:4px;background:linear-gradient(180deg,#b7ed45,#d7b94d);
+  box-shadow:0 0 14px rgba(183,237,69,.22);
+}
+.etiqueta-seccion{color:#c5e78b;font-size:10px;letter-spacing:2px}
+.titulo-pagina h1{
+  color:#f5f6f0;font-size:clamp(27px,4vw,39px);
+  font-weight:900;letter-spacing:-.8px;text-transform:uppercase;
+}
+.titulo-pagina>p{color:#aab7ab;font-size:13px}
+.panel-pregunta,.tarjeta-resultado,.comparacion-fecha-convenio,
+.panel-residencia,.fuentes-juridicas,.lista-comprobacion,
+.panel-fecha-convenio,.propuesta-denuncia,.orientacion-sancion{
+  border:1px solid rgba(177,197,179,.2);
+  border-radius:13px;
+  background:linear-gradient(145deg,rgba(25,35,29,.98),rgba(13,19,15,.99));
+  box-shadow:0 14px 36px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.025);
+}
+.panel-pregunta,.tarjeta-resultado{position:relative;overflow:hidden}
+.panel-pregunta:before,.tarjeta-resultado:before{
+  content:"";position:absolute;left:0;right:0;top:0;height:3px;
+  background:linear-gradient(90deg,#b7ed45 0%,rgba(183,237,69,.35) 45%,transparent 100%);
+}
+.panel-pregunta h2,.tarjeta-resultado h2{color:#f4f6ef;font-weight:850}
+.panel-pregunta .texto-secundario{color:#b1bcb2}
+.boton{
+  min-height:46px;padding:12px 18px;border-radius:8px;
+  font-size:12px;font-weight:850;letter-spacing:.45px;
+  text-transform:uppercase;
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease,background .18s ease;
+}
+.boton:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.28)}
+.boton--opcion{
+  position:relative;overflow:hidden;
+  border:1px solid rgba(177,197,179,.24);
+  background:linear-gradient(110deg,#202b23,#151e18);
+  color:#eef3e9;text-align:left;
+  box-shadow:inset 3px 0 #9ac43b,0 5px 14px rgba(0,0,0,.16);
+}
+.boton--opcion:hover:not(:disabled){
+  border-color:rgba(183,237,69,.65);
+  background:linear-gradient(110deg,#29382b,#19251c);
+  color:#d9f5a6;
+}
+.boton--principal{
+  border:1px solid rgba(213,255,126,.6);
+  background:linear-gradient(135deg,#c6f45a,#9dce35);
+  color:#11190b;
+  box-shadow:0 6px 18px rgba(157,206,53,.17),inset 0 1px rgba(255,255,255,.42);
+}
+.boton--principal:hover:not(:disabled){background:linear-gradient(135deg,#d4ff78,#a9dc42);box-shadow:0 9px 24px rgba(157,206,53,.25)}
+.boton--secundario{
+  border:1px solid rgba(177,197,179,.28);
+  background:linear-gradient(145deg,rgba(36,47,39,.9),rgba(18,25,20,.95));
+  color:#dce5d9;
+}
+.boton--secundario:hover:not(:disabled){border-color:rgba(183,237,69,.55);color:#d5f59b}
+.acciones-pregunta,.acciones-resultado{gap:10px}
+input:not([type=checkbox]):not([type=radio]),select,textarea,
+.campo-busqueda-pais,.selector-pais{
+  border:1px solid rgba(177,197,179,.25);
+  border-radius:8px;
+  background:#0c130f;
+  color:#f1f4ed;
+  box-shadow:inset 0 2px 8px rgba(0,0,0,.22);
+}
+input:focus,select:focus,textarea:focus{
+  border-color:rgba(183,237,69,.72);
+  outline:2px solid rgba(183,237,69,.12);
+}
+.etiqueta-campo{color:#c5d0c5;font-size:11px;letter-spacing:.8px;text-transform:uppercase}
+.aclaracion-desplegable,details.aclaracion-desplegable{
+  border:1px solid rgba(177,197,179,.2);
+  border-radius:9px;background:rgba(7,12,9,.34);
+}
+.aclaracion-desplegable summary{color:#d8e6cf;font-weight:800}
+.dato-destacado,.propuesta-denuncia__grid>div{
+  border-color:rgba(177,197,179,.2);
+  border-radius:10px;
+  background:linear-gradient(145deg,rgba(9,15,11,.78),rgba(20,29,23,.86));
+}
+.dato-destacado--importe,.dato-destacado--articulo{
+  border-color:rgba(183,237,69,.48);
+  background:linear-gradient(145deg,rgba(183,237,69,.09),rgba(8,14,10,.76));
+}
+.lista-comprobacion li,.fuentes-juridicas{border-color:rgba(177,197,179,.18)}
+.lista-paises{gap:8px}
+.opcion-pais{
+  border:1px solid rgba(177,197,179,.2);
+  border-radius:9px;background:linear-gradient(110deg,#1c2820,#111913);
+  color:#eaf0e6;transition:.18s ease;
+}
+.opcion-pais:hover,.opcion-pais--seleccionada{
+  border-color:rgba(183,237,69,.65);
+  background:linear-gradient(110deg,#293a2b,#17231a);
+  box-shadow:inset 3px 0 #b7ed45;
+}
+.modulo-acceso{
+  overflow:hidden;border:1px solid rgba(177,197,179,.2);
+  background:linear-gradient(145deg,#1a261e,#0e1511);
+  box-shadow:0 12px 28px rgba(0,0,0,.28);
+  transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
+}
+.modulo-acceso:hover{
+  transform:translateY(-3px);border-color:rgba(183,237,69,.55);
+  box-shadow:0 18px 36px rgba(0,0,0,.38),0 0 20px rgba(183,237,69,.07);
+}
+.modulo-acceso__contenido>strong{color:#f1f5ec}
+.modulo-acceso__accion{color:#c7ef7d}
+table{border-color:rgba(177,197,179,.2)}
+th{color:#d8e9c8}
+td,th{border-color:rgba(177,197,179,.16)}
+.pie-aplicacion{background:rgba(5,9,7,.88)}
+.aviso-uso-panel{
+  border-color:rgba(183,237,69,.22);
+  background:linear-gradient(110deg,rgba(27,39,30,.96),rgba(11,17,13,.98));
+}
+@media(max-width:700px){
+ .contenido-principal{width:min(100% - 26px,1040px);padding-top:28px}
+ .titulo-pagina{margin-bottom:20px;padding-left:13px}
+ .panel-pregunta,.tarjeta-resultado{padding:20px 16px}
+ .boton{width:100%;justify-content:center}
+ .acciones-pregunta .boton,.acciones-resultado .boton{width:100%}
+}
