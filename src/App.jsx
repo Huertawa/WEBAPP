@@ -200,6 +200,22 @@ function App() {
             <span className="portada-modulos__franja portada-modulos__franja--amarilla"></span>
             <span className="portada-modulos__franja portada-modulos__franja--roja"></span>
           </div>
+          <div className="portada-modulos__escena" aria-hidden="true">
+            <svg className="portada-modulos__moto" viewBox="0 0 220 92">
+              <circle cx="48" cy="67" r="19" fill="none" stroke="#c7d1c5" strokeWidth="5"/>
+              <circle cx="170" cy="67" r="19" fill="none" stroke="#c7d1c5" strokeWidth="5"/>
+              <path d="M48 67 77 39 111 67 85 67 70 47 105 43 130 67 170 67 145 37 122 37" fill="none" stroke="#b9e65c" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M103 43 116 27 143 27 153 39 137 42M73 39 60 30 48 30M130 67 139 49" fill="none" stroke="#e2c75a" strokeWidth="5" strokeLinecap="round"/>
+              <path d="M93 25h25l10 17H87z" fill="#b9e65c" opacity=".9"/>
+            </svg>
+            <span className="portada-modulos__escena-texto">UNIDAD MÓVIL · VIGILANCIA Y CONTROL</span>
+            <svg className="portada-modulos__semaforo" viewBox="0 0 54 112">
+              <path d="M27 83v26" stroke="#89958c" strokeWidth="6" strokeLinecap="round"/>
+              <rect x="7" y="4" width="40" height="83" rx="9" fill="#202a25" stroke="#87958a" strokeWidth="2"/>
+              <circle cx="27" cy="23" r="9" fill="#e34b4b"/><circle cx="27" cy="45" r="9" fill="#e5bd43"/><circle cx="27" cy="68" r="9" fill="#70c66b"/>
+            </svg>
+            <span className="portada-modulos__escena-patrulla"><i></i><i></i><b>CONTROL DE TRÁFICO</b></span>
+          </div>
           <div className="portada-modulos__cabecera">
             <div className="portada-modulos__insignia" aria-hidden="true">
               <svg viewBox="0 0 100 112">
