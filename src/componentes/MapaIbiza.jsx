@@ -93,25 +93,26 @@ export default function MapaIbiza({ volver }) {
   const sugerencias = useMemo(() => {
     const consulta = normalizar(busqueda);
     if (consulta.length < 2) return [];
-    const lista = [];
-    for (const feature of datosViales) {
-      const p = feature.properties || {};
-      const nombre = p.VIAL || p.NOM || p.NOM_ALTERN || p.DGC_VIA || "Vía sin nombre";
-      const texto = normalizar([p.VIAL, p.NOM, p.NOM_ALTERN, p.DGC_VIA, p.TIPO_GE, p.MUNICIPI].join(" "));
-      if (texto.includes(consulta)) lista.push({ tipo: "via", feature, nombre, subtitulo: p.TIPO_GE || "Vía" });
-      if (lista.length >= 7) break;
-    }
+    const listaPK = [];
+    const listaVias = [];
     for (const feature of datosPK) {
       const p = feature.properties || {};
       const numero = Number(p.NUMERO);
       const vial = p.VIAL || p.NOM || "Vía";
-      const texto = normalizar(`${vial} PK ${numero} ${p.MUNICIPI || ""}`);
+      const texto = normalizar(vial + " PK " + numero + " " + (p.MUNICIPI || ""));
       if (texto.includes(consulta) || (Number.isFinite(numero) && consulta === String(numero))) {
-        lista.push({ tipo: "pk", feature, nombre: `${vial} · PK ${numero}`, subtitulo: p.MUNICIPI || "Punto kilométrico" });
+        listaPK.push({ tipo: "pk", feature, nombre: vial + " · PK " + numero, subtitulo: p.MUNICIPI || "Punto kilométrico" });
       }
-      if (lista.length >= 12) break;
+      if (listaPK.length >= 8) break;
     }
-    return lista.slice(0, 10);
+    for (const feature of datosViales) {
+      const p = feature.properties || {};
+      const nombre = p.VIAL || p.NOM || p.NOM_ALTERN || p.DGC_VIA || "Vía sin nombre";
+      const texto = normalizar([p.VIAL, p.NOM, p.NOM_ALTERN, p.DGC_VIA, p.TIPO_GE, p.MUNICIPI].join(" "));
+      if (texto.includes(consulta)) listaVias.push({ tipo: "via", feature, nombre, subtitulo: p.TIPO_GE || "Vía" });
+      if (listaVias.length >= 7) break;
+    }
+    return [...listaPK, ...listaVias].slice(0, 10);
   }, [busqueda, datosViales, datosPK]);
 
   useEffect(() => {
