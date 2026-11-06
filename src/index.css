@@ -1486,3 +1486,17 @@ a, .fuentes-juridicas a { color: #76c5e6; }
   background: rgba(133,91,25,.08);
 }
 .pais-no-encontrado .boton { margin-top: 12px; }
+
+/* Selector visual de países: banderas visibles sin depender del desplegable del sistema */
+.lista-paises{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;max-height:340px;overflow:auto;padding:3px 4px 8px 0;margin:8px 0 18px;scrollbar-width:thin}
+.opcion-pais{display:flex;align-items:center;gap:10px;min-width:0;min-height:54px;padding:10px 12px;border:1px solid #3b5060;border-radius:11px;background:rgba(9,17,25,.52);color:#f4f7fa;text-align:left;cursor:pointer;transition:background .16s,border-color .16s}
+.opcion-pais:hover{border-color:#55b5da;background:rgba(35,112,151,.2)}
+.opcion-pais--seleccionada{border-color:#55b5da;background:rgba(35,112,151,.24);box-shadow:inset 0 0 0 1px rgba(85,181,218,.22)}
+.opcion-pais__bandera{display:flex;align-items:center;justify-content:center;flex:0 0 31px;font-size:23px;line-height:1}
+.opcion-pais__nombre{flex:1;min-width:0;font-size:13px;font-weight:650;line-height:1.3}
+.opcion-pais__estado{flex:0 0 auto;color:#efc36d;font-size:10px;font-weight:750;white-space:nowrap}
+.opcion-pais__estado--convenio{color:#75dfa8}
+.opcion-pais__marca{color:#75d4f4;font-weight:900}
+.lista-paises__vacio{grid-column:1/-1;padding:14px;color:#b5c1cc;font-size:13px}
+.opcion-pais:focus-visible{outline:3px solid rgba(118,197,230,.75);outline-offset:2px}
+@media(max-width:620px){.lista-paises{grid-template-columns:1fr;max-height:360px}.opcion-pais{min-height:50px}}
