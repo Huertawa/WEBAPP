@@ -355,5 +355,17 @@ export const resultados = {
     puntos: "No determinar hasta identificar la infracción concreta.",
     actuacion: "Consultar el Registro de Conductores e Infractores y comprobar si se trata de caducidad, suspensión administrativa, pérdida de aptitudes, retirada cautelar, pérdida de vigencia por causa distinta de la pérdida total de puntos, permiso extranjero no reconocido u otra circunstancia. Separar siempre las causas administrativas de las judiciales y penales.",
     observaciones: "No utilizar automáticamente el artículo 384 CP. La falta de validez de un permiso previamente obtenido no equivale necesariamente a conducir sin haberlo obtenido nunca. Si la pérdida de vigencia deriva de una condena ya cumplida, aplicar el criterio de la Consulta 1/2026 de la Fiscalía General del Estado y remitir, en su caso, la información a la autoridad administrativa."
+  },,
+  PER022: {
+    codigo: "PER022",
+    nombre: "No se acredita la fecha de obtención del permiso extranjero",
+    puedeConducir: null,
+    motivo: "No se ha podido establecer documentalmente si el permiso se obtuvo antes o después de adquirir la residencia normal en España, o si se obtuvo antes de la firma del convenio aplicable.",
+    normativa: "Real Decreto 818/2009, Reglamento General de Conductores; convenio bilateral o internacional que corresponda.",
+    articulo: "Artículos 21.2.c), 21.3 y 22 del Reglamento General de Conductores, y condiciones del convenio aplicable.",
+    euros: "No determinar hasta acreditar las fechas y la susceptibilidad de canje.",
+    puntos: "No determinar hasta identificar la infracción concreta.",
+    actuacion: "Solicitar y comprobar documentación que acredite la fecha de expedición del permiso y la fecha de adquisición de residencia normal en España. Si existe convenio, consultar su fecha de firma y las condiciones específicas para la categoría. No elegir la opción 5B o 5E ni formular denuncia sin determinar primero si el permiso es susceptible de canje.",
+    observaciones: "Resultado pendiente. La falta de acreditación de la fecha no permite afirmar que el permiso se obtuviera después de adquirir residencia ni que sea necesariamente no canjeable. Comprobar también la vía excepcional para conductores profesionales cuando proceda."
   },
 };
