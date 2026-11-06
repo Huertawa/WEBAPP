@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 export default function TarjetaResultado({ resultado, historial, alReiniciar }) {
+  const normalizarCodificacion = (valor) => String(valor ?? "").replace(/\\b0+(\\d+)\\b/g, "$1");
   const [claseVehiculo, setClaseVehiculo] = useState("");
   useEffect(() => {
     setClaseVehiculo("");
@@ -114,30 +115,28 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
           <strong>{puntosVisibles}</strong>
         </article>
         <article className={`dato-destacado dato-destacado--inmovilizacion inmovilizacion--${inmovilizacion.tipo}`}>
-          <span>INMOVILIZACIÓN</span>
+          <span>INMOVILIZACIÓN DEL VEHÍCULO</span>
           <strong className="inmovilizacion__estado">{inmovilizacion.estado}</strong>
           <p className="inmovilizacion__detalle">{inmovilizacion.detalle}</p>
+          {!estadoPendiente && puedeConducir === false && (
+            <div className="inmovilizacion__comprobacion">
+              <p className="inmovilizacion__pregunta">¿Qué tipo de vehículo conduce?</p>
+              <div className="inmovilizacion__opciones">
+                <button type="button" className={`boton boton--opcion ${claseVehiculo === "cd" ? "seleccionado" : ""}`} aria-pressed={claseVehiculo === "cd"} onClick={() => setClaseVehiculo("cd")}>Requiere permiso C o D</button>
+                <button type="button" className={`boton boton--secundario ${claseVehiculo === "otro" ? "seleccionado" : ""}`} aria-pressed={claseVehiculo === "otro"} onClick={() => setClaseVehiculo("otro")}>Otra categoría (A, B, etc.)</button>
+              </div>
+              {decisionInmovilizacion && (
+                <div className={`inmovilizacion__decision ${claseVehiculo === "cd" ? "es-posible" : "no-aplica"}`}>
+                  <strong>{decisionInmovilizacion.titulo}</strong>
+                  <p>{decisionInmovilizacion.detalle}</p>
+                </div>
+              )}
+            </div>
+          )}
         </article>
       </div>
 
-      {!estadoPendiente && puedeConducir === false && (
-        <section className="comprobador-inmovilizacion">
-          <div className="comprobador-inmovilizacion__cabecera">
-            <span>COMPROBACIÓN RÁPIDA DE INMOVILIZACIÓN</span>
-            <p>Selecciona qué tipo de vehículo está conduciendo. La consulta aplica el artículo 104.1.k de la Ley de Tráfico.</p>
-          </div>
-          <div className="comprobador-inmovilizacion__opciones">
-            <button type="button" className={`boton boton--opcion ${claseVehiculo === "cd" ? "seleccionado" : ""}`} aria-pressed={claseVehiculo === "cd"} onClick={() => setClaseVehiculo("cd")}>Exige permiso C o D</button>
-            <button type="button" className={`boton boton--secundario ${claseVehiculo === "otro" ? "seleccionado" : ""}`} aria-pressed={claseVehiculo === "otro"} onClick={() => setClaseVehiculo("otro")}>Otra categoría (A, B, etc.)</button>
-          </div>
-          {decisionInmovilizacion && (
-            <div className={`comprobador-inmovilizacion__resultado ${claseVehiculo === "cd" ? "es-posible" : "no-aplica"}`}>
-              <strong>{decisionInmovilizacion.titulo}</strong>
-              <p>{decisionInmovilizacion.detalle}</p>
-            </div>
-          )}
-        </section>
-      )}
+
 
       {consecuenciaPenal && (
         <section className="consecuencia-penal">
@@ -162,7 +161,7 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
             <div><small>DETRACCIÓN</small><strong>{denuncia.puntos}</strong></div>
             <div className="propuesta-denuncia__codigo">
               <small>CODIFICACIÓN DE REFERENCIA</small>
-              <strong>{denuncia.codificado}</strong>
+              <strong>{normalizarCodificacion(denuncia.codificado)}</strong>
             </div>
           </div>
           <p>{denuncia.fundamento}</p>
@@ -179,7 +178,7 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
             <div><small>PUNTOS</small><strong>{resultado.orientacionSancion.puntos}</strong></div>
             <div><small>PRECEPTO INFRINGIDO</small><strong>{resultado.orientacionSancion.preceptoInfringido}</strong></div>
             <div><small>PRECEPTO SANCIONADOR</small><strong>{resultado.orientacionSancion.preceptoSancionador}</strong></div>
-            {resultado.orientacionSancion.codificado && <div className="propuesta-denuncia__codigo"><small>CODIFICACIÓN CONDICIONADA</small><strong>{resultado.orientacionSancion.codificado}</strong></div>}
+            {resultado.orientacionSancion.codificado && <div className="propuesta-denuncia__codigo"><small>CODIFICACIÓN CONDICIONADA</small><strong>{normalizarCodificacion(resultado.orientacionSancion.codificado)}</strong></div>}
           </div>
           <p>{resultado.orientacionSancion.fundamento}</p>
           <p className="orientacion-sancion__aviso">Orientación condicionada: este resultado no confirma por sí solo la infracción ni sustituye la comprobación del país, convenio, permiso y circunstancias concretas.</p>
