@@ -1,7 +1,26 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const SERVICIO = "https://ideib.caib.es/geoserveis/rest/services/public/GOIB_Xarxa_de_transports_IB/MapServer";
-const EXTENSION_IBIZA = { xmin: 1.10, ymin: 38.78, xmax: 1.72, ymax: 39.18, spatialReference: { wkid: 4326 } };
+const EXTENSION_IBIZA = {
+  xmin: 1.10, ymin: 38.78, xmax: 1.72, ymax: 39.18,
+  spatialReference: { wkid: 4326 },
+};
+
+// Pueblos y núcleos principales: se muestran siempre, sin nombres de calles ni POI.
+const PUEBLOS = [
+  { nombre: "Eivissa", coords: [38.9089, 1.4329], principal: true },
+  { nombre: "Sant Antoni", coords: [38.9807, 1.3031], principal: true },
+  { nombre: "Santa Eulària", coords: [38.9848, 1.5341], principal: true },
+  { nombre: "Sant Josep", coords: [38.9214, 1.2931], principal: true },
+  { nombre: "Sant Joan", coords: [39.0781, 1.5135], principal: true },
+  { nombre: "Sant Jordi", coords: [38.8722, 1.4230], principal: false },
+  { nombre: "Jesús", coords: [38.9287, 1.4588], principal: false },
+  { nombre: "Sant Rafel", coords: [38.9618, 1.3905], principal: false },
+  { nombre: "Sant Miquel", coords: [39.0791, 1.4375], principal: false },
+  { nombre: "Sant Carles", coords: [39.0332, 1.5664], principal: false },
+  { nombre: "Sant Agustí", coords: [38.9418, 1.2788], principal: false },
+  { nombre: "Cala de Bou", coords: [38.9674, 1.2862], principal: false },
+];
 
 let leafletPromise;
 function cargarLeaflet() {
@@ -17,9 +36,9 @@ function cargarLeaflet() {
       }
       const existente = document.querySelector('script[data-leaflet="true"]');
       if (existente) {
+        if (window.L) return resolve(window.L);
         existente.addEventListener("load", () => resolve(window.L), { once: true });
         existente.addEventListener("error", reject, { once: true });
-        if (window.L) resolve(window.L);
         return;
       }
       const script = document.createElement("script");
@@ -27,29 +46,15 @@ function cargarLeaflet() {
       script.async = true;
       script.dataset.leaflet = "true";
       script.onload = () => resolve(window.L);
-      script.onerror = () => {
-        script.remove();
-        const alternativa = document.createElement("script");
-        alternativa.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
-        alternativa.async = true;
-        alternativa.dataset.leaflet = "true";
-        alternativa.onload = () => resolve(window.L);
-        alternativa.onerror = () => reject(new Error("No se ha podido cargar Leaflet desde los servidores disponibles."));
-        document.head.appendChild(alternativa);
-      };
+      script.onerror = () => reject(new Error("No se ha podido cargar el visor cartográfico."));
       document.head.appendChild(script);
     });
   }
   return leafletPromise;
 }
 
-function normalizar(texto) {
-  return String(texto ?? "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("es").trim();
-}
-
 async function descargarCapa(id, campos, filtro = "1=1") {
   const acumulado = [];
-  const limite = 2000;
   let offset = 0;
   while (true) {
     const params = new URLSearchParams({
@@ -63,207 +68,188 @@ async function descargarCapa(id, campos, filtro = "1=1") {
       inSR: "4326",
       spatialRel: "esriSpatialRelIntersects",
       resultOffset: String(offset),
-      resultRecordCount: String(limite),
+      resultRecordCount: "2000",
     });
     const respuesta = await fetch(`${SERVICIO}/${id}/query?${params.toString()}`);
-    if (!respuesta.ok) throw new Error("El servicio cartográfico no responde correctamente.");
+    if (!respuesta.ok) throw new Error("El servicio oficial de carreteras no responde.");
     const datos = await respuesta.json();
-    if (datos.error) throw new Error(datos.error.message || "Error al consultar la cartografía oficial.");
+    if (datos.error) throw new Error(datos.error.message || "No se han podido consultar las carreteras.");
     const lote = datos.features || [];
     acumulado.push(...lote);
-    if (lote.length < limite || datos.exceededTransferLimit === false) break;
+    if (lote.length < 2000) break;
     offset += lote.length;
     if (offset > 30000) break;
   }
   return acumulado;
 }
 
-function escaparHTML(valor) {
-  return String(valor ?? "").replace(/[&<>"']/g, (caracter) => ({
-    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
-  })[caracter]);
+function nombreCarretera(p = {}) {
+  return p.DGC_VIA || p.VIAL || p.NOM_ALTERN || p.NOM || "Carretera";
+}
+
+function crearIconoPueblo(L, pueblo) {
+  return L.divIcon({
+    className: "motolistos-pueblo-icono",
+    html: `<span class="motolistos-pueblo motolistos-pueblo--${pueblo.principal ? "principal" : "secundario"}">${pueblo.nombre}</span>`,
+    iconSize: [0, 0],
+    iconAnchor: [0, 0],
+  });
 }
 
 export default function MapaIbiza({ volver }) {
   const contenedorMapa = useRef(null);
   const mapaRef = useRef(null);
   const capasRef = useRef({});
-  const [estado, setEstado] = useState("Cargando cartografía oficial…");
+  const [estado, setEstado] = useState("Preparando mapa de Ibiza…");
   const [error, setError] = useState("");
-  const [carreteras, setCarreteras] = useState(true);
-  const [caminos, setCaminos] = useState(true);
   const [mostrarPK, setMostrarPK] = useState(true);
-  const mostrarPKRef = useRef(mostrarPK);
-  mostrarPKRef.current = mostrarPK;
-  const [busqueda, setBusqueda] = useState("");
-  const [datosViales, setDatosViales] = useState([]);
-  const [datosPK, setDatosPK] = useState([]);
-
-  const sugerencias = useMemo(() => {
-    const consulta = normalizar(busqueda);
-    if (consulta.length < 2) return [];
-    const listaPK = [];
-    const listaVias = [];
-    for (const feature of datosPK) {
-      const p = feature.properties || {};
-      const numero = Number(p.NUMERO);
-      const vial = p.VIAL || p.NOM || "Vía";
-      const texto = normalizar(vial + " PK " + numero + " " + (p.MUNICIPI || ""));
-      if (texto.includes(consulta) || (Number.isFinite(numero) && consulta === String(numero))) {
-        listaPK.push({ tipo: "pk", feature, nombre: vial + " · PK " + numero, subtitulo: p.MUNICIPI || "Punto kilométrico" });
-      }
-      if (listaPK.length >= 8) break;
-    }
-    for (const feature of datosViales) {
-      const p = feature.properties || {};
-      const nombre = p.VIAL || p.NOM || p.NOM_ALTERN || p.DGC_VIA || "Vía sin nombre";
-      const texto = normalizar([p.VIAL, p.NOM, p.NOM_ALTERN, p.DGC_VIA, p.TIPO_GE, p.MUNICIPI].join(" "));
-      if (texto.includes(consulta)) listaVias.push({ tipo: "via", feature, nombre, subtitulo: p.TIPO_GE || "Vía" });
-      if (listaVias.length >= 7) break;
-    }
-    return [...listaPK, ...listaVias].slice(0, 10);
-  }, [busqueda, datosViales, datosPK]);
+  const [mostrarCarreteras, setMostrarCarreteras] = useState(true);
 
   useEffect(() => {
     let cancelado = false;
     let mapa;
-    async function iniciar() {
-      try {
-        const L = await cargarLeaflet();
-        if (cancelado || !contenedorMapa.current) return;
-        mapa = L.map(contenedorMapa.current, { zoomControl: true, preferCanvas: true }).setView([38.98, 1.43], 10);
-        mapaRef.current = mapa;
-        // Servicio REST de exportación del mapa base oficial IDEIB.
-        // Se solicita cada imagen en la proyección del mapa Leaflet (EPSG:3857),
-        // evitando el WMS incompatible que dejaba el visor en blanco.
-        const SERVICIO_MAPA_BASE = "https://ideib.caib.es/geoserveis/rest/services/public/GOIB_MapaBase_IB/MapServer/export";
-        const capaMapaBase = L.gridLayer({
-          tileSize: 256,
-          opacity: 1,
-          attribution: 'Cartografía oficial: <a href="https://ideib.caib.es">ICGIB / IDEIB</a>',
-        });
-        capaMapaBase.createTile = function (coords, done) {
-          const tile = document.createElement("img");
-          tile.alt = "";
-          tile.setAttribute("role", "presentation");
-          tile.style.width = "256px";
-          tile.style.height = "256px";
-          const escala = 256 * Math.pow(2, coords.z);
-          const mundo = 20037508.342789244;
-          const xmin = coords.x * (2 * mundo) / Math.pow(2, coords.z) - mundo;
-          const xmax = (coords.x + 1) * (2 * mundo) / Math.pow(2, coords.z) - mundo;
-          const ymax = mundo - coords.y * (2 * mundo) / Math.pow(2, coords.z);
-          const ymin = mundo - (coords.y + 1) * (2 * mundo) / Math.pow(2, coords.z);
-          const params = new URLSearchParams({
-            bbox: [xmin, ymin, xmax, ymax].join(","),
-            bboxSR: "3857",
-            imageSR: "3857",
-            size: "256,256",
-            format: "png32",
-            transparent: "false",
-            f: "image",
-          });
-          tile.onload = () => done(null, tile);
-          tile.onerror = (event) => done(event, tile);
-          tile.src = SERVICIO_MAPA_BASE + "?" + params.toString();
-          return tile;
-        };
-        capaMapaBase.addTo(mapa);
-        const grupoCarreteras = L.geoJSON([], {
-          style: (feature) => ({
-            color: feature.properties?.TIPO_GE === "Carretera principal" || feature.properties?.TIPO_GE === "Carretera principal desdoblada" ? "#d8a84e" : "#e7e5d7",
-            weight: feature.properties?.TIPO_GE === "Carretera principal" ? 4 : 2.5,
-            opacity: 0.95,
-          }),
-          onEachFeature: (feature, layer) => {
-            const p = feature.properties || {};
-            layer.bindPopup(`<strong>${escaparHTML(p.VIAL || p.NOM || "Vía")}</strong><br>${escaparHTML(p.TIPO_GE || "Carretera")}<br>${escaparHTML(p.MUNICIPI || "")}`);
-          },
-        });
-        const grupoCaminos = L.geoJSON([], {
-          style: { color: "#9ebc9b", weight: 2, opacity: 0.88, dashArray: "5 4" },
-          onEachFeature: (feature, layer) => {
-            const p = feature.properties || {};
-            layer.bindPopup(`<strong>${escaparHTML(p.VIAL || p.NOM || "Camino")}</strong><br>${escaparHTML(p.TIPO_GE || "Camino")}<br>${escaparHTML(p.MUNICIPI || "")}`);
-          },
-        });
-        const grupoPK = L.layerGroup();
-        capasRef.current = { carreteras: grupoCarreteras, caminos: grupoCaminos, pk: grupoPK };
-        grupoCarreteras.addTo(mapa);
-        grupoCaminos.addTo(mapa);
-        grupoPK.addTo(mapa);
-        if (mapa.getZoom() < 11) mapa.removeLayer(grupoPK);
-
-
-        capasRef.current = { carreteras: capaMapaBase, caminos: null, pk: null };
-        mapa.removeLayer(grupoCarreteras);
-        mapa.removeLayer(grupoCaminos);
-        mapa.removeLayer(grupoPK);
-        mapa.invalidateSize();
-        setEstado("Mapa de Ibiza cargado · Red viaria oficial IDEIB");
-
-      } catch (e) {
-        if (!cancelado) {
-          if (mapa) {
-            mapa.invalidateSize();
-            setError("El mapa base está disponible, pero no se ha podido descargar la cartografía oficial. " + (e.message || ""));
-            setEstado("Mapa base disponible · cartografía oficial no disponible");
-          } else {
-            setError(e.message || "No se ha podido cargar el mapa.");
-            setEstado("No se ha podido iniciar el mapa. Comprueba la conexión e inténtalo de nuevo.");
-          }
-        }
-      }
-    }
-    iniciar();
-    return () => {
-      cancelado = true;
+    let grupoVias;
+    let grupoEtiquetas;
+    let grupoPK;
+    const limpiar = () => {
       if (mapa) mapa.remove();
       mapaRef.current = null;
       capasRef.current = {};
     };
-  }, []);
 
-  useEffect(() => {
-    const mapa = mapaRef.current;
-    const capas = capasRef.current;
-    if (!mapa || !capas.carreteras) return;
-    const alternar = (capa, visible) => {
-      if (visible && !mapa.hasLayer(capa)) capa.addTo(mapa);
-      if (!visible && mapa.hasLayer(capa)) mapa.removeLayer(capa);
-    };
-    alternar(capas.carreteras, carreteras);
-    if (capas.caminos) alternar(capas.caminos, caminos);
-    if (capas.pk) alternar(capas.pk, mostrarPK && mapa.getZoom() >= 11);
-  }, [carreteras, caminos, mostrarPK]);
+    async function iniciar() {
+      try {
+        const L = await cargarLeaflet();
+        if (cancelado || !contenedorMapa.current) return;
 
-  function seleccionarResultado(item) {
-    const mapa = mapaRef.current;
-    const L = window.L;
-    if (!mapa || !L) return;
-    setBusqueda(item.nombre);
-    if (item.tipo === "pk") {
-      const marker = item.feature.__marker;
-      const grupoPK = capasRef.current.pk;
-      if (grupoPK && !mapa.hasLayer(grupoPK)) grupoPK.addTo(mapa);
-      mostrarPKRef.current = true;
-      setMostrarPK(true);
-      if (marker) {
-        mapa.once("zoomend", () => marker.openPopup());
-        mapa.setView(marker.getLatLng(), 17);
+        mapa = L.map(contenedorMapa.current, {
+          zoomControl: true,
+          preferCanvas: true,
+          minZoom: 9,
+          maxZoom: 18,
+        }).setView([38.98, 1.43], 10);
+
+        // Fondo claro y limpio, sin etiquetas de comercios ni nombres de calles.
+        L.tileLayer("https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png", {
+          subdomains: "abcd",
+          maxZoom: 20,
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        }).addTo(mapa);
+
+        // Solo los pueblos y núcleos que interesan para orientarse por la isla.
+        const grupoPueblos = L.layerGroup();
+        PUEBLOS.forEach((pueblo) => {
+          L.marker(pueblo.coords, {
+            icon: crearIconoPueblo(L, pueblo),
+            interactive: false,
+            keyboard: false,
+            zIndexOffset: 900,
+          }).addTo(grupoPueblos);
+        });
+        grupoPueblos.addTo(mapa);
+
+        grupoVias = L.geoJSON([], {
+          style: (feature) => {
+            const tipo = feature.properties?.TIPO_GE || "";
+            const principal = tipo.includes("principal");
+            return {
+              color: principal ? "#d28b32" : "#d8a64b",
+              weight: principal ? 4.5 : 3,
+              opacity: 0.95,
+              lineCap: "round",
+              lineJoin: "round",
+            };
+          },
+          onEachFeature: (feature, layer) => {
+            const p = feature.properties || {};
+            const nombre = nombreCarretera(p);
+            layer.bindPopup(`<strong>${nombre}</strong><br>${p.TIPO_GE || "Carretera"}`);
+          },
+        }).addTo(mapa);
+
+        grupoEtiquetas = L.layerGroup().addTo(mapa);
+        grupoPK = L.layerGroup().addTo(mapa);
+        mapaRef.current = mapa;
+        capasRef.current = { vias: grupoVias, etiquetas: grupoEtiquetas, pk: grupoPK };
+
+        // Los trazados oficiales incluyen carreteras principales, secundarias y locales.
+        const [vias, puntos] = await Promise.all([
+          descargarCapa(3, "DGC_VIA,VIAL,NOM,NOM_ALTERN,TIPO_GE,MUNICIPI", "TIPO_GE IN ('Carretera principal','Carretera principal desdoblada','Carretera secundaria','Carretera local')"),
+          descargarCapa(2, "VIAL,NUMERO,MUNICIPI,TIPUS_PORT,LAT,LON", "TIPUS_PORT = 'PK'"),
+        ]);
+        if (cancelado) return;
+
+        grupoVias.addData({ type: "FeatureCollection", features: vias });
+        grupoPK.clearLayers();
+        puntos.forEach((feature) => {
+          const coords = feature.geometry?.coordinates;
+          if (!coords || coords.length < 2) return;
+          const p = feature.properties || {};
+          const numero = Number(p.NUMERO);
+          const etiqueta = Number.isFinite(numero) ? String(numero).replace(/\.0$/, "") : String(p.NUMERO || "");
+          const vial = p.VIAL || "Carretera";
+          const icon = L.divIcon({
+            className: "motolistos-pk-icono",
+            html: `<span class="motolistos-pk">PK ${etiqueta}</span>`,
+            iconSize: [1, 1],
+            iconAnchor: [0, 0],
+          });
+          const marker = L.marker([coords[1], coords[0]], { icon, keyboard: false });
+          marker.bindPopup(`<strong>${vial}</strong><br>Punto kilométrico ${etiqueta}${p.MUNICIPI ? `<br>${p.MUNICIPI}` : ""}`);
+          marker.addTo(grupoPK);
+        });
+
+        const actualizarEscala = () => {
+          const zoom = mapa.getZoom();
+          grupoEtiquetas.clearLayers();
+          if (zoom >= 12) {
+            vias.forEach((feature) => {
+              const geometria = feature.geometry;
+              if (!geometria) return;
+              let lineas = geometria.type === "MultiLineString" ? geometria.coordinates : [geometria.coordinates];
+              lineas.forEach((linea) => {
+                if (!linea || linea.length < 2) return;
+                const punto = linea[Math.floor(linea.length / 2)];
+                const etiqueta = nombreCarretera(feature.properties || {});
+                if (!etiqueta || etiqueta === "Carretera") return;
+                L.marker([punto[1], punto[0]], {
+                  interactive: false,
+                  keyboard: false,
+                  icon: L.divIcon({
+                    className: "motolistos-carretera-icono",
+                    html: `<span class="motolistos-carretera-nombre">${etiqueta}</span>`,
+                    iconSize: [0, 0],
+                    iconAnchor: [0, 0],
+                  }),
+                }).addTo(grupoEtiquetas);
+              });
+            });
+          }
+          if (zoom >= 13 && mostrarPK) {
+            if (!mapa.hasLayer(grupoPK)) grupoPK.addTo(mapa);
+          } else if (mapa.hasLayer(grupoPK)) {
+            mapa.removeLayer(grupoPK);
+          }
+          if (mostrarCarreteras && !mapa.hasLayer(grupoVias)) grupoVias.addTo(mapa);
+          if (!mostrarCarreteras && mapa.hasLayer(grupoVias)) mapa.removeLayer(grupoVias);
+        };
+        mapa.on("zoomend", actualizarEscala);
+        actualizarEscala();
+        setEstado(`Mapa listo · ${vias.length} tramos de carretera y ${puntos.length} puntos kilométricos`);
+      } catch (e) {
+        if (!cancelado) {
+          setError(e.message || "No se ha podido cargar la cartografía.");
+          setEstado("No se ha podido completar la carga del mapa");
+        }
       }
-    } else {
-      const capa = L.geoJSON(item.feature);
-      const bounds = capa.getBounds();
-      if (bounds.isValid()) mapa.fitBounds(bounds.pad(0.35), { maxZoom: 16 });
-      capa.eachLayer((layer) => layer.bindPopup(`<strong>${escaparHTML(item.nombre)}</strong><br>${escaparHTML(item.subtitulo)}`).openPopup());
     }
-  }
 
-  function buscar(e) {
-    e.preventDefault();
-    if (sugerencias.length) seleccionarResultado(sugerencias[0]);
-  }
+    iniciar();
+    return () => {
+      cancelado = true;
+      limpiar();
+    };
+  }, [mostrarPK, mostrarCarreteras]);
 
   return (
     <section className="mapa-modulo">
@@ -271,40 +257,26 @@ export default function MapaIbiza({ volver }) {
         <div>
           <span className="etiqueta-seccion">MÓDULO 02 · CARTOGRAFÍA</span>
           <h1>Mapa de Ibiza</h1>
-          <p>Cartografía topográfica oficial IDEIB con red viaria completa de la isla.</p>
+          <p>Vista limpia de la isla. Acércate para consultar carreteras y puntos kilométricos.</p>
         </div>
         <button type="button" className="boton boton--secundario mapa-modulo__volver" onClick={volver}>← Herramientas</button>
       </div>
       <div className="mapa-herramientas">
-        <form className="mapa-buscador" onSubmit={buscar} style={{ display: "none" }}>
-          <span aria-hidden="true">⌕</span>
-          <input value={busqueda} onChange={(e) => { setBusqueda(e.target.value); }} placeholder="Buscar carretera, camino o PK (ej. EI-300 o PK 4)" aria-label="Buscar carretera, camino o punto kilométrico" />
-          <button type="submit" disabled={!sugerencias.length}>Buscar</button>
-          {busqueda.length >= 2 && sugerencias.length > 0 && (
-            <div className="mapa-sugerencias">
-              {sugerencias.map((item, i) => (
-                <button type="button" key={`${item.tipo}-${i}`} onClick={() => seleccionarResultado(item)}>
-                  <strong>{item.nombre}</strong><span>{item.subtitulo}</span>
-                </button>
-              ))}
-            </div>
-          )}
-        </form>
-        <div className="mapa-capas" aria-label="Capas visibles">
-          <label><input type="checkbox" checked={carreteras} onChange={(e) => setCarreteras(e.target.checked)} /> Cartografía oficial completa</label>
-
-          <label><input type="checkbox" checked={mostrarPK} onChange={(e) => setMostrarPK(e.target.checked)} /> Puntos de la red</label>
+        <div className="mapa-capas" aria-label="Opciones del mapa">
+          <label><input type="checkbox" checked={mostrarCarreteras} onChange={(e) => setMostrarCarreteras(e.target.checked)} /> Carreteras</label>
+          <label><input type="checkbox" checked={mostrarPK} onChange={(e) => setMostrarPK(e.target.checked)} /> Puntos kilométricos</label>
+          <span className="mapa-leyenda">Los PK aparecen al acercar el mapa</span>
         </div>
       </div>
       <div className="mapa-marco">
-        <div ref={contenedorMapa} className="mapa-lienzo" aria-label="Mapa interactivo de Ibiza con cartografía oficial y puntos kilométricos" />
-        {error && <div className="mapa-error"><strong>No se pudo cargar el mapa</strong><span>{error}</span><button type="button" onClick={() => window.location.reload()}>Reintentar</button></div>}
+        <div ref={contenedorMapa} className="mapa-lienzo" aria-label="Mapa simplificado de Ibiza con pueblos, carreteras y puntos kilométricos" />
+        {error && <div className="mapa-error"><strong>No se pudo cargar toda la cartografía</strong><span>{error}</span><button type="button" onClick={() => window.location.reload()}>Reintentar</button></div>}
       </div>
       <div className="mapa-pie">
         <span>{estado}</span>
-        <span>Mapa base y red viaria: ICGIB / IDEIB</span>
+        <span>Red viaria y PK: cartografía oficial ICGIB / IDEIB</span>
       </div>
-      <p className="mapa-aviso">Cartografía de la IDEIB. Para actuaciones, contrasta siempre la señalización y la referencia kilométrica sobre el terreno.</p>
+      <p className="mapa-aviso">Los puntos kilométricos y trazados proceden de la cartografía oficial. Contrasta siempre la señalización y la referencia sobre el terreno.</p>
     </section>
   );
 }
