@@ -161,6 +161,7 @@ function App() {
             titulo={preguntas[pantalla].titulo}
             descripcion={preguntas[pantalla].descripcion}
             opciones={preguntas[pantalla].opciones}
+            variante={pantalla === "tipoPermiso" ? "tipo-permiso" : ""}
             alSeleccionar={(destino, texto) => avanzar(destino, texto)}
             alVolver={pilaNavegacion.length ? retroceder : null}
           />
