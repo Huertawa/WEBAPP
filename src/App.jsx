@@ -7,7 +7,7 @@ import MapaIbiza from "./componentes/MapaIbiza";
 import Herramientas from "./componentes/Herramientas";
 import Senales from "./componentes/Senales";
 import ElementosVia from "./componentes/ElementosVia";
-import cascoFoto from "./cascoFoto";
+import caimanFoto from "./caimanFoto";
 
 const preguntas = {
   inicio: { titulo: "¿El conductor posee permiso de conducción?", descripcion: "Comprueba si dispone de una autorización de conducción obtenida en España o en otro país. Si la tiene, después identificaremos dónde se expidió y si está vigente.", opciones: [{ valor: "tipoPermiso", texto: "Sí, posee permiso" }, { valor: "situacionSinPermiso", texto: "No dispone de un permiso válido" }] },
@@ -193,7 +193,7 @@ function App() {
           <div className="portada-marca">
           <div className="portada-modulos__cabecera">
             <div className="portada-modulos__insignia" aria-hidden="true">
-              <img src={cascoFoto} alt="" />
+              <img src={caimanFoto} alt="" />
             </div>
             <div className="portada-modulos__intro">
               <span className="portada-modulos__sobrelinea"><i></i> ÁREA OPERATIVA · SEGURIDAD VIAL</span>
@@ -207,6 +207,7 @@ function App() {
             </div>
           </div>
           </div>
+          <div className="portada-mascota" aria-label="Mascota de MOTOLISTOS"><img src={caimanFoto} alt="Caimán motorista sobre una motocicleta" /><div className="portada-mascota__texto"><span>EN RUTA · SIEMPRE ALERTA</span><strong>La carretera, bajo control.</strong></div></div>
           <div className="portada-modulos__separador"><span>SELECCIONA UN MÓDULO</span><i></i></div>
           <div className="modulos-grid">
             <button type="button" className="modulo-acceso modulo-acceso--permisos" onClick={() => setPantalla("inicio")}>
