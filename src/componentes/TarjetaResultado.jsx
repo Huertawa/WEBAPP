@@ -209,12 +209,14 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
 
       <div className="fuentes-juridicas">
         <h3>Fuentes oficiales para contrastar</h3>
+        <p className="fuentes-juridicas__revision">Revisión de referencias: 06/11/2026. La Sede de la DGT enlaza su guía codificada extendida con vigencia desde el 01/10/2026; contrasta siempre el código exacto antes de emitir el boletín.</p>
         <ul>
           <li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2009-9481" target="_blank" rel="noreferrer">Reglamento General de Conductores</a></li>
           <li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2015-11722" target="_blank" rel="noreferrer">Ley de Tráfico · texto consolidado</a></li>
           <li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-1995-25444" target="_blank" rel="noreferrer">Código Penal · artículo 384</a></li>
           <li><a href="https://www.boe.es/buscar/doc.php?coleccion=fiscalia&id=FIS-Q-2026-00001" target="_blank" rel="noreferrer">Fiscalía General del Estado · Consulta 1/2026 (pérdida de vigencia judicial tras cumplir condena)</a></li>
           <li><a href="https://www.dgt.es/nuestros-servicios/permisos-de-conducir/permisos-extranjeros-y-de-fuerzas-y-cuerpos-de-seguridad/conducir-con-un-permiso-extranjero/" target="_blank" rel="noreferrer">DGT · Conducir con un permiso extranjero</a></li>
+          <li><a href="https://sede.dgt.gob.es/es/multas/tramites-para-administraciones/sipp-notificacion-de-sanciones/" target="_blank" rel="noreferrer">DGT · SIPP y catálogo codificado vigente</a></li>
           <li><a href="https://sede.dgt.gob.es/.galleries/multas/ARCI/Guia-codificada-de-infracciones-actualizada-01-10-2026.xls" target="_blank" rel="noreferrer">DGT · Guía codificada de infracciones extendida (01/10/2026)</a></li>
           <li><a href="https://sede.dgt.gob.es/export/sites/dgt/.galleries/multas/ARCI/Guia-codificada-de-infracciones-ARCI-Vigente-a-partir-del-01-07-2025.pdf" target="_blank" rel="noreferrer">DGT · Guía codificada ARCI en PDF (01/07/2025)</a></li>
           <li><a href="https://www.dgt.es/nuestros-servicios/permisos-de-conducir/permisos-extranjeros-y-de-fuerzas-y-cuerpos-de-seguridad/canjes-de-permisos/paises-con-convenio-de-canjes/" target="_blank" rel="noreferrer">DGT · Países con convenio de canje (actualizado 26/06/2026)</a></li>
