@@ -191,11 +191,6 @@ function App() {
       {pantalla === "portada" ? (
         <section className="portada-modulos">
           <div className="portada-marca">
-          <div className="portada-modulos__bandera" aria-label="Bandera de España">
-            <span className="portada-modulos__franja portada-modulos__franja--roja"></span>
-            <span className="portada-modulos__franja portada-modulos__franja--amarilla"></span>
-            <span className="portada-modulos__franja portada-modulos__franja--roja"></span>
-          </div>
           <div className="portada-modulos__cabecera">
             <div className="portada-modulos__insignia" aria-hidden="true">
               <img src={cascoFoto} alt="" />
