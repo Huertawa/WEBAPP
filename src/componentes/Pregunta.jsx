@@ -7,7 +7,7 @@ function clasificarOpcion(opcion) {
   if (/todavía no|menos de|no supera|no reside/.test(texto)) return "positiva";
   if (/^sí[, ]|^sí$|cumple|adecuada|antes de/.test(texto)) return "positiva";
   if (/después de|en la fecha de firma|otra categoría/.test(texto)) return "informativa";
-  if (/^no[, ]|^no$/.test(texto)) return "negativa";
+  if (/^no[, ]|^no$/.test(texto)) return "informativa";
   return "informativa";
 }
 
