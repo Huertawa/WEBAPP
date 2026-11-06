@@ -1506,3 +1506,9 @@ a, .fuentes-juridicas a { color: #76c5e6; }
 .consecuencia-penal p{margin:0;color:#e9edf1;font-size:14px;line-height:1.6}
 
 .fuentes-juridicas__revision{margin:0 0 12px;padding:10px 12px;border-left:3px solid #55b5da;border-radius:0 8px 8px 0;background:rgba(35,112,151,.10);color:#b9c8d4;font-size:12px;line-height:1.55}
+
+/* Banderas como imágenes reales: no dependen de la fuente de emojis de Windows */
+.opcion-pais__bandera{display:block;flex:0 0 32px;width:32px;height:24px;object-fit:cover;border-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,.45);background:#263441}
+.opcion-pais__sin-bandera{display:flex;align-items:center;justify-content:center;flex:0 0 42px;width:42px;height:24px;border:1px solid #657584;border-radius:4px;color:#d5e0e8;font-size:9px;font-weight:800;letter-spacing:.06em}
+.opcion-pais__nombre{overflow-wrap:anywhere}
+@media(max-width:620px){.opcion-pais__bandera{flex-basis:32px;width:32px;height:24px}}
