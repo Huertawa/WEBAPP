@@ -130,14 +130,15 @@ export default function MapaIbiza({ volver }) {
           zoomControl: true,
           preferCanvas: true,
           minZoom: 9,
-          maxZoom: 18,
+          maxZoom: 16,
         }).setView([38.98, 1.43], 10);
 
-        // Fondo claro y limpio, sin etiquetas de comercios ni nombres de calles.
-        L.tileLayer("https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png", {
-          subdomains: "abcd",
-          maxZoom: 20,
-          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        // Fondo cartográfico gris claro de Esri: no necesita API key y evita
+        // el servicio CARTO que estaba devolviendo "API key required".
+        L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}", {
+          maxZoom: 16,
+          attribution: 'Fuentes: Esri, HERE, Garmin y colaboradores de OpenStreetMap',
+          crossOrigin: true,
         }).addTo(mapa);
 
         // Solo los pueblos y núcleos que interesan para orientarse por la isla.
@@ -157,9 +158,9 @@ export default function MapaIbiza({ volver }) {
             const tipo = feature.properties?.TIPO_GE || "";
             const principal = tipo.includes("principal");
             return {
-              color: principal ? "#d28b32" : "#d8a64b",
-              weight: principal ? 4.5 : 3,
-              opacity: 0.95,
+              color: principal ? "#d17b25" : "#bc9a64",
+              weight: principal ? 4.2 : 2.6,
+              opacity: 0.92,
               lineCap: "round",
               lineJoin: "round",
             };
