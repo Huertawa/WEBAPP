@@ -46,7 +46,7 @@ function App() {
   const [historial, setHistorial] = useState([]);
   const [paisSeleccionado, setPaisSeleccionado] = useState("");
   const [busquedaPais, setBusquedaPais] = useState("");
-  const [pilaNavegacion, setPilaNavegacion] = useState([]);
+  const [pilaNavegacion, setPilaNavegacion] = useState([]); // historial de navegación del asistente
 
   const avanzar = (destino, texto) => {
     setPilaNavegacion((anterior) => [...anterior, { pantalla, historial, paisSeleccionado }]);
