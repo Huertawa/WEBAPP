@@ -179,17 +179,22 @@ function App() {
               </article>
               <article>
                 <strong>2. Situación regular: no basta con estar empadronado</strong>
-                <p>Para nacionales de terceros países, la Ley de Extranjería distingue entre estancia y residencia. Como regla general, es residente quien es titular de una autorización para residir. Un NIE, el padrón, una solicitud pendiente o una estancia turística no acreditan por sí solos una autorización de residencia.</p>
+                <p>Para nacionales de terceros países, la Ley de Extranjería distingue entre estancia y residencia: la estancia ordinaria no supera 90 días, mientras que es residente quien es titular de una autorización para residir. Un NIE, el padrón, una solicitud pendiente o una estancia turística no acreditan por sí solos una autorización de residencia.</p>
               </article>
               <article>
                 <strong>3. Fecha que debes comprobar en la intervención</strong>
                 <p>Localiza la resolución o autorización de residencia y comprueba su fecha de efectos y vigencia, junto con la documentación que permita fijar cuándo se alcanzó la residencia normal. La fecha de expedición de la TIE o del empadronamiento no debe tomarse automáticamente como fecha inicial. El momento concreto depende del tipo de autorización y de la situación personal.</p>
               </article>
             </div>
-            <p className="panel-residencia__nota"><strong>Importante:</strong> el criterio de los 185 días y la exigencia de situación regular son requisitos distintos que deben analizarse conjuntamente. Para ciudadanos UE/EEE existe un régimen propio; no apliques mecánicamente el régimen de autorizaciones de residencia de nacionales de terceros países.</p>
+            <article className="panel-residencia__bloque-ue">
+              <strong>4. Ciudadanos UE/EEE: régimen diferente</strong>
+              <p>Para permanecer más de tres meses, deben concurrir las condiciones del Real Decreto 240/2007 (por ejemplo, trabajar, disponer de recursos suficientes y seguro médico, o estudiar cumpliendo los requisitos) y solicitar la inscripción en el Registro Central de Extranjeros. Comprueba el certificado de registro y la situación material que da derecho a residir.</p>
+            </article>
+            <p className="panel-residencia__nota"><strong>Importante:</strong> el criterio de los 185 días y la exigencia de situación regular son requisitos distintos que deben analizarse conjuntamente. La fecha de efectos depende del título y del régimen aplicable; no la deduzcas solo del padrón o de la fecha de expedición física de una tarjeta.</p>
             <div className="panel-residencia__fuentes">
               <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2009-9481" target="_blank" rel="noreferrer">RGC · disposición adicional segunda (residencia normal)</a>
               <a href="https://boe.es/buscar/act.php?id=BOE-A-2000-544" target="_blank" rel="noreferrer">LO 4/2000 · artículos 29, 30 y 30 bis (estancia y residencia)</a>
+              <a href="https://www.boe.es/eli/es/rd/2007/02/16/240/con" target="_blank" rel="noreferrer">RD 240/2007 · residencia de ciudadanos UE/EEE</a>
             </div>
           </section>
           <Pregunta
