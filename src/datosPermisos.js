@@ -9,7 +9,7 @@ export const resultados = {
     euros: "No procede fijar sanción administrativa: comprobar posible delito del artículo 384 CP.",
     puntos: "Sin detracción de puntos.",
     actuacion: "Comprobar en el Registro de Conductores e Infractores si el conductor obtuvo alguna vez permiso, si existe pérdida de vigencia por pérdida total de puntos, suspensión o privación judicial. Si nunca lo obtuvo, perdió la vigencia por pérdida total de puntos o conduce durante una privación judicial, valorar la posible relevancia penal del artículo 384 del Código Penal antes de tramitar únicamente una infracción administrativa. Identificar la situación exacta y documentarla.",
-    observaciones: "El artículo 384 CP exige que nunca haya obtenido permiso o licencia que habilite para conducir en ningún Estado. La Fiscalía General del Estado, Consulta 1/2026, precisa este alcance. Antes de atribuir el delito, comprobar la inexistencia de cualquier permiso extranjero, la clase de vehículo y todos los elementos del tipo. Si no procede la vía penal, la DGT recuerda que la conducción puede constituir infracción administrativa muy grave (art. 1.1 RGC y art. 77.k LTSV), con referencia general de 500 €; no fijar esa sanción sin concretar el supuesto y descartar duplicidad sancionadora.",
+    observaciones: "El artículo 384 CP exige que nunca haya obtenido permiso o licencia que habilite para conducir en ningún Estado. La Fiscalía General del Estado, Consulta 1/2026, precisa este alcance. Antes de atribuir el delito, comprobar la inexistencia de cualquier permiso extranjero, la clase de vehículo y todos los elementos del tipo. No trasladar automáticamente a este supuesto la sanción administrativa de otros casos de falta de autorización.",
   },
   PER002: {
     codigo: "PER002",
@@ -65,7 +65,7 @@ export const resultados = {
     articulo: "Artículo 12.4 del Reglamento General de Conductores, en relación con los artículos 76.ll) y 80.1 de la Ley de Tráfico, cuando no sea residente en España.",
     euros: "200 €",
     puntos: "0 puntos",
-    actuacion: "Comprobar la fecha de caducidad y si existe renovación o reconocimiento válido. Este resultado se reserva al titular que no tenga residencia normal en España; si reside aquí, comprobar el artículo 15.4 RGC y utilizar el resultado de renovación de permiso UE/EEE. La intervención del documento debe ajustarse a las instrucciones DGT aplicables a permisos comunitarios.",
+    actuacion: "Comprobar la fecha de caducidad y si existe renovación o reconocimiento válido. Este resultado se reserva al titular que no tenga residencia normal en España; si reside aquí, comprobar el artículo 15.4 RGC y utilizar el resultado de renovación de permiso UE/EEE. En los permisos UE/EEE de titulares no residentes, no intervenir el documento por la mera caducidad sin comprobar las instrucciones específicas de la DGT.",
     observaciones: "Para titulares UE/EEE sin residencia normal en España, la guía codificada distingue la caducidad por el artículo 12.4 RGC (200 €, grave, 0 puntos). Si el titular reside en España, debe comprobarse el artículo 15.4 RGC. No confundir caducidad con suspensión o retirada del derecho a conducir.",
     denuncia: {
       calificacion: "Grave",
@@ -117,7 +117,7 @@ export const resultados = {
       importe: "200 €",
       puntos: "0 puntos",
       codificado: "CON · Art. 001 · Apt. 1 · Opción 5B · 0 puntos",
-      fundamento: "La guía codificada ARCI de la DGT (vigente desde 01/07/2025) recoge esta opción para permiso extranjero equivalente susceptible de canje, incluyendo los supuestos del artículo 21.2.c) del Reglamento General de Conductores. Confirmar que el permiso concreto pertenece al grupo canjeable y que se cumplen los requisitos."
+      fundamento: "La guía codificada ARCI de la DGT recoge esta opción para permiso extranjero equivalente susceptible de canje, incluyendo los supuestos del artículo 21.2.c) del Reglamento General de Conductores. Confirmar que el permiso concreto pertenece al grupo canjeable y que se cumplen los requisitos."
     },
     actuacion: "Comprobar el convenio concreto y su fecha de firma, la fecha de obtención del permiso, las categorías y los requisitos de canje. Verificar si el canje ya se ha realizado y si existe alguna excepción aplicable antes de concluir si puede conducir.",
     observaciones: "El convenio puede permitir el canje en determinados supuestos, incluidos los permisos obtenidos antes de su firma. No mantiene por sí solo la validez del permiso extranjero una vez agotado el plazo."
@@ -246,7 +246,7 @@ export const resultados = {
     codigo: "PER016",
     nombre: "Permiso UE/EEE sujeto a posible renovación obligatoria en España",
     puedeConducir: null,
-    motivo: "El titular reúne los datos que pueden activar la obligación de renovar en España un permiso UE/EEE de vigencia indefinida o de larga duración tras dos años de residencia normal.",
+    motivo: "El titular residente en España conduce con un permiso UE/EEE cuya vigencia ha vencido o no ha sido renovado conforme a las reglas españolas. También puede afectar a permisos de vigencia indefinida o de larga duración cuando han transcurrido dos años de residencia normal.",
     normativa: "Real Decreto 818/2009, Reglamento General de Conductores; normativa de la Unión Europea.",
     articulo: "Artículo 15.4.",
     euros: "200 € si se confirma el incumplimiento de la obligación de renovación.",
@@ -260,8 +260,8 @@ export const resultados = {
       codificado: "CON · Art. 015 · Apt. 4 · Opción 5B · 0 puntos",
       fundamento: "La guía codificada ARCI de la DGT recoge específicamente la conducción con permiso comunitario sin renovar su periodo de vigencia una vez adquirida residencia en España. Confirmar el código exacto en la versión vigente y aplicar solo si se cumplen las condiciones del artículo 15.4 RGC."
     },
-    actuacion: "Comprobar fecha de adquisición de residencia normal, grupo de permiso, periodo de vigencia original y si se ha realizado la renovación o anotación correspondiente en España. Consultar el Registro de Conductores e Infractores y confirmar la situación administrativa antes de formular denuncia.",
-    observaciones: "Resultado de comprobación, no una declaración automática de pérdida de validez. La DGT indica que la renovación es obligatoria tras dos años de residencia para permisos indefinidos o superiores a 15 años en grupo 1 y a 5 años en grupo 2."
+    actuacion: "Comprobar residencia normal en España, fecha de caducidad, grupo de permiso y periodo de vigencia original. Si el permiso era indefinido o de larga duración, verificar si han transcurrido dos años de residencia normal y si debía renovarse conforme al artículo 15.4 RGC. Consultar el Registro de Conductores e Infractores antes de formular denuncia.",
+    observaciones: "Resultado de comprobación. La DGT diferencia la caducidad del permiso UE/EEE del titular no residente (art. 12.4 RGC) y la del residente (art. 15.4 RGC). Además, la renovación es obligatoria tras dos años de residencia para permisos indefinidos o superiores a 15 años en grupo 1 y a 5 años en grupo 2."
   },
   PER017: {
     codigo: "PER017",
@@ -392,14 +392,14 @@ export const resultados = {
   },
   PER026: {
     codigo: "PER026",
-    nombre: "Conducción con el permiso suspendido cautelarmente por la Administración",
+    nombre: "Conducción con el permiso suspendido cautelarmente",
     puedeConducir: false,
-    motivo: "El permiso se encuentra suspendido como medida cautelar o existe una prohibición administrativa vigente de uso. No debe confundirse con la privación judicial del derecho a conducir.",
+    motivo: "El permiso se encuentra suspendido como medida cautelar por la autoridad administrativa. No debe confundirse con la privación judicial del derecho a conducir ni con otras prohibiciones cuyo encaje sancionador deba comprobarse por separado.",
     normativa: "Real Decreto 818/2009, Reglamento General de Conductores; Real Decreto Legislativo 6/2015, Ley de Tráfico.",
     articulo: "Artículo 39.3 del Reglamento General de Conductores y artículo 76.s) de la Ley de Tráfico.",
     euros: "200 €",
     puntos: "4 puntos",
-    actuacion: "Comprobar la resolución administrativa motivada que acuerda la suspensión cautelar o la prohibición de uso, su notificación, alcance y vigencia en la fecha de los hechos. Identificar el vehículo y documentar la consulta. No tramitarlo como delito del artículo 384 CP por el solo hecho de tratarse de una suspensión administrativa.",
+    actuacion: "Comprobar la resolución administrativa motivada que acuerda la suspensión cautelar, su notificación, alcance y vigencia en la fecha de los hechos. Identificar el vehículo y documentar la consulta. No tramitarlo como delito del artículo 384 CP por el solo hecho de tratarse de una suspensión administrativa.",
     observaciones: "La conducción con el permiso suspendido cautelarmente constituye infracción grave, sancionada con 200 € y detracción de 4 puntos. La medida cautelar se contempla en el artículo 72 LTSV y su conducción en el artículo 76.s).",
     denuncia: {
       calificacion: "Grave",
