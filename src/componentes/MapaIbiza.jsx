@@ -79,16 +79,16 @@ export default function MapaIbiza({ volver }) {
   const contenedorMapa = useRef(null);
   const mapaRef = useRef(null);
   const capasRef = useRef({});
+  const mostrarPKRef = useRef(mostrarPK);
+  mostrarPKRef.current = mostrarPK;
   const [estado, setEstado] = useState("Cargando cartografía oficial…");
   const [error, setError] = useState("");
   const [carreteras, setCarreteras] = useState(true);
   const [caminos, setCaminos] = useState(true);
   const [mostrarPK, setMostrarPK] = useState(true);
   const [busqueda, setBusqueda] = useState("");
-  const [resultados, setResultados] = useState([]);
   const [datosViales, setDatosViales] = useState([]);
   const [datosPK, setDatosPK] = useState([]);
-  const [seleccion, setSeleccion] = useState(null);
 
   const sugerencias = useMemo(() => {
     const consulta = normalizar(busqueda);
@@ -150,8 +150,9 @@ export default function MapaIbiza({ volver }) {
         grupoCarreteras.addTo(mapa);
         grupoCaminos.addTo(mapa);
         grupoPK.addTo(mapa);
+        if (mapa.getZoom() < 11) mapa.removeLayer(grupoPK);
         mapa.on("zoomend", () => {
-          if (mapa.getZoom() >= 11 && mostrarPK) {
+          if (mapa.getZoom() >= 11 && mostrarPKRef.current) {
             if (!mapa.hasLayer(grupoPK)) grupoPK.addTo(mapa);
           } else if (mapa.hasLayer(grupoPK)) {
             mapa.removeLayer(grupoPK);
@@ -217,9 +218,7 @@ export default function MapaIbiza({ volver }) {
     const mapa = mapaRef.current;
     const L = window.L;
     if (!mapa || !L) return;
-    setSeleccion(item);
     setBusqueda(item.nombre);
-    setResultados([]);
     if (item.tipo === "pk") {
       const marker = item.feature.__marker;
       if (marker) {
@@ -252,7 +251,7 @@ export default function MapaIbiza({ volver }) {
       <div className="mapa-herramientas">
         <form className="mapa-buscador" onSubmit={buscar}>
           <span aria-hidden="true">⌕</span>
-          <input value={busqueda} onChange={(e) => { setBusqueda(e.target.value); setResultados([]); }} placeholder="Buscar carretera, camino o PK (ej. EI-300 o PK 4)" aria-label="Buscar carretera, camino o punto kilométrico" />
+          <input value={busqueda} onChange={(e) => { setBusqueda(e.target.value); }} placeholder="Buscar carretera, camino o PK (ej. EI-300 o PK 4)" aria-label="Buscar carretera, camino o punto kilométrico" />
           <button type="submit" disabled={!sugerencias.length}>Buscar</button>
           {busqueda.length >= 2 && sugerencias.length > 0 && (
             <div className="mapa-sugerencias">
