@@ -45,6 +45,9 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
       ? { titulo: "NO POR EL ART. 104.1.K", detalle: "Ese apartado se limita a vehículos que exigen permiso C o D. Comprueba si concurre otro motivo legal de inmovilización." }
       : null;
 
+  const consecuenciaPenal = ["PER001", "PER019", "PER020"].includes(resultado.codigo)
+    ? "El artículo 384 del Código Penal prevé prisión de 3 a 6 meses, multa de 12 a 24 meses o trabajos en beneficio de la comunidad de 31 a 90 días. No es una sanción administrativa: deben acreditarse todos los elementos del tipo penal."
+    : "";
   const importeVisible = denuncia?.importe || euros || "No procede / por determinar";
   const puntosVisibles = denuncia?.puntos || puntos || "Pendiente de verificar";
   const comprobacionesPorCaso = {
@@ -117,6 +120,13 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
               <p>{decisionInmovilizacion.detalle}</p>
             </div>
           )}
+        </section>
+      )}
+
+      {consecuenciaPenal && (
+        <section className="consecuencia-penal">
+          <strong>POSIBLE CONSECUENCIA PENAL · ART. 384 CP</strong>
+          <p>{consecuenciaPenal}</p>
         </section>
       )}
 
@@ -203,7 +213,9 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
           <li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2015-11722" target="_blank" rel="noreferrer">Ley de Tráfico · texto consolidado</a></li>
           <li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-1995-25444" target="_blank" rel="noreferrer">Código Penal · artículo 384</a></li>
           <li><a href="https://www.dgt.es/nuestros-servicios/permisos-de-conducir/permisos-extranjeros-y-de-fuerzas-y-cuerpos-de-seguridad/conducir-con-un-permiso-extranjero/" target="_blank" rel="noreferrer">DGT · Conducir con un permiso extranjero</a></li>
-          <li><a href="https://sede.dgt.gob.es/export/sites/dgt/.galleries/multas/ARCI/Guia-codificada-de-infracciones-ARCI-Vigente-a-partir-del-01-07-2025.pdf" target="_blank" rel="noreferrer">DGT · Guía codificada ARCI (vigente desde 01/07/2025)</a></li>
+          <li><a href="https://sede.dgt.gob.es/.galleries/multas/ARCI/Guia-codificada-de-infracciones-actualizada-01-10-2026.xls" target="_blank" rel="noreferrer">DGT · Guía codificada de infracciones extendida (01/10/2026)</a></li>
+          <li><a href="https://sede.dgt.gob.es/export/sites/dgt/.galleries/multas/ARCI/Guia-codificada-de-infracciones-ARCI-Vigente-a-partir-del-01-07-2025.pdf" target="_blank" rel="noreferrer">DGT · Guía codificada ARCI en PDF (01/07/2025)</a></li>
+          <li><a href="https://www.dgt.es/nuestros-servicios/permisos-de-conducir/permisos-extranjeros-y-de-fuerzas-y-cuerpos-de-seguridad/canjes-de-permisos/paises-con-convenio-de-canjes/" target="_blank" rel="noreferrer">DGT · Países con convenio de canje (actualizado 26/06/2026)</a></li>
         </ul>
       </div>
       <p className="aviso-juridico">Herramienta de apoyo. Comprueba siempre la vigencia normativa, la codificación y las circunstancias concretas antes de formular una denuncia.</p>
