@@ -82,7 +82,7 @@ function escaparHTML(valor = "") {
 export default function MapaIbiza({ volver }) {
   const contenedorMapa = useRef(null);
   const mapaRef = useRef(null);
-  const [estado, setEstado] = useState("Preparando mapa satelital de Ibiza…");
+  const [estado, setEstado] = useState("Preparando mapa satelital…");
   const [error, setError] = useState("");
   const [mostrarPK, setMostrarPK] = useState(true);
   const [mostrarCarreteras, setMostrarCarreteras] = useState(true);
@@ -265,7 +265,7 @@ export default function MapaIbiza({ volver }) {
       <div className="mapa-modulo__cabecera">
         <div>
           <span className="etiqueta-seccion">MÓDULO 02 · CARTOGRAFÍA</span>
-          <h1>Mapa de Ibiza</h1>
+          <h1>Mapa de carreteras</h1>
           <p>Cartografía satelital. Acércate para ver las carreteras, caminos vecinales y sus puntos kilométricos.</p>
         </div>
         <button type="button" className="boton boton--secundario mapa-modulo__volver" onClick={volver}>← Herramientas</button>
@@ -278,7 +278,7 @@ export default function MapaIbiza({ volver }) {
         </div>
       </div>
       <div className="mapa-marco mapa-marco--satelital">
-        <div ref={contenedorMapa} className="mapa-lienzo" aria-label="Mapa satelital de Ibiza con carreteras, caminos y puntos kilométricos" />
+        <div ref={contenedorMapa} className="mapa-lienzo" aria-label="Mapa de carreteras con caminos y puntos kilométricos" />
         {error && <div className="mapa-error"><strong>No se pudo cargar toda la cartografía</strong><span>{error}</span><button type="button" onClick={() => window.location.reload()}>Reintentar</button></div>}
       </div>
       <div className="mapa-pie">
