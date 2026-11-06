@@ -355,7 +355,7 @@ export const resultados = {
     puntos: "No determinar hasta identificar la infracción concreta.",
     actuacion: "Consultar el Registro de Conductores e Infractores y comprobar si se trata de caducidad, suspensión administrativa, pérdida de aptitudes, retirada cautelar, pérdida de vigencia por causa distinta de la pérdida total de puntos, permiso extranjero no reconocido u otra circunstancia. Separar siempre las causas administrativas de las judiciales y penales.",
     observaciones: "No utilizar automáticamente el artículo 384 CP. La falta de validez de un permiso previamente obtenido no equivale necesariamente a conducir sin haberlo obtenido nunca. Si la pérdida de vigencia deriva de una condena ya cumplida, aplicar el criterio de la Consulta 1/2026 de la Fiscalía General del Estado y remitir, en su caso, la información a la autoridad administrativa."
-  },,
+  },
   PER022: {
     codigo: "PER022",
     nombre: "No se acredita la fecha de obtención del permiso extranjero",
