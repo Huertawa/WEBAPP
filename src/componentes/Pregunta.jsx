@@ -11,9 +11,9 @@ function clasificarOpcion(opcion) {
   return "informativa";
 }
 
-export default function Pregunta({ titulo, descripcion, opciones, alSeleccionar, alVolver }) {
+export default function Pregunta({ titulo, descripcion, opciones, alSeleccionar, alVolver, variante = "" }) {
   return (
-    <section className="panel-pregunta">
+    <section className={`panel-pregunta ${variante ? `panel-pregunta--${variante}` : ""}`}>
       <div className="pregunta__meta">
         <span className="etiqueta-seccion">ASISTENTE DE PERMISOS</span>
       </div>
@@ -26,10 +26,21 @@ export default function Pregunta({ titulo, descripcion, opciones, alSeleccionar,
           return (
             <button
               type="button"
-              className={`boton boton--opcion-color boton--opcion-color--${tipo}`}
+              className={`boton boton--opcion-color boton--opcion-color--${tipo} ${variante === "tipo-permiso" ? `boton--tipo-permiso boton--tipo-permiso--${opcion.valor}` : ""}`}
               key={opcion.valor}
               onClick={() => alSeleccionar(opcion.valor, opcion.texto)}
             >
+              {variante === "tipo-permiso" && opcion.valor === "espanol" && (
+                <span className="tipo-permiso__bandera tipo-permiso__bandera--espana" aria-hidden="true"><span /></span>
+              )}
+              {variante === "tipo-permiso" && opcion.valor === "extranjero" && (
+                <span className="tipo-permiso__banderas" aria-hidden="true">
+                  <i className="tipo-permiso__bandera-pais tipo-permiso__bandera-pais--fr" />
+                  <i className="tipo-permiso__bandera-pais tipo-permiso__bandera-pais--de" />
+                  <i className="tipo-permiso__bandera-pais tipo-permiso__bandera-pais--it" />
+                  <i className="tipo-permiso__bandera-pais tipo-permiso__bandera-pais--gb" />
+                </span>
+              )}
               <span className="opcion-pregunta__texto">{opcion.texto}</span>
               <span className="opcion-pregunta__flecha" aria-hidden="true">›</span>
             </button>
