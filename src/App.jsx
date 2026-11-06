@@ -199,8 +199,6 @@ function App() {
               return (
                 <div className="aviso-pais-seleccionado">
                   <strong>{pais.convenio ? "Convenio bilateral de canje identificado" : "Sin convenio bilateral de canje identificado"}</strong>
-                  {pais.convenio && pais.fechaEntradaVigor && <p className="aviso-pais-seleccionado__fecha"><span>Fecha de entrada en vigor según la DGT</span><strong>{pais.fechaEntradaVigor}</strong></p>}
-                  {pais.convenio && pais.fechaModificacion && <p className="aviso-pais-seleccionado__fecha"><span>Fecha de modificación del acuerdo según la DGT</span><strong>{pais.fechaModificacion}</strong></p>}
                   <p>{pais.convenio
                     ? "El país figura en la relación oficial de la DGT. Usa la fecha indicada como referencia y comprueba también la fecha de expedición del permiso, la categoría y las condiciones concretas del acuerdo."
                     : "Esto no descarta que el permiso esté reconocido por los convenios internacionales de circulación. Comprueba el formato, traducción y requisitos del artículo 21 del Reglamento General de Conductores."}</p>
