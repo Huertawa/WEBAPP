@@ -89,6 +89,7 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
     PER026: ["Obtener la resolución administrativa de suspensión cautelar o prohibición de uso.", "Comprobar notificación, vigencia, alcance y fecha de efectos de la medida.", "Aplicar el artículo 39.3 RGC y 76.s LTSV; no confundir con privación judicial."],
     PER027: ["Acreditar la duración de la pena y que ya se ha cumplido.", "Comprobar que la condena fue igual o inferior a dos años.", "Verificar que no se ha superado el curso de reeducación exigido por el artículo 73.2 LTSV."],
     PER028: ["Acreditar que la pena de hasta dos años ya se ha cumplido.", "Comprobar el certificado de superación del curso de reeducación y sensibilización vial.", "Descartar cualquier otra suspensión, pérdida de vigencia o restricción que impida conducir."]
+    ,PER029: ["Identificar el código armonizado o la restricción concreta que figura en el permiso.", "Comprobar que la restricción sigue vigente y no existe adaptación o autorización posterior.", "Describir el incumplimiento concreto y contrastar CON 012.6 opción 5A."]
   };
   const comprobaciones = resultado.comprobaciones || comprobacionesPorCaso[resultado.codigo] || [
     "Comprobar la identidad del conductor y la autenticidad del documento.",
