@@ -3984,16 +3984,16 @@ body{
 @media(max-width:600px){.portada-marca:before{height:8px}.portada-marca .portada-modulos__cabecera{padding-top:22px}}
 
 
-/* Caimán integrado en el banner: sin marco ni forma geométrica */
+/* Caimán protagonista, fundido suavemente con el banner */
 .portada-marca .portada-modulos__cabecera{
-  grid-template-columns:82px minmax(0,1fr) 58px;
-  min-height:132px;
-  padding:22px 24px;
-  gap:10px;
+  grid-template-columns:116px minmax(0,1fr) 58px;
+  min-height:154px;
+  padding:18px 24px;
+  gap:8px;
 }
 .portada-marca .portada-modulos__insignia{
-  width:82px;
-  height:82px;
+  width:116px;
+  height:116px;
   overflow:visible;
   border:0;
   border-radius:0;
@@ -4010,25 +4010,23 @@ body{
   border:0;
   border-radius:0;
   box-shadow:none;
-  filter:drop-shadow(0 3px 5px rgba(0,0,0,.28));
-  -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 17%,#000 83%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 13%,#000 87%,transparent 100%);
-  mask-image:linear-gradient(to right,transparent 0%,#000 17%,#000 83%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 13%,#000 87%,transparent 100%);
-  -webkit-mask-composite:source-in;
-  mask-composite:intersect;
+  filter:drop-shadow(0 4px 8px rgba(0,0,0,.22));
+  -webkit-mask-image:radial-gradient(ellipse 68% 70% at 53% 45%,#000 48%,rgba(0,0,0,.92) 62%,transparent 100%);
+  mask-image:radial-gradient(ellipse 68% 70% at 53% 45%,#000 48%,rgba(0,0,0,.92) 62%,transparent 100%);
 }
 @media(max-width:600px){
   .portada-marca .portada-modulos__cabecera{
-    grid-template-columns:60px minmax(0,1fr) 34px;
-    min-height:88px;
-    padding:18px 11px 10px;
-    gap:7px;
+    grid-template-columns:82px minmax(0,1fr) 34px;
+    min-height:104px;
+    padding:12px 11px 8px;
+    gap:6px;
   }
   .portada-marca .portada-modulos__insignia{
-    width:60px;
-    height:60px;
+    width:82px;
+    height:82px;
   }
 }
 @media(max-width:370px){
-  .portada-marca .portada-modulos__cabecera{grid-template-columns:54px minmax(0,1fr) 30px}
-  .portada-marca .portada-modulos__insignia{width:54px;height:54px}
+  .portada-marca .portada-modulos__cabecera{grid-template-columns:72px minmax(0,1fr) 30px}
+  .portada-marca .portada-modulos__insignia{width:72px;height:72px}
 }
