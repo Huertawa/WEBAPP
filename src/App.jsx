@@ -178,7 +178,8 @@ function App() {
                   className={`opcion-pais ${seleccionado ? "opcion-pais--seleccionada" : ""}`}
                   onClick={() => setPaisSeleccionado(pais.nombre)}>
                   {pais.bandera
-                    ? <img className="opcion-pais__bandera" src={`https://flagcdn.com/w40/${pais.bandera}.png`} alt="" width="32" height="24" loading="lazy" decoding="async" />
+                    ? <img className="opcion-pais__bandera" src={`https://flagcdn.com/w40/${pais.bandera}.png`} alt="" width="32" height="24" loading="lazy" decoding="async" onError={(evento) => { evento.currentTarget.style.display = "none"; if (evento.currentTarget.nextElementSibling) evento.currentTarget.nextElementSibling.style.display = "flex"; }} />
+                    <span className="opcion-pais__bandera-fallback" aria-hidden="true">{pais.bandera.toUpperCase()}</span>
                     : <span className="opcion-pais__sin-bandera" aria-hidden="true">OTRO</span>}
                   <span className="opcion-pais__nombre">{pais.nombre}</span>
                   <span className={`opcion-pais__estado ${pais.convenio ? "opcion-pais__estado--convenio" : ""}`}>{pais.convenio ? "Canje DGT" : "Sin convenio"}</span>
@@ -199,7 +200,7 @@ function App() {
                 </div>
               );
             })()}
-            {busquedaPais && paisesFiltrados.length === 0 && <div className="pais-no-encontrado"><p className="texto-secundario">No se encuentra ese país en la lista de convenios bilaterales. Esto no significa necesariamente que el permiso no esté reconocido: comprueba también los convenios internacionales y el formato del documento.</p>{otroPais && <button type="button" className="boton boton--secundario" onClick={() => setPaisSeleccionado(otroPais.nombre)}>Continuar con otro país</button>}</div>}
+            {busquedaPais && paisesFiltrados.length === 0 && <div className="pais-no-encontrado"><p className="texto-secundario">No se encuentra ese país en la lista de convenios bilaterales. Esto no significa necesariamente que el permiso no esté reconocido: comprueba también los convenios internacionales y el formato del documento.</p>{otroPais && <button type="button" className="boton boton--secundario" onClick={() => { setPaisSeleccionado(otroPais.nombre); setBusquedaPais(""); }}>Continuar con otro país</button>}</div>}
             <div className="acciones-pregunta">
               <button className="boton boton--secundario" onClick={retroceder}>Volver</button>
               <button className="boton boton--principal" disabled={!paisSeleccionado} onClick={() => {
