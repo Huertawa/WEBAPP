@@ -1,8 +1,8 @@
-export default function Pregunta({ titulo, descripcion, opciones, alSeleccionar, alVolver, pasoActual }) {
+export default function Pregunta({ titulo, descripcion, opciones, alSeleccionar, alVolver }) {
   return (
     <section className="panel-pregunta">
       <div className="pregunta__meta">
-        <span className="etiqueta-seccion">{pasoActual ? `PASO ${pasoActual} · ` : ""}ASISTENTE DE PERMISOS</span>
+        <span className="etiqueta-seccion">ASISTENTE DE PERMISOS</span>
       </div>
       <h2>{titulo}</h2>
       {descripcion && <p className="texto-secundario">{descripcion}</p>}
