@@ -258,6 +258,7 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
         <ul>
           <li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2009-9481" target="_blank" rel="noreferrer">Reglamento General de Conductores</a></li>
           <li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2015-11722" target="_blank" rel="noreferrer">Ley de Tráfico · texto consolidado</a></li>
+          <li><a href="https://www.juntadeandalucia.es/sites/default/files/inline-files/2024/12/INST.%20DGT%2014V-106%2C%2014S-133%2C%2014C-114%20Entrada%20en%20vigor%20Ley%206-2014.pdf" target="_blank" rel="noreferrer">DGT · Instrucción 14/V-106: criterios de inmovilización por permiso C o D y permiso caducado</a></li>
           <li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-1995-25444" target="_blank" rel="noreferrer">Código Penal · artículo 384</a></li>
           <li><a href="https://www.boe.es/buscar/doc.php?coleccion=fiscalia&id=FIS-Q-2026-00001" target="_blank" rel="noreferrer">Fiscalía General del Estado · Consulta 1/2026 (pérdida de vigencia judicial tras cumplir condena)</a></li>
           <li><a href="https://www.dgt.es/nuestros-servicios/permisos-de-conducir/permisos-extranjeros-y-de-fuerzas-y-cuerpos-de-seguridad/conducir-con-un-permiso-extranjero/" target="_blank" rel="noreferrer">DGT · Conducir con un permiso extranjero</a></li>
