@@ -445,4 +445,26 @@ export const resultados = {
     actuacion: "Comprobar la sentencia firme, la fecha de cumplimiento de la pena y el certificado que acredita la superación del curso. Verificar además que no existe otra suspensión, pérdida de vigencia o restricción que impida conducir.",
     observaciones: "En condenas iguales o inferiores a dos años, el artículo 73.2 LTSV exige haber cumplido la pena y superado el curso para volver a conducir. Este resultado solo resuelve ese requisito; no sustituye la comprobación de la vigencia, categoría y demás condiciones del permiso."
   },
+
+  PER029: {
+    codigo: "PER029",
+    nombre: "Conducción incumpliendo una restricción o adaptación del permiso",
+    puedeConducir: false,
+    motivo: "El permiso habilita para la categoría, pero el conductor no cumple una restricción, adaptación o condición que figura en la autorización o que fue exigida para su otorgamiento.",
+    normativa: "Real Decreto 818/2009, Reglamento General de Conductores; Real Decreto Legislativo 6/2015, Ley de Tráfico.",
+    articulo: "Artículo 12.6 del Reglamento General de Conductores y artículo 76.ll) de la Ley de Tráfico.",
+    euros: "200 €",
+    puntos: "0 puntos",
+    actuacion: "Identificar el código armonizado o la restricción concreta que figura en el permiso y describir cómo se incumple. Comprobar que la condición sigue vigente y que no existe una adaptación o autorización posterior que permita conducir. Adjuntar informe o documentación que acredite el incumplimiento.",
+    observaciones: "La guía codificada contempla CON 012.6 opción 5A para conducir sin mantener los requisitos exigidos para el otorgamiento del permiso. Se utiliza, entre otros supuestos, cuando deben imponerse restricciones o adaptaciones. No confundir con carecer de la categoría correspondiente ni aplicar sin identificar el requisito concreto.",
+    denuncia: {
+      calificacion: "Grave",
+      preceptoInfringido: "Artículo 12.6 del Reglamento General de Conductores.",
+      preceptoSancionador: "Artículo 76.ll) de la Ley de Tráfico.",
+      importe: "200 €",
+      puntos: "0 puntos",
+      codificado: "CON · Art. 012 · Apt. 6 · Opción 5A · 0 puntos",
+      fundamento: "La guía codificada de la DGT recoge esta conducta como infracción grave de 200 € y 0 puntos. Debe especificarse qué requisito, restricción o adaptación se incumple."
+    }
+  },
 };
