@@ -1583,3 +1583,155 @@ a, .fuentes-juridicas a { color: #76c5e6; }
   color: #f0cf83;
   font-size: 12px;
 }
+
+
+/* Respuestas del asistente: colores semánticos, contraste y lectura rápida */
+.pregunta__descripcion {
+  max-width: 760px;
+  padding: 13px 15px;
+  margin: 0 0 16px !important;
+  border: 1px solid rgba(113, 164, 210, .28);
+  border-left: 3px solid #70aee8;
+  border-radius: 9px;
+  background: rgba(62, 119, 177, .09);
+  color: #d0dce8 !important;
+  font-size: 14px;
+  line-height: 1.7;
+}
+.pregunta__leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin: 16px 0 4px;
+}
+.pregunta__leyenda-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--texto-secundario);
+  font-size: 11px;
+  font-weight: 650;
+}
+.pregunta__leyenda-item i {
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  border-radius: 50%;
+}
+.pregunta__leyenda-item--positiva i { background: #4ed18a; }
+.pregunta__leyenda-item--negativa i { background: #f16f75; }
+.pregunta__leyenda-item--revisar i { background: #f2b95d; }
+.pregunta__ayuda {
+  margin: 14px 0 0;
+  color: var(--texto-secundario);
+  font-size: 12px;
+}
+.opciones-pregunta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 17px;
+}
+.boton--opcion-color {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  min-height: 70px;
+  padding: 14px 15px;
+  border: 1px solid rgba(112, 140, 120, .34);
+  border-radius: 11px;
+  background: rgba(18, 27, 21, .88);
+  color: var(--texto);
+  text-align: left;
+  font-weight: 650;
+}
+.boton--opcion-color:hover:not(:disabled) {
+  transform: translateY(-2px);
+  filter: brightness(1.12);
+}
+.opcion-pregunta__indicador {
+  width: 10px;
+  height: 10px;
+  flex: 0 0 10px;
+  border-radius: 50%;
+  background: #79a9d7;
+  box-shadow: 0 0 0 4px rgba(121, 169, 215, .12);
+}
+.opcion-pregunta__contenido {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  min-width: 0;
+}
+.opcion-pregunta__texto {
+  font-size: 14px;
+  line-height: 1.4;
+}
+.opcion-pregunta__contenido small {
+  color: #aeb9c3;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+.opcion-pregunta__flecha {
+  color: #b8c5ce;
+  font-size: 25px;
+  line-height: 1;
+}
+.boton--opcion-color--positiva {
+  border-color: rgba(64, 197, 127, .46);
+  background: linear-gradient(115deg, rgba(37, 116, 76, .23), rgba(18, 27, 21, .94));
+}
+.boton--opcion-color--positiva .opcion-pregunta__indicador {
+  background: #4ed18a;
+  box-shadow: 0 0 0 4px rgba(78, 209, 138, .13);
+}
+.boton--opcion-color--positiva .opcion-pregunta__contenido small { color: #78e5a8; }
+.boton--opcion-color--negativa {
+  border-color: rgba(229, 94, 105, .48);
+  background: linear-gradient(115deg, rgba(139, 45, 54, .22), rgba(18, 27, 21, .94));
+}
+.boton--opcion-color--negativa .opcion-pregunta__indicador {
+  background: #f16f75;
+  box-shadow: 0 0 0 4px rgba(241, 111, 117, .13);
+}
+.boton--opcion-color--negativa .opcion-pregunta__contenido small { color: #ff9298; }
+.boton--opcion-color--revisar {
+  border-color: rgba(242, 185, 93, .55);
+  background: linear-gradient(115deg, rgba(143, 98, 35, .23), rgba(18, 27, 21, .94));
+}
+.boton--opcion-color--revisar .opcion-pregunta__indicador {
+  background: #f2b95d;
+  box-shadow: 0 0 0 4px rgba(242, 185, 93, .13);
+}
+.boton--opcion-color--revisar .opcion-pregunta__contenido small { color: #ffd18a; }
+.boton--opcion-color--informativa {
+  border-color: rgba(112, 174, 232, .38);
+  background: linear-gradient(115deg, rgba(49, 92, 135, .19), rgba(18, 27, 21, .94));
+}
+.boton--opcion-color--informativa .opcion-pregunta__indicador {
+  background: #70aee8;
+  box-shadow: 0 0 0 4px rgba(112, 174, 232, .12);
+}
+.boton--opcion-color--informativa .opcion-pregunta__contenido small { color: #a9d0f5; }
+.panel-fecha-convenio__aviso {
+  display: block;
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-left: 3px solid #f2b95d;
+  border-radius: 5px;
+  background: rgba(242, 185, 93, .09);
+  color: #ffd18a;
+  font-size: 12px;
+  line-height: 1.55;
+}
+@media (max-width: 650px) {
+  .opciones-pregunta { grid-template-columns: 1fr; }
+  .boton--opcion-color { min-height: 62px; }
+  .pregunta__leyenda { gap: 7px 12px; }
+}
