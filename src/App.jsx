@@ -195,11 +195,33 @@ function App() {
 
       {pantalla === "portada" ? (
         <section className="portada-modulos">
-          <div className="portada-modulos__intro">
-            <span className="etiqueta-seccion">CENTRO DE HERRAMIENTAS</span>
-            <h1>¿Qué necesitas consultar?</h1>
-            <p>Selecciona una herramienta para comenzar. Puedes volver a esta pantalla en cualquier momento.</p>
+          <div className="portada-modulos__bandera" aria-label="Bandera de España">
+            <span className="portada-modulos__franja portada-modulos__franja--roja"></span>
+            <span className="portada-modulos__franja portada-modulos__franja--amarilla"></span>
+            <span className="portada-modulos__franja portada-modulos__franja--roja"></span>
           </div>
+          <div className="portada-modulos__cabecera">
+            <div className="portada-modulos__insignia" aria-hidden="true">
+              <svg viewBox="0 0 100 112">
+                <path d="M50 5 88 19v31c0 26-15 44-38 57C27 94 12 76 12 50V19Z" fill="#202b25" stroke="#d4b64e" strokeWidth="3"/>
+                <path d="M22 31h56v12H22z" fill="#b51f2b"/><path d="M22 43h56v22H22z" fill="#edc53b"/><path d="M22 65h56v12H22z" fill="#b51f2b"/>
+                <path d="M50 21v67" stroke="#f1f1e8" strokeWidth="2" opacity=".65"/>
+                <circle cx="50" cy="54" r="10" fill="#263b30" stroke="#f4e7b0" strokeWidth="2"/>
+              </svg>
+            </div>
+            <div className="portada-modulos__intro">
+              <span className="portada-modulos__sobrelinea"><i></i> ÁREA OPERATIVA · SEGURIDAD VIAL</span>
+              <h1>MOTOLISTOS</h1>
+              <p>Centro de consulta y apoyo para actuaciones de tráfico</p>
+            </div>
+            <div className="portada-modulos__distintivo" aria-hidden="true">
+              <span className="portada-modulos__luz portada-modulos__luz--roja"></span>
+              <span className="portada-modulos__luz portada-modulos__luz--azul"></span>
+              <small>TRÁFICO</small>
+              <b>CONSULTA<br/>OPERATIVA</b>
+            </div>
+          </div>
+          <div className="portada-modulos__separador"><span>SELECCIONA UN MÓDULO</span><i></i></div>
           <div className="modulos-grid">
             <button type="button" className="modulo-acceso modulo-acceso--permisos" onClick={() => setPantalla("inicio")}>
               <span className="modulo-acceso__arte modulo-acceso__arte--permiso" aria-hidden="true">
