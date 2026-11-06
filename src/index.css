@@ -3984,7 +3984,7 @@ body{
 @media(max-width:600px){.portada-marca:before{height:8px}.portada-marca .portada-modulos__cabecera{padding-top:22px}}
 
 
-/* Logotipo compacto: encuadre cerrado del caimán, sin la motocicleta */
+/* Logotipo compacto: recorte centrado en la cabeza del caimán */
 .portada-marca .portada-modulos__cabecera{
   grid-template-columns:78px minmax(0,1fr) 58px;
   min-height:132px;
@@ -3995,16 +3995,17 @@ body{
   width:78px;
   height:78px;
   border-radius:50%;
+  overflow:hidden;
   border:1px solid rgba(183,237,69,.52);
   box-shadow:0 5px 16px rgba(0,0,0,.42),0 0 12px rgba(183,237,69,.08);
 }
 .portada-marca .portada-modulos__insignia img{
+  display:block;
   width:100%;
   height:100%;
   object-fit:cover;
-  object-position:74% 18%;
-  transform:scale(2.35);
-  transform-origin:74% 18%;
+  object-position:80% 25%;
+  transform:none;
   border-radius:inherit;
 }
 @media(max-width:600px){
