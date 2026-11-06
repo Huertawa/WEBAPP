@@ -6,7 +6,7 @@ export const resultados = {
     motivo: "El conductor manifiesta que nunca ha obtenido un permiso o licencia de conducción. Debe comprobarse que no fue titular de autorización en ningún Estado; no basta con que no tenga permiso español.",
     normativa: "Real Decreto 818/2009, Reglamento General de Conductores; Ley Orgánica 10/1995, Código Penal, cuando proceda.",
     articulo: "Artículo 1.1 del Reglamento General de Conductores y artículo 384 del Código Penal, si concurren sus elementos.",
-    euros: "",
+    euros: "500 € solo si se descarta la vía penal.",
     puntos: "Sin detracción de puntos.",
     actuacion: "Comprobar en el Registro de Conductores e Infractores si el conductor obtuvo alguna vez permiso, si existe pérdida de vigencia por pérdida total de puntos, suspensión o privación judicial. Si nunca lo obtuvo, perdió la vigencia por pérdida total de puntos o conduce durante una privación judicial, valorar la posible relevancia penal del artículo 384 del Código Penal antes de tramitar únicamente una infracción administrativa. Identificar la situación exacta y documentarla.",
     observaciones: "El artículo 384 CP exige que nunca haya obtenido permiso o licencia que habilite para conducir en ningún Estado. La Fiscalía General del Estado, Consulta 1/2026, precisa este alcance. Antes de atribuir el delito, comprobar la inexistencia de cualquier permiso extranjero, la clase de vehículo y todos los elementos del tipo. Si no procede la vía penal, la DGT recuerda que la conducción puede constituir infracción administrativa muy grave (art. 1.1 RGC y art. 77.k LTSV), con referencia general de 500 €; no fijar esa sanción sin concretar el supuesto y descartar duplicidad sancionadora.",
