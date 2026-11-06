@@ -355,10 +355,19 @@ export const resultados = {
     motivo: "La pena de privación del derecho a conducir ya se ha cumplido, pero el permiso perdió su vigencia por decisión judicial al superar la condena los dos años y todavía no se ha obtenido un nuevo permiso.",
     normativa: "Código Penal, artículo 47.3; Ley de Tráfico, artículo 73.1; Fiscalía General del Estado, Consulta 1/2026, de 5 de marzo; STS 850/2025, de 16 de octubre.",
     articulo: "Artículo 73.1 de la Ley de Tráfico y artículo 47.3 del Código Penal.",
-    euros: "No fijar importe ni puntos sin determinar el encaje administrativo concreto.",
-    puntos: "Pendiente de determinar por la autoridad administrativa.",
-    actuacion: "Acreditar la duración exacta de la pena, su cumplimiento y la resolución que declaró la pérdida de vigencia. Comprobar si la condena fue superior a dos años y si el interesado ha obtenido el nuevo permiso conforme al artículo 73.1 LTSV. Documentar la intervención y remitir la información a la autoridad administrativa competente para que determine las consecuencias procedentes.",
-    observaciones: "La Consulta 1/2026 de la Fiscalía, siguiendo la STS 850/2025, establece que conducir una vez cumplida la pena, aunque subsista la pérdida de vigencia judicial del artículo 47.3 CP por no haber obtenido un nuevo permiso, no debe calificarse por los fiscales como delito de los artículos 384.1, 384.2 o 468.1 CP. No confundir con conducir mientras sigue vigente la pena o medida judicial."
+    euros: "500 € como referencia administrativa, previa confirmación de la autoridad sancionadora.",
+    puntos: "0 puntos, según la referencia administrativa CON 001.1.5A.",
+    actuacion: "Acreditar la duración exacta de la pena, su cumplimiento y la resolución que declaró la pérdida de vigencia. Comprobar que la condena fue superior a dos años y que el interesado no ha obtenido el nuevo permiso conforme al artículo 73.1 LTSV. No calificar estos hechos como delito de los artículos 384 o 468 CP tras el cumplimiento de la pena. Remitir testimonio o información a la autoridad administrativa competente; la guía codificada contempla la referencia CON 001.1.5A, que debe confirmarse con la Jefatura antes de denunciar.",
+    observaciones: "La Consulta 1/2026 de la Fiscalía, siguiendo la STS 850/2025, establece que conducir una vez cumplida la pena, aunque subsista la pérdida de vigencia judicial del artículo 47.3 CP por no haber obtenido un nuevo permiso, no debe calificarse como delito de los artículos 384.1, 384.2 o 468.1 CP. La Fiscalía ordena remitir testimonio a la autoridad administrativa; la codificación de referencia contempla CON 001.1.5A (500 €, 0 puntos), pendiente de confirmación por la autoridad sancionadora.",
+    denuncia: {
+      calificacion: "Muy grave · referencia administrativa, no penal",
+      preceptoInfringido: "Artículo 1.1 del Reglamento General de Conductores, en relación con los artículos 47.3 del Código Penal y 73.1 de la Ley de Tráfico.",
+      preceptoSancionador: "Artículo 77.k) de la Ley de Tráfico.",
+      importe: "500 €",
+      puntos: "0 puntos",
+      codificado: "CON · Art. 001 · Apt. 1 · Opción 5A · 0 puntos",
+      fundamento: "La Consulta 1/2026 FGE excluye la vía penal tras el cumplimiento de la pena y ordena remitir testimonio a la autoridad administrativa. La guía codificada contempla la opción 5A para conducir sin autorización tras cumplirse una condena superior a dos años sin haber obtenido nuevo permiso. Confirmar con la Jefatura que procede la denuncia administrativa en el caso concreto."
+    }
   },
   PER025: {
     codigo: "PER025",
