@@ -53,35 +53,10 @@ const elementos = [
 {"nombre":"Boca de salida de emergencia","grupo":"Obras de fábrica","texto":"Acceso de evacuación en túneles que conduce a zona segura o galería de emergencia.","imagen":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Tunnel_emergency_exit.jpg/640px-Tunnel_emergency_exit.jpg"}];
 
 
-const FOTOS_ELEMENTOS = {
-  kilometro: "https://jica.es/wp-content/webp-express/webp-images/uploads/2020/07/dispositivos_fijos_2-225x300-1.jpg.webp",
-  arista: "https://jica.es/wp-content/webp-express/webp-images/uploads/2020/07/dispositivos_fijos_3.jpg.webp",
-  panel: "https://jica.es/wp-content/webp-express/webp-images/uploads/2020/07/dispositivos_fijos_4-300x225.jpg.webp",
-  barrera: "https://jica.es/wp-content/webp-express/webp-images/uploads/2020/07/dispositivos_fijos_5.jpg.webp",
-  captafaro: "https://jica.es/wp-content/webp-express/webp-images/uploads/2020/07/dispositivos_fijos_6.jpg.webp",
-  vertice: "https://jica.es/wp-content/webp-express/webp-images/uploads/2020/07/dispositivos_fijos_7-unsmushed.jpg.webp",
-  baliza: "https://jica.es/wp-content/webp-express/webp-images/uploads/2020/07/dispositivos_fijos_8-271x300-1.jpg.webp",
-  carretera: "https://img.edilportale.com/News/86166_01.jpg",
-  glorieta: "https://izarvi.com/portals/0/ficheros/galeria/urbanizaciones/durango/5410d242-f3b4-4426-bbcc-76344367466ew1024.jpg",
-  cuneta: "https://img.europapress.es/fotoweb/fotonoticia_20220104152828_1200.jpg",
-  conos: "https://fotografias.antena3.com/clipping/cmsimages02/2026/06/09/33E3784A-C55B-439B-B5DB-8450D1FDD68A/imagen-cono-trafico_69.jpg?crop=1000%2C563%2Cx0%2Cy54&format=webply&height=720&optimize=low&width=1280",
-  viaducto: "https://img.edilportale.com/News/86166_01.jpg",
-  marcas: "https://jica.es/wp-content/webp-express/webp-images/uploads/2020/07/dispositivos_fijos_6.jpg.webp"
-};
+// Cada ficha utiliza su propia fotografía. No se reutilizan imágenes genéricas
+// por categoría: si una fuente falla, se muestra el aviso en esa ficha.
 function imagenElemento(e) {
-  const n=e.nombre.toLocaleLowerCase("es");
-  if(n.includes("kilométr")||n.includes("kilometr")) return FOTOS_ELEMENTOS.kilometro;
-  if(n.includes("hito de arista")) return FOTOS_ELEMENTOS.arista;
-  if(n.includes("panel de curva")||n.includes("panel direccional")) return FOTOS_ELEMENTOS.panel;
-  if(n.includes("captafaro")||n.includes("ojo de gato")) return FOTOS_ELEMENTOS.captafaro;
-  if(n.includes("hito de vértice")) return FOTOS_ELEMENTOS.vertice;
-  if(n.includes("baliza")||n.includes("cono")||n.includes("obras")||n.includes("semáforo portátil")) return FOTOS_ELEMENTOS.conos;
-  if(n.includes("barrera")||n.includes("bionda")||n.includes("pretil")||n.includes("motoristas")||n.includes("atenuador")) return FOTOS_ELEMENTOS.barrera;
-  if(n.includes("cuneta")||n.includes("drenaje")||n.includes("alcantarilla")||n.includes("tajea")) return FOTOS_ELEMENTOS.cuneta;
-  if(n.includes("glorieta")||n.includes("isleta")) return FOTOS_ELEMENTOS.glorieta;
-  if(n.includes("túnel")||n.includes("tunel")||n.includes("paso superior")||n.includes("paso inferior")||n.includes("viaducto")||n.includes("muro")) return FOTOS_ELEMENTOS.viaducto;
-  if(n.includes("marca")||n.includes("paso de peatones")||n.includes("línea de detención")||n.includes("flechas")) return FOTOS_ELEMENTOS.marcas;
-  return FOTOS_ELEMENTOS.carretera;
+  return e.imagen;
 }
 const grupos=["Todos",...new Set(elementos.map(e=>e.grupo))];
 const estilosElementos = `
