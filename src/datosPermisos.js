@@ -105,7 +105,7 @@ export const resultados = {
     codigo: "PER008",
     nombre: "Tercer país con posible convenio de canje",
     puedeConducir: null,
-    motivo: "Transcurridos seis meses desde la residencia normal, el permiso de tercer país deja de ser válido para conducir en España, salvo que exista un canje ya realizado u otra regla específica aplicable. La existencia de convenio no confirma por sí sola que este permiso sea canjeable. También debe comprobarse si se obtuvo antes de adquirir la residencia en España o antes de la fecha de firma del convenio aplicable.",
+    motivo: "Transcurridos seis meses desde la adquisición de residencia normal o, si no se acredita esta, desde la entrada en España en situación regular, el permiso de tercer país deja de ser válido para conducir. La existencia de convenio no confirma por sí sola que esta categoría y este titular cumplan las condiciones de canje. También debe comprobarse la fecha de obtención y las condiciones específicas del acuerdo.",
     normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
     articulo: "Artículos 21.2.c), 21.3 y 22.",
     euros: "200 € si se confirma que el permiso es susceptible de canje.",
@@ -119,14 +119,14 @@ export const resultados = {
       codificado: "CON · Art. 001 · Apt. 1 · Opción 5B · 0 puntos",
       fundamento: "La guía codificada ARCI de la DGT recoge esta opción para permiso extranjero equivalente susceptible de canje, incluyendo los supuestos del artículo 21.2.c) del Reglamento General de Conductores. Confirmar que el permiso concreto pertenece al grupo canjeable y que se cumplen los requisitos."
     },
-    actuacion: "Comprobar el convenio concreto y su fecha de firma, la fecha de obtención del permiso, las categorías y los requisitos de canje. Verificar si el canje ya se ha realizado y si existe alguna excepción aplicable antes de concluir si puede conducir.",
+    actuacion: "Comprobar el convenio concreto, la categoría incluida, la fecha de obtención del permiso y los requisitos específicos de canje. Si no acredita residencia normal, comprobar la fecha de entrada regular. Verificar si el canje ya se ha realizado y si existe alguna excepción aplicable antes de concluir si puede conducir.",
     observaciones: "El convenio puede permitir el canje en determinados supuestos, incluidos los permisos obtenidos antes de su firma. No mantiene por sí solo la validez del permiso extranjero una vez agotado el plazo."
   },
   PER009: {
     codigo: "PER009",
     nombre: "Tercer país sin convenio de canje identificado",
     puedeConducir: null,
-    motivo: "Transcurridos seis meses desde la residencia normal, el permiso de tercer país deja de ser válido para conducir en España, salvo que exista una excepción normativa aplicable o un reconocimiento válido. La falta de convenio general no resuelve por sí sola todos los supuestos.",
+    motivo: "Transcurridos seis meses desde la adquisición de residencia normal o, si no se acredita esta, desde la entrada en España en situación regular, el permiso de tercer país deja de ser válido para conducir. La falta de convenio general no excluye la vía excepcional de canje para determinados conductores profesionales.",
     normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
     articulo: "Artículos 21.2.c) y 21.3.",
     euros: "Hasta 500 € si se confirma que no es susceptible de canje ni existe convenio aplicable.",
@@ -140,7 +140,7 @@ export const resultados = {
       codificado: "CON · Art. 001 · Apt. 1 · Opción 5E · 0 puntos",
       fundamento: "La guía codificada ARCI de la DGT contempla esta opción para permisos extranjeros equivalentes no susceptibles de canje por incumplir las condiciones o requisitos reglamentarios. Confirmar el texto y código exactos en la versión vigente del catálogo, acreditar la falta de requisitos esenciales y descartar una vía excepcional de canje profesional."
     },
-    actuacion: "Comprobar si existe convenio aplicable y si el permiso permite un canje. Para permisos profesionales, verificar además los supuestos especiales admitidos por la DGT. No concluir que puede o no puede conducir hasta comprobar esas circunstancias y la situación del permiso.",
+    actuacion: "Comprobar que el país no tiene convenio de canje aplicable a la categoría y que el permiso no puede acogerse a otro reconocimiento. Verificar la vía excepcional del artículo 22.1.b) RGC para conductores profesionales, incluidos los seis meses de contratación, cotización a la Seguridad Social, prueba de circulación y ausencia de privación o suspensión. No formular denuncia sin descartar esa vía.",
     observaciones: "La ausencia de convenio general no excluye todos los supuestos de canje: la DGT contempla determinados permisos profesionales de países sin convenio. Verificar siempre país, clase y requisitos concretos."
   },
   PER010: {
