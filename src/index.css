@@ -1517,3 +1517,5 @@ a, .fuentes-juridicas a { color: #76c5e6; }
 .enlace-ayuda-dgt a{color:#8bcde9;text-decoration:underline;text-underline-offset:3px}
 .enlace-ayuda-dgt a:hover{color:#c3e9f8}
 .enlace-ayuda-dgt--convenio{margin:0 auto 18px;max-width:900px;padding:10px 16px;border:1px solid rgba(118,197,230,.22);border-radius:9px;background:rgba(45,112,174,.08);text-align:center}
+
+.opcion-pais__bandera-fallback{display:none;align-items:center;justify-content:center;flex:0 0 32px;width:32px;height:24px;border:1px solid #657584;border-radius:3px;color:#d5e0e8;font-size:9px;font-weight:800;letter-spacing:.04em;background:#263441}
