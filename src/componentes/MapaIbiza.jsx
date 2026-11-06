@@ -133,19 +133,42 @@ export default function MapaIbiza({ volver }) {
         if (cancelado || !contenedorMapa.current) return;
         mapa = L.map(contenedorMapa.current, { zoomControl: true, preferCanvas: true }).setView([38.98, 1.43], 10);
         mapaRef.current = mapa;
-        // Cartografía base oficial IDEIB: incluye la red viaria completa,
-        // también viales secundarios y conexiones entre carreteras.
-        const SERVICIO_MAPA_BASE = "https://ideib.caib.es/geoserveis/services/public/GOIB_MapaBase_IB/MapServer/WMSServer";
-        const capaMapaBase = L.tileLayer.wms(SERVICIO_MAPA_BASE, {
-          layers: "0",
-          styles: "",
-          format: "image/png",
-          transparent: false,
-          version: "1.1.1",
-          crs: L.CRS.EPSG4326,
-          attribution: 'Cartografía oficial: <a href="https://ideib.caib.es">ICGIB / IDEIB</a>',
+        // Servicio REST de exportación del mapa base oficial IDEIB.
+        // Se solicita cada imagen en la proyección del mapa Leaflet (EPSG:3857),
+        // evitando el WMS incompatible que dejaba el visor en blanco.
+        const SERVICIO_MAPA_BASE = "https://ideib.caib.es/geoserveis/rest/services/public/GOIB_MapaBase_IB/MapServer/export";
+        const capaMapaBase = L.gridLayer({
+          tileSize: 256,
           opacity: 1,
-        }).addTo(mapa);
+          attribution: 'Cartografía oficial: <a href="https://ideib.caib.es">ICGIB / IDEIB</a>',
+        });
+        capaMapaBase.createTile = function (coords, done) {
+          const tile = document.createElement("img");
+          tile.alt = "";
+          tile.setAttribute("role", "presentation");
+          tile.style.width = "256px";
+          tile.style.height = "256px";
+          const escala = 256 * Math.pow(2, coords.z);
+          const mundo = 20037508.342789244;
+          const xmin = coords.x * (2 * mundo) / Math.pow(2, coords.z) - mundo;
+          const xmax = (coords.x + 1) * (2 * mundo) / Math.pow(2, coords.z) - mundo;
+          const ymax = mundo - coords.y * (2 * mundo) / Math.pow(2, coords.z);
+          const ymin = mundo - (coords.y + 1) * (2 * mundo) / Math.pow(2, coords.z);
+          const params = new URLSearchParams({
+            bbox: [xmin, ymin, xmax, ymax].join(","),
+            bboxSR: "3857",
+            imageSR: "3857",
+            size: "256,256",
+            format: "png32",
+            transparent: "false",
+            f: "image",
+          });
+          tile.onload = () => done(null, tile);
+          tile.onerror = (event) => done(event, tile);
+          tile.src = SERVICIO_MAPA_BASE + "?" + params.toString();
+          return tile;
+        };
+        capaMapaBase.addTo(mapa);
         const grupoCarreteras = L.geoJSON([], {
           style: (feature) => ({
             color: feature.properties?.TIPO_GE === "Carretera principal" || feature.properties?.TIPO_GE === "Carretera principal desdoblada" ? "#d8a84e" : "#e7e5d7",
@@ -172,22 +195,10 @@ export default function MapaIbiza({ volver }) {
         if (mapa.getZoom() < 11) mapa.removeLayer(grupoPK);
 
 
-        const SERVICIO_TRANSPORTE_WMS = "https://ideib.caib.es/geoserveis/services/public/GOIB_Xarxa_de_transports_IB/MapServer/WMSServer";
-        const capaPortales = L.tileLayer.wms(SERVICIO_TRANSPORTE_WMS, {
-          layers: "Portal",
-          styles: "",
-          format: "image/png",
-          transparent: true,
-          version: "1.1.1",
-          crs: L.CRS.EPSG4326,
-          attribution: 'ICGIB / IDEIB',
-          opacity: 0.9,
-        });
-        capasRef.current = { carreteras: capaMapaBase, caminos: null, pk: capaPortales };
+        capasRef.current = { carreteras: capaMapaBase, caminos: null, pk: null };
         mapa.removeLayer(grupoCarreteras);
         mapa.removeLayer(grupoCaminos);
         mapa.removeLayer(grupoPK);
-        capaPortales.addTo(mapa);
         mapa.invalidateSize();
         setEstado("Mapa de Ibiza cargado · Red viaria oficial IDEIB");
 
@@ -223,7 +234,7 @@ export default function MapaIbiza({ volver }) {
     };
     alternar(capas.carreteras, carreteras);
     if (capas.caminos) alternar(capas.caminos, caminos);
-    alternar(capas.pk, mostrarPK && mapa.getZoom() >= 11);
+    if (capas.pk) alternar(capas.pk, mostrarPK && mapa.getZoom() >= 11);
   }, [carreteras, caminos, mostrarPK]);
 
   function seleccionarResultado(item) {
@@ -282,7 +293,7 @@ export default function MapaIbiza({ volver }) {
         <div className="mapa-capas" aria-label="Capas visibles">
           <label><input type="checkbox" checked={carreteras} onChange={(e) => setCarreteras(e.target.checked)} /> Cartografía oficial completa</label>
 
-          <label><input type="checkbox" checked={mostrarPK} onChange={(e) => setMostrarPK(e.target.checked)} /> Portales y puntos de la red</label>
+          <label><input type="checkbox" checked={mostrarPK} onChange={(e) => setMostrarPK(e.target.checked)} /> Puntos de la red</label>
         </div>
       </div>
       <div className="mapa-marco">
