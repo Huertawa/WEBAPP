@@ -3440,3 +3440,16 @@ a, .fuentes-juridicas a { color: #76c5e6; }
   .portada-marca .portada-modulos__insignia svg{width:34px;height:42px}
   .portada-marca .portada-modulos__intro h1{font-size:19px}
 }
+
+
+/* Cabecera principal y aviso de uso */
+.cabecera-aplicacion__acciones { display: flex; align-items: center; justify-content: flex-end; }
+.marca__nombre { font-size: clamp(18px, 2.2vw, 22px); letter-spacing: 2px; }
+.aviso-cabecera { display: flex; align-items: center; gap: 11px; }
+.aviso-icono { display: grid; place-items: center; width: 30px; height: 30px; flex: 0 0 30px; border: 1px solid rgba(174, 207, 119, .45); border-radius: 50%; color: var(--verde); font-size: 17px; font-weight: 900; }
+.aviso-cabecera > div { display: grid; gap: 2px; }
+.aviso-cabecera strong { color: var(--texto); font-size: 11px; letter-spacing: 1.2px; }
+.aviso-cabecera span:not(.aviso-icono) { color: var(--texto-secundario); font-size: 10px; }
+.pie-aplicacion { display: grid; justify-content: stretch; gap: 12px; padding: 20px clamp(20px, 5vw, 72px); border-top: 1px solid var(--borde); background: rgba(13, 18, 15, .72); }
+.aviso-independencia { max-width: 1000px; padding: 13px 15px; border: 1px solid var(--borde); border-left: 3px solid var(--verde); border-radius: 8px; background: rgba(255,255,255,.025); color: var(--texto-secundario); font-size: 11px; line-height: 1.65; }
+@media (max-width: 650px) { .cabecera-aplicacion__acciones { margin-left: auto; } .pie-aplicacion { gap: 10px; } }
