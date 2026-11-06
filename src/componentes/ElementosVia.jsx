@@ -103,13 +103,13 @@ export default function ElementosVia({volver}){
   <div className="ev-panel"><div className="ev-controles"><input type="search" value={busqueda} onChange={e=>setBusqueda(e.target.value)} placeholder="Buscar por nombre, grupo o descripción…" aria-label="Buscar elementos de la vía"/><select value={filtro} onChange={e=>setFiltro(e.target.value)} aria-label="Filtrar por grupo">{grupos.map(g=><option key={g}>{g}</option>)}</select></div></div>
   <div className="ev-resumen"><strong>{lista.length} elementos</strong><span>{filtro==="Todos"?"Todos los grupos":filtro}</span></div>
   {lista.length>0?<div className="ev-grid">{lista.map(e=><button type="button" className="ev-card" key={e.nombre} onClick={()=>setSeleccionado(e)}>
-   <div className="ev-img"><img src={imagenElemento(e)} alt={e.nombre} loading="lazy" decoding="async" onError={evento=>{const img=evento.currentTarget;const respaldo=FOTOS_ELEMENTOS.carretera;if(img.dataset.respaldo!=="si"&&img.src!==respaldo){img.dataset.respaldo="si";img.src=respaldo;return;}img.style.display="none";const caja=img.parentElement;if(caja&&!caja.querySelector(".ev-fallback")){const aviso=document.createElement("span");aviso.className="ev-fallback";aviso.textContent="Fotografía no disponible";caja.appendChild(aviso)}}}/></div>
+   <div className="ev-img"><img src={imagenElemento(e)} alt={e.nombre} loading="lazy" decoding="async" onError={evento=>{const img=evento.currentTarget;img.style.display="none";const caja=img.parentElement;if(caja&&!caja.querySelector(".ev-fallback")){const aviso=document.createElement("span");aviso.className="ev-fallback";aviso.textContent="Fotografía no disponible";caja.appendChild(aviso)}}}/></div>
    <span className="ev-grupo">{e.grupo}</span><h3>{e.nombre}</h3><p>{e.texto}</p>
   </button>)}</div>:<div className="ev-vacio">No hay elementos que coincidan con la búsqueda.</div>}
   <p className="ev-nota">Las fotografías son ejemplos visuales orientativos. La denominación y la descripción ayudan a reconocer cada elemento; no sustituyen la normativa técnica ni la inspección de la vía.</p>
   {seleccionado&&<div className="ev-detalle-fondo" onClick={()=>setSeleccionado(null)}><article className="ev-detalle" role="dialog" aria-modal="true" aria-label={`Ficha de ${seleccionado.nombre}`} onClick={e=>e.stopPropagation()}>
    <button className="ev-cerrar" onClick={()=>setSeleccionado(null)}>Cerrar ✕</button><span className="ev-kicker">{seleccionado.grupo}</span><h2>{seleccionado.nombre}</h2>
-   <div className="ev-detalle-img"><img src={imagenElemento(seleccionado)} alt={seleccionado.nombre} onError={evento=>{const img=evento.currentTarget;if(img.dataset.respaldo!=="si"&&img.src!==FOTOS_ELEMENTOS.carretera){img.dataset.respaldo="si";img.src=FOTOS_ELEMENTOS.carretera;return;}img.style.display="none";}}/></div>
+   <div className="ev-detalle-img"><img src={imagenElemento(seleccionado)} alt={seleccionado.nombre} onError={evento=>{evento.currentTarget.style.display="none";}}/></div>
    <p>{seleccionado.texto}</p>
   </article></div>}
  </section>;
