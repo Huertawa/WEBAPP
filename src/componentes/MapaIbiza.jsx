@@ -79,13 +79,13 @@ export default function MapaIbiza({ volver }) {
   const contenedorMapa = useRef(null);
   const mapaRef = useRef(null);
   const capasRef = useRef({});
-  const mostrarPKRef = useRef(mostrarPK);
-  mostrarPKRef.current = mostrarPK;
   const [estado, setEstado] = useState("Cargando cartografía oficial…");
   const [error, setError] = useState("");
   const [carreteras, setCarreteras] = useState(true);
   const [caminos, setCaminos] = useState(true);
   const [mostrarPK, setMostrarPK] = useState(true);
+  const mostrarPKRef = useRef(mostrarPK);
+  mostrarPKRef.current = mostrarPK;
   const [busqueda, setBusqueda] = useState("");
   const [datosViales, setDatosViales] = useState([]);
   const [datosPK, setDatosPK] = useState([]);
