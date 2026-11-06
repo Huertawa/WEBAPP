@@ -27,6 +27,16 @@ const preguntas = {
   terceroMenos6Formato: { titulo: "¿El documento cumple alguno de los formatos o reconocimientos admitidos en España?", descripcion: "Por ejemplo: permiso en castellano o con traducción oficial, modelo conforme a los convenios de Ginebra o Viena, permiso internacional válido acompañado del permiso nacional, o reconocimiento por convenio específico.", opciones: [{ valor: "terceroMenos6Categoria", texto: "Sí, cumple uno de esos requisitos" }, { valor: "requisitoFormatoNoAcreditado", texto: "No / no puedo acreditarlo" }] },
   fechaFirmaConvenio: { titulo: "El permiso se obtuvo después de adquirir la residencia. ¿Se expidió antes o después de la firma del convenio?", descripcion: "Este dato es importante para saber si puede acogerse al canje. La DGT establece, con carácter general, que no se canjea el permiso obtenido después de la firma del convenio cuando el titular ya residía legalmente en España. La fecha de entrada en vigor que aparece arriba es un dato distinto: consulta también la fecha de firma indicada por la DGT para ese país.", opciones: [{ valor: "convenioAnteriorFirma", texto: "Antes de la firma del convenio" }, { valor: "profesionalTercero", texto: "En la fecha de firma o después" }, { valor: "obtenidoDespuesNoAcreditado", texto: "No puedo acreditar la fecha de expedición o de firma" }] },
   profesionalTercero: { titulo: "¿Puede acogerse a la vía excepcional de canje para conductores profesionales?", descripcion: "Esta vía no es un permiso automático para circular: permite solicitar un canje excepcional en determinados casos. Requisitos acumulativos: permiso incluido en el artículo 21.1.a) o b); al menos seis meses contratado como conductor profesional por empresa establecida en España, acreditados con afiliación y cotización a la Seguridad Social; superar una prueba de circulación de hasta 30 minutos; y no estar privado judicialmente ni tener el permiso suspendido o intervenido administrativamente. Si falta uno, no marques que cumple.", opciones: [{ valor: "profesionalPendiente", texto: "Sí, reúne y acredita todos los requisitos" }, { valor: "profesionalNoCanje", texto: "No / no reúne todos los requisitos" }] },
+  origenCanje: {
+    titulo: "¿De dónde procede originalmente el permiso que presenta?",
+    descripcion: "La DGT no permite el canje cuando el permiso presentado se obtuvo previamente por canje de otro país con el que España no tiene convenio. Comprueba el país de expedición original y, si hubo canje, el permiso anterior y el país que lo expidió.",
+    opciones: [
+      { valor: "conConvenio", texto: "Lo obtuvo directamente en ese país" },
+      { valor: "conConvenio", texto: "Procede de un canje de otro país con convenio con España" },
+      { valor: "origenCanjeNoValido", texto: "Procede de un canje de un país sin convenio con España" },
+      { valor: "origenCanjeNoAcreditado", texto: "No puedo acreditar el país de origen" },
+    ],
+  },
   fechaPermiso: {
     titulo: "¿Cuándo obtuvo el permiso extranjero respecto a la fecha en que adquirió la residencia normal en España?",
     descripcion: "Compara la fecha de expedición que figura en el permiso con la fecha en que adquirió la residencia normal en España. Si lo obtuvo antes de residir aquí, en principio cumple el requisito temporal general para solicitar el canje. Si lo obtuvo después, habrá que comprobar la fecha de firma del convenio: la DGT indica que, con carácter general, no se canjea si ya era residente y lo obtuvo después de la firma. La fecha de entrada en vigor es un dato distinto.",
@@ -94,6 +104,8 @@ function App() {
     conConvenio: "PER008",
     convenioAnteriorFirma: "PER008",
     obtenidoDespuesNoAcreditado: "PER022",
+    origenCanjeNoValido: "PER010",
+    origenCanjeNoAcreditado: "PER023",
     sinConvenio: "PER009",
     profesionalPendiente: "PER018",
     obtenidoDespuesNoCanjeable: "PER010",
@@ -117,7 +129,7 @@ function App() {
     setPilaNavegacion((anterior) => [...anterior, { pantalla, historial, paisSeleccionado }]);
     setHistorial((anterior) => [...anterior, texto]);
     if (destino === "obtenidoAntes") {
-      setPantalla(pais.convenio ? "conConvenio" : "profesionalTercero");
+      setPantalla(pais.convenio ? "origenCanje" : "profesionalTercero");
       return;
     }
     if (destino === "obtenidoDespuesNoAcreditado") {
