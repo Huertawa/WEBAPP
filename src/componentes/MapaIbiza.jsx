@@ -133,9 +133,18 @@ export default function MapaIbiza({ volver }) {
         if (cancelado || !contenedorMapa.current) return;
         mapa = L.map(contenedorMapa.current, { zoomControl: true, preferCanvas: true }).setView([38.98, 1.43], 10);
         mapaRef.current = mapa;
-        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-          maxZoom: 19,
-          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap</a>',
+        // Cartografía base oficial IDEIB: incluye la red viaria completa,
+        // también viales secundarios y conexiones entre carreteras.
+        const SERVICIO_MAPA_BASE = "https://ideib.caib.es/geoserveis/services/public/GOIB_MapaBase_IB/MapServer/WMSServer";
+        const capaMapaBase = L.tileLayer.wms(SERVICIO_MAPA_BASE, {
+          layers: "0",
+          styles: "",
+          format: "image/png",
+          transparent: false,
+          version: "1.1.1",
+          crs: L.CRS.EPSG4326,
+          attribution: 'Cartografía oficial: <a href="https://ideib.caib.es">ICGIB / IDEIB</a>',
+          opacity: 1,
         }).addTo(mapa);
         const grupoCarreteras = L.geoJSON([], {
           style: (feature) => ({
@@ -163,30 +172,21 @@ export default function MapaIbiza({ volver }) {
         if (mapa.getZoom() < 11) mapa.removeLayer(grupoPK);
 
 
-        // La IDEIB recomienda su servicio WMS para representar la red viaria.
-        // WMS entrega imágenes de mapa y evita las consultas GeoJSON bloqueadas por CORS.
-        const SERVICIO_WMS = "https://ideib.caib.es/geoserveis/services/public/GOIB_Xarxa_de_transports_IB/MapServer/WMSServer";
-        const capaCarreteras = L.tileLayer.wms(SERVICIO_WMS, {
-          layers: "Vial",
+        const SERVICIO_TRANSPORTE_WMS = "https://ideib.caib.es/geoserveis/services/public/GOIB_Xarxa_de_transports_IB/MapServer/WMSServer";
+        const capaPortales = L.tileLayer.wms(SERVICIO_TRANSPORTE_WMS, {
+          layers: "Portal",
           styles: "",
           format: "image/png",
           transparent: true,
           version: "1.1.1",
           crs: L.CRS.EPSG4326,
-          attribution: 'Cartografía viaria: <a href="https://ideib.caib.es">ICGIB / IDEIB</a>',
-          opacity: 0.95,
-        });
-        const capaPortales = L.tileLayer.wms(SERVICIO_WMS, {
-          layers: "Portal",
-          styles: "",
-          format: "image/png",
-          transparent: true,
-          version: "1.3.0",
           attribution: 'ICGIB / IDEIB',
           opacity: 0.9,
         });
-        capasRef.current = { carreteras: capaCarreteras, caminos: null, pk: capaPortales };
-        capaCarreteras.addTo(mapa);
+        capasRef.current = { carreteras: capaMapaBase, caminos: null, pk: capaPortales };
+        mapa.removeLayer(grupoCarreteras);
+        mapa.removeLayer(grupoCaminos);
+        mapa.removeLayer(grupoPK);
         capaPortales.addTo(mapa);
         mapa.invalidateSize();
         setEstado("Mapa de Ibiza cargado · Red viaria oficial IDEIB");
@@ -260,7 +260,7 @@ export default function MapaIbiza({ volver }) {
         <div>
           <span className="etiqueta-seccion">MÓDULO 02 · CARTOGRAFÍA</span>
           <h1>Mapa de Ibiza</h1>
-          <p>Mapa de Ibiza con cartografía viaria oficial del Govern balear.</p>
+          <p>Cartografía topográfica oficial IDEIB con red viaria completa de la isla.</p>
         </div>
         <button type="button" className="boton boton--secundario mapa-modulo__volver" onClick={volver}>← Herramientas</button>
       </div>
@@ -280,18 +280,18 @@ export default function MapaIbiza({ volver }) {
           )}
         </form>
         <div className="mapa-capas" aria-label="Capas visibles">
-          <label><input type="checkbox" checked={carreteras} onChange={(e) => setCarreteras(e.target.checked)} /> Carreteras</label>
+          <label><input type="checkbox" checked={carreteras} onChange={(e) => setCarreteras(e.target.checked)} /> Cartografía oficial completa</label>
 
           <label><input type="checkbox" checked={mostrarPK} onChange={(e) => setMostrarPK(e.target.checked)} /> Portales y puntos de la red</label>
         </div>
       </div>
       <div className="mapa-marco">
-        <div ref={contenedorMapa} className="mapa-lienzo" aria-label="Mapa interactivo de Ibiza con carreteras, caminos y puntos kilométricos" />
+        <div ref={contenedorMapa} className="mapa-lienzo" aria-label="Mapa interactivo de Ibiza con cartografía oficial y puntos kilométricos" />
         {error && <div className="mapa-error"><strong>No se pudo cargar el mapa</strong><span>{error}</span><button type="button" onClick={() => window.location.reload()}>Reintentar</button></div>}
       </div>
       <div className="mapa-pie">
         <span>{estado}</span>
-        <span>Cartografía viaria: ICGIB / RT-VUIB · IDEIB</span>
+        <span>Mapa base y red viaria: ICGIB / IDEIB</span>
       </div>
       <p className="mapa-aviso">Cartografía de la IDEIB. Para actuaciones, contrasta siempre la señalización y la referencia kilométrica sobre el terreno.</p>
     </section>
