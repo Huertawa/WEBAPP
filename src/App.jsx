@@ -239,7 +239,7 @@ function App() {
             </button>
             <button type="button" className="modulo-acceso modulo-acceso--herramientas" onClick={() => setPantalla("herramientas")}>
               <span className="modulo-acceso__arte modulo-acceso__arte--herramientas" aria-hidden="true">
-                <svg viewBox="0 0 520 230" role="img" aria-label="Composición de señales y balizamiento"><circle cx="260" cy="112" r="100" fill="none" stroke="rgba(224,235,225,.16)" strokeWidth="2"/><path d="M90 30 143 126H37Z" fill="#f7f4e9" stroke="#d9433b" strokeWidth="9" strokeLinejoin="round"/><path d="m90 55-18 34h36z" fill="#d9433b"/><circle cx="245" cy="72" r="43" fill="#f7f4e9" stroke="#d9433b" strokeWidth="9"/><path d="M214 72h62" stroke="#d9433b" strokeWidth="11"/><circle cx="405" cy="76" r="42" fill="#2674b8" stroke="#f3f5ed" strokeWidth="5"/><path d="M405 43v64m-22-22 22 22 22-22" fill="none" stroke="#fff" strokeWidth="9" strokeLinecap="round" strokeLinejoin="round"/><path d="m184 205 24-78h40l25 78z" fill="#ed7135" stroke="#f5f0e3" strokeWidth="5"/><path d="M194 173h68" stroke="#fff" strokeWidth="10"/><path d="m302 205 20-68h36l21 68z" fill="#ed7135" stroke="#f5f0e3" strokeWidth="5"/><path d="M311 177h58" stroke="#fff" strokeWidth="9"/><path d="M45 190h115m248 0h70" stroke="#a9b8ac" strokeWidth="4" strokeDasharray="9 9"/></svg>
+                <svg viewBox="0 0 520 230" role="img" aria-label="Llave inglesa"><path d="M326 32a91 91 0 0 0-113 112L79 278a36 36 0 0 0 51 51l134-134A91 91 0 0 0 376 82l-57 57-54-54z" transform="translate(0 -45) scale(1.05)" fill="none" stroke="#d8e2e9" strokeWidth="24" strokeLinecap="round" strokeLinejoin="round"/><circle cx="105" cy="193" r="15" fill="#39b878"/></svg>
               </span>
               <span className="modulo-acceso__contenido">
                 <span className="modulo-acceso__numero">03 · CONSULTA</span>
@@ -438,8 +438,11 @@ function App() {
       )}
 
       <footer className="pie-aplicacion">
-        <span>MOTOLISTOS</span>
-        <span>Herramienta de apoyo · Verificar siempre la normativa vigente</span>
+        <span>MOTOLISTOS · Herramienta independiente de consulta</span>
+        <p className="aviso-independencia">
+          MOTOLISTOS no es una aplicación oficial ni está vinculada, patrocinada o respaldada por la Guardia Civil, la Dirección General de Tráfico ni por ningún otro cuerpo o fuerza de seguridad (FFCCSS).
+          Es una herramienta informativa independiente. Su contenido puede contener errores o no estar actualizado. Su utilización se realiza bajo el criterio y responsabilidad de cada usuario y no sustituye la consulta de la normativa vigente, las fuentes oficiales ni la valoración profesional del caso concreto.
+        </p>
       </footer>
     </main>
   );
