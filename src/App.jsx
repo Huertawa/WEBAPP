@@ -25,7 +25,7 @@ const preguntas = {
   terceroMenos6Edad: { titulo: "¿El titular tiene la edad mínima exigida en España para esa categoría?", descripcion: "La edad exigida es la correspondiente al permiso español equivalente. Comprueba la edad del conductor y la categoría concreta.", opciones: [{ valor: "terceroMenos6Formato", texto: "Sí, cumple la edad mínima" }, { valor: "requisitoEdadNoCumplido", texto: "No, no cumple la edad mínima" }] },
   terceroNoResidenteFormato: { titulo: "¿El documento cumple alguno de los formatos o reconocimientos admitidos en España?", descripcion: "Por ejemplo: permiso en castellano o con traducción oficial, modelo conforme a los convenios de Ginebra o Viena, permiso internacional válido acompañado del permiso nacional, o reconocimiento por convenio específico.", opciones: [{ valor: "terceroNoResidentePlazo", texto: "Sí, cumple uno de esos requisitos" }, { valor: "requisitoFormatoNoAcreditado", texto: "No / no puedo acreditarlo" }] },
   terceroMenos6Formato: { titulo: "¿El documento cumple alguno de los formatos o reconocimientos admitidos en España?", descripcion: "Por ejemplo: permiso en castellano o con traducción oficial, modelo conforme a los convenios de Ginebra o Viena, permiso internacional válido acompañado del permiso nacional, o reconocimiento por convenio específico.", opciones: [{ valor: "terceroMenos6Categoria", texto: "Sí, cumple uno de esos requisitos" }, { valor: "requisitoFormatoNoAcreditado", texto: "No / no puedo acreditarlo" }] },
-  fechaFirmaConvenio: { titulo: "El permiso se obtuvo después de adquirir la residencia. ¿Fue antes o después de la entrada en vigor del convenio?", descripcion: "Compara la fecha de expedición del permiso con la fecha de entrada en vigor que publica la DGT para el acuerdo de ese país. La fecha aparecerá indicada aquí y en la ficha del país. Si el caso depende de una fecha distinta de entrada en vigor o existe una modificación del acuerdo, comprueba también el texto oficial.", opciones: [{ valor: "convenioAnteriorFirma", texto: "Antes de la entrada en vigor del convenio" }, { valor: "profesionalTercero", texto: "Después de la entrada en vigor del convenio" }, { valor: "obtenidoDespuesNoAcreditado", texto: "No puedo acreditar la fecha" }] },
+  fechaFirmaConvenio: { titulo: "El permiso se obtuvo después de adquirir la residencia. ¿Fue antes o después de la entrada en vigor del convenio?", descripcion: "Compara la fecha de expedición que figura en el permiso con la fecha destacada justo encima de esta pregunta. Se muestra la fecha de entrada en vigor publicada por la DGT para el país seleccionado.", opciones: [{ valor: "convenioAnteriorFirma", texto: "Antes de la entrada en vigor del convenio" }, { valor: "profesionalTercero", texto: "Después de la entrada en vigor del convenio" }, { valor: "obtenidoDespuesNoAcreditado", texto: "No puedo acreditar la fecha" }] },
   profesionalTercero: { titulo: "¿Puede acogerse a la vía de canje para conductores profesionales?", descripcion: "Comprueba conjuntamente que el permiso esté comprendido en el artículo 21.1.a) o b), que acredita al menos seis meses contratado como conductor profesional por empresa legalmente establecida en España, que ha superado la prueba de circulación exigida y que no está privado, suspendido ni intervenido del derecho a conducir.", opciones: [{ valor: "profesionalPendiente", texto: "Sí, reúne y acredita todos los requisitos" }, { valor: "profesionalNoCanje", texto: "No / no reúne todos los requisitos" }] },
   fechaPermiso: {
     titulo: "¿Cuándo obtuvo el permiso extranjero respecto a la fecha en que adquirió la residencia normal en España?",
@@ -153,24 +153,14 @@ function App() {
 
         {resultado && <TarjetaResultado resultado={resultado} historial={historial} alReiniciar={reiniciar} />}
 
-        {preguntas[pantalla] && pantalla !== "fechaPermiso" && pantalla !== "profesionalTercero" && (
-          <>
-            {pantalla === "fechaFirmaConvenio" && (
-              <section className="panel-fecha-convenio">
-                <span className="panel-fecha-convenio__rotulo">FECHA DEL CONVENIO · {paisActual?.nombre || paisSeleccionado}</span>
-                <strong>{paisActual?.fechaEntradaVigor || "Fecha no disponible en la tabla de la DGT"}</strong>
-                <p>Fecha de entrada en vigor publicada por la DGT. Compárala con la fecha de expedición del permiso.</p>
-                {paisActual?.fechaModificacion && <small>Modificación del acuerdo: {paisActual.fechaModificacion}</small>}
-              </section>
-            )}
-            <Pregunta
-              titulo={preguntas[pantalla].titulo}
-              descripcion={preguntas[pantalla].descripcion}
-              opciones={preguntas[pantalla].opciones}
-              alSeleccionar={(destino, texto) => avanzar(destino, texto)}
-              alVolver={pilaNavegacion.length ? retroceder : null}
-            />
-          </>
+        {preguntas[pantalla] && pantalla !== "fechaPermiso" && pantalla !== "profesionalTercero" && pantalla !== "fechaFirmaConvenio" && (
+          <Pregunta
+            titulo={preguntas[pantalla].titulo}
+            descripcion={preguntas[pantalla].descripcion}
+            opciones={preguntas[pantalla].opciones}
+            alSeleccionar={(destino, texto) => avanzar(destino, texto)}
+            alVolver={pilaNavegacion.length ? retroceder : null}
+          />
         )}
 
         {(pantalla === "mas6meses" || pantalla === "paisTerceroNoResidente") && (
@@ -208,7 +198,7 @@ function App() {
                 <div className="aviso-pais-seleccionado">
                   <strong>{pais.convenio ? "Convenio bilateral de canje identificado" : "Sin convenio bilateral de canje identificado"}</strong>
                   <p>{pais.convenio
-                    ? "El país figura en la relación oficial de la DGT. Usa la fecha indicada como referencia y comprueba también la fecha de expedición del permiso, la categoría y las condiciones concretas del acuerdo."
+                    ? "El país figura en la relación oficial de la DGT. En el siguiente paso, si necesitas comparar las fechas, aparecerá la entrada en vigor del convenio."
                     : "Esto no descarta que el permiso esté reconocido por los convenios internacionales de circulación. Comprueba el formato, traducción y requisitos del artículo 21 del Reglamento General de Conductores."}</p>
                 </div>
               );
@@ -221,7 +211,7 @@ function App() {
                 const destino = pantalla === "paisTerceroNoResidente"
                   ? "categoriaTerceroNoResidente"
                   : pais?.convenio ? "fechaPermiso" : "profesionalTercero";
-                avanzar(destino, `País de expedición: ${paisSeleccionado}${pais?.fechaEntradaVigor ? ` · Entrada en vigor del convenio: ${pais.fechaEntradaVigor}` : ""}${pais?.fechaModificacion ? ` · Modificación: ${pais.fechaModificacion}` : ""}`);
+                avanzar(destino, `País de expedición: ${paisSeleccionado}`);
               }}>Continuar</button>
             </div>
           </section>
@@ -244,9 +234,25 @@ function App() {
         )}
 
         {pantalla === "fechaFirmaConvenio" && (
-          <p className="enlace-ayuda-dgt enlace-ayuda-dgt--convenio">
-            <a href="https://www.dgt.es/nuestros-servicios/permisos-de-conducir/permisos-extranjeros-y-de-fuerzas-y-cuerpos-de-seguridad/canjes-de-permisos/paises-con-convenio-de-canjes/" target="_blank" rel="noreferrer">Consultar en la DGT las condiciones y fechas del convenio aplicable</a>
-          </p>
+          <section className="comparacion-fecha-convenio">
+            <div className="panel-fecha-convenio">
+              <span className="panel-fecha-convenio__rotulo">FECHA DE ENTRADA EN VIGOR · {paisActual?.nombre || paisSeleccionado || "PAÍS NO IDENTIFICADO"}</span>
+              <strong>{paisActual?.fechaEntradaVigor || "Fecha no disponible en la tabla oficial de la DGT"}</strong>
+              <p>Esta es la fecha de entrada en vigor publicada por la DGT para el convenio del país seleccionado. Compárala con la fecha de expedición que figura en el permiso.</p>
+              {paisActual?.fechaModificacion && <small>Modificación del convenio publicada: {paisActual.fechaModificacion}. Comprueba si afecta a la categoría concreta.</small>}
+              {!paisActual?.fechaEntradaVigor && <small>Antes de resolver, consulta el convenio y confirma la fecha aplicable en la fuente oficial.</small>}
+            </div>
+            <Pregunta
+              titulo={preguntas.fechaFirmaConvenio.titulo}
+              descripcion={preguntas.fechaFirmaConvenio.descripcion}
+              opciones={preguntas.fechaFirmaConvenio.opciones}
+              alSeleccionar={(destino, texto) => avanzar(destino, texto)}
+              alVolver={pilaNavegacion.length ? retroceder : null}
+            />
+            <p className="enlace-ayuda-dgt enlace-ayuda-dgt--convenio">
+              <a href="https://www.dgt.es/nuestros-servicios/permisos-de-conducir/permisos-extranjeros-y-de-fuerzas-y-cuerpos-de-seguridad/canjes-de-permisos/paises-con-convenio-de-canjes/" target="_blank" rel="noreferrer">Consultar en la DGT las condiciones y fechas del convenio aplicable</a>
+            </p>
+          </section>
         )}
 
         {pantalla === "fechaPermiso" && (
