@@ -1454,3 +1454,35 @@ a, .fuentes-juridicas a { color: #76c5e6; }
   flex: 0 0 auto;
   margin-left: 12px;
 }
+
+
+/* Información contextual del país seleccionado */
+.aviso-pais-seleccionado {
+  margin: 14px 0 18px;
+  padding: 14px 16px;
+  border: 1px solid rgba(118,197,230,.32);
+  border-left: 3px solid #58b6dc;
+  border-radius: 10px;
+  background: rgba(45,112,174,.09);
+}
+.aviso-pais-seleccionado strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #a8d5ff;
+  font-size: 13px;
+}
+.aviso-pais-seleccionado p,
+.pais-no-encontrado p {
+  margin: 0;
+  color: var(--texto-secundario);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.pais-no-encontrado {
+  margin: 12px 0 16px;
+  padding: 13px 15px;
+  border: 1px solid rgba(228,173,66,.34);
+  border-radius: 10px;
+  background: rgba(133,91,25,.08);
+}
+.pais-no-encontrado .boton { margin-top: 12px; }
