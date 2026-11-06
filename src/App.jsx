@@ -185,7 +185,7 @@ function App() {
                       </>
                     : <span className="opcion-pais__sin-bandera" aria-hidden="true">OTRO</span>}
                   <span className="opcion-pais__nombre">{pais.nombre}</span>
-                  <span className={`opcion-pais__estado ${pais.convenio ? "opcion-pais__estado--convenio" : ""}`}>{pais.convenio ? "Canje DGT" : "Sin convenio"}</span>
+                  <span className={`opcion-pais__estado ${pais.convenio ? "opcion-pais__estado--convenio" : ""}`}>{pais.convenio ? "Convenio DGT" : "Sin convenio"}</span>
                   {seleccionado && <span className="opcion-pais__marca" aria-hidden="true">✓</span>}
                 </button>;
               })}
@@ -198,8 +198,8 @@ function App() {
                 <div className="aviso-pais-seleccionado">
                   <strong>{pais.convenio ? "Convenio bilateral de canje identificado" : "Sin convenio bilateral de canje identificado"}</strong>
                   <p>{pais.convenio
-                    ? "El país figura en la relación oficial de la DGT. En el siguiente paso, si necesitas comparar las fechas, aparecerá la entrada en vigor del convenio."
-                    : "Esto no descarta que el permiso esté reconocido por los convenios internacionales de circulación. Comprueba el formato, traducción y requisitos del artículo 21 del Reglamento General de Conductores."}</p>
+                    ? "Existe un acuerdo que permite solicitar el canje por un permiso español equivalente si se cumplen sus condiciones. No autoriza automáticamente a conducir: hay que comprobar vigencia, residencia, fecha de obtención y firma del convenio, categoría y pruebas exigidas."
+                    : "No aparece un convenio bilateral de canje en la lista de la DGT. Eso no significa que el permiso nunca pueda utilizarse: puede existir reconocimiento temporal por convenios internacionales si cumple el formato, traducción, vigencia, edad y demás requisitos del artículo 21. Poder conducir temporalmente y poder canjear son cosas distintas."}</p>
                 </div>
               );
             })()}
