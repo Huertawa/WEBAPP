@@ -62,7 +62,6 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
     : denuncia?.puntos || puntos || "Pendiente de verificar";
   const comprobacionesPorCaso = {
     PER002: ["Comprobar en el Registro de Conductores e Infractores que el permiso español figura vigente y sin suspensión o pérdida de vigencia.", "Contrastar que la categoría y las restricciones del permiso habilitan para el vehículo concreto.", "Verificar que no existe una privación judicial ni una medida administrativa que impida conducir."],
-    PER003: ["Comprobar la fecha de caducidad y descartar que exista una renovación o autorización provisional vigente.", "Intervenir inmediatamente el permiso caducado conforme al artículo 12.4 RGC y tramitar la denuncia: infracción grave, 200 € y 0 puntos.", "Impedir que el titular continúe conduciendo; distinguir la intervención del documento de la inmovilización del vehículo y permitir que se haga cargo otro conductor habilitado, si procede."],
     PER004: ["Comprobar que el permiso UE/EEE está vigente en el Estado expedidor y no está suspendido, retirado o restringido.", "Contrastar categoría, fechas de validez y edad mínima exigida en España.", "Si el titular reside en España, revisar si resulta aplicable el artículo 15.4 RGC y la obligación de renovación."],
     PER006: ["Verificar la identidad, autenticidad y vigencia del permiso nacional extranjero.", "Comprobar que el titular cumple la edad mínima española y que la categoría habilita para el vehículo.", "Acreditar la entrada regular, el plazo de seis meses y que el formato o reconocimiento internacional es válido en España."],
     PER007: ["Acreditar cuándo adquirió la residencia normal en España y calcular correctamente los seis meses.", "Comprobar vigencia, edad mínima española, categoría y restricciones del permiso.", "Verificar que el documento cumple el artículo 21 RGC o el convenio internacional aplicable."],
@@ -118,7 +117,7 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
           <span>INMOVILIZACIÓN DEL VEHÍCULO</span>
           <strong className="inmovilizacion__estado">{inmovilizacion.estado}</strong>
           <p className="inmovilizacion__detalle">{inmovilizacion.detalle}</p>
-          {!estadoPendiente && puedeConducir === false && (
+          {!estadoPendiente && puedeConducir === false && resultado.codigo !== "PER003" && (
             <div className="inmovilizacion__comprobacion">
               <p className="inmovilizacion__pregunta">¿Qué tipo de vehículo conduce?</p>
               <div className="inmovilizacion__opciones">
@@ -155,14 +154,14 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
             <strong>{denuncia.calificacion}</strong>
           </div>
           <div className="propuesta-denuncia__grid">
-            <div><small>PRECEPTO INFRINGIDO</small><strong>{denuncia.preceptoInfringido}</strong></div>
-            <div><small>PRECEPTO SANCIONADOR</small><strong>{denuncia.preceptoSancionador}</strong></div>
-            <div><small>IMPORTE</small><strong>{denuncia.importe}</strong></div>
-            <div><small>DETRACCIÓN</small><strong>{denuncia.puntos}</strong></div>
             <div className="propuesta-denuncia__codigo">
               <small>CODIFICACIÓN DE REFERENCIA</small>
               <strong>{normalizarCodificacion(denuncia.codificado)}</strong>
             </div>
+            <div><small>PRECEPTO INFRINGIDO</small><strong>{denuncia.preceptoInfringido}</strong></div>
+            <div><small>PRECEPTO SANCIONADOR</small><strong>{denuncia.preceptoSancionador}</strong></div>
+            <div><small>IMPORTE</small><strong>{denuncia.importe}</strong></div>
+            <div><small>DETRACCIÓN</small><strong>{denuncia.puntos}</strong></div>
           </div>
           <p>{denuncia.fundamento}</p>
           <p className="propuesta-denuncia__aviso">{estadoPendiente ? "No extender denuncia basándose únicamente en esta orientación: confirma primero la validez del permiso, el país, la categoría, el convenio y todos los requisitos del supuesto." : "Antes de extender el boletín, contrasta el código y la redacción exacta con el catálogo sancionador vigente y con los hechos acreditados."}</p>
@@ -174,11 +173,11 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
             <strong>{resultado.orientacionSancion.calificacion}</strong>
           </div>
           <div className="propuesta-denuncia__grid">
+            {resultado.orientacionSancion.codificado && <div className="propuesta-denuncia__codigo"><small>CODIFICACIÓN CONDICIONADA</small><strong>{normalizarCodificacion(resultado.orientacionSancion.codificado)}</strong></div>}
             <div><small>IMPORTE ORIENTATIVO</small><strong>{resultado.orientacionSancion.importe}</strong></div>
             <div><small>PUNTOS</small><strong>{resultado.orientacionSancion.puntos}</strong></div>
             <div><small>PRECEPTO INFRINGIDO</small><strong>{resultado.orientacionSancion.preceptoInfringido}</strong></div>
             <div><small>PRECEPTO SANCIONADOR</small><strong>{resultado.orientacionSancion.preceptoSancionador}</strong></div>
-            {resultado.orientacionSancion.codificado && <div className="propuesta-denuncia__codigo"><small>CODIFICACIÓN CONDICIONADA</small><strong>{normalizarCodificacion(resultado.orientacionSancion.codificado)}</strong></div>}
           </div>
           <p>{resultado.orientacionSancion.fundamento}</p>
           <p className="orientacion-sancion__aviso">Orientación condicionada: este resultado no confirma por sí solo la infracción ni sustituye la comprobación del país, convenio, permiso y circunstancias concretas.</p>
