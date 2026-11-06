@@ -163,6 +163,7 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
             <div><small>PUNTOS</small><strong>{resultado.orientacionSancion.puntos}</strong></div>
             <div><small>PRECEPTO INFRINGIDO</small><strong>{resultado.orientacionSancion.preceptoInfringido}</strong></div>
             <div><small>PRECEPTO SANCIONADOR</small><strong>{resultado.orientacionSancion.preceptoSancionador}</strong></div>
+            {resultado.orientacionSancion.codificado && <div className="propuesta-denuncia__codigo"><small>CODIFICACIÓN CONDICIONADA</small><strong>{resultado.orientacionSancion.codificado}</strong></div>}
           </div>
           <p>{resultado.orientacionSancion.fundamento}</p>
           <p className="orientacion-sancion__aviso">Orientación condicionada: este resultado no confirma por sí solo la infracción ni sustituye la comprobación del país, convenio, permiso y circunstancias concretas.</p>
