@@ -165,6 +165,18 @@ function App() {
               <option value="">Selecciona un país...</option>
               {paisesFiltrados.map((pais) => <option key={pais.nombre} value={pais.nombre}>{pais.nombre}</option>)}
             </select>
+            {paisSeleccionado && (() => {
+              const pais = paises.find((elemento) => elemento.nombre === paisSeleccionado);
+              if (!pais) return null;
+              return (
+                <div className="aviso-pais-seleccionado">
+                  <strong>{pais.convenio ? "Convenio bilateral de canje identificado" : "Sin convenio bilateral de canje identificado"}</strong>
+                  <p>{pais.convenio
+                    ? "El país figura en la relación de convenios de la DGT. Aun así, comprueba la fecha de obtención, la categoría y las condiciones concretas del acuerdo."
+                    : "Esto no descarta que el permiso esté reconocido por los convenios internacionales de circulación. Comprueba el formato, traducción y requisitos del artículo 21 del Reglamento General de Conductores."}</p>
+                </div>
+              );
+            })()}
             {busquedaPais && paisesFiltrados.length === 0 && <div className="pais-no-encontrado"><p className="texto-secundario">No se encuentra ese país en la lista de convenios bilaterales. Esto no significa necesariamente que el permiso no esté reconocido: comprueba también los convenios internacionales y el formato del documento.</p>{otroPais && <button type="button" className="boton boton--secundario" onClick={() => setPaisSeleccionado(otroPais.nombre)}>Continuar con otro país</button>}</div>}
             <div className="acciones-pregunta">
               <button className="boton boton--secundario" onClick={retroceder}>Volver</button>
