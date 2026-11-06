@@ -3547,3 +3547,8 @@ a, .fuentes-juridicas a { color: #76c5e6; }
  .aviso-uso-panel{grid-template-columns:1fr;gap:9px}
  .aviso-uso-panel .aviso-independencia{padding-top:9px}
 }
+
+
+/* PORTADA · eliminar el espacio vacío sobre el título */
+.portada-modulos{padding-top:8px !important;}
+@media(max-width:720px){.portada-modulos{padding-top:8px !important;}}
