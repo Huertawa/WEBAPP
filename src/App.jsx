@@ -152,7 +152,7 @@ function App() {
 
         {resultado && <TarjetaResultado resultado={resultado} historial={historial} alReiniciar={reiniciar} />}
 
-        {preguntas[pantalla] && pantalla !== "fechaPermiso" && (
+        {preguntas[pantalla] && pantalla !== "fechaPermiso" && pantalla !== "profesionalTercero" && (
           <Pregunta
             titulo={preguntas[pantalla].titulo}
             descripcion={preguntas[pantalla].descripcion}
@@ -224,16 +224,6 @@ function App() {
                 : destino;
               avanzar(destinoFinal, texto);
             }}
-            alVolver={retroceder}
-          />
-        )}
-
-        {pantalla === "fechaFirmaConvenio" && (
-          <Pregunta
-            titulo={preguntas.fechaFirmaConvenio.titulo}
-            descripcion={preguntas.fechaFirmaConvenio.descripcion}
-            opciones={preguntas.fechaFirmaConvenio.opciones}
-            alSeleccionar={(destino, texto) => avanzar(destino, texto)}
             alVolver={retroceder}
           />
         )}
