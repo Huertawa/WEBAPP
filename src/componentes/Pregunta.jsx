@@ -26,11 +26,6 @@ export default function Pregunta({ titulo, descripcion, opciones, alSeleccionar,
       </div>
       <h2>{titulo}</h2>
       {descripcion && <p className="texto-secundario pregunta__descripcion">{descripcion}</p>}
-      <div className="pregunta__leyenda" aria-label="Significado de los colores">
-        <span className="pregunta__leyenda-item pregunta__leyenda-item--positiva"><i /> Cumple / favorable</span>
-        <span className="pregunta__leyenda-item pregunta__leyenda-item--negativa"><i /> No cumple</span>
-        <span className="pregunta__leyenda-item pregunta__leyenda-item--revisar"><i /> Requiere comprobación</span>
-      </div>
       <p className="pregunta__ayuda">Selecciona la opción que corresponda a los hechos comprobados.</p>
       <div className="opciones-pregunta">
         {opciones.map((opcion) => {
