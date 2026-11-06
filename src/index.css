@@ -1547,3 +1547,39 @@ a, .fuentes-juridicas a { color: #76c5e6; }
 @media(max-width:480px) {
   .aviso-pais-seleccionado__fecha { align-items: flex-start; flex-direction: column; gap: 5px; }
 }
+
+
+/* Fecha visible justo en la pregunta de comparación con el convenio */
+.panel-fecha-convenio {
+  margin: 0 0 14px;
+  padding: 16px 18px;
+  border: 1px solid rgba(103, 190, 224, .38);
+  border-left: 4px solid #54b6d8;
+  border-radius: 10px;
+  background: linear-gradient(110deg, rgba(35, 91, 117, .24), rgba(14, 23, 32, .92));
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.panel-fecha-convenio__rotulo {
+  color: #9dcfe2;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: .09em;
+}
+.panel-fecha-convenio > strong {
+  color: #fff;
+  font-size: 25px;
+  line-height: 1.2;
+  font-weight: 800;
+}
+.panel-fecha-convenio p {
+  margin: 0;
+  color: #c1ccd5;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.panel-fecha-convenio small {
+  color: #f0cf83;
+  font-size: 12px;
+}
