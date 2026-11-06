@@ -87,7 +87,7 @@ export const resultados = {
     euros: "No procede sanción por falta de autorización en este supuesto.",
     puntos: "No procede detracción de puntos.",
     actuacion: "Comprobar que el permiso se ajusta a alguno de los modelos o convenios admitidos, está en vigor, el titular tiene la edad exigida y no ha superado el plazo aplicable desde su entrada regular en España.",
-    observaciones: "Resultado provisional: verificar documentación de entrada y los requisitos del artículo 21. No dar por válida la conducción solo por declarar que no es residente."
+    observaciones: "Resultado favorable condicionado a que se acrediten documentalmente la entrada regular, la vigencia, la edad mínima, la categoría y el formato o reconocimiento del permiso. Revisar cualquier restricción o regla específica del convenio aplicable."
   },
   PER007: {
     codigo: "PER007",
@@ -99,7 +99,7 @@ export const resultados = {
     euros: "No procede sanción por falta de autorización en este supuesto.",
     puntos: "No procede detracción de puntos.",
     actuacion: "Comprobar vigencia, edad exigida en España y que el permiso cumple los requisitos formales del artículo 21.",
-    observaciones: "La respuesta no es automática: deben verificarse todos los requisitos del permiso extranjero."
+    observaciones: "Resultado favorable si se acreditan documentalmente la vigencia, la edad mínima, la categoría y el formato o reconocimiento del permiso, además del cómputo correcto de los seis meses."
   },
   PER008: {
     codigo: "PER008",
