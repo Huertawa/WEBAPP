@@ -2331,3 +2331,63 @@ a, .fuentes-juridicas a { color: #76c5e6; }
   .mapa-marco .motolistos-carretera-nombre { font-size: 12px; }
   .mapa-marco .motolistos-pk { font-size: 10px; }
 }
+
+
+/* Acabado cartográfico limpio y legible */
+.mapa-marco {
+  border: 1px solid #cbd3c9;
+  background: #edf0eb;
+  box-shadow: 0 16px 38px rgba(0,0,0,.24);
+}
+.mapa-marco .leaflet-container { background: #edf0eb; }
+.mapa-marco .leaflet-tile { filter: none; }
+.mapa-marco .motolistos-pueblo {
+  padding: 3px 7px;
+  border: 1px solid rgba(80,99,79,.24);
+  border-radius: 6px;
+  background: rgba(255,255,255,.94);
+  color: #344638;
+  box-shadow: 0 1px 4px rgba(30,45,32,.16);
+  font-size: 11px;
+  font-weight: 700;
+}
+.mapa-marco .motolistos-pueblo--principal {
+  padding: 4px 8px;
+  border-color: rgba(54,88,60,.42);
+  background: #fff;
+  color: #243b2a;
+  font-size: 13px;
+  font-weight: 850;
+}
+.mapa-marco .motolistos-carretera-nombre {
+  padding: 4px 9px;
+  border: 1px solid rgba(174,104,30,.45);
+  border-radius: 6px;
+  background: rgba(255,249,235,.97);
+  color: #754511;
+  box-shadow: 0 2px 7px rgba(45,32,16,.2);
+  font-size: 15px;
+  font-weight: 950;
+  letter-spacing: .5px;
+}
+.mapa-marco .motolistos-pk {
+  padding: 3px 7px;
+  border: 1px solid #a34e3e;
+  border-radius: 5px;
+  background: #fff;
+  color: #873b30;
+  box-shadow: 0 1px 4px rgba(35,20,15,.2);
+  font-size: 11px;
+  font-weight: 900;
+}
+.mapa-capas {
+  padding: 9px 12px;
+  border: 1px solid rgba(151,170,154,.2);
+  border-radius: 9px;
+  background: rgba(24,31,26,.68);
+}
+@media(max-width:720px) {
+  .mapa-marco .motolistos-pueblo { font-size: 9px; }
+  .mapa-marco .motolistos-pueblo--principal { font-size: 10px; }
+  .mapa-marco .motolistos-carretera-nombre { font-size: 12px; }
+}
