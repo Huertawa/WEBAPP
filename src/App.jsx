@@ -169,7 +169,8 @@ function App() {
 
         {pantalla === "terceroVigente" && (
           <>
-          <section className="panel-residencia">
+          <details className="aclaracion-desplegable aclaracion-desplegable--amplia panel-residencia">
+            <summary>Ver aclaración: residencia normal, situación regular y documentación</summary>
             <div className="panel-residencia__cabecera">
               <span>ACLARACIÓN JURÍDICA · RESIDENCIA NORMAL Y SITUACIÓN REGULAR</span>
               <h2>¿Desde cuándo se considera que reside legalmente en España?</h2>
@@ -198,7 +199,7 @@ function App() {
               <a href="https://boe.es/buscar/act.php?id=BOE-A-2000-544" target="_blank" rel="noreferrer">LO 4/2000 · artículos 29, 30 y 30 bis (estancia y residencia)</a>
               <a href="https://www.boe.es/eli/es/rd/2007/02/16/240/con" target="_blank" rel="noreferrer">RD 240/2007 · residencia de ciudadanos UE/EEE</a>
             </div>
-          </section>
+          </details>
           <Pregunta
             titulo={preguntas.terceroVigente.titulo}
             descripcion={preguntas.terceroVigente.descripcion}
@@ -213,8 +214,12 @@ function App() {
           <section className="panel-pregunta">
             <span className="etiqueta-seccion">ASISTENTE DE PERMISOS EXTRANJEROS</span>
             <h2>Selecciona el país que expidió el permiso</h2>
-            <p className="texto-secundario">La relación de países se basa en la información publicada por la DGT. El convenio no garantiza por sí solo que un permiso concreto sea canjeable. Si no aparece, selecciona «Otro país» y verifica el reconocimiento internacional aplicable.</p>
-            <p className="enlace-ayuda-dgt"><a href="https://www.dgt.es/nuestros-servicios/permisos-de-conducir/permisos-extranjeros-y-de-fuerzas-y-cuerpos-de-seguridad/canjes-de-permisos/paises-con-convenio-de-canjes/" target="_blank" rel="noreferrer">Consultar listado oficial de países y condiciones de canje en la DGT</a></p>
+            <p className="texto-secundario">Busca y selecciona el país que expidió el permiso.</p>
+            <details className="aclaracion-desplegable">
+              <summary>Información sobre convenios y reconocimiento</summary>
+              <p>La relación se basa en la información publicada por la DGT. Tener convenio no garantiza que cualquier permiso sea canjeable. Si el país no aparece, puede existir reconocimiento temporal por convenios internacionales aunque no haya convenio bilateral de canje.</p>
+              <p className="enlace-ayuda-dgt"><a href="https://www.dgt.es/nuestros-servicios/permisos-de-conducir/permisos-extranjeros-y-de-fuerzas-y-cuerpos-de-seguridad/canjes-de-permisos/paises-con-convenio-de-canjes/" target="_blank" rel="noreferrer">Consultar listado oficial de países y condiciones de canje en la DGT</a></p>
+            </details>
             <label className="etiqueta-campo" htmlFor="buscar-pais">Buscar país</label>
             <input id="buscar-pais" className="campo-busqueda-pais" type="search" placeholder="Escribe para localizar el país..." value={busquedaPais} onChange={(evento) => { const valor = evento.target.value; setBusquedaPais(valor); if (paisSeleccionado && !paises.some((pais) => pais.nombre === paisSeleccionado && normalizarBusqueda(pais.nombre).includes(normalizarBusqueda(valor)))) setPaisSeleccionado(""); }} />
             <label className="etiqueta-campo">País de expedición</label>
@@ -241,12 +246,15 @@ function App() {
               const pais = paises.find((elemento) => elemento.nombre === paisSeleccionado);
               if (!pais) return null;
               return (
-                <div className="aviso-pais-seleccionado">
-                  <strong>{pais.convenio ? "Convenio bilateral de canje identificado" : "Sin convenio bilateral de canje identificado"}</strong>
-                  <p>{pais.convenio
-                    ? "Existe un acuerdo que permite solicitar el canje por un permiso español equivalente si se cumplen sus condiciones. No autoriza automáticamente a conducir: hay que comprobar vigencia, residencia, fecha de obtención y firma del convenio, categoría y pruebas exigidas."
-                    : "No aparece un convenio bilateral de canje en la lista de la DGT. Eso no significa que el permiso nunca pueda utilizarse: puede existir reconocimiento temporal por convenios internacionales si cumple el formato, traducción, vigencia, edad y demás requisitos del artículo 21. Poder conducir temporalmente y poder canjear son cosas distintas."}</p>
-                </div>
+                <details className="aclaracion-desplegable aclaracion-desplegable--pais">
+                  <summary>{pais.convenio ? "Ver condiciones del convenio de canje" : "Ver qué implica no tener convenio bilateral"}</summary>
+                  <div className="aviso-pais-seleccionado">
+                    <strong>{pais.convenio ? "Convenio bilateral de canje identificado" : "Sin convenio bilateral de canje identificado"}</strong>
+                    <p>{pais.convenio
+                      ? "Existe un acuerdo que permite solicitar el canje por un permiso español equivalente si se cumplen sus condiciones. No autoriza automáticamente a conducir: hay que comprobar vigencia, residencia, fecha de obtención y firma del convenio, categoría y pruebas exigidas."
+                      : "No aparece un convenio bilateral de canje en la lista de la DGT. Eso no significa que el permiso nunca pueda utilizarse: puede existir reconocimiento temporal por convenios internacionales si cumple el formato, traducción, vigencia, edad y demás requisitos del artículo 21. Poder conducir temporalmente y poder canjear son cosas distintas."}</p>
+                  </div>
+                </details>
               );
             })()}
             {busquedaPais && paisesFiltrados.length === 0 && <div className="pais-no-encontrado"><p className="texto-secundario">No se encuentra ese país en la lista de convenios bilaterales. Esto no significa necesariamente que el permiso no esté reconocido: comprueba también los convenios internacionales y el formato del documento.</p>{otroPais && <button type="button" className="boton boton--secundario" onClick={() => { setPaisSeleccionado(otroPais.nombre); setBusquedaPais(""); }}>Continuar con otro país</button>}</div>}
@@ -284,9 +292,12 @@ function App() {
             <div className="panel-fecha-convenio">
               <span className="panel-fecha-convenio__rotulo">ENTRADA EN VIGOR PUBLICADA POR LA DGT · {paisActual?.nombre || paisSeleccionado || "PAÍS NO IDENTIFICADO"}</span>
               <strong>{paisActual?.fechaEntradaVigor || "Fecha no disponible en la tabla oficial de la DGT"}</strong>
-              <p>Ojo: esta es la fecha de entrada en vigor, no necesariamente la fecha de firma. Para decidir si el permiso puede canjearse, la DGT exige comprobar la fecha de firma del convenio y compararla con la fecha de expedición del permiso.</p>
-              {paisActual?.fechaModificacion && <small>Modificación del acuerdo publicada: {paisActual.fechaModificacion}. Comprueba si afecta a la categoría y al supuesto concreto.</small>}
-              <small className="panel-fecha-convenio__aviso">No uses la fecha de entrada en vigor como sustituta de la fecha de firma. Consulta la ficha del país en la DGT antes de resolver.</small>
+              <details className="aclaracion-desplegable aclaracion-desplegable--compacta">
+                <summary>¿Qué fecha debo comparar?</summary>
+                <p>Esta es la fecha de entrada en vigor, no necesariamente la fecha de firma. Para decidir si el permiso puede canjearse, comprueba la fecha de firma del convenio y compárala con la fecha de expedición del permiso.</p>
+                {paisActual?.fechaModificacion && <small>Modificación del acuerdo publicada: {paisActual.fechaModificacion}. Comprueba si afecta a la categoría y al supuesto concreto.</small>}
+                <small className="panel-fecha-convenio__aviso">No uses la fecha de entrada en vigor como sustituta de la fecha de firma. Consulta la ficha del país en la DGT antes de resolver.</small>
+              </details>
             </div>
             <Pregunta
               titulo={preguntas.fechaFirmaConvenio.titulo}
