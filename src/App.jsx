@@ -208,7 +208,7 @@ function App() {
               <path d="M103 43 116 27 143 27 153 39 137 42M73 39 60 30 48 30M130 67 139 49" fill="none" stroke="#e2c75a" strokeWidth="5" strokeLinecap="round"/>
               <path d="M93 25h25l10 17H87z" fill="#b9e65c" opacity=".9"/>
             </svg>
-            <span className="portada-modulos__escena-texto">UNIDAD MÓVIL · VIGILANCIA Y CONTROL</span>
+            <span className="portada-modulos__escena-texto">SEGURIDAD VIAL · CONTROL DE TRÁFICO</span>
             <svg className="portada-modulos__semaforo" viewBox="0 0 54 112">
               <path d="M27 83v26" stroke="#89958c" strokeWidth="6" strokeLinecap="round"/>
               <rect x="7" y="4" width="40" height="83" rx="9" fill="#202a25" stroke="#87958a" strokeWidth="2"/>
