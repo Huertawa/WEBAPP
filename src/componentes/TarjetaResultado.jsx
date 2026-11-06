@@ -223,7 +223,7 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
           <li><a href="https://www.dgt.es/nuestros-servicios/permisos-de-conducir/permisos-extranjeros-y-de-fuerzas-y-cuerpos-de-seguridad/conducir-con-un-permiso-extranjero/" target="_blank" rel="noreferrer">DGT · Conducir con un permiso extranjero</a></li>
           <li><a href="https://sede-org.dgt.gob.es/es/multas/tramites-para-administraciones/sipp-notificacion-de-sanciones/" target="_blank" rel="noreferrer">DGT · SIPP: guía codificada extendida vigente desde 01/10/2026 y versiones anteriores</a></li>
           <li><a href="https://www.dgt.es/comunicacion/noticias/20250221-sin-los-papeles-en-regla/" target="_blank" rel="noreferrer">DGT · Sin los papeles en regla: sanciones por permisos caducados y extranjeros</a></li>
-          <li><a href="https://sede.dgt.gob.es/export/sites/dgt/.galleries/multas/ARCI/Guia-codificada-de-infracciones-ARCI-Vigente-a-partir-del-01-07-2025.pdf" target="_blank" rel="noreferrer">DGT · Guía codificada ARCI en PDF (01/07/2025)</a></li>
+          <li><a href="https://sede.dgt.gob.es/export/sites/dgt/.galleries/multas/ARCI/Guia-codificada-de-infracciones-ARCI-Vigente-a-partir-del-01-07-2025.pdf" target="_blank" rel="noreferrer">DGT · Guía codificada ARCI en PDF (versión histórica 01/07/2025)</a></li>
           <li><a href="https://www.dgt.es/nuestros-servicios/permisos-de-conducir/permisos-extranjeros-y-de-fuerzas-y-cuerpos-de-seguridad/canjes-de-permisos/paises-con-convenio-de-canjes/" target="_blank" rel="noreferrer">DGT · Países con convenio de canje (actualizado 26/06/2026)</a></li>
         </ul>
       </div>
