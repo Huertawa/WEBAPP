@@ -1396,13 +1396,6 @@ a, .fuentes-juridicas a { color: #76c5e6; }
   gap: 10px;
   margin-bottom: 12px;
 }
-.pregunta__contador {
-  color: #aebdca;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: .5px;
-  text-transform: uppercase;
-}
 .pregunta__ayuda {
   margin: 0 0 16px;
   color: #91a2b1;
@@ -1415,19 +1408,6 @@ a, .fuentes-juridicas a { color: #76c5e6; }
   min-height: 62px;
   text-align: left;
 }
-.opcion-pregunta__numero {
-  display: grid;
-  flex: 0 0 32px;
-  width: 32px;
-  height: 32px;
-  place-items: center;
-  border-radius: 8px;
-  background: rgba(255,255,255,.10);
-  color: #c4d4df;
-  font-size: 11px;
-  font-weight: 800;
-}
-.opcion-pregunta__texto { flex: 1; }
 .opcion-pregunta__flecha {
   color: #9bd9f0;
   font-size: 25px;
@@ -1449,22 +1429,28 @@ a, .fuentes-juridicas a { color: #76c5e6; }
   border-color: #76c5e6;
   outline: 2px solid rgba(118,197,230,.18);
 }
-.acciones-resultado--dobles {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.acciones-resultado--dobles .boton { flex: 1 1 220px; }
-.estado-copia {
-  margin: 10px 0 0;
-  color: #8fd8b2;
-  font-size: 13px;
-  text-align: right;
-}
 @media (max-width: 560px) {
   .pregunta__meta { align-items: flex-start; flex-direction: column; }
   .opciones-pregunta .boton { min-height: 58px; padding: 12px; }
-  .acciones-resultado--dobles { flex-direction: column; }
-  .acciones-resultado--dobles .boton { width: 100%; }
-  .estado-copia { text-align: left; }
+}
+
+/* Estados de interacción y accesibilidad */
+.opciones-pregunta .boton {
+  justify-content: space-between;
+  transition: border-color .18s ease, background .18s ease, transform .18s ease;
+}
+.opciones-pregunta .boton:hover {
+  border-color: rgba(118,197,230,.72);
+  background: rgba(45,105,137,.2);
+  transform: translateY(-1px);
+}
+.opciones-pregunta .boton:focus-visible,
+.acciones-pregunta .boton:focus-visible,
+.selector-pais:focus-visible {
+  outline: 3px solid rgba(118,197,230,.7);
+  outline-offset: 3px;
+}
+.opcion-pregunta__flecha {
+  flex: 0 0 auto;
+  margin-left: 12px;
 }
