@@ -160,6 +160,7 @@ function App() {
               <option value="">Selecciona un país...</option>
               {paises.filter((pais) => pais.nombre.toLocaleLowerCase("es").includes(busquedaPais.toLocaleLowerCase("es"))).map((pais) => <option key={pais.nombre} value={pais.nombre}>{pais.nombre}</option>)}
             </select>
+            {busquedaPais && !paises.some((pais) => pais.nombre.toLocaleLowerCase("es").includes(busquedaPais.toLocaleLowerCase("es"))) && <p className="texto-secundario">No se encuentra ese país. Prueba con otro nombre o selecciona «Otro país» si no aparece en la lista.</p>}
             <div className="acciones-pregunta">
               <button className="boton boton--secundario" onClick={retroceder}>Volver</button>
               <button className="boton boton--principal" disabled={!paisSeleccionado} onClick={() => avanzar(pantalla === "paisTerceroNoResidente" ? "categoriaTerceroNoResidente" : "fechaPermiso", `País de expedición: ${paisSeleccionado}`)}>Continuar</button>
