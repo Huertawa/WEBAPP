@@ -66,7 +66,7 @@ function normalizarBusqueda(valor) {
 }
 
 function App() {
-  const [pantalla, setPantalla] = useState("inicio");
+  const [pantalla, setPantalla] = useState("portada");
   const [historial, setHistorial] = useState([]);
   const [paisSeleccionado, setPaisSeleccionado] = useState("");
   const [busquedaPais, setBusquedaPais] = useState("");
@@ -185,10 +185,70 @@ function App() {
         </div>
         <div className="cabecera-aplicacion__acciones">
           <span className="cabecera-aplicacion__estado">VERSIÓN DE TRABAJO</span>
-          {pantalla !== "inicio" && <button type="button" className="boton-inicio" onClick={reiniciar} aria-label="Volver al inicio y empezar una consulta nueva">⌂ <span>Inicio</span></button>}
+          {pantalla !== "portada" && <button type="button" className="boton-inicio" onClick={() => setPantalla("portada")} aria-label="Volver a la pantalla principal">⌂ <span>Inicio</span></button>}
         </div>
       </header>
 
+      {pantalla === "portada" ? (
+        <section className="portada-modulos">
+          <div className="portada-modulos__intro">
+            <span className="etiqueta-seccion">CENTRO DE HERRAMIENTAS</span>
+            <h1>¿Qué necesitas consultar?</h1>
+            <p>Selecciona una herramienta para comenzar. Puedes volver a esta pantalla en cualquier momento.</p>
+          </div>
+          <div className="modulos-grid">
+            <button type="button" className="modulo-acceso modulo-acceso--permisos" onClick={() => setPantalla("inicio")}>
+              <span className="modulo-acceso__arte modulo-acceso__arte--permiso" aria-hidden="true">
+                <span className="permiso-ilustrado">
+                  <span className="permiso-ilustrado__cabecera"><i></i><b>PERMISO DE CONDUCCIÓN</b></span>
+                  <span className="permiso-ilustrado__cuerpo"><i className="permiso-ilustrado__foto"></i><span><i></i><i></i><i></i><i></i></span></span>
+                  <span className="permiso-ilustrado__pie">ESPAÑA · ES</span>
+                </span>
+              </span>
+              <span className="modulo-acceso__contenido">
+                <span className="modulo-acceso__numero">01 · CONDUCCIÓN</span>
+                <strong>Permisos</strong>
+                <span>Comprueba permisos españoles y extranjeros, vigencia, categorías, infracciones y actuaciones.</span>
+                <span className="modulo-acceso__accion">Entrar en permisos <b>→</b></span>
+              </span>
+            </button>
+            <button type="button" className="modulo-acceso modulo-acceso--mapa" onClick={() => setPantalla("mapa")}>
+              <span className="modulo-acceso__arte modulo-acceso__arte--mapa" aria-hidden="true">
+                <svg viewBox="0 0 520 230" role="presentation">
+                  <path className="mapa-arte__zona" d="M75 30 150 18 205 40 275 25 340 52 430 35 465 90 430 150 360 165 300 205 220 180 160 200 95 155 45 95Z"/>
+                  <path className="mapa-arte__carretera mapa-arte__carretera--principal" d="M-10 175 C80 140 100 65 190 85 S310 160 390 100 470 70 540 35"/>
+                  <path className="mapa-arte__carretera" d="M80 -10 C120 45 160 85 190 85 S260 45 300 -10"/>
+                  <path className="mapa-arte__carretera" d="M190 85 C210 125 200 165 240 240"/>
+                  <path className="mapa-arte__carretera" d="M300 115 C350 135 390 155 450 230"/>
+                  <path className="mapa-arte__carretera mapa-arte__carretera--secundaria" d="M25 65 115 105 190 85 270 70 350 90 470 155"/>
+                  <path className="mapa-arte__carretera mapa-arte__carretera--secundaria" d="M145 215 180 155 260 125 330 55 410 10"/>
+                  <circle cx="190" cy="85" r="8"/><circle cx="350" cy="90" r="7"/><circle cx="300" cy="145" r="6"/>
+                </svg>
+                <span className="mapa-arte__etiqueta">EIVISSA</span>
+              </span>
+              <span className="modulo-acceso__contenido">
+                <span className="modulo-acceso__numero">02 · CARTOGRAFÍA</span>
+                <strong>Mapa</strong>
+                <span>Localiza carreteras, caminos vecinales y puntos kilométricos de la isla de Ibiza.</span>
+                <span className="modulo-acceso__accion">Abrir mapa <b>→</b></span>
+              </span>
+            </button>
+          </div>
+          <p className="portada-modulos__pie">MOTOLISTOS <span>·</span> Herramientas de consulta y apoyo</p>
+        </section>
+      ) : pantalla === "mapa" ? (
+        <section className="modulo-en-preparacion">
+          <span className="etiqueta-seccion">MÓDULO 02 · CARTOGRAFÍA</span>
+          <h1>Mapa de Ibiza</h1>
+          <p>Este espacio será el mapa interactivo de la isla, con carreteras, caminos vecinales y puntos kilométricos.</p>
+          <div className="modulo-en-preparacion__panel">
+            <span className="modulo-en-preparacion__icono">⌖</span>
+            <strong>Preparando la cartografía</strong>
+            <span>La siguiente fase será incorporar la red viaria y los puntos kilométricos oficiales de las Illes Balears.</span>
+          </div>
+          <button type="button" className="boton boton--secundario" onClick={() => setPantalla("portada")}>← Volver a herramientas</button>
+        </section>
+      ) : (
       <div className="contenido-principal">
         <div className="titulo-pagina">
           <span className="etiqueta-seccion">MÓDULO 01 · CONDUCCIÓN</span>
@@ -364,6 +424,7 @@ function App() {
           />
         )}
       </div>
+      )}
 
       <footer className="pie-aplicacion">
         <span>MOTOLISTOS</span>
