@@ -214,6 +214,7 @@ function App() {
               <b>CONSULTA<br/>OPERATIVA</b>
             </div>
           </div>
+          </div>
           <div className="portada-modulos__separador"><span>SELECCIONA UN MÓDULO</span><i></i></div>
           <div className="modulos-grid">
             <button type="button" className="modulo-acceso modulo-acceso--permisos" onClick={() => setPantalla("inicio")}>
