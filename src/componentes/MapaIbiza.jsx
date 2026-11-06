@@ -23,11 +23,20 @@ function cargarLeaflet() {
         return;
       }
       const script = document.createElement("script");
-      script.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+      script.src = "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js";
       script.async = true;
       script.dataset.leaflet = "true";
       script.onload = () => resolve(window.L);
-      script.onerror = () => reject(new Error("No se ha podido cargar el motor del mapa."));
+      script.onerror = () => {
+        script.remove();
+        const alternativa = document.createElement("script");
+        alternativa.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+        alternativa.async = true;
+        alternativa.dataset.leaflet = "true";
+        alternativa.onload = () => resolve(window.L);
+        alternativa.onerror = () => reject(new Error("No se ha podido cargar Leaflet desde los servidores disponibles."));
+        document.head.appendChild(alternativa);
+      };
       document.head.appendChild(script);
     });
   }
