@@ -76,39 +76,85 @@ const elementos = [
 
 const gruposElementos = ["Todos", ...new Set(elementos.map((e) => e.grupo))];
 
+function IlustracionElemento({ nombre }) {
+  const n = nombre.toLowerCase();
+  let dibujo = "road";
+  if (n.includes("bionda") || n.includes("barrera") || n.includes("quitamiedos")) dibujo = "guardrail";
+  else if (n.includes("hito") || n.includes("baliza")) dibujo = "post";
+  else if (n.includes("cono") || n.includes("obras") || n.includes("panel direccional")) dibujo = "works";
+  else if (n.includes("cuneta") || n.includes("drenaje")) dibujo = "drain";
+  else if (n.includes("túnel")) dibujo = "tunnel";
+  else if (n.includes("glorieta")) dibujo = "roundabout";
+  else if (n.includes("pórtico")) dibujo = "gantry";
+  else if (n.includes("talud")) dibujo = "slope";
+  else if (n.includes("paso superior") || n.includes("pasarela")) dibujo = "bridge";
+  else if (n.includes("camino")) dibujo = "rural";
+  else if (n.includes("semáforo")) dibujo = "trafficlight";
+  return <svg viewBox="0 0 180 100" role="img" aria-label={`Representación de ${nombre}`}>
+    <rect x="3" y="3" width="174" height="94" rx="12" fill="#26352c"/>
+    <path d="M8 82H172" stroke="#718276" strokeWidth="2" strokeDasharray="5 5"/>
+    {dibujo==="road" && <><path d="M52 94 75 12h30l23 82" fill="#59665e"/><path d="M90 88V70m0-12V43m0-12V20" stroke="#f4f0d9" strokeWidth="3" strokeDasharray="7 5"/><path d="M48 94 72 12m60 82-24-82" stroke="#dce4dc" strokeWidth="2"/></>}
+    {dibujo==="guardrail" && <><path d="M22 38h136v17H22z" fill="#b8c4bd" stroke="#edf2ed" strokeWidth="2"/><path d="M35 55v28m36-28v28m36-28v28m36-28v28" stroke="#aab7af" strokeWidth="5"/><path d="M22 46h136" stroke="#6d7c72" strokeWidth="3"/></>}
+    {dibujo==="post" && <><path d="M83 88V19h14v69" fill="#e7e9df"/><rect x="78" y="20" width="24" height="23" rx="3" fill="#f5f4e9" stroke="#d7dfd7" strokeWidth="2"/><path d="M82 25h16v13H82z" fill="#d84b3e"/><path d="M88 55h4m-4 10h4" stroke="#6a7a70" strokeWidth="3"/></>}
+    {dibujo==="works" && <><path d="m58 81 15-48h28l16 48z" fill="#f07832" stroke="#f7f1df" strokeWidth="3"/><path d="M66 58h44" stroke="#fff" strokeWidth="8"/><path d="M36 80h108" stroke="#d9e1d8" strokeWidth="4"/><path d="M130 26h24v20h-24z" fill="#f4eee0" stroke="#d84b3e" strokeWidth="3"/></>}
+    {dibujo==="drain" && <><path d="M20 42h140v43H20z" fill="#64736a"/><path d="M20 55h140" stroke="#d5e0d7" strokeWidth="3"/><path d="M30 62 65 82h50l35-20" fill="none" stroke="#6bb5d5" strokeWidth="5"/><path d="M75 31h30v15H75z" fill="#aebbb1"/></>}
+    {dibujo==="tunnel" && <><path d="M28 88V53a62 62 0 0 1 124 0v35z" fill="#69776e"/><path d="M51 88V54a39 39 0 0 1 78 0v34z" fill="#18221c"/><path d="M78 72h24" stroke="#f4f0d9" strokeWidth="3" strokeDasharray="5 4"/></>}
+    {dibujo==="roundabout" && <><circle cx="90" cy="53" r="35" fill="#65736a"/><circle cx="90" cy="53" r="15" fill="#8aa27e" stroke="#dce6d8" strokeWidth="2"/><path d="M90 12v15m0 52v9M49 53H31m118 0h-18" stroke="#f5f1dc" strokeWidth="5"/><path d="m84 20 6-8 6 8m28 27 8 6-8 6" fill="none" stroke="#f5f1dc" strokeWidth="3"/></>}
+    {dibujo==="gantry" && <><path d="M32 88V19h8v69m100 0V19h8v69M36 25h108" stroke="#bac7bd" strokeWidth="6" fill="none"/><rect x="48" y="27" width="84" height="30" rx="3" fill="#246b50" stroke="#dce8dc" strokeWidth="2"/><path d="M68 42h43m-7-7 7 7-7 7" stroke="white" strokeWidth="3" fill="none"/></>}
+    {dibujo==="slope" && <><path d="M20 84 82 20l78 64z" fill="#8b987e"/><path d="M20 84h140" stroke="#d9e1d8" strokeWidth="3"/><path d="m82 20 10 64" stroke="#d4dfd2" strokeWidth="2" strokeDasharray="4 4"/></>}
+    {dibujo==="bridge" && <><path d="M18 65h144" stroke="#c3d0c6" strokeWidth="8"/><path d="M34 65V38m112 27V38M34 38h112" stroke="#aebdb2" strokeWidth="5"/><path d="M47 65v22m86-22v22" stroke="#aebdb2" strokeWidth="5"/><path d="M18 86h144" stroke="#6b7b70" strokeWidth="3"/></>}
+    {dibujo==="rural" && <><path d="M62 96 78 16h24l16 80" fill="#8b8875"/><path d="M90 91V72m0-14V43" stroke="#eee9d5" strokeWidth="3" strokeDasharray="6 5"/><path d="M18 74 45 48m117 26-27-26" stroke="#7c9a70" strokeWidth="9"/></>}
+    {dibujo==="trafficlight" && <><rect x="73" y="12" width="34" height="68" rx="8" fill="#242b27" stroke="#d1d9d2" strokeWidth="2"/><circle cx="90" cy="27" r="7" fill="#e54e43"/><circle cx="90" cy="46" r="7" fill="#e8bd48"/><circle cx="90" cy="65" r="7" fill="#6cba76"/><path d="M90 80v12" stroke="#c7d2c8" strokeWidth="5"/></>}
+  </svg>;
+}
+
 export default function Senales({ volver }) {
   const [pestana, setPestana] = useState("senales");
   const [filtro, setFiltro] = useState("Todos");
   const [busqueda, setBusqueda] = useState("");
   const [abiertas, setAbiertas] = useState([]);
   const [novedades, setNovedades] = useState(false);
-  const elementosFiltrados = useMemo(() => elementos.filter(e => (filtro === "Todos" || e.grupo === filtro) && (e.nombre + " " + e.texto + " " + e.grupo).toLowerCase().includes(busqueda.toLowerCase())), [filtro,busqueda]);
+  const familiasFiltradas = useMemo(() => familias.filter(f => (filtro === "Todos" || f.codigo.startsWith(filtro)) && (f.nombre+" "+f.codigo+" "+f.descripcion).toLowerCase().includes(busqueda.toLowerCase().trim())), [filtro,busqueda]);
+  const elementosFiltrados = useMemo(() => elementos.filter(e => (filtro === "Todos" || e.grupo === filtro) && (e.nombre+" "+e.texto+" "+e.grupo).toLowerCase().includes(busqueda.toLowerCase().trim())), [filtro,busqueda]);
+  const gruposElementos = ["Todos", ...new Set(elementos.map(e=>e.grupo))];
+  const categoriasSenales = ["Todos","P","R","S"];
   const toggle = (nombre) => setAbiertas(actual => actual.includes(nombre) ? actual.filter(x=>x!==nombre) : [...actual,nombre]);
   return <section className="senales-modulo">
     <div className="senales-cabecera">
-      <div><span className="etiqueta-seccion">MÓDULO 03 · HERRAMIENTAS</span><h1>Señales y elementos de la vía</h1><p>Catálogo oficial de señalización y guía fotográfica de infraestructura viaria.</p></div>
+      <div><span className="etiqueta-seccion">MÓDULO 03 · HERRAMIENTAS</span><h1>Señales y elementos de la vía</h1><p>Consulta rápida por nombre, código o categoría.</p></div>
       <button className="boton boton--secundario" onClick={volver}>← Herramientas</button>
     </div>
     <div className="senales-pestanas">
-      <button className={pestana==="senales"?"activa":""} onClick={()=>setPestana("senales")}>Señales de tráfico</button>
-      <button className={pestana==="elementos"?"activa":""} onClick={()=>setPestana("elementos")}>Elementos de la vía</button>
+      <button className={pestana==="senales"?"activa":""} onClick={()=>{setPestana("senales");setFiltro("Todos");setBusqueda("");}}>Señales de tráfico</button>
+      <button className={pestana==="elementos"?"activa":""} onClick={()=>{setPestana("elementos");setFiltro("Todos");setBusqueda("");}}>Elementos de la vía</button>
     </div>
-    {pestana === "senales" ? <div className="catalogo-senales">
-      <div className="catalogo-intro"><strong>Catálogo oficial de señales verticales · edición 2025</strong><p>Las fichas visuales siguientes reproducen las láminas oficiales del BOE: cada lámina reúne las señales de su familia con su código, denominación y significado.</p><span>18 familias · láminas oficiales del Real Decreto 465/2025</span></div>
-      <div className="catalogo-acciones"><button className={novedades?"activa":""} onClick={()=>setNovedades(!novedades)}>{novedades?"Ocultar":"Ver"} novedades del catálogo 2025</button><a href={BOE} target="_blank" rel="noreferrer">Abrir normativa en el BOE ↗</a><a href={PDF_DGT} target="_blank" rel="noreferrer">Manual de normas y señales DGT 2025 ↗</a></div>
-      {novedades && <section className="novedades-senales"><h2>Novedades destacadas de 2025</h2><div className="novedades-grid">{novedades2025.map(([codigo,nombre,detalle])=><article key={codigo}><strong>{codigo}</strong><b>{nombre}</b><p>{detalle}</p></article>)}</div><p className="senales-nota">La actualización de 2025 también incorpora variantes y modifica diseños. Para evitar confusiones, consulta las láminas completas del BOE y distingue el nuevo catálogo de las señales anteriores que todavía pueden encontrarse instaladas.</p></section>}
-      <div className="familias-grid">{familias.map(f=><article className="familia-senal" key={f.nombre}>
+    <div className="senales-controles">
+      <input type="search" value={busqueda} onChange={e=>setBusqueda(e.target.value)} placeholder={pestana==="senales"?"Buscar señal, código o categoría…":"Buscar elemento de la vía…"} aria-label="Buscar en el catálogo"/>
+      <select value={filtro} onChange={e=>setFiltro(e.target.value)} aria-label="Filtrar por categoría">
+        {(pestana==="senales"?categoriasSenales:gruposElementos).map(g=><option key={g} value={g}>{g==="P"?"Advertencia de peligro":g==="R"?"Reglamentación":g==="S"?"Indicación":g}</option>)}
+      </select>
+    </div>
+    {pestana==="senales" ? <>
+      <p className="senales-contador">{familiasFiltradas.length} grupos de señales · selecciona un grupo para consultar sus láminas</p>
+      <div className="familias-grid">{familiasFiltradas.map(f=><article className="familia-senal" key={f.nombre}>
         <button className="familia-senal__cabecera" onClick={()=>toggle(f.nombre)} aria-expanded={abiertas.includes(f.nombre)}><span><small>{f.codigo}</small><strong>{f.nombre}</strong><em>{f.descripcion}</em><i>{f.paginas.length} lámina{f.paginas.length===1?"":"s"} oficiales</i></span><b>{abiertas.includes(f.nombre)?"−":"+"}</b></button>
         {abiertas.includes(f.nombre) && <div className="familia-senal__laminas">{f.paginas.map((n,i)=><a className="lamina-senal" key={n} href={BOE_IMG+n+".png"} target="_blank" rel="noreferrer"><img src={BOE_IMG+n+".png"} alt={`Catálogo oficial 2025: ${f.nombre}, lámina ${i+1}`} loading="lazy"/><span>Ampliar lámina {i+1} ↗</span></a>)}</div>}
       </article>)}</div>
-      <div className="catalogo-otros"><h2>Otras formas de señalización</h2><p>El anexo I también recoge señales y órdenes de los agentes, señalización circunstancial y de obras, balizamiento, semáforos y marcas viales.</p><a href={BOE} target="_blank" rel="noreferrer">Consultar el anexo I completo del Reglamento General de Circulación ↗</a></div>
-    </div> : <div className="elementos-via">
-      <div className="elementos-intro"><strong>Guía fotográfica de infraestructura viaria</strong><p>Fotografías reales para reconocer los elementos sobre el terreno. Pulsa una ficha para ampliar su explicación.</p></div>
-      <div className="senales-controles"><input type="search" value={busqueda} onChange={e=>setBusqueda(e.target.value)} placeholder="Buscar elemento (ej. bionda, cuneta, arcén…)" aria-label="Buscar elemento"/><select value={filtro} onChange={e=>setFiltro(e.target.value)} aria-label="Filtrar elementos">{gruposElementos.map(g=><option key={g}>{g}</option>)}</select></div>
-      <p className="senales-contador">{elementosFiltrados.length} elementos en esta selección</p>
-      <div className="elementos-grid">{elementosFiltrados.map(e=><article className="elemento-foto" key={e.nombre}><a className="elemento-foto__imagen" href={e.fuente} target="_blank" rel="noreferrer"><img src={e.imagen} alt={e.nombre} loading="lazy"/><span>Ver procedencia ↗</span></a><div className="elemento-foto__texto"><small>{e.grupo}</small><h2>{e.nombre}</h2><p>{e.texto}</p><a href={e.fuente} target="_blank" rel="noreferrer">Fuente de la fotografía · {e.credito}</a></div></article>)}</div>
-      <p className="senales-nota">Las fotografías se muestran como material de identificación. La descripción técnica y la aplicación de cada elemento deben interpretarse conforme a la normativa y a las características concretas de la vía.</p>
-    </div>}
-    <div className="senales-fuentes"><strong>Fuentes principales</strong><a href={BOE} target="_blank" rel="noreferrer">BOE · Reglamento General de Circulación y catálogo 2025</a><a href={PDF_DGT} target="_blank" rel="noreferrer">DGT · Manual de normas y señales 2025</a></div>
+      <section className="novedades-compactas"><button className="novedades-compactas__boton" onClick={()=>setNovedades(!novedades)}>{novedades?"Ocultar novedades 2025":"Consultar novedades del catálogo 2025"} <span>{novedades?"−":"+"}</span></button>
+      {novedades && <div className="novedades-grid">{novedades2025.map(([codigo,nombre,detalle])=><article key={codigo}><strong>{codigo}</strong><b>{nombre}</b><p>{detalle}</p></article>)}</div>}</section>
+    </> : <>
+      <p className="senales-contador">{elementosFiltrados.length} elementos</p>
+      <div className="elementos-grid elementos-grid--compactos">{elementosFiltrados.map(e=><article className="elemento-foto elemento-foto--compacto" key={e.nombre}>
+        <div className="elemento-foto__miniatura"><IlustracionElemento nombre={e.nombre}/></div>
+        <div className="elemento-foto__texto"><small>{e.grupo}</small><h2>{e.nombre}</h2><p>{e.texto}</p><a href={e.fuente} target="_blank" rel="noreferrer">Ver referencia ↗</a></div>
+      </article>)}</div>
+    </>}
+    <details className="senales-informacion-final"><summary>Información del catálogo, normativa y fuentes</summary>
+      <div className="senales-informacion-final__contenido">
+        <section><strong>Catálogo oficial de señales verticales · edición 2025</strong><p>Las familias agrupan las láminas oficiales publicadas con la actualización del catálogo. Dentro de cada grupo puedes ampliar las láminas, que contienen las señales, sus códigos y diseños. El buscador localiza grupos por denominación, código de familia o descripción; no busca todavía cada código individual dentro de una lámina.</p><p>El catálogo vertical se organiza en señales de advertencia de peligro (P), reglamentación (R) e indicación (S). Además existen señales de los agentes, señalización circunstancial y de obras, balizamiento, semáforos y marcas viales.</p></section>
+        <section><strong>Elementos de la vía</strong><p>Las miniaturas son representaciones esquemáticas para identificar visualmente cada concepto; no sustituyen fotografías de una instalación concreta ni planos técnicos.</p></section>
+        <div className="senales-fuentes"><a href={BOE} target="_blank" rel="noreferrer">BOE · Reglamento General de Circulación y catálogo 2025 ↗</a><a href={PDF_DGT} target="_blank" rel="noreferrer">DGT · Manual de normas y señales 2025 ↗</a></div>
+      </div>
+    </details>
   </section>;
 }
