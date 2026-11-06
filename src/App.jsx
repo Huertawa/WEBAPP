@@ -167,6 +167,7 @@ function App() {
             <span className="etiqueta-seccion">ASISTENTE DE PERMISOS EXTRANJEROS</span>
             <h2>Selecciona el país que expidió el permiso</h2>
             <p className="texto-secundario">La relación de países se basa en la información publicada por la DGT. El convenio no garantiza por sí solo que un permiso concreto sea canjeable. Si no aparece, selecciona «Otro país» y verifica el reconocimiento internacional aplicable.</p>
+            <p className="enlace-ayuda-dgt"><a href="https://www.dgt.es/nuestros-servicios/permisos-de-conducir/permisos-extranjeros-y-de-fuerzas-y-cuerpos-de-seguridad/canjes-de-permisos/paises-con-convenio-de-canjes/" target="_blank" rel="noreferrer">Consultar listado oficial de países y condiciones de canje en la DGT</a></p>
             <label className="etiqueta-campo" htmlFor="buscar-pais">Buscar país</label>
             <input id="buscar-pais" className="campo-busqueda-pais" type="search" placeholder="Escribe para localizar el país..." value={busquedaPais} onChange={(evento) => { const valor = evento.target.value; setBusquedaPais(valor); if (paisSeleccionado && !paises.some((pais) => pais.nombre === paisSeleccionado && normalizarBusqueda(pais.nombre).includes(normalizarBusqueda(valor)))) setPaisSeleccionado(""); }} />
             <label className="etiqueta-campo">País de expedición</label>
@@ -226,6 +227,12 @@ function App() {
             }}
             alVolver={retroceder}
           />
+        )}
+
+        {pantalla === "fechaFirmaConvenio" && (
+          <p className="enlace-ayuda-dgt enlace-ayuda-dgt--convenio">
+            <a href="https://www.dgt.es/nuestros-servicios/permisos-de-conducir/permisos-extranjeros-y-de-fuerzas-y-cuerpos-de-seguridad/canjes-de-permisos/paises-con-convenio-de-canjes/" target="_blank" rel="noreferrer">Consultar en la DGT las condiciones y fechas del convenio aplicable</a>
+          </p>
         )}
 
         {pantalla === "fechaPermiso" && (
