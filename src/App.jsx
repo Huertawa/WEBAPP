@@ -28,13 +28,12 @@ const preguntas = {
   fechaFirmaConvenio: { titulo: "¿El permiso se obtuvo antes de la fecha de firma del convenio entre España y el país expedidor?", descripcion: "Algunos convenios permiten el canje si el permiso se obtuvo antes de la firma del acuerdo, aunque fuera después de adquirir la residencia en España. Comprueba la fecha exacta del convenio aplicable a ese país.", opciones: [{ valor: "convenioAnteriorFirma", texto: "Sí, antes de la firma del convenio" }, { valor: "profesionalTercero", texto: "No, después de la firma" }, { valor: "obtenidoDespuesNoAcreditado", texto: "No puedo acreditarlo" }] },
   profesionalTercero: { titulo: "¿Puede acogerse a la vía de canje para conductores profesionales?", descripcion: "Comprueba conjuntamente que el permiso esté comprendido en el artículo 21.1.a) o b), que acredita al menos seis meses contratado como conductor profesional por empresa legalmente establecida en España, que ha superado la prueba de circulación exigida y que no está privado, suspendido ni intervenido del derecho a conducir.", opciones: [{ valor: "profesionalPendiente", texto: "Sí, reúne y acredita todos los requisitos" }, { valor: "profesionalNoCanje", texto: "No / no reúne todos los requisitos" }] },
   fechaPermiso: {
-    titulo: "¿En qué momento se obtuvo el permiso extranjero?",
-    descripcion: "Selecciona una sola opción tras comparar la fecha de expedición con la fecha de residencia normal en España y, cuando corresponda, con la fecha de firma del convenio. Comprueba ambas fechas en documentación oficial. Para Corea del Sur existe una regla específica.",
+    titulo: "¿Cuándo obtuvo el permiso extranjero respecto a la fecha en que adquirió la residencia legal en España?",
+    descripcion: "Comprueba la fecha de expedición del permiso y la fecha en que adquirió la residencia normal. En los países con convenio, si lo obtuvo después de ser residente, habrá que comprobar además la fecha de firma del convenio.",
     opciones: [
-      { valor: "obtenidoAntes", texto: "Antes de adquirir la residencia legal en España" },
-      { valor: "convenioAnteriorFirma", texto: "Después de adquirir la residencia, pero antes de la firma del convenio" },
-      { valor: "obtenidoDespues", texto: "Después de adquirir la residencia y después de la firma del convenio" },
-      { valor: "obtenidoDespuesNoAcreditado", texto: "No puedo acreditar la fecha exacta" },
+      { valor: "obtenidoAntes", texto: "Antes de adquirir la residencia en España" },
+      { valor: "obtenidoDespues", texto: "Después de adquirir la residencia en España" },
+      { valor: "obtenidoDespuesNoAcreditado", texto: "No puedo acreditar la fecha" },
     ],
   },
 };
@@ -116,9 +115,8 @@ function App() {
     if (!pais) return;
     setPilaNavegacion((anterior) => [...anterior, { pantalla, historial, paisSeleccionado }]);
     setHistorial((anterior) => [...anterior, texto]);
-
-    if (destino === "obtenidoAntes" || destino === "convenioAnteriorFirma") {
-      setPantalla("conConvenio");
+    if (destino === "obtenidoAntes") {
+      setPantalla(pais.convenio ? "conConvenio" : "profesionalTercero");
       return;
     }
     if (destino === "obtenidoDespuesNoAcreditado") {
@@ -129,7 +127,7 @@ function App() {
       setPantalla("coreaPosteriorResidencia");
       return;
     }
-    setPantalla("profesionalTercero");
+    setPantalla(pais.convenio ? "fechaFirmaConvenio" : "profesionalTercero");
   };
 
   return (
@@ -154,7 +152,7 @@ function App() {
 
         {resultado && <TarjetaResultado resultado={resultado} historial={historial} alReiniciar={reiniciar} />}
 
-        {preguntas[pantalla] && (
+        {preguntas[pantalla] && pantalla !== "fechaPermiso" && (
           <Pregunta
             titulo={preguntas[pantalla].titulo}
             descripcion={preguntas[pantalla].descripcion}
@@ -226,6 +224,16 @@ function App() {
                 : destino;
               avanzar(destinoFinal, texto);
             }}
+            alVolver={retroceder}
+          />
+        )}
+
+        {pantalla === "fechaFirmaConvenio" && (
+          <Pregunta
+            titulo={preguntas.fechaFirmaConvenio.titulo}
+            descripcion={preguntas.fechaFirmaConvenio.descripcion}
+            opciones={preguntas.fechaFirmaConvenio.opciones}
+            alSeleccionar={(destino, texto) => avanzar(destino, texto)}
             alVolver={retroceder}
           />
         )}
