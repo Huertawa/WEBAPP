@@ -138,10 +138,13 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
 
 
       {consecuenciaPenal && (
-        <section className="consecuencia-penal">
-          <strong>POSIBLE CONSECUENCIA PENAL · ART. 384 CP</strong>
-          <p>{consecuenciaPenal}</p>
-        </section>
+        <details className="aclaracion-desplegable aclaracion-desplegable--penal">
+          <summary>Ver aclaración penal · artículo 384 del Código Penal</summary>
+          <section className="consecuencia-penal">
+            <strong>POSIBLE CONSECUENCIA PENAL · ART. 384 CP</strong>
+            <p>{consecuenciaPenal}</p>
+          </section>
+        </details>
       )}
 
       {denuncia ? (
@@ -189,40 +192,48 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
         </section>
       ) : null}
 
-      <section className="lista-comprobacion">
-        <div className="lista-comprobacion__cabecera">
-          <span>CONTROL DE LA INTERVENCIÓN</span>
-          <small>{comprobaciones.length} comprobaciones recomendadas</small>
-        </div>
-        <ol>
-          {comprobaciones.map((item, indice) => <li key={indice}>{item}</li>)}
-        </ol>
-      </section>
+      <details className="aclaracion-desplegable">
+        <summary>Ver comprobaciones de la intervención ({comprobaciones.length})</summary>
+        <section className="lista-comprobacion">
+          <div className="lista-comprobacion__cabecera">
+            <span>CONTROL DE LA INTERVENCIÓN</span>
+            <small>{comprobaciones.length} comprobaciones recomendadas</small>
+          </div>
+          <ol>
+            {comprobaciones.map((item, indice) => <li key={indice}>{item}</li>)}
+          </ol>
+        </section>
+      </details>
 
       <section className="actuacion-destacada">
         <span>QUÉ HACER EN LA INTERVENCIÓN</span>
         <p>{actuacion || "Actuación pendiente de determinar."}</p>
       </section>
 
-      <div className="tarjeta-resultado__contenido">
-        <div className="bloque-datos">
-          <h3>Datos comprobados en el cuestionario</h3>
-          <ol className="historial-consulta">
-            {historial.map((elemento, indice) => <li key={indice}>{elemento}</li>)}
-          </ol>
+      <details className="aclaracion-desplegable">
+        <summary>Ver fundamento jurídico, motivo y observaciones</summary>
+        <div className="tarjeta-resultado__contenido">
+          <div className="bloque-datos">
+            <h3>Datos comprobados en el cuestionario</h3>
+            <ol className="historial-consulta">
+              {historial.map((elemento, indice) => <li key={indice}>{elemento}</li>)}
+            </ol>
+          </div>
+          <div className="bloque-datos">
+            <h3>Fundamento jurídico</h3>
+            <dl className="datos-juridicos">
+              <div><dt>Motivo</dt><dd>{motivo || "Pendiente de verificar"}</dd></div>
+              <div><dt>Normativa</dt><dd>{normativa || "Pendiente de verificar"}</dd></div>
+              <div><dt>Observaciones</dt><dd>{observaciones || "—"}</dd></div>
+            </dl>
+          </div>
         </div>
-        <div className="bloque-datos">
-          <h3>Fundamento jurídico</h3>
-          <dl className="datos-juridicos">
-            <div><dt>Motivo</dt><dd>{motivo || "Pendiente de verificar"}</dd></div>
-            <div><dt>Normativa</dt><dd>{normativa || "Pendiente de verificar"}</dd></div>
-            <div><dt>Observaciones</dt><dd>{observaciones || "—"}</dd></div>
-          </dl>
-        </div>
-      </div>
+      </details>
 
-      <div className="fuentes-juridicas">
-        <h3>Fuentes oficiales para contrastar</h3>
+      <details className="aclaracion-desplegable">
+        <summary>Ver normativa y fuentes oficiales</summary>
+        <div className="fuentes-juridicas">
+          <h3>Fuentes oficiales para contrastar</h3>
         <p className="fuentes-juridicas__revision">Revisión de referencias: 06/11/2026. La DGT publica en SIPP la guía codificada extendida vigente desde el 01/10/2026. Los códigos mostrados son referencias condicionadas: contrasta el precepto, opción, gravedad y puntos en la versión vigente antes de emitir el boletín.</p>
         <ul>
           <li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2009-9481" target="_blank" rel="noreferrer">Reglamento General de Conductores</a></li>
@@ -234,9 +245,10 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
           <li><a href="https://www.dgt.es/comunicacion/noticias/20250221-sin-los-papeles-en-regla/" target="_blank" rel="noreferrer">DGT · Sin los papeles en regla: sanciones por permisos caducados y extranjeros</a></li>
           <li><a href="https://sede.dgt.gob.es/export/sites/dgt/.galleries/multas/ARCI/Guia-codificada-de-infracciones-ARCI-Vigente-a-partir-del-01-07-2025.pdf" target="_blank" rel="noreferrer">DGT · Guía codificada ARCI en PDF (versión histórica 01/07/2025)</a></li>
           <li><a href="https://www.dgt.es/nuestros-servicios/permisos-de-conducir/permisos-extranjeros-y-de-fuerzas-y-cuerpos-de-seguridad/canjes-de-permisos/paises-con-convenio-de-canjes/" target="_blank" rel="noreferrer">DGT · Países con convenio de canje (actualizado 26/06/2026)</a></li>
-        </ul>
-      </div>
-      <p className="aviso-juridico">Herramienta de apoyo. Comprueba siempre la vigencia normativa, la codificación y las circunstancias concretas antes de formular una denuncia.</p>
+          </ul>
+        </div>
+      </details>
+      <p className="aviso-juridico">Herramienta de apoyo. Contrasta la normativa y las circunstancias antes de denunciar.</p>
       <div className="acciones-resultado">
         <button type="button" className="boton boton--principal" onClick={alReiniciar}>Iniciar nueva consulta</button>
       </div>
