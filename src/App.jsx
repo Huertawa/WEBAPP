@@ -154,7 +154,7 @@ function App() {
             <h2>Selecciona el país que expidió el permiso</h2>
             <p className="texto-secundario">La relación de países se basa en la información publicada por la DGT. El convenio no garantiza por sí solo que un permiso concreto sea canjeable. Si no aparece, selecciona «Otro país» y verifica el reconocimiento internacional aplicable.</p>
             <label className="etiqueta-campo" htmlFor="buscar-pais">Buscar país</label>
-            <input id="buscar-pais" className="campo-busqueda-pais" type="search" placeholder="Escribe para localizar el país..." value={busquedaPais} onChange={(evento) => setBusquedaPais(evento.target.value)} />
+            <input id="buscar-pais" className="campo-busqueda-pais" type="search" placeholder="Escribe para localizar el país..." value={busquedaPais} onChange={(evento) => { const valor = evento.target.value; setBusquedaPais(valor); if (paisSeleccionado && !paises.some((pais) => pais.nombre.toLocaleLowerCase("es").includes(valor.toLocaleLowerCase("es")) && pais.nombre === paisSeleccionado)) setPaisSeleccionado(""); }} />
             <label className="etiqueta-campo" htmlFor="pais-permiso">País de expedición</label>
             <select id="pais-permiso" className="selector-pais" value={paisSeleccionado} onChange={(evento) => setPaisSeleccionado(evento.target.value)}>
               <option value="">Selecciona un país...</option>
