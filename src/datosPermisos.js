@@ -409,7 +409,7 @@ export const resultados = {
     puedeConducir: false,
     motivo: "La pena de privación del derecho a conducir por tiempo igual o inferior a dos años ya se ha cumplido, pero el conductor no ha acreditado la superación del curso de reeducación y sensibilización vial exigido para volver a conducir.",
     normativa: "Real Decreto Legislativo 6/2015, Ley de Tráfico.",
-    articulo: "Artículo 73.2 de la Ley de Tráfico, en relación con el artículo 76.l).",
+    articulo: "Artículo 73.2 de la Ley de Tráfico, en relación con el artículo 76.ll).",
     euros: "200 €",
     puntos: "0 puntos",
     actuacion: "Comprobar la sentencia firme, la duración de la pena y su fecha de cumplimiento. Verificar si el conductor ha superado el curso de reeducación y sensibilización vial. Si no lo ha superado, formular denuncia conforme al artículo 73.2 LTSV y no permitir que continúe conduciendo hasta que cumpla el requisito.",
@@ -417,7 +417,7 @@ export const resultados = {
     denuncia: {
       calificacion: "Grave",
       preceptoInfringido: "Artículo 73.2 de la Ley de Tráfico.",
-      preceptoSancionador: "Artículo 76.l) de la Ley de Tráfico.",
+      preceptoSancionador: "Artículo 76.ll) de la Ley de Tráfico.",
       importe: "200 €",
       puntos: "0 puntos",
       codificado: "LSV · Art. 073 · Apt. 2 · Opción 5A · 0 puntos",
