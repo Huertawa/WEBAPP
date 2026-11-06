@@ -1749,6 +1749,9 @@ a, .fuentes-juridicas a { color: #76c5e6; }
 .panel-residencia__cabecera h2{margin:8px 0 16px;color:#f4f7fa;font-size:20px;line-height:1.3}
 .panel-residencia__bloques{display:grid;gap:10px}
 .panel-residencia__bloques article{padding:13px 15px;border:1px solid rgba(112,174,232,.2);border-radius:9px;background:rgba(7,14,22,.34)}
+.panel-residencia__bloque-ue{margin-top:10px;padding:13px 15px;border:1px solid rgba(78,197,143,.28);border-radius:9px;background:rgba(30,112,78,.10)}
+.panel-residencia__bloque-ue strong{display:block;margin-bottom:6px;color:#8fe0b4;font-size:13px}
+.panel-residencia__bloque-ue p{margin:0;color:#d0dce8;font-size:13px;line-height:1.65}
 .panel-residencia__bloques strong{display:block;margin-bottom:6px;color:#b8dcfa;font-size:13px}
 .panel-residencia__bloques p{margin:0;color:#d0dce8;font-size:13px;line-height:1.65}
 .panel-residencia__nota{margin:13px 0 0;padding:12px 14px;border-left:3px solid #f2b95d;border-radius:6px;background:rgba(143,98,35,.12);color:#f2d49c;font-size:12px;line-height:1.6}
