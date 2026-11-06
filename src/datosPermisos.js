@@ -146,7 +146,7 @@ export const resultados = {
       importe: "500 €",
       puntos: "0 puntos",
       codificado: "CON · Art. 001 · Apt. 1 · Opción 5E · 0 puntos",
-      fundamento: "La guía codificada ARCI de la DGT (vigente desde 01/07/2025) contempla esta opción para permisos extranjeros equivalentes no susceptibles de canje por incumplir las condiciones o requisitos reglamentarios. Confirmar previamente la inexistencia de convenio o la falta de requisitos esenciales y descartar una vía excepcional de canje profesional."
+      fundamento: "La guía codificada ARCI de la DGT contempla esta opción para permisos extranjeros equivalentes no susceptibles de canje por incumplir las condiciones o requisitos reglamentarios. Confirmar el texto y código exactos en la versión vigente del catálogo, acreditar la falta de requisitos esenciales y descartar una vía excepcional de canje profesional."
     },
     orientacionSancion: {
       calificacion: "Pendiente de calificación definitiva",
@@ -274,7 +274,7 @@ export const resultados = {
       importe: "200 €",
       puntos: "0 puntos",
       codificado: "CON · Art. 015 · Apt. 4 · Opción 5B · 0 puntos",
-      fundamento: "La guía codificada ARCI de la DGT recoge específicamente la conducción con permiso comunitario sin renovar su periodo de vigencia una vez adquirida residencia en España. Aplicar solo si se cumplen las condiciones del artículo 15.4 RGC."
+      fundamento: "La guía codificada ARCI de la DGT recoge específicamente la conducción con permiso comunitario sin renovar su periodo de vigencia una vez adquirida residencia en España. Confirmar el código exacto en la versión vigente y aplicar solo si se cumplen las condiciones del artículo 15.4 RGC."
     },
     orientacionSancion: {
       calificacion: "Grave (si se confirma el incumplimiento)",
