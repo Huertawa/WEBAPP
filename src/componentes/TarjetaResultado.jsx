@@ -166,8 +166,11 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
             <div><small>IMPORTE</small><strong>{denuncia.importe}</strong></div>
             <div><small>DETRACCIÓN</small><strong>{denuncia.puntos}</strong></div>
           </div>
-          <p>{denuncia.fundamento}</p>
-          <p className="propuesta-denuncia__aviso">{estadoPendiente ? "No extender denuncia basándose únicamente en esta orientación: confirma primero la validez del permiso, el país, la categoría, el convenio y todos los requisitos del supuesto." : "Antes de extender el boletín, contrasta el código y la redacción exacta con el catálogo sancionador vigente y con los hechos acreditados."}</p>
+          <details className="aclaracion-desplegable aclaracion-desplegable--compacta">
+            <summary>Ver fundamento y advertencias de la denuncia</summary>
+            <p>{denuncia.fundamento}</p>
+            <p className="propuesta-denuncia__aviso">{estadoPendiente ? "No extender denuncia basándose únicamente en esta orientación: confirma primero la validez del permiso, el país, la categoría, el convenio y todos los requisitos del supuesto." : "Antes de extender el boletín, contrasta el código y la redacción exacta con el catálogo sancionador vigente y con los hechos acreditados."}</p>
+          </details>
         </section>
       ) : resultado.orientacionSancion ? (
         <section className="orientacion-sancion">
@@ -182,14 +185,19 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
             <div><small>PRECEPTO INFRINGIDO</small><strong>{resultado.orientacionSancion.preceptoInfringido}</strong></div>
             <div><small>PRECEPTO SANCIONADOR</small><strong>{resultado.orientacionSancion.preceptoSancionador}</strong></div>
           </div>
-          <p>{resultado.orientacionSancion.fundamento}</p>
-          <p className="orientacion-sancion__aviso">Orientación condicionada: este resultado no confirma por sí solo la infracción ni sustituye la comprobación del país, convenio, permiso y circunstancias concretas.</p>
+          <details className="aclaracion-desplegable aclaracion-desplegable--compacta">
+            <summary>Ver fundamento y condiciones de esta orientación</summary>
+            <p>{resultado.orientacionSancion.fundamento}</p>
+            <p className="orientacion-sancion__aviso">Orientación condicionada: este resultado no confirma por sí solo la infracción ni sustituye la comprobación del país, convenio, permiso y circunstancias concretas.</p>
+          </details>
         </section>
       ) : !puedeConducir ? (
-        <section className="sancion-pendiente">
-          <strong>No se asigna automáticamente una denuncia</strong>
-          <p>Con los datos disponibles no es seguro fijar todavía un importe, una detracción de puntos o un código de boletín. Primero hay que concretar la causa y descartar que los hechos tengan relevancia penal.</p>
-        </section>
+        <details className="aclaracion-desplegable">
+          <summary>No se asigna automáticamente una denuncia</summary>
+          <section className="sancion-pendiente">
+            <p>Con los datos disponibles no es seguro fijar todavía un importe, una detracción de puntos o un código de boletín. Primero hay que concretar la causa y descartar que los hechos tengan relevancia penal.</p>
+          </section>
+        </details>
       ) : null}
 
       <details className="aclaracion-desplegable">
