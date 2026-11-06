@@ -18,8 +18,13 @@ export default function Pregunta({ titulo, descripcion, opciones, alSeleccionar,
         <span className="etiqueta-seccion">ASISTENTE DE PERMISOS</span>
       </div>
       <h2>{titulo}</h2>
-      {descripcion && <p className="texto-secundario pregunta__descripcion">{descripcion}</p>}
-      <p className="pregunta__ayuda">Selecciona la opción que corresponda a los hechos comprobados.</p>
+      {descripcion && (
+        <details className="aclaracion-desplegable">
+          <summary>Ver aclaración y qué debes comprobar</summary>
+          <p className="texto-secundario pregunta__descripcion">{descripcion}</p>
+        </details>
+      )}
+      <p className="pregunta__ayuda">Elige la opción que corresponda para continuar.</p>
       <div className="opciones-pregunta">
         {opciones.map((opcion) => {
           const tipo = clasificarOpcion(opcion);
