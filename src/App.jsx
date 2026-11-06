@@ -163,7 +163,7 @@ function App() {
             <label className="etiqueta-campo" htmlFor="pais-permiso">País de expedición</label>
             <select id="pais-permiso" className="selector-pais" value={paisSeleccionado} onChange={(evento) => setPaisSeleccionado(evento.target.value)}>
               <option value="">Selecciona un país...</option>
-              {paisesFiltrados.map((pais) => <option key={pais.nombre} value={pais.nombre}>{pais.nombre}</option>)}
+              {paisesFiltrados.map((pais) => <option key={pais.nombre} value={pais.nombre}>{pais.nombre}{pais.convenio ? " · Convenio DGT" : " · Sin convenio bilateral identificado"}</option>)}
             </select>
             {paisSeleccionado && (() => {
               const pais = paises.find((elemento) => elemento.nombre === paisSeleccionado);
