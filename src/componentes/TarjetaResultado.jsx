@@ -2,35 +2,10 @@ import { useEffect, useState } from "react";
 
 export default function TarjetaResultado({ resultado, historial, alReiniciar }) {
   const [claseVehiculo, setClaseVehiculo] = useState("");
-  const [estadoCopia, setEstadoCopia] = useState("");
   useEffect(() => {
     setClaseVehiculo("");
-    setEstadoCopia("");
   }, [resultado.codigo]);
 
-  const copiarFicha = async () => {
-    const lineas = [
-      "MOTOLISTOS · FICHA DE CONSULTA",
-      nombre,
-      tituloEstado,
-      `Artículo: ${articulo || "Pendiente de verificar"}`,
-      `Importe: ${denuncia?.importe || euros || "Por determinar"}`,
-      `Puntos: ${denuncia?.puntos || puntos || "Por determinar"}`,
-      `Inmovilización: ${inmovilizacion.estado}. ${inmovilizacion.detalle}`,
-      denuncia ? `Precepto infringido: ${denuncia.preceptoInfringido}` : "",
-      denuncia ? `Precepto sancionador: ${denuncia.preceptoSancionador}` : "",
-      denuncia ? `Codificación: ${denuncia.codificado}` : "",
-      `Actuación: ${actuacion || "Pendiente"}`,
-      `Fundamento: ${motivo || ""} ${normativa || ""} ${observaciones || ""}`,
-      "Verificar normativa y circunstancias concretas antes de formular denuncia."
-    ].filter(Boolean).join("\n");
-    try {
-      await navigator.clipboard.writeText(lineas);
-      setEstadoCopia("Ficha copiada al portapapeles");
-    } catch {
-      setEstadoCopia("No se pudo copiar. Comprueba los permisos del navegador.");
-    }
-  };
   const {
     nombre, puedeConducir, motivo, normativa, articulo, euros, puntos,
     actuacion, observaciones, denuncia,
@@ -232,11 +207,9 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
         </ul>
       </div>
       <p className="aviso-juridico">Herramienta de apoyo. Comprueba siempre la vigencia normativa, la codificación y las circunstancias concretas antes de formular una denuncia.</p>
-      <div className="acciones-resultado acciones-resultado--dobles">
-        <button type="button" className="boton boton--secundario" onClick={copiarFicha}>Copiar ficha de intervención</button>
+      <div className="acciones-resultado">
         <button type="button" className="boton boton--principal" onClick={alReiniciar}>Iniciar nueva consulta</button>
       </div>
-      {estadoCopia && <p className="estado-copia" role="status">{estadoCopia}</p>}
     </section>
   );
 }
