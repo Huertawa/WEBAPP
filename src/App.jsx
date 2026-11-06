@@ -167,6 +167,7 @@ function App() {
         )}
 
         {pantalla === "terceroVigente" && (
+          <>
           <section className="panel-residencia">
             <div className="panel-residencia__cabecera">
               <span>ACLARACIÓN JURÍDICA · RESIDENCIA NORMAL Y SITUACIÓN REGULAR</span>
@@ -204,6 +205,7 @@ function App() {
             alSeleccionar={(destino, texto) => avanzar(destino, texto)}
             alVolver={retroceder}
           />
+          </>
         )}
 
         {(pantalla === "mas6meses" || pantalla === "paisTerceroNoResidente") && (
