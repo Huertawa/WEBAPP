@@ -439,23 +439,45 @@ export const resultados = {
 
   PER029: {
     codigo: "PER029",
-    nombre: "Conducción incumpliendo una restricción o adaptación del permiso",
+    nombre: "Incumplimiento de menciones, adaptaciones o restricciones del permiso",
     puedeConducir: false,
     motivo: "El permiso habilita para la categoría, pero el conductor no cumple una restricción, adaptación o condición que figura en la autorización o que fue exigida para su otorgamiento.",
-    normativa: "Real Decreto 818/2009, Reglamento General de Conductores; Real Decreto Legislativo 6/2015, Ley de Tráfico.",
-    articulo: "Artículo 12.6 del Reglamento General de Conductores y artículo 76.ll) de la Ley de Tráfico.",
+    normativa: "Real Decreto 1428/2003, Reglamento General de Circulación; Real Decreto Legislativo 6/2015, Ley de Tráfico.",
+    articulo: "Artículo 3.1 del Reglamento General de Circulación, en relación con el artículo 61.1 de la Ley de Tráfico.",
     euros: "200 €",
     puntos: "0 puntos",
     actuacion: "Identificar el código armonizado o la restricción concreta que figura en el permiso y describir cómo se incumple. Comprobar que la condición sigue vigente y que no existe una adaptación o autorización posterior que permita conducir. Adjuntar informe o documentación que acredite el incumplimiento.",
-    observaciones: "La guía codificada contempla CON 012.6 opción 5A para conducir sin mantener los requisitos exigidos para el otorgamiento del permiso. Se utiliza, entre otros supuestos, cuando deben imponerse restricciones o adaptaciones. No confundir con carecer de la categoría correspondiente ni aplicar sin identificar el requisito concreto.",
+    observaciones: "Para incumplir menciones, adaptaciones o restricciones que figuran en el permiso, la codificación específica es CON 003.1 opción 5A, con 200 € y 0 puntos. No confundir con CON 012.6.5A, que se refiere a no mantener requisitos exigidos para el otorgamiento, ni con carecer de la categoría correspondiente.",
     denuncia: {
       calificacion: "Grave",
-      preceptoInfringido: "Artículo 12.6 del Reglamento General de Conductores.",
+      preceptoInfringido: "Artículo 3.1 del Reglamento General de Circulación y artículo 61.1 de la Ley de Tráfico.",
       preceptoSancionador: "Artículo 76.ll) de la Ley de Tráfico.",
       importe: "200 €",
       puntos: "0 puntos",
-      codificado: "CON · Art. 012 · Apt. 6 · Opción 5A · 0 puntos",
-      fundamento: "La guía codificada de la DGT recoge esta conducta como infracción grave de 200 € y 0 puntos. Debe especificarse qué requisito, restricción o adaptación se incumple."
+      codificado: "CON · Art. 003.1 · Opción 5A · 0 puntos",
+      fundamento: "La guía codificada recoge CON 003.1.5A para conducir incumpliendo las menciones, adaptaciones o restricciones que figuran en el permiso. Es infracción grave de 200 € y 0 puntos; debe identificarse el código o limitación incumplida."
+    }
+  },
+
+  PER030: {
+    codigo: "PER030",
+    nombre: "Canje de oficio realizado sin haberse expedido el nuevo permiso español",
+    puedeConducir: false,
+    motivo: "La autorización extranjera ha quedado sometida a un procedimiento de canje de oficio, pero no se ha expedido todavía el nuevo permiso español que debe habilitar para conducir en España.",
+    normativa: "Real Decreto 818/2009, Reglamento General de Conductores; Real Decreto Legislativo 6/2015, Ley de Tráfico.",
+    articulo: "Artículo 22 del Reglamento General de Conductores y artículo 76.ll) de la Ley de Tráfico.",
+    euros: "200 €",
+    puntos: "0 puntos",
+    actuacion: "Comprobar la resolución o anotación administrativa del canje de oficio, su fecha y si se ha expedido o puesto a disposición del interesado el permiso español. Verificar en el Registro de Conductores e Infractores que no existe autorización española vigente que habilite. Si el canje de oficio está realizado y no se ha expedido el nuevo permiso, documentar el supuesto y formular denuncia conforme a la opción 5D.",
+    observaciones: "La guía codificada diferencia este supuesto de los permisos extranjeros no susceptibles de canje: CON 001.1.5D, infracción grave de 200 € y 0 puntos. No utilizar la opción 5E, reservada a permisos extranjeros equivalentes no susceptibles de canje.",
+    denuncia: {
+      calificacion: "Grave",
+      preceptoInfringido: "Artículo 22 del Reglamento General de Conductores.",
+      preceptoSancionador: "Artículo 76.ll) de la Ley de Tráfico.",
+      importe: "200 €",
+      puntos: "0 puntos",
+      codificado: "CON · Art. 001 · Apt. 1 · Opción 5D · 0 puntos",
+      fundamento: "La opción 5D contempla los supuestos de canje de oficio en los que no se ha expedido el nuevo permiso español y la autorización no cumple los requisitos administrativos para conducir en España."
     }
   },
 };
