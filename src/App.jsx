@@ -37,7 +37,7 @@ const preguntas = {
   },
 };
 
-function App() {
+function normalizarBusqueda(valor) {\n  return valor.normalize("NFD").replace(/[\\u0300-\\u036f]/g, "").toLocaleLowerCase("es").trim();\n}\n\nfunction App() {
   const [pantalla, setPantalla] = useState("inicio");
   const [historial, setHistorial] = useState([]);
   const [paisSeleccionado, setPaisSeleccionado] = useState("");
@@ -95,7 +95,7 @@ function App() {
     coreaPosteriorResidencia: "PER012",
   };
 
-  const resultado = resultados[resultadosPorPantalla[pantalla]];
+  const resultado = resultados[resultadosPorPantalla[pantalla]];\n  const paisesFiltrados = paises.filter((pais) => normalizarBusqueda(pais.nombre).includes(normalizarBusqueda(busquedaPais)));\n  const otroPais = paises.find((pais) => pais.nombre.includes("Otro país"));
 
   const seleccionarFechaObtencion = (destino, texto) => {
     const pais = paises.find((elemento) => elemento.nombre === paisSeleccionado);
@@ -150,17 +150,17 @@ function App() {
 
         {(pantalla === "mas6meses" || pantalla === "paisTerceroNoResidente") && (
           <section className="panel-pregunta">
-            <span className="etiqueta-seccion">PASO {pilaNavegacion.length + 1} · PERMISO EXTRANJERO</span>
+            <span className="etiqueta-seccion">ASISTENTE DE PERMISOS EXTRANJEROS</span>
             <h2>Selecciona el país que expidió el permiso</h2>
             <p className="texto-secundario">La relación de países se basa en la información publicada por la DGT. El convenio no garantiza por sí solo que un permiso concreto sea canjeable. Si no aparece, selecciona «Otro país» y verifica el reconocimiento internacional aplicable.</p>
             <label className="etiqueta-campo" htmlFor="buscar-pais">Buscar país</label>
-            <input id="buscar-pais" className="campo-busqueda-pais" type="search" placeholder="Escribe para localizar el país..." value={busquedaPais} onChange={(evento) => { const valor = evento.target.value; setBusquedaPais(valor); if (paisSeleccionado && !paises.some((pais) => pais.nombre.toLocaleLowerCase("es").includes(valor.toLocaleLowerCase("es")) && pais.nombre === paisSeleccionado)) setPaisSeleccionado(""); }} />
+            <input id="buscar-pais" className="campo-busqueda-pais" type="search" placeholder="Escribe para localizar el país..." value={busquedaPais} onChange={(evento) => { const valor = evento.target.value; setBusquedaPais(valor); if (paisSeleccionado && !paises.some((pais) => pais.nombre === paisSeleccionado && normalizarBusqueda(pais.nombre).includes(normalizarBusqueda(valor)))) setPaisSeleccionado(""); }} />
             <label className="etiqueta-campo" htmlFor="pais-permiso">País de expedición</label>
             <select id="pais-permiso" className="selector-pais" value={paisSeleccionado} onChange={(evento) => setPaisSeleccionado(evento.target.value)}>
               <option value="">Selecciona un país...</option>
-              {paises.filter((pais) => pais.nombre.toLocaleLowerCase("es").includes(busquedaPais.toLocaleLowerCase("es"))).map((pais) => <option key={pais.nombre} value={pais.nombre}>{pais.nombre}</option>)}
+              {paisesFiltrados.map((pais) => <option key={pais.nombre} value={pais.nombre}>{pais.nombre}</option>)}
             </select>
-            {busquedaPais && !paises.some((pais) => pais.nombre.toLocaleLowerCase("es").includes(busquedaPais.toLocaleLowerCase("es"))) && <p className="texto-secundario">No se encuentra ese país. Prueba con otro nombre o selecciona «Otro país» si no aparece en la lista.</p>}
+            {busquedaPais && paisesFiltrados.length === 0 && <div className="pais-no-encontrado"><p className="texto-secundario">No se encuentra ese país en la lista de convenios bilaterales. Esto no significa necesariamente que el permiso no esté reconocido: comprueba también los convenios internacionales y el formato del documento.</p>{otroPais && <button type="button" className="boton boton--secundario" onClick={() => setPaisSeleccionado(otroPais.nombre)}>Continuar con otro país</button>}</div>}
             <div className="acciones-pregunta">
               <button className="boton boton--secundario" onClick={retroceder}>Volver</button>
               <button className="boton boton--principal" disabled={!paisSeleccionado} onClick={() => avanzar(pantalla === "paisTerceroNoResidente" ? "categoriaTerceroNoResidente" : "fechaPermiso", `País de expedición: ${paisSeleccionado}`)}>Continuar</button>
