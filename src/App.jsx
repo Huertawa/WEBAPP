@@ -258,7 +258,7 @@ function App() {
         {pantalla === "fechaPermiso" && (
           <Pregunta
             titulo={preguntas.fechaPermiso.titulo}
-            descripcion={`${preguntas.fechaPermiso.descripcion} ${paisActual?.convenio ? `Convenio de ${paisActual.nombre}: entrada en vigor ${paisActual.fechaEntradaVigor || "fecha no disponible"} según la DGT.` : ""}`}
+            descripcion={preguntas.fechaPermiso.descripcion}
             opciones={preguntas.fechaPermiso.opciones}
             alSeleccionar={seleccionarFechaObtencion}
             alVolver={retroceder}
