@@ -6,6 +6,7 @@ import Pregunta from "./componentes/Pregunta";
 import MapaIbiza from "./componentes/MapaIbiza";
 import Herramientas from "./componentes/Herramientas";
 import Senales from "./componentes/Senales";
+import ElementosVia from "./componentes/ElementosVia";
 
 const preguntas = {
   inicio: { titulo: "¿El conductor posee permiso de conducción?", descripcion: "Comprueba si dispone de una autorización de conducción obtenida en España o en otro país. Si la tiene, después identificaremos dónde se expidió y si está vigente.", opciones: [{ valor: "tipoPermiso", texto: "Sí, posee permiso" }, { valor: "situacionSinPermiso", texto: "No dispone de un permiso válido" }] },
@@ -253,7 +254,7 @@ function App() {
       ) : pantalla === "mapa" ? (
         <MapaIbiza volver={() => setPantalla("portada")} />
       ) : pantalla === "herramientas" ? (
-        <Herramientas abrirSenales={() => setPantalla("senales")} volver={() => setPantalla("portada")} />
+        <Herramientas abrirSenales={() => setPantalla("senales")} abrirElementos={() => setPantalla("elementosVia")} volver={() => setPantalla("portada")} />
       ) : pantalla === "senales" ? (
         <Senales volver={() => setPantalla("herramientas")} />
       ) : (
