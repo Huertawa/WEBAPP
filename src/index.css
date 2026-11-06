@@ -1519,3 +1519,31 @@ a, .fuentes-juridicas a { color: #76c5e6; }
 .enlace-ayuda-dgt--convenio{margin:0 auto 18px;max-width:900px;padding:10px 16px;border:1px solid rgba(118,197,230,.22);border-radius:9px;background:rgba(45,112,174,.08);text-align:center}
 
 .opcion-pais__bandera-fallback{display:none;align-items:center;justify-content:center;flex:0 0 32px;width:32px;height:24px;border:1px solid #657584;border-radius:3px;color:#d5e0e8;font-size:9px;font-weight:800;letter-spacing:.04em;background:#263441}
+
+
+/* Fecha del acuerdo: dato principal y visible en la ficha del país */
+.aviso-pais-seleccionado__fecha {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 10px 0 !important;
+  padding: 11px 13px;
+  border: 1px solid rgba(118,197,230,.28);
+  border-radius: 8px;
+  background: rgba(8,14,20,.42);
+}
+.aviso-pais-seleccionado__fecha span {
+  color: #b5c1cc;
+  font-size: 12px;
+  line-height: 1.45;
+}
+.aviso-pais-seleccionado .aviso-pais-seleccionado__fecha strong {
+  margin: 0;
+  color: #f4f7fa;
+  font-size: 17px;
+  white-space: nowrap;
+}
+@media(max-width:480px) {
+  .aviso-pais-seleccionado__fecha { align-items: flex-start; flex-direction: column; gap: 5px; }
+}
