@@ -1,5 +1,6 @@
 import {useMemo,useState} from "react";
-const BASE_BOE="https://www.boe.es/datos/imagenes/disp/2003/306/";\nconst CATALOGO_2025="https://www.boe.es/eli/es/rd/2025/06/10/465/dof/spa/pdf";
+const BASE_BOE="https://www.boe.es/datos/imagenes/disp/2003/306/";
+const CATALOGO_2025="https://www.boe.es/eli/es/rd/2025/06/10/465/dof/spa/pdf";
 const senales = [
   { grupo:"Advertencia de peligro", codigo:"P-1", nombre:"Intersección con prioridad", detalle:"Advierte de una intersección con una vía cuyos usuarios deben ceder el paso.", imagen:"23514_50101.png" },
   { grupo:"Advertencia de peligro", codigo:"P-3", nombre:"Semáforos", detalle:"Advierte de la proximidad de una intersección o tramo con semáforos.", imagen:"23514_50107.png" },
