@@ -180,13 +180,15 @@ function App() {
   return (
     <main className="aplicacion">
       <header className="cabecera-aplicacion">
-        <div className="marca">
-          <span className="marca__simbolo">M</span>
-          <div>
-            <p className="marca__nombre">MOTOLISTOS</p>
-            <span className="marca__descripcion">Herramienta de consulta de permisos</span>
+        {pantalla !== "portada" && (
+          <div className="marca">
+            <span className="marca__simbolo">M</span>
+            <div>
+              <p className="marca__nombre">MOTOLISTOS</p>
+              <span className="marca__descripcion">Herramienta de consulta de permisos</span>
+            </div>
           </div>
-        </div>
+        )}
         <div className="cabecera-aplicacion__acciones">
           <span className="cabecera-aplicacion__estado">VERSIÓN DE TRABAJO</span>
           {pantalla !== "portada" && <button type="button" className="boton-inicio" onClick={() => setPantalla("portada")} aria-label="Volver a la pantalla principal">⌂ <span>Inicio</span></button>}
@@ -289,7 +291,6 @@ function App() {
               </span>
             </button>
           </div>
-          <p className="portada-modulos__pie">MOTOLISTOS <span>·</span> Herramientas de consulta y apoyo</p>
         </section>
       ) : pantalla === "mapa" ? (
         <MapaIbiza volver={() => setPantalla("portada")} />
