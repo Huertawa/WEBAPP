@@ -56,9 +56,7 @@ const elementos = [
 // Cada ficha utiliza su propia fotografía. No se reutilizan imágenes genéricas
 // por categoría: si una fuente falla, se muestra el aviso en esa ficha.
 function imagenElemento(e) {
-  // Proxy de imágenes: evita bloqueos de hotlink y entrega formatos compatibles.
-  const origen = e.imagen;
-  return origen ? `https://images.weserv.nl/?url=${encodeURIComponent(origen)}&output=jpg` : "";
+  return e.imagen;
 }
 const grupos=["Todos",...new Set(elementos.map(e=>e.grupo))];
 const estilosElementos = `
