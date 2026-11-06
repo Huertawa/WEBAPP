@@ -93,7 +93,7 @@ function App() {
     terceroCaducado: "PER011",
     conConvenio: "PER008",
     convenioAnteriorFirma: "PER008",
-    obtenidoDespuesNoAcreditado: "PER010",
+    obtenidoDespuesNoAcreditado: "PER022",
     sinConvenio: "PER009",
     profesionalPendiente: "PER018",
     obtenidoDespuesNoCanjeable: "PER010",
