@@ -207,7 +207,6 @@ function App() {
             </div>
           </div>
           </div>
-          <div className="portada-mascota" aria-label="Mascota de MOTOLISTOS"><img src={caimanFoto} alt="Caimán motorista sobre una motocicleta" /><div className="portada-mascota__texto"><span>EN RUTA · SIEMPRE ALERTA</span><strong>La carretera, bajo control.</strong></div></div>
           <div className="portada-modulos__separador"><span>SELECCIONA UN MÓDULO</span><i></i></div>
           <div className="modulos-grid">
             <button type="button" className="modulo-acceso modulo-acceso--permisos" onClick={() => setPantalla("inicio")}>
