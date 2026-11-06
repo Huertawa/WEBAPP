@@ -11,13 +11,6 @@ function clasificarOpcion(opcion) {
   return "informativa";
 }
 
-const etiquetasOpcion = {
-  positiva: "Cumple",
-  negativa: "No cumple",
-  revisar: "Comprobar",
-  informativa: "Seleccionar",
-};
-
 export default function Pregunta({ titulo, descripcion, opciones, alSeleccionar, alVolver }) {
   return (
     <section className="panel-pregunta">
@@ -37,11 +30,7 @@ export default function Pregunta({ titulo, descripcion, opciones, alSeleccionar,
               key={opcion.valor}
               onClick={() => alSeleccionar(opcion.valor, opcion.texto)}
             >
-              <span className="opcion-pregunta__indicador" aria-hidden="true" />
-              <span className="opcion-pregunta__contenido">
-                <span className="opcion-pregunta__texto">{opcion.texto}</span>
-                <small>{etiquetasOpcion[tipo]}</small>
-              </span>
+              <span className="opcion-pregunta__texto">{opcion.texto}</span>
               <span className="opcion-pregunta__flecha" aria-hidden="true">›</span>
             </button>
           );
