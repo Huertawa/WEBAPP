@@ -3,6 +3,7 @@ import { resultados } from "./datosPermisos";
 import { paises } from "./paises";
 import TarjetaResultado from "./componentes/TarjetaResultado";
 import Pregunta from "./componentes/Pregunta";
+import MapaIbiza from "./componentes/MapaIbiza";
 
 const preguntas = {
   inicio: { titulo: "¿El conductor posee permiso de conducción?", descripcion: "Comprueba si dispone de una autorización de conducción obtenida en España o en otro país. Si la tiene, después identificaremos dónde se expidió y si está vigente.", opciones: [{ valor: "tipoPermiso", texto: "Sí, posee permiso" }, { valor: "situacionSinPermiso", texto: "No dispone de un permiso válido" }] },
@@ -237,17 +238,7 @@ function App() {
           <p className="portada-modulos__pie">MOTOLISTOS <span>·</span> Herramientas de consulta y apoyo</p>
         </section>
       ) : pantalla === "mapa" ? (
-        <section className="modulo-en-preparacion">
-          <span className="etiqueta-seccion">MÓDULO 02 · CARTOGRAFÍA</span>
-          <h1>Mapa de Ibiza</h1>
-          <p>Este espacio será el mapa interactivo de la isla, con carreteras, caminos vecinales y puntos kilométricos.</p>
-          <div className="modulo-en-preparacion__panel">
-            <span className="modulo-en-preparacion__icono">⌖</span>
-            <strong>Preparando la cartografía</strong>
-            <span>La siguiente fase será incorporar la red viaria y los puntos kilométricos oficiales de las Illes Balears.</span>
-          </div>
-          <button type="button" className="boton boton--secundario" onClick={() => setPantalla("portada")}>← Volver a herramientas</button>
-        </section>
+        <MapaIbiza volver={() => setPantalla("portada")} />
       ) : (
       <div className="contenido-principal">
         <div className="titulo-pagina">
