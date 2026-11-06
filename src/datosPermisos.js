@@ -296,7 +296,7 @@ export const resultados = {
     articulo: "Artículo 21.2.c).",
     euros: "No determinar hasta comprobar la validez del permiso y la infracción concreta.",
     puntos: "No determinar hasta identificar la infracción concreta.",
-    actuacion: "Verificar documentalmente la fecha de entrada y la situación regular del titular. Comprobar si existe un convenio internacional que establezca una regla específica distinta y revisar los restantes requisitos del permiso antes de formular denuncia.",
+    actuacion: "Verificar documentalmente la fecha de entrada y la situación regular del titular. Comprobar si existe un convenio internacional que establezca una regla específica distinta, si el permiso concreto es susceptible de canje y si cabe la vía excepcional para conductores profesionales del artículo 22.1.b). Revisar los restantes requisitos antes de formular denuncia.",
     observaciones: "Resultado pendiente: el plazo general de seis meses desde la entrada regular puede estar sujeto a reglas específicas de determinados convenios. No concluir automáticamente sin revisar el país y el reconocimiento aplicable.",
     orientacionSancion: {
       calificacion: "Grave o muy grave, según la posibilidad de canje",
