@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export default function TarjetaResultado({ resultado, historial, alReiniciar }) {
-  const normalizarCodificacion = (valor) => String(valor ?? "").replace(/\\b0+(\\d+)\\b/g, "$1");
+  const normalizarCodificacion = (valor) => String(valor ?? "").replace(/\b0+(\d+)\b/g, "$1");
   const [claseVehiculo, setClaseVehiculo] = useState("");
   useEffect(() => {
     setClaseVehiculo("");
