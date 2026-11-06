@@ -177,7 +177,7 @@ export const resultados = {
       preceptoInfringido: "Artículos 21.2.c) y 21.3 del Reglamento General de Conductores, en relación con el artículo 22.",
       preceptoSancionador: "Artículo 77.k) de la Ley de Tráfico.",
       codificado: "CON · Art. 001 · Apt. 1 · Opción 5E · 0 puntos",
-      fundamento: "La opción 5E de la guía ARCI contempla permisos extranjeros equivalentes no susceptibles de canje por incumplimiento de las condiciones y requisitos reglamentarios. Aplicar solo tras acreditar que la fecha de obtención impide el canje, descartar un convenio con regla especial y comprobar que no procede la vía profesional."
+      fundamento: "La opción 5E de la guía codificada contempla permisos extranjeros equivalentes no susceptibles de canje por incumplimiento de los requisitos. Aplicar solo después de acreditar la causa concreta: fecha de obtención posterior a la residencia, permiso obtenido por canje de un país sin convenio u otra causa que impida el canje. Comprobar las reglas especiales y cualquier vía excepcional antes de denunciar."
     }
   },
   PER012: {
