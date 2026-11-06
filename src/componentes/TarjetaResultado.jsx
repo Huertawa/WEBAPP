@@ -33,6 +33,9 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
     if (["PER003", "PER005", "PER011"].includes(resultado.codigo)) {
       return { estado: "NO PROCEDE POR CADUCIDAD SOLA", detalle: "La caducidad del permiso no implica por sí misma inmovilizar el vehículo. La intervención del documento, cuando proceda conforme al artículo 12.4 RGC, es una medida distinta. Comprueba si existe otra causa legal independiente antes de adoptar una inmovilización.", tipo: "no" };
     }
+    if (resultado.codigo === "PER029") {
+      return { estado: "NO PROCEDE POR ESTA CAUSA", detalle: "El incumplimiento de una restricción o adaptación del permiso no determina por sí solo la inmovilización del vehículo. Comprueba si concurre otra causa legal independiente.", tipo: "no" };
+    }
     if (resultado.codigo === "PER013") {
       return { estado: "DEPENDE DEL VEHÍCULO", detalle: "Si conduce un vehículo que exige permiso C o D y carece de esa autorización, puede acordarse conforme al artículo 104.1.k de la Ley de Tráfico. Para otras categorías, no se aplica automáticamente este apartado.", tipo: "depende" };
     }
@@ -89,7 +92,7 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
     PER026: ["Obtener la resolución administrativa de suspensión cautelar o prohibición de uso.", "Comprobar notificación, vigencia, alcance y fecha de efectos de la medida.", "Aplicar el artículo 39.3 RGC y 76.s LTSV; no confundir con privación judicial."],
     PER027: ["Acreditar la duración de la pena y que ya se ha cumplido.", "Comprobar que la condena fue igual o inferior a dos años.", "Verificar que no se ha superado el curso de reeducación exigido por el artículo 73.2 LTSV."],
     PER028: ["Acreditar que la pena de hasta dos años ya se ha cumplido.", "Comprobar el certificado de superación del curso de reeducación y sensibilización vial.", "Descartar cualquier otra suspensión, pérdida de vigencia o restricción que impida conducir."]
-    ,PER029: ["Identificar el código armonizado o la restricción concreta que figura en el permiso.", "Comprobar que la restricción sigue vigente y no existe adaptación o autorización posterior.", "Describir el incumplimiento concreto y contrastar CON 012.6 opción 5A."]
+    PER029: ["Identificar el código armonizado o la restricción concreta que figura en el permiso.", "Comprobar que la restricción sigue vigente y no existe adaptación o autorización posterior.", "Describir el incumplimiento concreto y contrastar CON 012.6 opción 5A."]
   };
   const comprobaciones = resultado.comprobaciones || comprobacionesPorCaso[resultado.codigo] || [
     "Comprobar la identidad del conductor y la autenticidad del documento.",
@@ -131,7 +134,7 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
           <span>INMOVILIZACIÓN DEL VEHÍCULO</span>
           <strong className="inmovilizacion__estado">{inmovilizacion.estado}</strong>
           <p className="inmovilizacion__detalle">{inmovilizacion.detalle}</p>
-          {!estadoPendiente && puedeConducir === false && !["PER003", "PER005", "PER011"].includes(resultado.codigo) && (
+          {!estadoPendiente && puedeConducir === false && !["PER003", "PER005", "PER011", "PER029"].includes(resultado.codigo) && (
             <div className="inmovilizacion__comprobacion">
               <p className="inmovilizacion__pregunta">¿Qué tipo de vehículo conduce?</p>
               <div className="inmovilizacion__opciones">
