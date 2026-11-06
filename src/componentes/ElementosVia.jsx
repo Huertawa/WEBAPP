@@ -51,5 +51,60 @@ const elementos = [
 {"nombre":"Borde de calzada","grupo":"Partes de la vía","texto":"Límite entre la calzada y la zona contigua, marcado o reconocible por el pavimento.","imagen":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Road_edge.jpg/640px-Road_edge.jpg"},
 {"nombre":"Plataforma","grupo":"Partes de la vía","texto":"Zona formada por calzada y arcenes cuando existen, que soporta la circulación.","imagen":"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Road_platform.jpg/640px-Road_platform.jpg"},
 {"nombre":"Boca de salida de emergencia","grupo":"Obras de fábrica","texto":"Acceso de evacuación en túneles que conduce a zona segura o galería de emergencia.","imagen":"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Tunnel_emergency_exit.jpg/640px-Tunnel_emergency_exit.jpg"}];
+
 const grupos=["Todos",...new Set(elementos.map(e=>e.grupo))];
-export default function ElementosVia({volver}){const [filtro,setFiltro]=useState("Todos");const [busqueda,setBusqueda]=useState("");const lista=useMemo(()=>elementos.filter(e=>(filtro==="Todos"||filtro===e.grupo)&&(e.nombre+" "+e.grupo).toLowerCase().includes(busqueda.toLowerCase())),[filtro,busqueda]);return <section className="senales-modulo"><div className="senales-cabecera"><div><span className="etiqueta-seccion">HERRAMIENTAS · INFRAESTRUCTURA</span><h1>Elementos de la vía</h1><p>Reconocimiento visual rápido de elementos habituales de carretera.</p></div><button className="boton boton--secundario" onClick={volver}>← Herramientas</button></div><div className="senales-controles"><input type="search" value={busqueda} onChange={e=>setBusqueda(e.target.value)} placeholder="Buscar elemento…" aria-label="Buscar elemento"/><select value={filtro} onChange={e=>setFiltro(e.target.value)}>{grupos.map(g=><option key={g}>{g}</option>)}</select></div><p className="senales-contador">{lista.length} elementos</p><div className="elementos-fotos-grid">{lista.map(e=><article className="elemento-foto-simple" key={e.nombre}><img src={e.imagen} alt={e.nombre} loading="lazy" decoding="async" onError={evento=>{evento.currentTarget.onerror=null;evento.currentTarget.classList.add("imagen-no-disponible");evento.currentTarget.alt="Fotografía pendiente de corregir";}}/><div><small>{e.grupo}</small><strong>{e.nombre}</strong><p>{e.texto}</p></div></article>)}</div><p className="elementos-nota">Imágenes orientativas para facilitar el reconocimiento visual de cada elemento.</p></section>}
+const estilosElementos = `
+.elementos-via{color:var(--texto,#f4f5f6);width:100%}
+.elementos-via *{box-sizing:border-box}
+.elementos-via .ev-cabecera{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:22px}
+.elementos-via .ev-kicker{font-size:11px;letter-spacing:1.5px;font-weight:800;color:#a8c85a}
+.elementos-via h1{font-size:clamp(25px,3vw,34px);margin:7px 0 8px;letter-spacing:-.7px}
+.elementos-via .ev-sub{margin:0;color:var(--texto-secundario,#aab0b6);max-width:760px;line-height:1.55}
+.elementos-via .ev-volver{border:1px solid var(--borde,#3a4148);background:transparent;color:inherit;border-radius:10px;padding:10px 14px;cursor:pointer;white-space:nowrap}
+.elementos-via .ev-panel{background:var(--superficie,#1d2329);border:1px solid var(--borde,#343c44);border-radius:15px;padding:16px;margin-bottom:18px}
+.elementos-via .ev-controles{display:grid;grid-template-columns:minmax(220px,1fr) minmax(190px,260px);gap:12px}
+.elementos-via .ev-controles input,.elementos-via .ev-controles select{width:100%;min-width:0;background:var(--fondo,#151a1f);color:inherit;border:1px solid var(--borde,#424b54);border-radius:10px;padding:13px 14px;font:inherit;outline:none}
+.elementos-via .ev-controles input:focus,.elementos-via .ev-controles select:focus{border-color:#a8c85a}
+.elementos-via .ev-resumen{display:flex;justify-content:space-between;gap:12px;align-items:center;margin:16px 2px 12px;color:var(--texto-secundario,#aab0b6);font-size:13px}
+.elementos-via .ev-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:14px}
+.elementos-via .ev-card{padding:12px;border-radius:14px;border:1px solid var(--borde,#343c44);background:var(--superficie,#1d2329);cursor:pointer;text-align:left;color:inherit;transition:border-color .15s,transform .15s;min-width:0}
+.elementos-via .ev-card:hover{border-color:#a8c85a;transform:translateY(-2px)}
+.elementos-via .ev-img{height:150px;background:#fff;border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:12px}
+.elementos-via .ev-img img{width:100%;height:100%;object-fit:cover}
+.elementos-via .ev-img .ev-fallback{color:#59616a;font-size:12px;text-align:center;padding:12px}
+.elementos-via .ev-grupo{font-size:10px;color:var(--texto-secundario,#aab0b6);text-transform:uppercase;letter-spacing:.7px}
+.elementos-via .ev-card h3{font-size:14px;line-height:1.35;margin:7px 0 6px}
+.elementos-via .ev-card p{font-size:12px;line-height:1.45;color:var(--texto-secundario,#aab0b6);margin:0}
+.elementos-via .ev-detalle-fondo{position:fixed;inset:0;background:#000b;z-index:9999;display:flex;align-items:center;justify-content:center;padding:18px;overflow-y:auto}
+.elementos-via .ev-detalle{width:min(650px,100%);max-height:calc(100vh - 36px);overflow-y:auto;background:var(--superficie,#20262d);border:1px solid var(--borde,#454e57);border-radius:18px;padding:22px;box-shadow:0 20px 70px #0008}
+.elementos-via .ev-detalle-img{background:#fff;border-radius:12px;min-height:210px;max-height:340px;display:flex;justify-content:center;align-items:center;overflow:hidden;margin:14px 0}
+.elementos-via .ev-detalle-img img{width:100%;max-height:340px;object-fit:contain}
+.elementos-via .ev-detalle h2{font-size:22px;margin:9px 0}
+.elementos-via .ev-detalle p{line-height:1.65;color:var(--texto-secundario,#c2c7cc)}
+.elementos-via .ev-cerrar{float:right;background:transparent;border:1px solid var(--borde,#454e57);color:inherit;border-radius:8px;padding:7px 11px;cursor:pointer}
+.elementos-via .ev-nota{font-size:12px;color:var(--texto-secundario,#aab0b6);margin-top:18px;line-height:1.5}
+.elementos-via .ev-vacio{background:var(--superficie,#1d2329);border:1px solid var(--borde,#343c44);border-radius:12px;padding:22px;color:var(--texto-secundario,#aab0b6)}
+@media(max-width:620px){.elementos-via .ev-cabecera{flex-direction:column}.elementos-via .ev-controles{grid-template-columns:1fr}.elementos-via .ev-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.elementos-via .ev-img{height:118px}.elementos-via .ev-card{padding:9px}.elementos-via .ev-card p{font-size:11px}}
+`;
+export default function ElementosVia({volver}){
+ const [filtro,setFiltro]=useState("Todos");
+ const [busqueda,setBusqueda]=useState("");
+ const [seleccionado,setSeleccionado]=useState(null);
+ const lista=useMemo(()=>elementos.filter(e=>(filtro==="Todos"||filtro===e.grupo)&&(e.nombre+" "+e.grupo+" "+e.texto).toLocaleLowerCase("es").includes(busqueda.trim().toLocaleLowerCase("es"))),[filtro,busqueda]);
+ return <section className="elementos-via">
+  <style>{estilosElementos}</style>
+  <div className="ev-cabecera"><div><span className="ev-kicker">MOTOLISTOS · HERRAMIENTAS</span><h1>Elementos de la vía</h1><p className="ev-sub">Catálogo visual para identificar partes de la carretera, balizamiento, sistemas de contención, obras e instalaciones. Pulsa cualquier elemento para consultar su ficha ampliada.</p></div><button className="ev-volver" onClick={volver}>← Herramientas</button></div>
+  <div className="ev-panel"><div className="ev-controles"><input type="search" value={busqueda} onChange={e=>setBusqueda(e.target.value)} placeholder="Buscar por nombre, grupo o descripción…" aria-label="Buscar elementos de la vía"/><select value={filtro} onChange={e=>setFiltro(e.target.value)} aria-label="Filtrar por grupo">{grupos.map(g=><option key={g}>{g}</option>)}</select></div></div>
+  <div className="ev-resumen"><strong>{lista.length} elementos</strong><span>{filtro==="Todos"?"Todos los grupos":filtro}</span></div>
+  {lista.length>0?<div className="ev-grid">{lista.map(e=><button type="button" className="ev-card" key={e.nombre} onClick={()=>setSeleccionado(e)}>
+   <div className="ev-img"><img src={e.imagen} alt={e.nombre} loading="lazy" decoding="async" onError={evento=>{evento.currentTarget.style.display="none";const caja=evento.currentTarget.parentElement;if(caja&&!caja.querySelector(".ev-fallback")){const aviso=document.createElement("span");aviso.className="ev-fallback";aviso.textContent="Fotografía no disponible";caja.appendChild(aviso)}}}/></div>
+   <span className="ev-grupo">{e.grupo}</span><h3>{e.nombre}</h3><p>{e.texto}</p>
+  </button>)}</div>:<div className="ev-vacio">No hay elementos que coincidan con la búsqueda.</div>}
+  <p className="ev-nota">Las fotografías son ejemplos visuales orientativos. La denominación y la descripción ayudan a reconocer cada elemento; no sustituyen la normativa técnica ni la inspección de la vía.</p>
+  {seleccionado&&<div className="ev-detalle-fondo" onClick={()=>setSeleccionado(null)}><article className="ev-detalle" role="dialog" aria-modal="true" aria-label={`Ficha de ${seleccionado.nombre}`} onClick={e=>e.stopPropagation()}>
+   <button className="ev-cerrar" onClick={()=>setSeleccionado(null)}>Cerrar ✕</button><span className="ev-kicker">{seleccionado.grupo}</span><h2>{seleccionado.nombre}</h2>
+   <div className="ev-detalle-img"><img src={seleccionado.imagen} alt={seleccionado.nombre} onError={evento=>{evento.currentTarget.style.display="none";}}/></div>
+   <p>{seleccionado.texto}</p>
+  </article></div>}
+ </section>;
+}
