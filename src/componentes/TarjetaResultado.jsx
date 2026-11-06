@@ -86,7 +86,9 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
     PER023: ["Averiguar si el permiso fue expedido directamente o procede de un canje anterior.", "Identificar el país de origen del permiso inicial y comprobar el convenio aplicable.", "Mantener la calificación pendiente hasta completar esa verificación."],
     PER024: ["Comprobar que la pena de privación del derecho a conducir ya se ha cumplido y su duración exacta.", "Verificar si superó los dos años y si se dictó pérdida de vigencia al amparo del artículo 47.3 CP.", "Comprobar si ha obtenido el nuevo permiso conforme al artículo 73.1 LTSV y aplicar la Consulta 1/2026 FGE."],
     PER025: ["Identificar si la motocicleta exige A1, A2 o A y comprobar potencia y relación potencia/peso.", "Acreditar edad, antigüedad de la categoría y formación exigida para el acceso progresivo a A.", "Describir el requisito concreto incumplido y contrastar CON 001.1.5C."],
-    PER026: ["Obtener la resolución administrativa de suspensión cautelar o prohibición de uso.", "Comprobar notificación, vigencia, alcance y fecha de efectos de la medida.", "Aplicar el artículo 39.3 RGC y 76.s LTSV; no confundir con privación judicial."]
+    PER026: ["Obtener la resolución administrativa de suspensión cautelar o prohibición de uso.", "Comprobar notificación, vigencia, alcance y fecha de efectos de la medida.", "Aplicar el artículo 39.3 RGC y 76.s LTSV; no confundir con privación judicial."],
+    PER027: ["Acreditar la duración de la pena y que ya se ha cumplido.", "Comprobar que la condena fue igual o inferior a dos años.", "Verificar que no se ha superado el curso de reeducación exigido por el artículo 73.2 LTSV."],
+    PER028: ["Acreditar que la pena de hasta dos años ya se ha cumplido.", "Comprobar el certificado de superación del curso de reeducación y sensibilización vial.", "Descartar cualquier otra suspensión, pérdida de vigencia o restricción que impida conducir."]
   };
   const comprobaciones = resultado.comprobaciones || comprobacionesPorCaso[resultado.codigo] || [
     "Comprobar la identidad del conductor y la autenticidad del documento.",
