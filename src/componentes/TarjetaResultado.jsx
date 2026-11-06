@@ -45,9 +45,11 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
       ? { titulo: "NO POR EL ART. 104.1.K", detalle: "Ese apartado se limita a vehículos que exigen permiso C o D. Comprueba si concurre otro motivo legal de inmovilización." }
       : null;
 
-  const consecuenciaPenal = ["PER001", "PER019", "PER020"].includes(resultado.codigo)
-    ? "El artículo 384 del Código Penal prevé prisión de 3 a 6 meses, multa de 12 a 24 meses o trabajos en beneficio de la comunidad de 31 a 90 días. No es una sanción administrativa: deben acreditarse todos los elementos del tipo penal."
-    : "";
+  const consecuenciaPenal = ({
+    PER001: "ART. 384 CP · Nunca obtuvo permiso: debe acreditarse que jamás fue titular de permiso o licencia que habilite para conducir en ningún Estado. La pena prevista es prisión de 3 a 6 meses, multa de 12 a 24 meses o trabajos en beneficio de la comunidad de 31 a 90 días. Si no se acredita el tipo penal, la DGT contempla la posible vía administrativa muy grave (referencia general: 500 €, arts. 1.1 RGC y 77.k LTSV), que exige calificación propia.",
+    PER019: "ART. 384, PÁRRAFO PRIMERO, CP · Pérdida total de puntos: debe existir resolución administrativa que declare la pérdida de vigencia precisamente por agotamiento de todos los puntos, con eficacia anterior a la conducción. Comprueba notificación y fecha de efectos. La pena prevista es prisión de 3 a 6 meses, multa de 12 a 24 meses o trabajos en beneficio de la comunidad de 31 a 90 días.",
+    PER020: "ART. 384, PÁRRAFO SEGUNDO, CP · Privación judicial: la conducción debe producirse mientras siga vigente una privación cautelar o definitiva acordada por un órgano judicial. Comprueba resolución, alcance y fechas. La pena prevista es prisión de 3 a 6 meses, multa de 12 a 24 meses o trabajos en beneficio de la comunidad de 31 a 90 días."
+  })[resultado.codigo] || "";
   const importeVisible = estadoPendiente
     ? euros || denuncia?.importe || "No procede / por determinar"
     : denuncia?.importe || euros || "No procede / por determinar";
