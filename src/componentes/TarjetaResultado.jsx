@@ -30,7 +30,7 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
     if (puedeConducir === true) {
       return { estado: "NO PROCEDE", detalle: "El resultado confirma que el permiso habilita para conducir. No hay motivo de inmovilización por falta de autorización.", tipo: "no" };
     }
-    if (["PER003", "PER005", "PER011"].includes(resultado.codigo)) {
+    if (["PER003", "PER005", "PER011", "PER016"].includes(resultado.codigo)) {
       return { estado: "NO PROCEDE POR CADUCIDAD SOLA", detalle: "La caducidad del permiso no implica por sí misma inmovilizar el vehículo. La intervención del documento, cuando proceda conforme al artículo 12.4 RGC, es una medida distinta. Comprueba si existe otra causa legal independiente antes de adoptar una inmovilización.", tipo: "no" };
     }
     if (resultado.codigo === "PER029") {
@@ -134,7 +134,7 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
           <span>INMOVILIZACIÓN DEL VEHÍCULO</span>
           <strong className="inmovilizacion__estado">{inmovilizacion.estado}</strong>
           <p className="inmovilizacion__detalle">{inmovilizacion.detalle}</p>
-          {!estadoPendiente && puedeConducir === false && !["PER003", "PER005", "PER011", "PER029"].includes(resultado.codigo) && (
+          {!estadoPendiente && puedeConducir === false && !["PER003", "PER005", "PER011", "PER016", "PER029"].includes(resultado.codigo) && (
             <div className="inmovilizacion__comprobacion">
               <p className="inmovilizacion__pregunta">¿Qué tipo de vehículo conduce?</p>
               <div className="inmovilizacion__opciones">
