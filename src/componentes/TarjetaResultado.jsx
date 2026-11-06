@@ -48,8 +48,12 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
   const consecuenciaPenal = ["PER001", "PER019", "PER020"].includes(resultado.codigo)
     ? "El artículo 384 del Código Penal prevé prisión de 3 a 6 meses, multa de 12 a 24 meses o trabajos en beneficio de la comunidad de 31 a 90 días. No es una sanción administrativa: deben acreditarse todos los elementos del tipo penal."
     : "";
-  const importeVisible = denuncia?.importe || euros || "No procede / por determinar";
-  const puntosVisibles = denuncia?.puntos || puntos || "Pendiente de verificar";
+  const importeVisible = estadoPendiente
+    ? euros || denuncia?.importe || "No procede / por determinar"
+    : denuncia?.importe || euros || "No procede / por determinar";
+  const puntosVisibles = estadoPendiente
+    ? puntos || denuncia?.puntos || "Pendiente de verificar"
+    : denuncia?.puntos || puntos || "Pendiente de verificar";
   const comprobacionesPorCaso = {
     PER001: ["Consultar el Registro de Conductores e Infractores y comprobar si obtuvo permiso en España o en otro Estado.", "Descartar pérdida total de puntos y privación judicial: son supuestos diferenciados del artículo 384 CP.", "Identificar el vehículo y documentar los elementos del posible ilícito penal."],
     PER003: ["Verificar fecha de caducidad y que no exista renovación o prórroga vigente.", "Comprobar que se trata de caducidad y no de suspensión, pérdida de vigencia o privación judicial.", "Contrastar la codificación y los datos del permiso antes de formular el boletín."],
@@ -209,15 +213,15 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
 
       <div className="fuentes-juridicas">
         <h3>Fuentes oficiales para contrastar</h3>
-        <p className="fuentes-juridicas__revision">Revisión de referencias: 06/11/2026. La Sede de la DGT enlaza su guía codificada extendida con vigencia desde el 01/10/2026; contrasta siempre el código exacto antes de emitir el boletín.</p>
+        <p className="fuentes-juridicas__revision">Revisión de referencias: 06/11/2026. La DGT publica en SIPP la guía codificada extendida vigente desde el 01/10/2026. Los códigos mostrados son referencias condicionadas: contrasta el precepto, opción, gravedad y puntos en la versión vigente antes de emitir el boletín.</p>
         <ul>
           <li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2009-9481" target="_blank" rel="noreferrer">Reglamento General de Conductores</a></li>
           <li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2015-11722" target="_blank" rel="noreferrer">Ley de Tráfico · texto consolidado</a></li>
           <li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-1995-25444" target="_blank" rel="noreferrer">Código Penal · artículo 384</a></li>
           <li><a href="https://www.boe.es/buscar/doc.php?coleccion=fiscalia&id=FIS-Q-2026-00001" target="_blank" rel="noreferrer">Fiscalía General del Estado · Consulta 1/2026 (pérdida de vigencia judicial tras cumplir condena)</a></li>
           <li><a href="https://www.dgt.es/nuestros-servicios/permisos-de-conducir/permisos-extranjeros-y-de-fuerzas-y-cuerpos-de-seguridad/conducir-con-un-permiso-extranjero/" target="_blank" rel="noreferrer">DGT · Conducir con un permiso extranjero</a></li>
-          <li><a href="https://sede.dgt.gob.es/es/multas/tramites-para-administraciones/sipp-notificacion-de-sanciones/" target="_blank" rel="noreferrer">DGT · SIPP y catálogo codificado vigente</a></li>
-          <li><a href="https://sede.dgt.gob.es/.galleries/multas/ARCI/Guia-codificada-de-infracciones-actualizada-01-10-2026.xls" target="_blank" rel="noreferrer">DGT · Guía codificada de infracciones extendida (01/10/2026)</a></li>
+          <li><a href="https://sede-org.dgt.gob.es/es/multas/tramites-para-administraciones/sipp-notificacion-de-sanciones/" target="_blank" rel="noreferrer">DGT · SIPP: guía codificada extendida vigente desde 01/10/2026 y versiones anteriores</a></li>
+          <li><a href="https://www.dgt.es/comunicacion/noticias/20250221-sin-los-papeles-en-regla/" target="_blank" rel="noreferrer">DGT · Sin los papeles en regla: sanciones por permisos caducados y extranjeros</a></li>
           <li><a href="https://sede.dgt.gob.es/export/sites/dgt/.galleries/multas/ARCI/Guia-codificada-de-infracciones-ARCI-Vigente-a-partir-del-01-07-2025.pdf" target="_blank" rel="noreferrer">DGT · Guía codificada ARCI en PDF (01/07/2025)</a></li>
           <li><a href="https://www.dgt.es/nuestros-servicios/permisos-de-conducir/permisos-extranjeros-y-de-fuerzas-y-cuerpos-de-seguridad/canjes-de-permisos/paises-con-convenio-de-canjes/" target="_blank" rel="noreferrer">DGT · Países con convenio de canje (actualizado 26/06/2026)</a></li>
         </ul>
