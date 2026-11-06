@@ -129,7 +129,7 @@ export const resultados = {
     motivo: "Transcurridos seis meses desde la adquisición de residencia normal o, si no se acredita esta, desde la entrada en España en situación regular, el permiso de tercer país deja de ser válido para conducir. La falta de convenio general no excluye la vía excepcional de canje para determinados conductores profesionales.",
     normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
     articulo: "Artículos 21.2.c) y 21.3.",
-    euros: "Hasta 500 € si se confirma que no es susceptible de canje ni existe convenio aplicable.",
+    euros: "500 € si se confirma que no es susceptible de canje ni existe excepción aplicable.",
     puntos: "0 puntos",
     denuncia: {
       calificacion: "Muy grave",
@@ -267,22 +267,13 @@ export const resultados = {
     codigo: "PER017",
     nombre: "Permiso de tercer país: posible superación del plazo desde la entrada",
     puedeConducir: null,
-    motivo: "El titular no acredita residencia normal en España, pero puede haber superado el plazo máximo de seis meses desde su entrada en territorio español en situación regular.",
+    motivo: "El titular no acredita residencia normal en España y ya se ha cumplido el plazo máximo de seis meses desde su entrada en situación regular. Antes de denunciar, debe comprobarse si el convenio del país permite el canje de esa categoría o si existe una vía excepcional.",
     normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
     articulo: "Artículo 21.2.c).",
     euros: "No determinar hasta comprobar la validez del permiso y la infracción concreta.",
     puntos: "No determinar hasta identificar la infracción concreta.",
     actuacion: "Verificar documentalmente la fecha de entrada y la situación regular del titular. Comprobar si existe un convenio internacional que establezca una regla específica distinta, si el permiso concreto es susceptible de canje y si cabe la vía excepcional para conductores profesionales del artículo 22.1.b). Revisar los restantes requisitos antes de formular denuncia.",
     observaciones: "Resultado pendiente: el plazo general de seis meses desde la entrada regular puede estar sujeto a reglas específicas de determinados convenios. No concluir automáticamente sin revisar el país y el reconocimiento aplicable.",
-    orientacionSancion: {
-      calificacion: "Grave o muy grave, según la posibilidad de canje",
-      importe: "200 € si es susceptible de canje / 500 € si no lo es",
-      puntos: "0 puntos en ambas opciones",
-      preceptoInfringido: "Artículo 21.2.c) y 21.3 del Reglamento General de Conductores.",
-      preceptoSancionador: "Artículo 76.ll) (opción 5B) o artículo 77.k) (opción 5E) de la Ley de Tráfico.",
-      codificado: "CON · Art. 001 · Apt. 1 · Opción 5B (200 €) / 5E (500 €) · 0 puntos",
-      fundamento: "La guía ARCI diferencia el permiso extranjero equivalente susceptible de canje (5B, grave, 200 €, 0 puntos) del no susceptible de canje por incumplimiento de requisitos (5E, muy grave, 500 €, 0 puntos). El plazo de seis meses para quien no acredita residencia se cuenta desde la entrada regular. Comprobar el convenio concreto, la categoría y las condiciones de canje antes de elegir una opción."
-    }
   },
   PER018: {
     codigo: "PER018",
