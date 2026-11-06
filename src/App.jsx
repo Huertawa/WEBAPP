@@ -257,6 +257,8 @@ function App() {
         <Herramientas abrirSenales={() => setPantalla("senales")} abrirElementos={() => setPantalla("elementosVia")} volver={() => setPantalla("portada")} />
       ) : pantalla === "senales" ? (
         <Senales volver={() => setPantalla("herramientas")} />
+      ) : pantalla === "elementosVia" ? (
+        <ElementosVia volver={() => setPantalla("herramientas")} />
       ) : (
       <div className="contenido-principal">
         <div className="titulo-pagina">
