@@ -1758,3 +1758,105 @@ a, .fuentes-juridicas a { color: #76c5e6; }
 .panel-residencia__fuentes{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:14px;font-size:12px}
 .panel-residencia__fuentes a{color:#8bcde9;text-decoration:underline;text-underline-offset:3px}
 @media(max-width:560px){.cabecera-aplicacion__acciones{align-items:flex-end;flex-direction:column;gap:7px}.cabecera-aplicacion__estado{font-size:9px}.boton-inicio{padding:8px 11px}.panel-residencia{padding:15px}}
+
+
+/* Ajustes de claridad: inmovilización integrada y codificación destacada */
+.dato-destacado--inmovilizacion {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 9px;
+}
+.dato-destacado--inmovilizacion > span {
+  color: #76c5e6;
+}
+.dato-destacado--inmovilizacion .inmovilizacion__estado {
+  font-size: 17px;
+  line-height: 1.3;
+}
+.inmovilizacion__detalle {
+  margin: 0;
+  color: var(--texto-secundario);
+  font-size: 13px;
+  line-height: 1.55;
+}
+.inmovilizacion__comprobacion {
+  width: 100%;
+  margin-top: 5px;
+  padding-top: 13px;
+  border-top: 1px solid var(--borde);
+}
+.inmovilizacion__pregunta {
+  margin: 0 0 10px;
+  color: var(--texto);
+  font-size: 13px;
+  font-weight: 750;
+}
+.inmovilizacion__opciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+.inmovilizacion__opciones .boton {
+  flex: 1 1 190px;
+  min-height: 42px;
+  font-size: 12px;
+}
+.inmovilizacion__opciones .seleccionado {
+  outline: 2px solid #76c5e6;
+  outline-offset: 1px;
+}
+.inmovilizacion__decision {
+  margin-top: 11px;
+  padding: 12px 14px;
+  border: 1px solid var(--borde);
+  border-radius: 9px;
+}
+.inmovilizacion__decision strong {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+.inmovilizacion__decision p {
+  margin: 0;
+  color: var(--texto-secundario);
+  font-size: 12px;
+  line-height: 1.55;
+}
+.inmovilizacion__decision.es-posible {
+  border-color: rgba(228,173,66,.5);
+  background: rgba(133,91,25,.12);
+}
+.inmovilizacion__decision.es-posible strong { color: #f3c66f; }
+.inmovilizacion__decision.no-aplica {
+  border-color: rgba(57,184,120,.45);
+  background: rgba(30,132,88,.1);
+}
+.inmovilizacion__decision.no-aplica strong { color: #75e2a9; }
+.propuesta-denuncia__codigo {
+  padding: 17px 18px !important;
+  border: 2px solid #d6a642 !important;
+  border-radius: 10px;
+  background: linear-gradient(120deg, rgba(133,91,25,.22), rgba(133,91,25,.08)) !important;
+  box-shadow: inset 4px 0 0 #d6a642;
+}
+.propuesta-denuncia__codigo small {
+  color: #f3c66f !important;
+  font-size: 11px !important;
+  letter-spacing: 1px;
+}
+.propuesta-denuncia__codigo strong {
+  color: #ffe0a0 !important;
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: clamp(15px, 2vw, 19px) !important;
+  font-weight: 800;
+  line-height: 1.55;
+  letter-spacing: .25px;
+  overflow-wrap: anywhere;
+  user-select: text;
+}
+@media (max-width: 520px) {
+  .inmovilizacion__opciones { flex-direction: column; }
+  .inmovilizacion__opciones .boton { width: 100%; }
+  .propuesta-denuncia__codigo { padding: 14px !important; }
+}
