@@ -2567,3 +2567,33 @@ a, .fuentes-juridicas a { color: #76c5e6; }
 .elemento-foto__texto>a { color:#b9d99b;font-size:10px;line-height:1.5;text-decoration:underline;text-underline-offset:3px; }
 @media(max-width:850px) { .familias-grid,.elementos-grid { grid-template-columns:1fr; } .novedades-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media(max-width:560px) { .familia-senal__laminas { grid-template-columns:1fr; } .elemento-foto__imagen { height:190px; } .novedades-grid { grid-template-columns:1fr; } .catalogo-acciones { align-items:stretch;flex-direction:column; } .catalogo-acciones button,.catalogo-acciones a { text-align:center; } }
+
+
+/* Catálogo MOTOLISTOS: búsqueda y lectura compacta */
+.familias-grid { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:12px 0 22px; }
+.familia-senal__cabecera { min-height:112px; }
+.familia-senal__cabecera em { max-width:620px; }
+.familia-senal__laminas { grid-template-columns:repeat(auto-fit,minmax(190px,1fr));background:rgba(8,14,10,.22);padding-top:12px; }
+.lamina-senal { display:block;min-width:0;border:1px solid rgba(180,195,180,.18);border-radius:9px;overflow:hidden;background:#f4f4ef; }
+.lamina-senal img { display:block;width:100%;height:auto;max-height:245px;object-fit:contain; }
+.lamina-senal span { display:block;padding:7px 9px;background:#202b24;color:#d9edc8;font-size:11px; }
+.novedades-compactas { margin:16px 0; }
+.novedades-compactas__boton { width:100%;display:flex;justify-content:space-between;align-items:center;padding:13px 16px;border:1px solid rgba(160,180,164,.22);border-radius:10px;background:#202b24;color:#e9f0e7;font-weight:750;cursor:pointer; }
+.novedades-compactas__boton span { font-size:20px;color:#c6dda9; }
+.elementos-grid--compactos { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:12px 0 22px; }
+.elemento-foto--compacto { display:grid;grid-template-columns:142px minmax(0,1fr);align-items:start;min-height:142px; }
+.elemento-foto__miniatura { display:grid;place-items:center;min-height:132px;padding:8px;background:linear-gradient(145deg,#17231b,#26372b); }
+.elemento-foto__miniatura svg { display:block;width:100%;max-width:180px;height:auto; }
+.elemento-foto--compacto .elemento-foto__texto { padding:12px 13px; }
+.elemento-foto--compacto .elemento-foto__texto h2 { font-size:16px;margin:4px 0 6px; }
+.elemento-foto--compacto .elemento-foto__texto p { font-size:12px;line-height:1.48;margin-bottom:7px; }
+.elemento-foto--compacto .elemento-foto__texto a { font-size:10px; }
+.senales-informacion-final { margin:24px 0 0;border-top:1px solid rgba(160,180,164,.2);padding-top:14px;color:#c2ccc4; }
+.senales-informacion-final summary { cursor:pointer;color:#b8c9b8;font-size:12px;font-weight:700; }
+.senales-informacion-final__contenido { margin-top:12px;padding:16px;border-radius:12px;background:#17211b;border:1px solid rgba(160,180,164,.16); }
+.senales-informacion-final__contenido section { margin-bottom:14px; }
+.senales-informacion-final__contenido strong { color:#dce8d8; }
+.senales-informacion-final__contenido p { color:#aebbb1;font-size:12px;line-height:1.6; }
+.senales-informacion-final .senales-fuentes { margin-top:14px; }
+@media(max-width:760px) { .familias-grid,.elementos-grid--compactos { grid-template-columns:1fr; } }
+@media(max-width:480px) { .elemento-foto--compacto { grid-template-columns:112px minmax(0,1fr); } .elemento-foto__miniatura { min-height:116px;padding:5px; } .elemento-foto--compacto .elemento-foto__texto { padding:10px; } .familia-senal__laminas { grid-template-columns:1fr; } }
