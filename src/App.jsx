@@ -154,15 +154,23 @@ function App() {
         {resultado && <TarjetaResultado resultado={resultado} historial={historial} alReiniciar={reiniciar} />}
 
         {preguntas[pantalla] && pantalla !== "fechaPermiso" && pantalla !== "profesionalTercero" && (
-          <Pregunta
-            titulo={preguntas[pantalla].titulo}
-            descripcion={pantalla === "fechaFirmaConvenio"
-              ? `${preguntas[pantalla].descripcion} País: ${paisActual?.nombre || paisSeleccionado}. Fecha de entrada en vigor según la DGT: ${paisActual?.fechaEntradaVigor || "no consta en la tabla oficial"}. ${paisActual?.fechaModificacion ? `La DGT también recoge una modificación del acuerdo de fecha ${paisActual.fechaModificacion}; comprueba si afecta al supuesto concreto.` : ""}`
-              : preguntas[pantalla].descripcion}
-            opciones={preguntas[pantalla].opciones}
-            alSeleccionar={(destino, texto) => avanzar(destino, texto)}
-            alVolver={pilaNavegacion.length ? retroceder : null}
-          />
+          <>
+            {pantalla === "fechaFirmaConvenio" && (
+              <section className="panel-fecha-convenio">
+                <span className="panel-fecha-convenio__rotulo">FECHA DEL CONVENIO · {paisActual?.nombre || paisSeleccionado}</span>
+                <strong>{paisActual?.fechaEntradaVigor || "Fecha no disponible en la tabla de la DGT"}</strong>
+                <p>Fecha de entrada en vigor publicada por la DGT. Compárala con la fecha de expedición del permiso.</p>
+                {paisActual?.fechaModificacion && <small>Modificación del acuerdo: {paisActual.fechaModificacion}</small>}
+              </section>
+            )}
+            <Pregunta
+              titulo={preguntas[pantalla].titulo}
+              descripcion={preguntas[pantalla].descripcion}
+              opciones={preguntas[pantalla].opciones}
+              alSeleccionar={(destino, texto) => avanzar(destino, texto)}
+              alVolver={pilaNavegacion.length ? retroceder : null}
+            />
+          </>
         )}
 
         {(pantalla === "mas6meses" || pantalla === "paisTerceroNoResidente") && (
