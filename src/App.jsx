@@ -163,9 +163,14 @@ function App() {
             <label className="etiqueta-campo">País de expedición</label>
             <div className="lista-paises" role="group" aria-label="Seleccionar país de expedición">
               {paisesFiltrados.map((pais) => {
-                const coincidenciaBandera = pais.nombre.match(/^[\\u{1F1E6}-\\u{1F1FF}]{2}/u);
-                const bandera = coincidenciaBandera ? coincidenciaBandera[0] : "🌐";
-                const nombreVisible = coincidenciaBandera ? pais.nombre.slice(coincidenciaBandera[0].length).trim() : pais.nombre;
+                const caracteresPais = Array.from(pais.nombre);
+                const esBandera = caracteresPais.length > 1
+                  && caracteresPais[0].codePointAt(0) >= 0x1F1E6
+                  && caracteresPais[0].codePointAt(0) <= 0x1F1FF
+                  && caracteresPais[1].codePointAt(0) >= 0x1F1E6
+                  && caracteresPais[1].codePointAt(0) <= 0x1F1FF;
+                const bandera = esBandera ? caracteresPais.slice(0, 2).join("") : "🌐";
+                const nombreVisible = esBandera ? caracteresPais.slice(2).join("").trim() : pais.nombre;
                 const seleccionado = paisSeleccionado === pais.nombre;
                 return <button type="button" key={pais.nombre} aria-pressed={seleccionado}
                   className={`opcion-pais ${seleccionado ? "opcion-pais--seleccionada" : ""}`}
