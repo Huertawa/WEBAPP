@@ -4,6 +4,8 @@ import { paises } from "./paises";
 import TarjetaResultado from "./componentes/TarjetaResultado";
 import Pregunta from "./componentes/Pregunta";
 import MapaIbiza from "./componentes/MapaIbiza";
+import Herramientas from "./componentes/Herramientas";
+import Senales from "./componentes/Senales";
 
 const preguntas = {
   inicio: { titulo: "¿El conductor posee permiso de conducción?", descripcion: "Comprueba si dispone de una autorización de conducción obtenida en España o en otro país. Si la tiene, después identificaremos dónde se expidió y si está vigente.", opciones: [{ valor: "tipoPermiso", texto: "Sí, posee permiso" }, { valor: "situacionSinPermiso", texto: "No dispone de un permiso válido" }] },
@@ -234,11 +236,26 @@ function App() {
                 <span className="modulo-acceso__accion">Abrir mapa <b>→</b></span>
               </span>
             </button>
+            <button type="button" className="modulo-acceso modulo-acceso--herramientas" onClick={() => setPantalla("herramientas")}>
+              <span className="modulo-acceso__arte modulo-acceso__arte--herramientas" aria-hidden="true">
+                <svg viewBox="0 0 520 230"><circle cx="260" cy="112" r="86" fill="none" stroke="rgba(224,235,225,.18)" strokeWidth="2"/><path d="M260 28 337 164H183Z" fill="#f8f6ed" stroke="#d9433b" strokeWidth="10" strokeLinejoin="round"/><path d="M260 70V116M260 139V141" stroke="#283a30" strokeWidth="12" strokeLinecap="round"/><path d="M85 180H435" stroke="#a4b5a8" strokeWidth="3" strokeDasharray="8 10"/></svg>
+              </span>
+              <span className="modulo-acceso__contenido">
+                <span className="modulo-acceso__numero">03 · CONSULTA</span>
+                <strong>Herramientas</strong>
+                <span>Señales de tráfico, nomenclatura y elementos habituales de la carretera.</span>
+                <span className="modulo-acceso__accion">Abrir herramientas <b>→</b></span>
+              </span>
+            </button>
           </div>
           <p className="portada-modulos__pie">MOTOLISTOS <span>·</span> Herramientas de consulta y apoyo</p>
         </section>
       ) : pantalla === "mapa" ? (
         <MapaIbiza volver={() => setPantalla("portada")} />
+      ) : pantalla === "herramientas" ? (
+        <Herramientas abrirSenales={() => setPantalla("senales")} volver={() => setPantalla("portada")} />
+      ) : pantalla === "senales" ? (
+        <Senales volver={() => setPantalla("herramientas")} />
       ) : (
       <div className="contenido-principal">
         <div className="titulo-pagina">
