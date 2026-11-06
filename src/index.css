@@ -2521,3 +2521,49 @@ a, .fuentes-juridicas a { color: #76c5e6; }
  .senal-card__texto strong { font-size:14px; }
  .senal-card__texto p { font-size:12px; }
 }
+
+
+/* Catálogo oficial completo y guía fotográfica de infraestructura */
+.catalogo-intro,.elementos-intro { padding:18px 20px;border:1px solid rgba(160,180,164,.2);border-radius:14px;background:linear-gradient(120deg,rgba(35,51,42,.8),rgba(19,27,22,.94));color:#eef3ed; }
+.catalogo-intro strong,.elementos-intro strong { font-size:19px; }
+.catalogo-intro p,.elementos-intro p { color:#c1ccc3;line-height:1.55;margin:8px 0; }
+.catalogo-intro span { color:#b6d78d;font-size:12px;font-weight:800;letter-spacing:.04em; }
+.catalogo-acciones { display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:16px 0; }
+.catalogo-acciones button,.catalogo-acciones a { border:1px solid rgba(160,180,164,.25);border-radius:9px;padding:10px 13px;background:#202b24;color:#e9f0e7;font-weight:700;text-decoration:none;font-size:13px;cursor:pointer; }
+.catalogo-acciones button.activa { border-color:#a6c58b;color:#d9edc8; }
+.familias-grid { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px; }
+.familia-senal { border:1px solid rgba(160,180,164,.2);border-radius:13px;background:linear-gradient(145deg,#202b24,#151d18);overflow:hidden; }
+.familia-senal__cabecera { width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:17px;background:transparent;border:0;color:#eef3ed;text-align:left;cursor:pointer; }
+.familia-senal__cabecera>span { display:flex;flex-direction:column;gap:5px; }
+.familia-senal__cabecera small,.elemento-foto__texto small { color:#a9c58e;text-transform:uppercase;font-size:10px;font-weight:850;letter-spacing:.09em; }
+.familia-senal__cabecera strong { font-size:17px; }
+.familia-senal__cabecera em { color:#c2ccc4;font-size:12px;line-height:1.45;font-style:normal; }
+.familia-senal__cabecera i { color:#aeb8b0;font-size:11px;font-style:normal; }
+.familia-senal__cabecera>b { display:grid;place-items:center;flex:0 0 30px;height:30px;border-radius:50%;background:#34463a;color:#d7e8ca;font-size:22px; }
+.familia-senal__laminas { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:0 12px 14px; }
+.lamina-senal { display:block;overflow:hidden;border-radius:8px;background:#f0f1ed;color:#26372e;text-decoration:none; }
+.lamina-senal img { display:block;width:100%;height:auto; }
+.lamina-senal span { display:block;padding:7px 9px;font-size:11px;font-weight:800; }
+.novedades-senales { margin:18px 0;padding:18px;border:1px solid rgba(160,180,164,.2);border-radius:14px;background:#19231d;color:#eef3ed; }
+.novedades-senales h2,.catalogo-otros h2 { margin:0 0 14px;font-size:20px; }
+.novedades-grid { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px; }
+.novedades-grid article { padding:12px;border-radius:9px;background:#253229;display:flex;flex-direction:column;gap:5px; }
+.novedades-grid strong { color:#b9d99b;font-size:12px; }
+.novedades-grid b { font-size:13px; }
+.novedades-grid p { color:#c1ccc3;font-size:11px;line-height:1.45;margin:0; }
+.catalogo-otros { margin:18px 0;padding:18px;border:1px solid rgba(160,180,164,.2);border-radius:14px;background:#19231d;color:#eef3ed; }
+.catalogo-otros p { color:#c1ccc3;line-height:1.55; }
+.catalogo-otros a { color:#c6dda9;text-decoration:underline;text-underline-offset:3px; }
+.elementos-via .senales-controles { margin-top:16px; }
+.elementos-grid { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:18px 0; }
+.elemento-foto { overflow:hidden;border:1px solid rgba(160,180,164,.2);border-radius:14px;background:linear-gradient(145deg,#202b24,#151d18);color:#eef3ed; }
+.elemento-foto__imagen { display:block;position:relative;height:220px;background:#101713;overflow:hidden; }
+.elemento-foto__imagen img { display:block;width:100%;height:100%;object-fit:cover;transition:transform .25s; }
+.elemento-foto__imagen:hover img { transform:scale(1.035); }
+.elemento-foto__imagen span { position:absolute;right:10px;bottom:10px;padding:6px 9px;border-radius:7px;background:rgba(10,16,12,.82);color:#fff;font-size:10px;font-weight:750; }
+.elemento-foto__texto { padding:15px 17px 17px; }
+.elemento-foto__texto h2 { font-size:19px;margin:5px 0 8px; }
+.elemento-foto__texto p { color:#c2ccc4;font-size:13px;line-height:1.6;margin:0 0 12px; }
+.elemento-foto__texto>a { color:#b9d99b;font-size:10px;line-height:1.5;text-decoration:underline;text-underline-offset:3px; }
+@media(max-width:850px) { .familias-grid,.elementos-grid { grid-template-columns:1fr; } .novedades-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:560px) { .familia-senal__laminas { grid-template-columns:1fr; } .elemento-foto__imagen { height:190px; } .novedades-grid { grid-template-columns:1fr; } .catalogo-acciones { align-items:stretch;flex-direction:column; } .catalogo-acciones button,.catalogo-acciones a { text-align:center; } }
