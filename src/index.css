@@ -3552,3 +3552,99 @@ a, .fuentes-juridicas a { color: #76c5e6; }
 /* PORTADA · eliminar el espacio vacío sobre el título */
 .portada-modulos{padding-top:8px !important;}
 @media(max-width:720px){.portada-modulos{padding-top:8px !important;}}
+
+
+/* REDISEÑO CABECERA · inspiración del boceto fotográfico MOTOLISTOS */
+.portada-marca{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  width:min(100%,1120px);
+  margin:0 auto 24px;
+  border:1px solid rgba(207,220,197,.2);
+  border-radius:14px;
+  background:
+    linear-gradient(90deg,rgba(5,8,7,.9) 0%,rgba(8,12,10,.78) 38%,rgba(7,10,8,.82) 100%),
+    linear-gradient(180deg,#b51e28 0 25%,#d9ad2d 25% 75%,#b51e28 75% 100%);
+  box-shadow:0 14px 38px rgba(0,0,0,.36);
+}
+.portada-marca:before{
+  content:"";
+  position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(90deg,transparent 0%,rgba(178,24,35,.13) 28%,rgba(229,183,47,.18) 56%,rgba(178,24,35,.12) 100%);
+}
+.portada-marca .portada-modulos__bandera{display:none}
+.portada-marca .portada-modulos__cabecera{
+  display:grid;
+  grid-template-columns:118px minmax(0,1fr) 64px;
+  align-items:center;
+  gap:22px;
+  min-height:164px;
+  padding:18px 24px;
+  border:0;
+  background:linear-gradient(90deg,rgba(0,0,0,.16),transparent 45%,rgba(0,0,0,.12));
+}
+.portada-marca .portada-modulos__insignia{
+  display:grid;place-items:center;
+  width:118px;height:118px;
+  overflow:hidden;border-radius:12px;
+  background:rgba(0,0,0,.24);
+  box-shadow:0 7px 22px rgba(0,0,0,.48);
+}
+.portada-marca .portada-modulos__insignia img{
+  display:block;width:100%;height:100%;
+  object-fit:cover;object-position:center;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:12px;
+}
+.portada-marca .portada-modulos__intro{position:relative}
+.portada-marca .portada-modulos__sobrelinea{
+  color:#e7dcae;font-size:9px;letter-spacing:2px;font-weight:800;
+}
+.portada-marca .portada-modulos__intro h1{
+  margin:5px 0 7px;
+  color:#f5f5f0;
+  font-size:clamp(32px,5.2vw,62px);
+  font-style:italic;font-weight:950;
+  letter-spacing:2px;line-height:.98;
+  text-shadow:0 4px 18px rgba(0,0,0,.7);
+}
+.portada-marca .portada-modulos__intro h1:after{
+  content:"";display:block;width:min(100%,560px);height:5px;margin-top:9px;
+  background:linear-gradient(90deg,#b7ed45,#d9c34b 75%,transparent);
+  box-shadow:0 0 12px rgba(183,237,69,.24);
+}
+.portada-marca .portada-modulos__intro p{
+  margin-top:8px;color:#f1f2eb;font-size:clamp(10px,1.15vw,13px);
+  font-weight:750;letter-spacing:2.2px;text-transform:uppercase;
+}
+.portada-marca .portada-modulos__distintivo{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:7px;min-width:0;min-height:126px;padding:10px 8px;
+  border:1px solid rgba(255,255,255,.18);border-radius:13px;
+  background:linear-gradient(145deg,#171b19,#080a09);
+  box-shadow:inset 0 1px rgba(255,255,255,.08),0 7px 18px rgba(0,0,0,.45);
+}
+.semaforo-foto{display:block;width:25px;height:25px;border-radius:50%;border:3px solid #343a36;box-shadow:inset 0 2px 5px rgba(0,0,0,.65),0 0 9px currentColor}
+.semaforo-foto--rojo{background:#ff2828;color:rgba(255,35,35,.7)}
+.semaforo-foto--ambar{background:#ffc02e;color:rgba(255,184,35,.7)}
+.semaforo-foto--verde{background:#36d96c;color:rgba(45,220,100,.7)}
+@media(max-width:700px){
+ .portada-marca .portada-modulos__cabecera{grid-template-columns:74px minmax(0,1fr) 42px;gap:11px;min-height:112px;padding:12px}
+ .portada-marca .portada-modulos__insignia{width:74px;height:74px}
+ .portada-marca .portada-modulos__distintivo{min-height:88px;padding:7px 5px;gap:5px}
+ .semaforo-foto{width:17px;height:17px;border-width:2px}
+ .portada-marca .portada-modulos__sobrelinea{font-size:7px;letter-spacing:1px}
+ .portada-marca .portada-modulos__intro h1{font-size:clamp(22px,5.5vw,36px);letter-spacing:1px}
+ .portada-marca .portada-modulos__intro h1:after{height:3px;margin-top:6px}
+ .portada-marca .portada-modulos__intro p{font-size:8px;letter-spacing:1px}
+}
+@media(max-width:390px){
+ .portada-marca .portada-modulos__cabecera{grid-template-columns:58px minmax(0,1fr) 34px;gap:8px;padding:9px}
+ .portada-marca .portada-modulos__insignia{width:58px;height:58px}
+ .portada-marca .portada-modulos__intro h1{font-size:21px}
+ .portada-marca .portada-modulos__sobrelinea{font-size:6px}
+ .portada-marca .portada-modulos__intro p{font-size:7px;letter-spacing:.5px}
+ .portada-marca .portada-modulos__distintivo{min-height:76px}
+ .semaforo-foto{width:14px;height:14px}
+}
