@@ -37,6 +37,7 @@ const preguntas = {
   comprobarEdadCategoria: { titulo: "¿Qué tipo de autorización o categoría está afectada por la edad mínima?", descripcion: "La opción 5C de la guía codificada contempla expresamente los permisos de motocicleta A1/A2/A cuando no se cumplen la edad o antigüedad mínimas o la formación exigida. No extiendas esa codificación a otras categorías por analogía.", opciones: [{ valor: "edadMotoA", texto: "Motocicleta A1, A2 o A: falta edad, antigüedad o formación" }, { valor: "edadOtraCategoria", texto: "Otra categoría o supuesto distinto" }] },
   terceroNoResidenteRestricciones: { titulo: "¿Cumple los códigos o restricciones que figuran en el permiso?", descripcion: "Comprueba las condiciones del permiso extranjero, por ejemplo obligación de gafas, lentes o adaptaciones del vehículo.", opciones: [{ valor: "terceroNoResidenteCategoria", texto: "Sí, las cumple o no tiene restricciones" }, { valor: "restriccionesIncumplidas", texto: "No, incumple una restricción o adaptación" }] },
   terceroMenos6Restricciones: { titulo: "¿Cumple los códigos o restricciones que figuran en el permiso?", descripcion: "Comprueba las condiciones del permiso extranjero, por ejemplo obligación de gafas, lentes o adaptaciones del vehículo.", opciones: [{ valor: "terceroMenos6Categoria", texto: "Sí, las cumple o no tiene restricciones" }, { valor: "restriccionesIncumplidas", texto: "No, incumple una restricción o adaptación" }] },
+  convenioNoResidente: { titulo: "¿El convenio de ese país permite canjear esta categoría y se cumplen sus condiciones?", descripcion: "Comprueba la categoría, la fecha de obtención, la antigüedad del permiso y los requisitos específicos publicados por la DGT. La existencia de un convenio no significa que todas las categorías o situaciones estén cubiertas.", opciones: [{ valor: "canjeNoResidentePosible", texto: "Sí, el convenio permite el canje y cumple los requisitos" }, { valor: "canjeNoResidenteNoPosible", texto: "No, la categoría o los requisitos no están cubiertos" }, { valor: "canjeNoResidenteNoAcreditado", texto: "No puedo acreditarlo" }] },
   fechaFirmaConvenio: { titulo: "El permiso se obtuvo después de adquirir la residencia. ¿Se expidió antes o después de la firma del convenio?", descripcion: "Este dato es importante para saber si puede acogerse al canje. La DGT establece, con carácter general, que no se canjea el permiso obtenido después de la firma del convenio cuando el titular ya residía legalmente en España. La fecha de entrada en vigor que aparece arriba es un dato distinto: consulta también la fecha de firma indicada por la DGT para ese país.", opciones: [{ valor: "origenCanje", texto: "Antes de la firma del convenio" }, { valor: "profesionalTercero", texto: "En la fecha de firma o después" }, { valor: "obtenidoDespuesNoAcreditado", texto: "No puedo acreditar la fecha de expedición o de firma" }] },
   profesionalTercero: { titulo: "¿Puede acogerse a la vía excepcional de canje para conductores profesionales?", descripcion: "Esta vía no es un permiso automático para circular: permite solicitar un canje excepcional en determinados casos. Requisitos acumulativos: permiso incluido en el artículo 21.1.a) o b); al menos seis meses contratado como conductor profesional por empresa establecida en España, acreditados con afiliación y cotización a la Seguridad Social; superar una prueba de circulación de hasta 30 minutos; y no estar privado judicialmente ni tener el permiso suspendido o intervenido administrativamente. Si falta uno, no marques que cumple.", opciones: [{ valor: "profesionalPendiente", texto: "Sí, reúne y acredita todos los requisitos" }, { valor: "profesionalNoCanje", texto: "No / no reúne todos los requisitos" }] },
   origenCanje: {
@@ -74,7 +75,7 @@ function App() {
   const avanzar = (destino, texto) => {
     setPilaNavegacion((anterior) => [...anterior, { pantalla, historial, paisSeleccionado }]);
     if (texto) setHistorial((anterior) => [...anterior, texto]);
-    setPantalla(destino === "sinPermisoPrivacion" ? "comprobarPrivacionJudicial" : destino === "penaHastaDosAniosCumplida" ? "comprobarCursoPostCondena" : destino === "requisitoEdadNoCumplido" ? "comprobarEdadCategoria" : destino === "ueCaducado" ? "ueNoVigente" : destino === "terceroCaducado" ? "terceroNoVigente" : destino);
+    setPantalla(destino === "terceroNoResidentePlazoSuperado" ? (paisActual?.convenio ? "convenioNoResidente" : "profesionalTercero") : destino === "sinPermisoPrivacion" ? "comprobarPrivacionJudicial" : destino === "penaHastaDosAniosCumplida" ? "comprobarCursoPostCondena" : destino === "requisitoEdadNoCumplido" ? "comprobarEdadCategoria" : destino === "ueCaducado" ? "ueNoVigente" : destino === "terceroCaducado" ? "terceroNoVigente" : destino);
   };
 
   const retroceder = () => {
@@ -121,6 +122,9 @@ function App() {
     ueSuspendido: "PER021",
     terceroNoResidenteCategoria: "PER006",
     terceroNoResidentePlazoSuperado: "PER017",
+    canjeNoResidentePosible: "PER008",
+    canjeNoResidenteNoPosible: "PER010",
+    canjeNoResidenteNoAcreditado: "PER017",
     edadMotoA: "PER025",
     edadOtraCategoria: "PER014",
     requisitoFormatoNoAcreditado: "PER015",
