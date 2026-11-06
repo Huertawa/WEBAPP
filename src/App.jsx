@@ -195,6 +195,7 @@ function App() {
 
       {pantalla === "portada" ? (
         <section className="portada-modulos">
+          <div className="portada-marca">
           <div className="portada-modulos__bandera" aria-label="Bandera de España">
             <span className="portada-modulos__franja portada-modulos__franja--roja"></span>
             <span className="portada-modulos__franja portada-modulos__franja--amarilla"></span>
@@ -236,6 +237,7 @@ function App() {
               <small>TRÁFICO</small>
               <b>CONSULTA<br/>OPERATIVA</b>
             </div>
+          </div>
           </div>
           <div className="portada-modulos__separador"><span>SELECCIONA UN MÓDULO</span><i></i></div>
           <div className="modulos-grid">
