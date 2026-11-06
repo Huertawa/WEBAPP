@@ -41,6 +41,7 @@ function App() {
   const [pantalla, setPantalla] = useState("inicio");
   const [historial, setHistorial] = useState([]);
   const [paisSeleccionado, setPaisSeleccionado] = useState("");
+  const [busquedaPais, setBusquedaPais] = useState("");
   const [pilaNavegacion, setPilaNavegacion] = useState([]);
 
   const avanzar = (destino, texto) => {
@@ -62,6 +63,7 @@ function App() {
     setPantalla("inicio");
     setHistorial([]);
     setPaisSeleccionado("");
+    setBusquedaPais("");
     setPilaNavegacion([]);
   };
 
@@ -151,10 +153,12 @@ function App() {
             <span className="etiqueta-seccion">PASO {pilaNavegacion.length + 1} · PERMISO EXTRANJERO</span>
             <h2>Selecciona el país que expidió el permiso</h2>
             <p className="texto-secundario">La relación de países se basa en la información publicada por la DGT. El convenio no garantiza por sí solo que un permiso concreto sea canjeable. Si no aparece, selecciona «Otro país» y verifica el reconocimiento internacional aplicable.</p>
+            <label className="etiqueta-campo" htmlFor="buscar-pais">Buscar país</label>
+            <input id="buscar-pais" className="campo-busqueda-pais" type="search" placeholder="Escribe para localizar el país..." value={busquedaPais} onChange={(evento) => setBusquedaPais(evento.target.value)} />
             <label className="etiqueta-campo" htmlFor="pais-permiso">País de expedición</label>
             <select id="pais-permiso" className="selector-pais" value={paisSeleccionado} onChange={(evento) => setPaisSeleccionado(evento.target.value)}>
               <option value="">Selecciona un país...</option>
-              {paises.map((pais) => <option key={pais.nombre} value={pais.nombre}>{pais.nombre}</option>)}
+              {paises.filter((pais) => pais.nombre.toLocaleLowerCase("es").includes(busquedaPais.toLocaleLowerCase("es"))).map((pais) => <option key={pais.nombre} value={pais.nombre}>{pais.nombre}</option>)}
             </select>
             <div className="acciones-pregunta">
               <button className="boton boton--secundario" onClick={retroceder}>Volver</button>
