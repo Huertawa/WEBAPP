@@ -180,17 +180,14 @@ function App() {
   return (
     <main className="aplicacion">
       <header className="cabecera-aplicacion">
-        {pantalla !== "portada" && (
-          <div className="marca">
-            <span className="marca__simbolo">M</span>
-            <div>
-              <p className="marca__nombre">MOTOLISTOS</p>
-              <span className="marca__descripcion">Herramienta de consulta de permisos</span>
-            </div>
+        <div className="marca">
+          <span className="marca__simbolo">M</span>
+          <div>
+            <p className="marca__nombre">MOTOLISTOS</p>
+            <span className="marca__descripcion">Herramienta de consulta de permisos</span>
           </div>
-        )}
+        </div>
         <div className="cabecera-aplicacion__acciones">
-          <span className="cabecera-aplicacion__estado">VERSIÓN DE TRABAJO</span>
           {pantalla !== "portada" && <button type="button" className="boton-inicio" onClick={() => setPantalla("portada")} aria-label="Volver a la pantalla principal">⌂ <span>Inicio</span></button>}
         </div>
       </header>
@@ -230,7 +227,6 @@ function App() {
             </div>
             <div className="portada-modulos__intro">
               <span className="portada-modulos__sobrelinea"><i></i> ÁREA OPERATIVA · SEGURIDAD VIAL</span>
-              <h1>MOTOLISTOS</h1>
               <p>Centro de consulta y apoyo para actuaciones de tráfico</p>
             </div>
             <div className="portada-modulos__distintivo" aria-hidden="true">
@@ -479,10 +475,15 @@ function App() {
       )}
 
       <footer className="pie-aplicacion">
-        <span>MOTOLISTOS · Herramienta independiente de consulta</span>
+        <div className="aviso-cabecera">
+          <span className="aviso-icono" aria-hidden="true">i</span>
+          <div>
+            <strong>AVISO DE USO</strong>
+            <span>Información y consulta</span>
+          </div>
+        </div>
         <p className="aviso-independencia">
-          MOTOLISTOS no es una aplicación oficial ni está vinculada, patrocinada o respaldada por la Guardia Civil, la Dirección General de Tráfico ni por ningún otro cuerpo o fuerza de seguridad (FFCCSS).
-          Es una herramienta informativa independiente. Su contenido puede contener errores o no estar actualizado. Su utilización se realiza bajo el criterio y responsabilidad de cada usuario y no sustituye la consulta de la normativa vigente, las fuentes oficiales ni la valoración profesional del caso concreto.
+          MOTOLISTOS es una herramienta independiente de apoyo y consulta. La información tiene carácter orientativo y puede no reflejar los cambios normativos más recientes. Antes de adoptar una decisión, comprueba la normativa vigente y valora las circunstancias concretas de cada caso. El usuario es responsable de contrastar la información y de su aplicación.
         </p>
       </footer>
     </main>
