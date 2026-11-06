@@ -75,7 +75,7 @@ function App() {
   const avanzar = (destino, texto) => {
     setPilaNavegacion((anterior) => [...anterior, { pantalla, historial, paisSeleccionado }]);
     if (texto) setHistorial((anterior) => [...anterior, texto]);
-    setPantalla(destino === "profesionalNoCanje" ? (paisActual?.convenio ? "obtenidoDespuesNoCanjeable" : "sinConvenio") : destino === "terceroNoResidentePlazoSuperado" ? (paisActual?.convenio ? "convenioNoResidente" : "profesionalTercero") : destino === "sinPermisoPrivacion" ? "comprobarPrivacionJudicial" : destino === "penaHastaDosAniosCumplida" ? "comprobarCursoPostCondena" : destino === "requisitoEdadNoCumplido" ? "comprobarEdadCategoria" : destino);
+    setPantalla(destino === "canjeNoResidenteNoPosible" ? "profesionalTercero" : destino === "profesionalNoCanje" ? (paisActual?.convenio ? "obtenidoDespuesNoCanjeable" : "sinConvenio") : destino === "terceroNoResidentePlazoSuperado" ? (paisActual?.convenio ? "convenioNoResidente" : "profesionalTercero") : destino === "sinPermisoPrivacion" ? "comprobarPrivacionJudicial" : destino === "penaHastaDosAniosCumplida" ? "comprobarCursoPostCondena" : destino === "requisitoEdadNoCumplido" ? "comprobarEdadCategoria" : destino);
   };
 
   const retroceder = () => {
