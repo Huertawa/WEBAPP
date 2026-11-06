@@ -1860,3 +1860,115 @@ a, .fuentes-juridicas a { color: #76c5e6; }
   .inmovilizacion__opciones .boton { width: 100%; }
   .propuesta-denuncia__codigo { padding: 14px !important; }
 }
+
+
+/* Selector de origen del permiso: banderas integradas en las propias opciones */
+.panel-pregunta--tipo-permiso .opciones-pregunta {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.panel-pregunta--tipo-permiso .boton--tipo-permiso {
+  position: relative;
+  isolation: isolate;
+  min-height: 154px;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 13px;
+  padding: 20px;
+  border-width: 1px;
+  text-align: center;
+  background-color: #111a22;
+}
+.panel-pregunta--tipo-permiso .boton--tipo-permiso::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  content: "";
+  opacity: .22;
+  transition: opacity .2s ease, transform .2s ease;
+}
+.panel-pregunta--tipo-permiso .boton--tipo-permiso:hover::before { opacity: .34; transform: scale(1.04); }
+.panel-pregunta--tipo-permiso .boton--tipo-permiso--espanol {
+  border-color: rgba(245, 190, 65, .58);
+  background: linear-gradient(145deg, rgba(120, 35, 31, .24), rgba(17, 26, 34, .97));
+}
+.panel-pregunta--tipo-permiso .boton--tipo-permiso--espanol::before {
+  opacity: .3;
+  background: linear-gradient(to bottom, #aa171b 0 25%, #f5c928 25% 75%, #aa171b 75% 100%);
+}
+.panel-pregunta--tipo-permiso .boton--tipo-permiso--extranjero {
+  border-color: rgba(112, 174, 232, .55);
+  background: linear-gradient(145deg, rgba(36, 73, 112, .24), rgba(17, 26, 34, .97));
+}
+.panel-pregunta--tipo-permiso .boton--tipo-permiso--extranjero::before {
+  opacity: .12;
+  background: linear-gradient(135deg, #1b4b86, #fff 42%, #c72d37 58%, #1b4b86);
+}
+.tipo-permiso__bandera {
+  display: block;
+  width: min(190px, 76%);
+  height: 62px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 7px;
+  box-shadow: 0 5px 16px rgba(0,0,0,.35);
+}
+.tipo-permiso__bandera--espana {
+  background: linear-gradient(to bottom, #aa151b 0 25%, #f1c52b 25% 75%, #aa151b 75% 100%);
+}
+.tipo-permiso__banderas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(210px, 82%);
+  height: 62px;
+  padding: 7px;
+  gap: 5px;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 7px;
+  background: rgba(5,11,18,.45);
+  box-shadow: 0 5px 16px rgba(0,0,0,.35);
+}
+.tipo-permiso__bandera-pais {
+  display: block;
+  width: 25%;
+  height: 42px;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 3px;
+  background-size: cover;
+  background-position: center;
+}
+.tipo-permiso__bandera-pais--fr { background-image: linear-gradient(to right,#173b83 0 33.33%,#fff 33.33% 66.66%,#ed2939 66.66%); }
+.tipo-permiso__bandera-pais--de { background-image: linear-gradient(to bottom,#171717 0 33.33%,#d62626 33.33% 66.66%,#f5c542 66.66%); }
+.tipo-permiso__bandera-pais--it { background-image: linear-gradient(to right,#16834a 0 33.33%,#fff 33.33% 66.66%,#d52b36 66.66%); }
+.tipo-permiso__bandera-pais--gb {
+  background-color: #173b83;
+  background-image: linear-gradient(35deg,transparent 42%,#fff 42% 48%,#d9273c 48% 53%,#fff 53% 59%,transparent 59%),linear-gradient(-35deg,transparent 42%,#fff 42% 48%,#d9273c 48% 53%,#fff 53% 59%,transparent 59%),linear-gradient(to right,transparent 40%,#fff 40% 60%,transparent 60%),linear-gradient(to bottom,transparent 35%,#fff 35% 65%,transparent 65%),linear-gradient(to right,transparent 45%,#d9273c 45% 55%,transparent 55%),linear-gradient(to bottom,transparent 42%,#d9273c 42% 58%,transparent 58%);
+}
+.panel-pregunta--tipo-permiso .boton--tipo-permiso .opcion-pregunta__texto {
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: .02em;
+  text-shadow: 0 2px 5px rgba(0,0,0,.8);
+}
+.panel-pregunta--tipo-permiso .boton--tipo-permiso .opcion-pregunta__flecha { display: none; }
+@media(max-width:560px) {
+  .panel-pregunta--tipo-permiso .opciones-pregunta { grid-template-columns: 1fr; }
+  .panel-pregunta--tipo-permiso .boton--tipo-permiso { min-height: 125px; }
+  .tipo-permiso__bandera, .tipo-permiso__banderas { height: 50px; }
+  .tipo-permiso__bandera-pais { height: 34px; }
+}
+
+/* La codificación abre la propuesta de denuncia y queda visible sin buscarla */
+.propuesta-denuncia__codigo {
+  grid-column: 1 / -1;
+  order: -1;
+  margin-bottom: 3px;
+}
+.propuesta-denuncia__codigo strong {
+  display: block;
+  font-size: clamp(17px, 2.2vw, 21px) !important;
+  line-height: 1.6;
+}
