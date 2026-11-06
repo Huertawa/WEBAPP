@@ -180,13 +180,6 @@ function App() {
   return (
     <main className="aplicacion">
       <header className="cabecera-aplicacion">
-        <div className="marca">
-          <span className="marca__simbolo">M</span>
-          <div>
-            <p className="marca__nombre">MOTOLISTOS</p>
-            <span className="marca__descripcion">Herramienta de consulta de permisos</span>
-          </div>
-        </div>
         <div className="cabecera-aplicacion__acciones">
           {pantalla !== "portada" && <button type="button" className="boton-inicio" onClick={() => setPantalla("portada")} aria-label="Volver a la pantalla principal">⌂ <span>Inicio</span></button>}
         </div>
@@ -199,6 +192,21 @@ function App() {
             <span className="portada-modulos__franja portada-modulos__franja--roja"></span>
             <span className="portada-modulos__franja portada-modulos__franja--amarilla"></span>
             <span className="portada-modulos__franja portada-modulos__franja--roja"></span>
+          </div>
+          <div className="portada-modulos__cabecera">
+            <div className="portada-modulos__insignia" aria-hidden="true">
+              <svg viewBox="0 0 100 112">
+                <path d="M50 5 88 19v31c0 26-15 44-38 57C27 94 12 76 12 50V19Z" fill="#202b25" stroke="#d4b64e" strokeWidth="3"/>
+                <path d="M22 31h56v12H22z" fill="#b51f2b"/><path d="M22 43h56v22H22z" fill="#edc53b"/><path d="M22 65h56v12H22z" fill="#b51f2b"/>
+                <path d="M50 21v67" stroke="#f1f1e8" strokeWidth="2" opacity=".65"/>
+                <circle cx="50" cy="54" r="10" fill="#263b30" stroke="#f4e7b0" strokeWidth="2"/>
+              </svg>
+            </div>
+            <div className="portada-modulos__intro">
+              <span className="portada-modulos__sobrelinea"><i></i> ÁREA OPERATIVA · SEGURIDAD VIAL</span>
+              <h1>MOTOLISTOS</h1>
+              <p>Centro de consulta y apoyo para actuaciones de tráfico</p>
+            </div>
           </div>
           <div className="portada-modulos__escena" aria-hidden="true">
             <svg className="portada-modulos__moto" viewBox="0 0 220 92">
@@ -215,26 +223,12 @@ function App() {
               <circle cx="27" cy="23" r="9" fill="#e34b4b"/><circle cx="27" cy="45" r="9" fill="#e5bd43"/><circle cx="27" cy="68" r="9" fill="#70c66b"/>
             </svg>
             <span className="portada-modulos__escena-patrulla"><i></i><i></i><b>CONTROL DE TRÁFICO</b></span>
-          </div>
-          <div className="portada-modulos__cabecera">
-            <div className="portada-modulos__insignia" aria-hidden="true">
-              <svg viewBox="0 0 100 112">
-                <path d="M50 5 88 19v31c0 26-15 44-38 57C27 94 12 76 12 50V19Z" fill="#202b25" stroke="#d4b64e" strokeWidth="3"/>
-                <path d="M22 31h56v12H22z" fill="#b51f2b"/><path d="M22 43h56v22H22z" fill="#edc53b"/><path d="M22 65h56v12H22z" fill="#b51f2b"/>
-                <path d="M50 21v67" stroke="#f1f1e8" strokeWidth="2" opacity=".65"/>
-                <circle cx="50" cy="54" r="10" fill="#263b30" stroke="#f4e7b0" strokeWidth="2"/>
-              </svg>
-            </div>
-            <div className="portada-modulos__intro">
-              <span className="portada-modulos__sobrelinea"><i></i> ÁREA OPERATIVA · SEGURIDAD VIAL</span>
-              <p>Centro de consulta y apoyo para actuaciones de tráfico</p>
-            </div>
-            <div className="portada-modulos__distintivo" aria-hidden="true">
+            <span className="portada-modulos__distintivo" aria-hidden="true">
               <span className="portada-modulos__luz portada-modulos__luz--roja"></span>
               <span className="portada-modulos__luz portada-modulos__luz--azul"></span>
               <small>TRÁFICO</small>
               <b>CONSULTA<br/>OPERATIVA</b>
-            </div>
+            </span>
           </div>
           </div>
           <div className="portada-modulos__separador"><span>SELECCIONA UN MÓDULO</span><i></i></div>
@@ -266,12 +260,12 @@ function App() {
                   <path className="mapa-arte__carretera mapa-arte__carretera--secundaria" d="M145 215 180 155 260 125 330 55 410 10"/>
                   <circle cx="190" cy="85" r="8"/><circle cx="350" cy="90" r="7"/><circle cx="300" cy="145" r="6"/>
                 </svg>
-                <span className="mapa-arte__etiqueta">EIVISSA</span>
+                
               </span>
               <span className="modulo-acceso__contenido">
                 <span className="modulo-acceso__numero">02 · CARTOGRAFÍA</span>
                 <strong>Mapa</strong>
-                <span>Localiza carreteras, caminos vecinales y puntos kilométricos de la isla de Ibiza.</span>
+                <span>Consulta carreteras, caminos y puntos kilométricos en el visor cartográfico.</span>
                 <span className="modulo-acceso__accion">Abrir mapa <b>→</b></span>
               </span>
             </button>
@@ -475,16 +469,15 @@ function App() {
       )}
 
       <footer className="pie-aplicacion">
-        <div className="aviso-cabecera">
-          <span className="aviso-icono" aria-hidden="true">i</span>
-          <div>
-            <strong>AVISO DE USO</strong>
-            <span>Información y consulta</span>
+        <div className="aviso-uso-panel">
+          <div className="aviso-uso-panel__marca">
+            <span className="aviso-icono" aria-hidden="true">i</span>
+            <div><strong>AVISO DE USO</strong><span>Consulta y apoyo operativo</span></div>
           </div>
+          <p className="aviso-independencia">
+            MOTOLISTOS es una herramienta independiente de consulta. Su contenido es orientativo y no sustituye la comprobación de la normativa vigente ni la valoración de las circunstancias concretas. Contrasta siempre la información antes de utilizarla.
+          </p>
         </div>
-        <p className="aviso-independencia">
-          MOTOLISTOS es una herramienta independiente de apoyo y consulta. La información tiene carácter orientativo y puede no reflejar los cambios normativos más recientes. Antes de adoptar una decisión, comprueba la normativa vigente y valora las circunstancias concretas de cada caso. El usuario es responsable de contrastar la información y de su aplicación.
-        </p>
       </footer>
     </main>
   );
