@@ -398,16 +398,16 @@ export const resultados = {
     normativa: "Real Decreto 818/2009, Reglamento General de Conductores; Real Decreto Legislativo 6/2015, Ley de Tráfico.",
     articulo: "Artículo 39.3 del Reglamento General de Conductores y artículo 76.s) de la Ley de Tráfico.",
     euros: "200 €",
-    puntos: "4 puntos",
+    puntos: "0 puntos",
     actuacion: "Comprobar la resolución administrativa motivada que acuerda la suspensión cautelar, su notificación, alcance y vigencia en la fecha de los hechos. Identificar el vehículo y documentar la consulta. No tramitarlo como delito del artículo 384 CP por el solo hecho de tratarse de una suspensión administrativa.",
-    observaciones: "La conducción con el permiso suspendido cautelarmente constituye infracción grave, sancionada con 200 € y detracción de 4 puntos. La medida cautelar se contempla en el artículo 72 LTSV y su conducción en el artículo 76.s).",
+    observaciones: "La conducción con el permiso suspendido cautelarmente constituye infracción grave, sancionada con 200 € y 0 puntos. La medida cautelar se contempla en el artículo 72 LTSV y su conducción en el artículo 76.s).",
     denuncia: {
       calificacion: "Grave",
       preceptoInfringido: "Artículo 39.3 del Reglamento General de Conductores.",
       preceptoSancionador: "Artículo 76.s) de la Ley de Tráfico.",
       importe: "200 €",
-      puntos: "4 puntos",
-      codificado: "CON · Art. 039 · Apt. 3 · Opción 5A · 4 puntos",
+      puntos: "0 puntos",
+      codificado: "CON · Art. 039 · Apt. 3 · Opción 5A · 0 puntos",
       fundamento: "La guía codificada recoge la conducción con el permiso suspendido cautelarmente como infracción grave, 200 € y 4 puntos. Debe acreditarse la resolución cautelar y que seguía vigente."
     }
   },
