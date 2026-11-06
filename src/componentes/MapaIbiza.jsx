@@ -104,6 +104,10 @@ export default function MapaIbiza({ volver }) {
   const [error, setError] = useState("");
   const [mostrarPK, setMostrarPK] = useState(true);
   const [mostrarCarreteras, setMostrarCarreteras] = useState(true);
+  const mostrarPKRef = useRef(mostrarPK);
+  const mostrarCarreterasRef = useRef(mostrarCarreteras);
+  mostrarPKRef.current = mostrarPK;
+  mostrarCarreterasRef.current = mostrarCarreteras;
 
   useEffect(() => {
     let cancelado = false;
@@ -203,6 +207,7 @@ export default function MapaIbiza({ volver }) {
           const zoom = mapa.getZoom();
           grupoEtiquetas.clearLayers();
           if (zoom >= 12) {
+            const nombresMostrados = new Set();
             vias.forEach((feature) => {
               const geometria = feature.geometry;
               if (!geometria) return;
@@ -211,7 +216,8 @@ export default function MapaIbiza({ volver }) {
                 if (!linea || linea.length < 2) return;
                 const punto = linea[Math.floor(linea.length / 2)];
                 const etiqueta = nombreCarretera(feature.properties || {});
-                if (!etiqueta || etiqueta === "Carretera") return;
+                if (!etiqueta || etiqueta === "Carretera" || nombresMostrados.has(etiqueta)) return;
+                nombresMostrados.add(etiqueta);
                 L.marker([punto[1], punto[0]], {
                   interactive: false,
                   keyboard: false,
@@ -225,13 +231,13 @@ export default function MapaIbiza({ volver }) {
               });
             });
           }
-          if (zoom >= 13 && mostrarPK) {
+          if (zoom >= 13 && mostrarPKRef.current) {
             if (!mapa.hasLayer(grupoPK)) grupoPK.addTo(mapa);
           } else if (mapa.hasLayer(grupoPK)) {
             mapa.removeLayer(grupoPK);
           }
-          if (mostrarCarreteras && !mapa.hasLayer(grupoVias)) grupoVias.addTo(mapa);
-          if (!mostrarCarreteras && mapa.hasLayer(grupoVias)) mapa.removeLayer(grupoVias);
+          if (mostrarCarreterasRef.current && !mapa.hasLayer(grupoVias)) grupoVias.addTo(mapa);
+          if (!mostrarCarreterasRef.current && mapa.hasLayer(grupoVias)) mapa.removeLayer(grupoVias);
         };
         mapa.on("zoomend", actualizarEscala);
         actualizarEscala();
@@ -249,7 +255,7 @@ export default function MapaIbiza({ volver }) {
       cancelado = true;
       limpiar();
     };
-  }, [mostrarPK, mostrarCarreteras]);
+  }, []);
 
   return (
     <section className="mapa-modulo">
