@@ -29,6 +29,9 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
     if (puedeConducir === true) {
       return { estado: "NO PROCEDE", detalle: "El resultado confirma que el permiso habilita para conducir. No hay motivo de inmovilización por falta de autorización.", tipo: "no" };
     }
+    if (resultado.codigo === "PER003") {
+      return { estado: "NO AUTOMÁTICA", detalle: "El artículo 12.4 RGC ordena intervenir inmediatamente el permiso caducado. Esa intervención afecta al documento, no supone por sí sola inmovilizar el vehículo. El titular no puede seguir conduciendo; si procede, otro conductor con permiso vigente podrá hacerse cargo. Valora la inmovilización solo si concurre además una causa legal específica.", tipo: "depende" };
+    }
     if (resultado.codigo === "PER013") {
       return { estado: "DEPENDE DEL VEHÍCULO", detalle: "Si conduce un vehículo que exige permiso C o D y carece de esa autorización, puede acordarse conforme al artículo 104.1.k de la Ley de Tráfico. Para otras categorías, no se aplica automáticamente este apartado.", tipo: "depende" };
     }
@@ -57,6 +60,11 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
     ? puntos || denuncia?.puntos || "Pendiente de verificar"
     : denuncia?.puntos || puntos || "Pendiente de verificar";
   const comprobacionesPorCaso = {
+    PER002: ["Comprobar en el Registro de Conductores e Infractores que el permiso español figura vigente y sin suspensión o pérdida de vigencia.", "Contrastar que la categoría y las restricciones del permiso habilitan para el vehículo concreto.", "Verificar que no existe una privación judicial ni una medida administrativa que impida conducir."],
+    PER003: ["Comprobar la fecha de caducidad y descartar que exista una renovación o autorización provisional vigente.", "Intervenir inmediatamente el permiso caducado conforme al artículo 12.4 RGC y tramitar la denuncia: infracción grave, 200 € y 0 puntos.", "Impedir que el titular continúe conduciendo; distinguir la intervención del documento de la inmovilización del vehículo y permitir que se haga cargo otro conductor habilitado, si procede."],
+    PER004: ["Comprobar que el permiso UE/EEE está vigente en el Estado expedidor y no está suspendido, retirado o restringido.", "Contrastar categoría, fechas de validez y edad mínima exigida en España.", "Si el titular reside en España, revisar si resulta aplicable el artículo 15.4 RGC y la obligación de renovación."],
+    PER006: ["Verificar la identidad, autenticidad y vigencia del permiso nacional extranjero.", "Comprobar que el titular cumple la edad mínima española y que la categoría habilita para el vehículo.", "Acreditar la entrada regular, el plazo de seis meses y que el formato o reconocimiento internacional es válido en España."],
+    PER007: ["Acreditar cuándo adquirió la residencia normal en España y calcular correctamente los seis meses.", "Comprobar vigencia, edad mínima española, categoría y restricciones del permiso.", "Verificar que el documento cumple el artículo 21 RGC o el convenio internacional aplicable."],
     PER001: ["Consultar el Registro de Conductores e Infractores y comprobar si obtuvo permiso en España o en otro Estado.", "Descartar pérdida total de puntos y privación judicial: son supuestos diferenciados del artículo 384 CP.", "Identificar el vehículo y documentar los elementos del posible ilícito penal."],
     PER003: ["Verificar fecha de caducidad y que no exista renovación o prórroga vigente.", "Comprobar que se trata de caducidad y no de suspensión, pérdida de vigencia o privación judicial.", "Contrastar la codificación y los datos del permiso antes de formular el boletín."],
     PER005: ["Comprobar la fecha de vigencia del permiso y si existe renovación o sustitución válida.", "Verificar restricciones, retirada o suspensión en el Estado expedidor y, si procede, el reconocimiento en España.", "No confundir caducidad documental con privación del derecho a conducir."],
