@@ -3984,20 +3984,21 @@ body{
 @media(max-width:600px){.portada-marca:before{height:8px}.portada-marca .portada-modulos__cabecera{padding-top:22px}}
 
 
-/* Logotipo compacto: recorte centrado en la cabeza del caimán */
+/* Logotipo integrado en la cabecera: caimán junto al nombre */
 .portada-marca .portada-modulos__cabecera{
-  grid-template-columns:78px minmax(0,1fr) 58px;
+  grid-template-columns:64px minmax(0,1fr) 58px;
   min-height:132px;
   padding:22px 24px;
-  gap:16px;
+  gap:13px;
 }
 .portada-marca .portada-modulos__insignia{
-  width:78px;
-  height:78px;
-  border-radius:50%;
+  width:64px;
+  height:64px;
   overflow:hidden;
-  border:1px solid rgba(183,237,69,.52);
-  box-shadow:0 5px 16px rgba(0,0,0,.42),0 0 12px rgba(183,237,69,.08);
+  border:0;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
 }
 .portada-marca .portada-modulos__insignia img{
   display:block;
@@ -4006,22 +4007,24 @@ body{
   object-fit:cover;
   object-position:80% 25%;
   transform:none;
-  border-radius:inherit;
+  border-radius:0;
+  filter:drop-shadow(0 3px 5px rgba(0,0,0,.38));
 }
 @media(max-width:600px){
   .portada-marca .portada-modulos__cabecera{
-    grid-template-columns:54px minmax(0,1fr) 34px;
+    grid-template-columns:48px minmax(0,1fr) 34px;
     min-height:88px;
     padding:18px 11px 10px;
     gap:9px;
   }
   .portada-marca .portada-modulos__insignia{
-    width:54px;
-    height:54px;
-    border-radius:50%;
+    width:48px;
+    height:48px;
   }
 }
 @media(max-width:370px){
-  .portada-marca .portada-modulos__cabecera{grid-template-columns:48px minmax(0,1fr) 30px}
+  .portada-marca .portada-modulos__cabecera{grid-template-columns:43px minmax(0,1fr) 30px}
+  .portada-marca .portada-modulos__insignia{width:43px;height:43px}
+}  .portada-marca .portada-modulos__cabecera{grid-template-columns:48px minmax(0,1fr) 30px}
   .portada-marca .portada-modulos__insignia{width:48px;height:48px}
 }
