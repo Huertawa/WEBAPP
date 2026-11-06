@@ -2,8 +2,8 @@ function clasificarOpcion(opcion) {
   if (opcion.tipo) return opcion.tipo;
   const valor = String(opcion.valor || "").toLowerCase();
   const texto = String(opcion.texto || "").toLocaleLowerCase("es");
-  if (/noacreditado|pendiente|otra.?situacion|profesionalpendiente/.test(valor) || /no puedo acreditar|no está claro|no sé|por comprobar/.test(texto)) return "revisar";
-  if (/nunca|privacion|caducado|nohabilita|no.coincide|nocanje|origencanjenovalido|sinconvenio|nocumplido|plazosuperado|sinpermisopuntos|sinpermisoprivacion/.test(valor) || /nunca ha|no dispone|no está en vigor|no está vigente|no está caducado|no habilita|no cumple|no reúne|no se encuentra/.test(texto)) return "negativa";
+  if (/noacreditado|pendiente|otra.?situacion|profesionalpendiente|suspendido|retirado|restringido|anulado|otra.?prohibicion|curso.no.acreditado/.test(valor) || /no puedo acreditar|no está claro|no sé|por comprobar/.test(texto)) return "revisar";
+  if (/nunca|privacion|caducado|nohabilita|no.coincide|nocanje|origencanjenovalido|sinconvenio|nocumplido|plazosuperado|sinpermisopuntos|sinpermisoprivacion|sinpermisosuspensionadministrativa|suspensionadministrativa|restriccionesincumplidas|canjenoresidentenoposible|penacortacursopendiente|penacumplidasinnuevopermiso/.test(valor) || /nunca ha|no dispone|no está en vigor|no está vigente|no está caducado|no habilita|no cumple|no reúne|no se encuentra|no, está caducado|no, no lo ha superado/.test(texto)) return "negativa";
   if (/todavía no|menos de|no supera|no reside/.test(texto)) return "positiva";
   if (/^sí[, ]|^sí$|cumple|adecuada|antes de/.test(texto)) return "positiva";
   if (/después de|en la fecha de firma|otra categoría/.test(texto)) return "informativa";
