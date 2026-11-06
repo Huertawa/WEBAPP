@@ -2050,3 +2050,18 @@ a, .fuentes-juridicas a { color: #76c5e6; }
 @media(max-width:560px) {
   .aclaracion-desplegable > summary { padding: 10px 12px; font-size: 11px; }
 }
+
+
+/* Codificación única: visible al comienzo de la ficha, fuera de los bloques de denuncia */
+.tarjeta-resultado > .codificacion-principal {
+  display: block;
+  width: 100%;
+  margin: 0 0 16px;
+}
+.tarjeta-resultado > .codificacion-principal small {
+  display: block;
+  margin-bottom: 8px;
+}
+.tarjeta-resultado > .codificacion-principal strong {
+  display: block;
+}
