@@ -10,6 +10,16 @@ export const resultados = {
     puntos: "Sin detracción de puntos.",
     actuacion: "Comprobar en el Registro de Conductores e Infractores si el conductor obtuvo alguna vez permiso, si existe pérdida de vigencia por pérdida total de puntos, suspensión o privación judicial. Si nunca lo obtuvo, perdió la vigencia por pérdida total de puntos o conduce durante una privación judicial, valorar la posible relevancia penal del artículo 384 del Código Penal antes de tramitar únicamente una infracción administrativa. Identificar la situación exacta y documentarla.",
     observaciones: "El artículo 384 CP exige que nunca haya obtenido permiso o licencia que habilite para conducir en ningún Estado. La Fiscalía General del Estado, Consulta 1/2026, precisa este alcance. Antes de atribuir el delito, comprobar la inexistencia de cualquier permiso extranjero, la clase de vehículo y todos los elementos del tipo. Si no procede la vía penal, la DGT recuerda que la conducción puede constituir infracción administrativa muy grave (art. 1.1 RGC y art. 77.k LTSV), con referencia general de 500 €; no fijar esa sanción sin concretar el supuesto y descartar duplicidad sancionadora."
+    ,
+    orientacionSancion: {
+      calificacion: "Muy grave, solo si se descarta la vía penal",
+      importe: "500 € (referencia condicionada)",
+      puntos: "0 puntos",
+      preceptoInfringido: "Artículo 1.1 del Reglamento General de Conductores.",
+      preceptoSancionador: "Artículo 77.k) de la Ley de Tráfico.",
+      codificado: "CON · Art. 001 · Apt. 1 · Opción 5A · 0 puntos",
+      fundamento: "La DGT contempla una sanción administrativa de 500 € por conducir sin haber obtenido autorización cuando no procede la vía penal. No tramitar simultáneamente sanción administrativa y procedimiento penal por los mismos hechos. Confirmar la codificación exacta en la guía SIPP vigente y documentar por qué no procede el artículo 384 CP."
+    }
   },
   PER002: {
     codigo: "PER002",
