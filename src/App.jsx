@@ -179,11 +179,13 @@ function App() {
 
   return (
     <main className="aplicacion">
-      <header className="cabecera-aplicacion">
-        <div className="cabecera-aplicacion__acciones">
-          {pantalla !== "portada" && <button type="button" className="boton-inicio" onClick={() => setPantalla("portada")} aria-label="Volver a la pantalla principal">⌂ <span>Inicio</span></button>}
-        </div>
-      </header>
+      {pantalla !== "portada" && (
+        <header className="cabecera-aplicacion">
+          <div className="cabecera-aplicacion__acciones">
+            <button type="button" className="boton-inicio" onClick={() => setPantalla("portada")} aria-label="Volver a la pantalla principal">⌂ <span>Inicio</span></button>
+          </div>
+        </header>
+      )}
 
       {pantalla === "portada" ? (
         <section className="portada-modulos">
