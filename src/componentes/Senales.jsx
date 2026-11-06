@@ -1,21 +1,47 @@
-import {useMemo,useState} from "react";
-const BASE_BOE="https://www.boe.es/datos/imagenes/disp/2025/145/";
-const imagenOficial = pagina => `${BASE_BOE}12199_15781874_${pagina}.png`;
-const CATALOGO_2025="https://www.boe.es/eli/es/rd/2025/06/10/465/dof/spa/pdf";
-const senales = [
-  { grupo:"Advertencia de peligro", codigo:"P-1", nombre:"Intersección con prioridad", detalle:"Advierte de una intersección con una vía cuyos usuarios deben ceder el paso.", pagina:5 },
-  { grupo:"Advertencia de peligro", codigo:"P-3", nombre:"Semáforos", detalle:"Advierte de la proximidad de una intersección o tramo con semáforos.", pagina:12 },
-  { grupo:"Advertencia de peligro", codigo:"P-4", nombre:"Glorieta", detalle:"Advierte de la proximidad de una glorieta o intersección de circulación giratoria.", pagina:13 },
-  { grupo:"Prioridad", codigo:"R-1", nombre:"Ceda el paso", detalle:"Obliga a ceder el paso en la próxima intersección a los vehículos de la vía a la que se aproxima.", pagina:64 },
-  { grupo:"Prioridad", codigo:"R-2", nombre:"Detención obligatoria o stop", detalle:"Obliga a detenerse ante la línea de detención o, si no existe, antes de la intersección y ceder el paso.", pagina:65 },
-  { grupo:"Prohibición de entrada", codigo:"R-100", nombre:"Circulación prohibida", detalle:"Prohíbe la circulación de toda clase de vehículos en ambos sentidos.", pagina:71 },
-  { grupo:"Prohibición de entrada", codigo:"R-101", nombre:"Entrada prohibida", detalle:"Prohíbe el acceso a los vehículos que se encuentren de frente a la señal.", pagina:72 },
-  { grupo:"Restricción de paso", codigo:"R-200", nombre:"Prohibición de pasar sin detenerse", detalle:"Indica la obligación de detenerse y cumplir la causa de la detención indicada o exigible.", pagina:93 },
-  { grupo:"Obligación", codigo:"R-400a", nombre:"Sentido obligatorio", detalle:"Obliga a seguir el sentido indicado por la flecha.", pagina:122 },
-  { grupo:"Fin de prohibición o restricción", codigo:"R-500", nombre:"Fin de prohibiciones", detalle:"Indica el lugar desde el que dejan de aplicarse las prohibiciones específicas anteriores.", pagina:156 },
-  { grupo:"Fin de prohibición o restricción", codigo:"R-501", nombre:"Fin de limitación de velocidad", detalle:"Indica el lugar desde el que deja de ser aplicable la limitación máxima de velocidad anterior.", pagina:157 },
-  { grupo:"Indicación general", codigo:"S-1", nombre:"Autopista", detalle:"Indica el principio de una autopista y las normas especiales de circulación que la rigen.", pagina:174 },
-  { grupo:"Indicación general", codigo:"S-2", nombre:"Fin de autopista", detalle:"Indica el final de una autopista.", pagina:175 }
-];
-const grupos=["Todos",...new Set(senales.map(s=>s.grupo))];
-export default function Senales({volver}){const [grupo,setGrupo]=useState("Todos");const [busqueda,setBusqueda]=useState("");const [senalAbierta,setSenalAbierta]=useState(null);const lista=useMemo(()=>senales.filter(s=>(grupo==="Todos"||grupo===s.grupo)&&(s.codigo+" "+s.nombre+" "+s.detalle).toLowerCase().includes(busqueda.toLowerCase())),[grupo,busqueda]);return <section className="senales-modulo"><div className="senales-cabecera"><div><span className="etiqueta-seccion">HERRAMIENTAS · CATÁLOGO</span><h1>Señales de tráfico</h1><p>Fichas individuales con imágenes del catálogo oficial de señalización 2025. Busca por código, nombre o categoría.</p></div><button className="boton boton--secundario" onClick={volver}>← Herramientas</button></div><div className="senales-controles"><input type="search" value={busqueda} onChange={e=>setBusqueda(e.target.value)} placeholder="Buscar por código o nombre (ej. R-1, STOP…)" aria-label="Buscar señal"/><select value={grupo} onChange={e=>setGrupo(e.target.value)}>{grupos.map(g=><option key={g}>{g}</option>)}</select></div><p className="senales-contador">{lista.length} señales en esta selección</p><div className="senales-grid">{lista.map(s=><article className="senal-card" key={s.codigo} tabIndex={0} role="button" aria-label={`Ver ficha de ${s.codigo} ${s.nombre}`} onClick={()=>setSenalAbierta(s)} onKeyDown={e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();setSenalAbierta(s);}}}><div className="senal-card__imagen"><img src={imagenOficial(s.pagina)} alt={`Señal ${s.codigo}: ${s.nombre}`} loading="lazy" onError={e=>{e.currentTarget.style.display="none";e.currentTarget.parentElement.classList.add("sin-imagen");}}/><span className="senal-card__fallback">{s.codigo}</span></div><div className="senal-card__texto"><span>{s.grupo}</span><strong>{s.codigo} · {s.nombre}</strong><p>{s.detalle}</p></div></article>)}</div>{senalAbierta&&<div className="senal-ficha-overlay" onClick={()=>setSenalAbierta(null)}><section className="senal-ficha-modal" role="dialog" aria-modal="true" aria-labelledby="senal-ficha-titulo" onClick={e=>e.stopPropagation()}><button type="button" className="senal-ficha-cerrar" onClick={()=>setSenalAbierta(null)} aria-label="Cerrar ficha">×</button><span className="etiqueta-seccion">FICHA INDIVIDUAL</span><h2 id="senal-ficha-titulo">{senalAbierta.codigo} · {senalAbierta.nombre}</h2><div className="senal-ficha-imagen"><img src={imagenOficial(senalAbierta.pagina)} alt={`Señal ${senalAbierta.codigo}: ${senalAbierta.nombre}`}/></div><p><strong>{senalAbierta.grupo}</strong></p><p>{senalAbierta.detalle}</p><a href={imagenOficial(senalAbierta.pagina)} target="_blank" rel="noreferrer">Abrir imagen original ↗</a></section></div>}<details className="senales-informacion-final"><summary>Información normativa</summary><p>Las imágenes de estas fichas proceden del Tomo II del Catálogo oficial de señales verticales de circulación publicado con el Real Decreto 465/2025. Se muestran con sus cotas originales.</p><a href={CATALOGO_2025} target="_blank" rel="noreferrer">Abrir catálogo oficial actualizado de señales (Anexo I · BOE 2025) ↗</a><p>La aplicación se ampliará progresivamente con el resto de señales del catálogo. La referencia normativa completa está disponible en el BOE.</p></details></section>}
+import {useState} from "react";
+
+const CATALOGO_COMPLETO = "https://www.dentrotest.com/senales";
+const CATALOGO_OFICIAL = "https://www.boe.es/eli/es/rd/2025/06/10/465/dof/spa/pdf";
+
+export default function Senales({volver}) {
+  const [cargaError, setCargaError] = useState(false);
+
+  return (
+    <section className="senales-modulo">
+      <div className="senales-cabecera">
+        <div>
+          <span className="etiqueta-seccion">HERRAMIENTAS · CATÁLOGO</span>
+          <h1>Señales de tráfico</h1>
+          <p>Catálogo de 457 señales verticales, con fichas individuales, códigos, denominaciones, explicaciones e imágenes. Puedes buscar por código, nombre o categoría.</p>
+        </div>
+        <button className="boton boton--secundario" onClick={volver}>← Herramientas</button>
+      </div>
+
+      <div className="senales-catalogo-externo">
+        {!cargaError ? (
+          <iframe
+            title="Catálogo completo de 457 señales verticales"
+            src={CATALOGO_COMPLETO}
+            loading="eager"
+            referrerPolicy="strict-origin-when-cross-origin"
+            onError={() => setCargaError(true)}
+            style={{display:"block",width:"100%",minHeight:"1100px",height:"calc(100vh - 210px)",border:"0",borderRadius:"14px",background:"#fff"}}
+          />
+        ) : (
+          <div className="senales-error">
+            <h2>No se ha podido cargar el catálogo integrado</h2>
+            <p>Abre el catálogo completo en una pestaña nueva. Contiene las 457 fichas individuales con sus imágenes y buscador.</p>
+            <a href={CATALOGO_COMPLETO} target="_blank" rel="noreferrer">Abrir las 457 señales ↗</a>
+          </div>
+        )}
+      </div>
+
+      <details className="senales-informacion-final">
+        <summary>Fuentes y normativa</summary>
+        <p>El catálogo de referencia normativa de señalización vigente se publicó mediante el Real Decreto 465/2025.</p>
+        <a href={CATALOGO_OFICIAL} target="_blank" rel="noreferrer">Consultar catálogo oficial del BOE ↗</a>
+        <p>Las fichas didácticas integradas incluyen código, nombre, descripción e imagen individual. La aplicación enlaza al catálogo completo para evitar duplicar o desactualizar sus registros.</p>
+      </details>
+    </section>
+  );
+}
