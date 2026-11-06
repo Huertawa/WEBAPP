@@ -38,7 +38,7 @@ const preguntas = {
 };
 
 function normalizarBusqueda(valor) {
-  return valor.normalize("NFD").replace(/[\\u0300-\\u036f]/g, "").toLocaleLowerCase("es").trim();
+  return valor.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("es").trim();
 }
 
 function App() {
@@ -160,11 +160,24 @@ function App() {
             <p className="texto-secundario">La relación de países se basa en la información publicada por la DGT. El convenio no garantiza por sí solo que un permiso concreto sea canjeable. Si no aparece, selecciona «Otro país» y verifica el reconocimiento internacional aplicable.</p>
             <label className="etiqueta-campo" htmlFor="buscar-pais">Buscar país</label>
             <input id="buscar-pais" className="campo-busqueda-pais" type="search" placeholder="Escribe para localizar el país..." value={busquedaPais} onChange={(evento) => { const valor = evento.target.value; setBusquedaPais(valor); if (paisSeleccionado && !paises.some((pais) => pais.nombre === paisSeleccionado && normalizarBusqueda(pais.nombre).includes(normalizarBusqueda(valor)))) setPaisSeleccionado(""); }} />
-            <label className="etiqueta-campo" htmlFor="pais-permiso">País de expedición</label>
-            <select id="pais-permiso" className="selector-pais" value={paisSeleccionado} onChange={(evento) => setPaisSeleccionado(evento.target.value)}>
-              <option value="">Selecciona un país...</option>
-              {paisesFiltrados.map((pais) => <option key={pais.nombre} value={pais.nombre}>{pais.nombre}{pais.convenio ? " · Convenio DGT" : " · Sin convenio bilateral identificado"}</option>)}
-            </select>
+            <label className="etiqueta-campo">País de expedición</label>
+            <div className="lista-paises" role="group" aria-label="Seleccionar país de expedición">
+              {paisesFiltrados.map((pais) => {
+                const coincidenciaBandera = pais.nombre.match(/^[\\u{1F1E6}-\\u{1F1FF}]{2}/u);
+                const bandera = coincidenciaBandera ? coincidenciaBandera[0] : "🌐";
+                const nombreVisible = coincidenciaBandera ? pais.nombre.slice(coincidenciaBandera[0].length).trim() : pais.nombre;
+                const seleccionado = paisSeleccionado === pais.nombre;
+                return <button type="button" key={pais.nombre} aria-pressed={seleccionado}
+                  className={`opcion-pais ${seleccionado ? "opcion-pais--seleccionada" : ""}`}
+                  onClick={() => setPaisSeleccionado(pais.nombre)}>
+                  <span className="opcion-pais__bandera" aria-hidden="true">{bandera}</span>
+                  <span className="opcion-pais__nombre">{nombreVisible}</span>
+                  <span className={`opcion-pais__estado ${pais.convenio ? "opcion-pais__estado--convenio" : ""}`}>{pais.convenio ? "Canje DGT" : "Sin convenio"}</span>
+                  {seleccionado && <span className="opcion-pais__marca" aria-hidden="true">✓</span>}
+                </button>;
+              })}
+              {paisesFiltrados.length === 0 && <p className="lista-paises__vacio">No hay coincidencias. Prueba con otro nombre o selecciona «Otro país».</p>}
+            </div>
             {paisSeleccionado && (() => {
               const pais = paises.find((elemento) => elemento.nombre === paisSeleccionado);
               if (!pais) return null;
