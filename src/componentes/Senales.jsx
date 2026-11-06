@@ -5,9 +5,9 @@ const CATALOGO_2025="https://www.boe.es/eli/es/rd/2025/06/10/465/dof/spa/pdf";
 const senales = [
   { grupo:"Advertencia de peligro", codigo:"P-1", nombre:"Intersección con prioridad", detalle:"Advierte de una intersección con una vía cuyos usuarios deben ceder el paso.", pagina:5 },
   { grupo:"Advertencia de peligro", codigo:"P-3", nombre:"Semáforos", detalle:"Advierte de la proximidad de una intersección o tramo con semáforos.", pagina:12 },
-  { grupo:"Advertencia de peligro", codigo:"P-4", nombre:"Intersección con circulación giratoria", detalle:"Advierte de la proximidad de una glorieta o intersección de circulación giratoria.", pagina:13 },
+  { grupo:"Advertencia de peligro", codigo:"P-4", nombre:"Glorieta", detalle:"Advierte de la proximidad de una glorieta o intersección de circulación giratoria.", pagina:13 },
   { grupo:"Prioridad", codigo:"R-1", nombre:"Ceda el paso", detalle:"Obliga a ceder el paso en la próxima intersección a los vehículos de la vía a la que se aproxima.", pagina:64 },
-  { grupo:"Prioridad", codigo:"R-2", nombre:"Detención obligatoria (STOP)", detalle:"Obliga a detenerse ante la línea de detención o, si no existe, antes de la intersección y ceder el paso.", pagina:65 },
+  { grupo:"Prioridad", codigo:"R-2", nombre:"Detención obligatoria o stop", detalle:"Obliga a detenerse ante la línea de detención o, si no existe, antes de la intersección y ceder el paso.", pagina:65 },
   { grupo:"Prohibición de entrada", codigo:"R-100", nombre:"Circulación prohibida", detalle:"Prohíbe la circulación de toda clase de vehículos en ambos sentidos.", pagina:71 },
   { grupo:"Prohibición de entrada", codigo:"R-101", nombre:"Entrada prohibida", detalle:"Prohíbe el acceso a los vehículos que se encuentren de frente a la señal.", pagina:72 },
   { grupo:"Restricción de paso", codigo:"R-200", nombre:"Prohibición de pasar sin detenerse", detalle:"Indica la obligación de detenerse y cumplir la causa de la detención indicada o exigible.", pagina:93 },
