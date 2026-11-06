@@ -489,4 +489,26 @@ export const resultados = {
       fundamento: "La opción 5D contempla los supuestos de canje de oficio en los que no se ha expedido el nuevo permiso español y la autorización no cumple los requisitos administrativos para conducir en España."
     }
   },
+
+  PER031: {
+    codigo: "PER031",
+    nombre: "Pérdida de vigencia administrativa por desaparición de requisitos",
+    puedeConducir: false,
+    motivo: "La Jefatura Provincial de Tráfico ha declarado la pérdida de vigencia del permiso porque su titular ha dejado de reunir requisitos esenciales de conocimientos, habilidades, aptitudes, comportamiento o aptitud psicofísica exigidos para su otorgamiento.",
+    normativa: "Real Decreto 818/2009, Reglamento General de Conductores; Real Decreto Legislativo 6/2015, Ley de Tráfico.",
+    articulo: "Artículos 35 y 36 del Reglamento General de Conductores y artículo 77.k) de la Ley de Tráfico.",
+    euros: "500 €",
+    puntos: "0 puntos",
+    actuacion: "Comprobar la resolución firme o eficaz de la Jefatura Provincial de Tráfico que declara la pérdida de vigencia por desaparición de requisitos, su notificación, fecha de efectos y clases afectadas. No confundir con la suspensión cautelar previa del artículo 39 RGC ni con la pérdida total de puntos del artículo 37. Si la resolución está vigente, no permitir que continúe conduciendo y formular denuncia conforme a CON 001.1.5A.",
+    observaciones: "La pérdida de vigencia por desaparición de requisitos se regula en los artículos 35 y 36 RGC. Es distinta de la pérdida de vigencia por pérdida total de puntos (art. 37 RGC), que puede integrar el artículo 384.1 CP, y de la suspensión cautelar (art. 39.3 RGC), que tiene su propia infracción administrativa. La codificación de referencia es muy grave, 500 € y 0 puntos.",
+    denuncia: {
+      calificacion: "Muy grave",
+      preceptoInfringido: "Artículos 1.1, 35 y 36 del Reglamento General de Conductores.",
+      preceptoSancionador: "Artículo 77.k) de la Ley de Tráfico.",
+      importe: "500 €",
+      puntos: "0 puntos",
+      codificado: "CON · Art. 001 · Apt. 1 · Opción 5A · 0 puntos",
+      fundamento: "La opción 5A contempla conducir careciendo de la autorización administrativa correspondiente, incluidos los supuestos de pérdida de vigencia por causa administrativa declarada por la Jefatura. Comprobar la resolución y que afecta a la clase de vehículo conducida."
+    }
+  },
 };
