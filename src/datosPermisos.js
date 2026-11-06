@@ -226,7 +226,16 @@ export const resultados = {
     euros: "No determinar sin identificar la infracción concreta y su codificación vigente.",
     puntos: "No determinar sin identificar la infracción concreta.",
     actuacion: "Comprobar la edad del conductor, la categoría extranjera y la edad mínima española aplicable. Documentar la comprobación y evitar que continúe conduciendo esa categoría mientras no reúna el requisito.",
-    observaciones: "Resultado limitado al requisito de edad. No sustituye la comprobación de la vigencia, formato, autenticidad y demás condiciones del permiso."
+    observaciones: "Resultado limitado al requisito de edad. No sustituye la comprobación de la vigencia, formato, autenticidad y demás condiciones del permiso.",
+    orientacionSancion: {
+      calificacion: "Muy grave, solo si los hechos encajan en la opción 5C",
+      importe: "500 € (referencia condicionada)",
+      puntos: "4 puntos (opción 5C)",
+      preceptoInfringido: "Artículo 1.1 del Reglamento General de Conductores.",
+      preceptoSancionador: "Artículo 77.k) de la Ley de Tráfico.",
+      codificado: "CON · Art. 001 · Apt. 1 · Opción 5C · 4 puntos",
+      fundamento: "La guía codificada ARCI contempla la opción 5C para conducir un vehículo con permiso que no habilita. Su nota incluye expresamente motocicletas A1/A2/A cuando no se cumple la edad o antigüedad mínima o la formación exigida. No aplicar automáticamente a cualquier categoría: identificar primero el permiso, el vehículo y el requisito incumplido."
+    }
   },
   PER015: {
     codigo: "PER015",
