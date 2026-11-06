@@ -3453,3 +3453,38 @@ a, .fuentes-juridicas a { color: #76c5e6; }
 .pie-aplicacion { display: grid; justify-content: stretch; gap: 12px; padding: 20px clamp(20px, 5vw, 72px); border-top: 1px solid var(--borde); background: rgba(13, 18, 15, .72); }
 .aviso-independencia { max-width: 1000px; padding: 13px 15px; border: 1px solid var(--borde); border-left: 3px solid var(--verde); border-radius: 8px; background: rgba(255,255,255,.025); color: var(--texto-secundario); font-size: 11px; line-height: 1.65; }
 @media (max-width: 650px) { .cabecera-aplicacion__acciones { margin-left: auto; } .pie-aplicacion { gap: 10px; } }
+
+
+/* IDENTIDAD PRINCIPAL · MOTOLISTOS con escena integrada */
+.cabecera-aplicacion .marca { display:none; }
+.portada-marca{grid-template-columns:minmax(0,1fr) 320px;grid-template-rows:6px auto;width:min(100%,1040px)}
+.portada-marca .portada-modulos__cabecera{grid-column:1;grid-row:2;grid-template-columns:66px minmax(0,1fr);padding:15px 20px}
+.portada-marca .portada-modulos__intro h1{display:block;color:#f4f5ee;font-size:clamp(26px,3.2vw,36px);letter-spacing:2px;line-height:1.05;margin:0 0 6px}
+.portada-marca .portada-modulos__intro p{font-size:11px;line-height:1.45}
+.portada-marca .portada-modulos__escena{grid-column:2;grid-row:2;display:flex;width:auto;height:100%;min-height:100px;margin:0;padding:8px 12px;border:0;border-left:1px solid rgba(190,205,188,.16);border-radius:0;background:rgba(0,0,0,.13);gap:10px}
+.portada-marca .portada-modulos__moto{width:145px;height:70px}
+.portada-marca .portada-modulos__semaforo{width:34px;height:72px}
+.portada-marca .portada-modulos__escena-texto,.portada-marca .portada-modulos__escena-patrulla{display:none}
+.portada-marca .portada-modulos__distintivo{display:flex;min-width:65px;min-height:66px;padding:5px;border:1px solid rgba(210,190,112,.22);gap:3px}
+.portada-marca .portada-modulos__distintivo b{font-size:7px}
+.portada-marca .portada-modulos__escena:after{bottom:7px}
+@media(max-width:700px){
+ .portada-marca{grid-template-columns:minmax(0,1fr);grid-template-rows:5px auto auto}
+ .portada-marca .portada-modulos__cabecera{grid-column:1;grid-row:2;grid-template-columns:48px minmax(0,1fr);padding:11px 13px}
+ .portada-marca .portada-modulos__escena{grid-column:1;grid-row:3;min-height:66px;height:66px;border-left:0;border-top:1px solid rgba(190,205,188,.12)}
+ .portada-marca .portada-modulos__moto{width:125px;height:55px}
+ .portada-marca .portada-modulos__semaforo{width:27px;height:54px}
+ .portada-marca .portada-modulos__distintivo{min-height:48px;min-width:58px}
+}
+@media(max-width:370px){.portada-marca .portada-modulos__cabecera{grid-template-columns:38px minmax(0,1fr)}.portada-marca .portada-modulos__intro h1{font-size:23px}}
+
+/* Aviso inferior rediseñado como panel informativo independiente */
+.pie-aplicacion{padding:18px clamp(14px,4vw,48px);background:rgba(9,14,11,.9)}
+.aviso-uso-panel{display:grid;grid-template-columns:220px minmax(0,1fr);align-items:center;gap:20px;width:min(100%,1040px);margin:0 auto;padding:15px 18px;border:1px solid rgba(183,237,69,.2);border-radius:11px;background:linear-gradient(110deg,rgba(29,39,31,.92),rgba(18,25,21,.96));box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.aviso-uso-panel__marca{display:flex;align-items:center;gap:11px}
+.aviso-uso-panel__marca>div{display:grid;gap:4px}
+.aviso-uso-panel__marca strong{color:#e7eddf;font-size:11px;letter-spacing:1.2px}
+.aviso-uso-panel__marca>div span{color:#9eac9f;font-size:10px}
+.aviso-uso-panel .aviso-icono{width:34px;height:34px;flex-basis:34px}
+.aviso-uso-panel .aviso-independencia{margin:0;padding:0 0 0 18px;border:0;border-left:1px solid rgba(183,237,69,.2);border-radius:0;background:none;color:#b5c0b5;font-size:11px;line-height:1.6}
+@media(max-width:650px){.aviso-uso-panel{grid-template-columns:1fr;gap:11px;padding:13px}.aviso-uso-panel .aviso-independencia{padding:10px 0 0;border-left:0;border-top:1px solid rgba(183,237,69,.2)}}
