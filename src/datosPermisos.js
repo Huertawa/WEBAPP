@@ -189,7 +189,7 @@ export const resultados = {
     articulo: "Comprobar las condiciones específicas del convenio bilateral y del artículo 22.",
     euros: "No determinar sin completar la comprobación.",
     puntos: "No determinar sin completar la comprobación.",
-    actuacion: "Verificar documentalmente la fecha de residencia y de obtención del permiso; comprobar categorías, vigencia, autenticidad, restricciones y requisitos específicos del convenio. Confirmar con la DGT si procede el canje antes de cerrar la actuación.",
+    actuacion: "Verificar documentalmente la fecha de residencia y de obtención del permiso; comprobar categorías, vigencia, autenticidad, restricciones y requisitos específicos del convenio. Si el permiso procede de un canje anterior, identificar también el país que expidió la autorización original y comprobar su reconocimiento. Confirmar con la DGT si procede el canje antes de cerrar la actuación.",
     observaciones: "Resultado deliberadamente pendiente: la excepción relativa a la fecha de obtención no equivale a un reconocimiento automático ni permite afirmar por sí sola que el titular pueda conducir."
   },
   PER013: {
