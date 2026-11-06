@@ -1,5 +1,6 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
+const FUENTE_CATALOGO = "https://r.jina.ai/https://www.dentrotest.com/senales";
 const BASE_IMAGENES = "https://www.dentrotest.com/senales";
 const PARAMETRO_IMAGEN = "?dpl=dpl_FKt9Ju86Nyy2Yd4JFEhoujGYBfsq";
 
@@ -17,17 +18,70 @@ const MUESTRA = [
   { codigo:"P-6", nombre:"Cruce de tranvía", categoria:"Peligro", descripcion:"Peligro por la proximidad de cruce con una línea de tranvía, que tiene prioridad de paso." },
   { codigo:"P-7", nombre:"Paso a nivel con barreras", categoria:"Peligro", descripcion:"Peligro por la proximidad de un paso a nivel provisto de barreras o semibarreras." },
   { codigo:"P-8", nombre:"Paso a nivel sin barreras", categoria:"Peligro", descripcion:"Peligro por la proximidad de un paso a nivel no provisto de barreras o semibarreras." },
-  { codigo:"R-1", nombre:"Ceda el paso", categoria:"Prioridad", descripcion:"Obligación para todo conductor de ceder el paso en la próxima intersección a los vehículos que circulen por la vía a la que se aproxime o al carril al que pretende incorporarse." },
-  { codigo:"R-2", nombre:"Detención obligatoria o stop", categoria:"Prioridad", descripcion:"Obligación de detener el vehículo ante la línea de detención o, si no existe, antes de la intersección, y ceder el paso." },
-  { codigo:"R-3", nombre:"Calzada con prioridad", categoria:"Prioridad", descripcion:"Indica a los conductores que circulan por una calzada su prioridad en las intersecciones sobre los vehículos que circulan por otra calzada o proceden de ella." },
-  { codigo:"R-4", nombre:"Fin de prioridad", categoria:"Prioridad", descripcion:"Indica la proximidad del lugar en que la calzada por la que se circula pierde su prioridad respecto a otra calzada." },
-  { codigo:"R-5", nombre:"Prioridad del sentido contrario", categoria:"Prioridad", descripcion:"Prohíbe entrar en un paso estrecho mientras no sea posible atravesarlo sin obligar a los vehículos que circulan en sentido contrario a detenerse." },
-  { codigo:"R-6", nombre:"Prioridad respecto al sentido contrario", categoria:"Prioridad", descripcion:"Indica que, en un próximo paso estrecho, se tiene prioridad con relación a los vehículos que circulen en sentido contrario." },
-  { codigo:"R-100", nombre:"Circulación prohibida", categoria:"Prohibición de entrada", descripcion:"Prohibición de circulación de toda clase de vehículos en ambos sentidos." },
-  { codigo:"R-101", nombre:"Entrada prohibida", categoria:"Prohibición de entrada", descripcion:"Prohibición de acceso a toda clase de vehículos." },
-  { codigo:"R-102", nombre:"Entrada prohibida a vehículos de motor", categoria:"Prohibición de entrada", descripcion:"Prohibición de acceso a vehículos de motor." },
-  { codigo:"R-103", nombre:"Entrada prohibida a vehículos de motor, excepto motocicletas de dos ruedas", categoria:"Prohibición de entrada", descripcion:"Prohibición de acceso a vehículos de motor. No prohíbe el acceso a motocicletas de dos ruedas ni a vehículos de tres ruedas asimilados a motocicletas." }
+  { codigo:"R-1", nombre:"Ceda el paso", categoria:"Prioridad", descripcion:"Obligación de ceder el paso en la próxima intersección." },
+  { codigo:"R-2", nombre:"Detención obligatoria o stop", categoria:"Prioridad", descripcion:"Obligación de detener el vehículo ante la línea de detención o antes de la intersección y ceder el paso." },
+  { codigo:"R-3", nombre:"Calzada con prioridad", categoria:"Prioridad", descripcion:"Indica prioridad en las intersecciones sobre los vehículos que circulan por otra calzada." },
+  { codigo:"R-4", nombre:"Fin de prioridad", categoria:"Prioridad", descripcion:"Indica el lugar en que la calzada por la que se circula pierde su prioridad." },
+  { codigo:"R-5", nombre:"Prioridad del sentido contrario", categoria:"Prioridad", descripcion:"Prohíbe entrar en un paso estrecho si ello obliga a detenerse a los vehículos que circulan en sentido contrario." },
+  { codigo:"R-6", nombre:"Prioridad respecto al sentido contrario", categoria:"Prioridad", descripcion:"Indica prioridad en un próximo paso estrecho respecto a los vehículos que circulan en sentido contrario." },
+  { codigo:"R-100", nombre:"Circulación prohibida", categoria:"Prohibición de Entrada", descripcion:"Prohibición de circulación de toda clase de vehículos en ambos sentidos." },
+  { codigo:"R-101", nombre:"Entrada prohibida", categoria:"Prohibición de Entrada", descripcion:"Prohibición de acceso a toda clase de vehículos." },
+  { codigo:"R-102", nombre:"Entrada prohibida a vehículos de motor", categoria:"Prohibición de Entrada", descripcion:"Prohibición de acceso a vehículos de motor." },
+  { codigo:"R-103", nombre:"Entrada prohibida a vehículos de motor, excepto motocicletas de dos ruedas", categoria:"Prohibición de Entrada", descripcion:"Prohibición de acceso a vehículos de motor, con las excepciones indicadas en la señal." }
 ];
+
+function extraerSenales(texto) {
+  const lineas = texto.replace(/\r/g, "").split("\n");
+  const resultado = [];
+  let categoria = "Otras señales";
+  let pendiente = null;
+
+  const guardar = () => {
+    if (pendiente?.codigo && pendiente?.nombre) {
+      const descripcion = (pendiente.descripcion || pendiente.nombre).trim().replace(/\s+/g, " ");
+      resultado.push({ codigo:pendiente.codigo, nombre:pendiente.nombre.trim(), descripcion, categoria });
+    }
+    pendiente = null;
+  };
+
+  for (const original of lineas) {
+    const linea = original.trim();
+    if (!linea) continue;
+
+    const tituloCategoria = linea.match(/^##\s+(.+?)\s*$/);
+    if (tituloCategoria && !/catálogo|tu práctica/i.test(tituloCategoria[1])) {
+      guardar();
+      categoria = tituloCategoria[1].replace(/[*_]/g, "").trim();
+      continue;
+    }
+
+    const codigo = linea.replace(/^[-*]\s*/, "").replace(/[*`]/g, "").trim().match(/^([PRS]-[A-Za-z0-9]+)$/);
+    if (codigo) {
+      guardar();
+      pendiente = { codigo:codigo[1], nombre:"", descripcion:"" };
+      continue;
+    }
+
+    if (!pendiente) continue;
+    const titulo = linea.match(/^###\s+(.+?)\s*$/);
+    if (titulo && !pendiente.nombre) {
+      pendiente.nombre = titulo[1].replace(/[*_]/g, "").trim();
+      continue;
+    }
+
+    if (pendiente.nombre && !/^(!?\[|Image:|\[Image:|\*?\d+ señales)/i.test(linea) && !linea.startsWith("#")) {
+      const limpia = linea.replace(/^>\s*/, "").replace(/[*_]/g, "").trim();
+      if (limpia && !/^(P|R|S)-[A-Za-z0-9]+$/.test(limpia)) {
+        pendiente.descripcion += (pendiente.descripcion ? " " : "") + limpia;
+      }
+    }
+  }
+  guardar();
+
+  const unicas = new Map();
+  for (const senal of resultado) if (!unicas.has(senal.codigo)) unicas.set(senal.codigo, senal);
+  return [...unicas.values()];
+}
 
 const estilos = `
 .senales-nativas{color:var(--texto,#f4f5f6);width:100%}
@@ -58,19 +112,44 @@ const estilos = `
 .senales-nativas .sn-detalle p{line-height:1.6;color:var(--texto-secundario,#c2c7cc)}
 .senales-nativas .sn-cerrar{float:right;background:transparent;border:1px solid var(--borde,#454e57);color:inherit;border-radius:8px;padding:7px 11px;cursor:pointer}
 .senales-nativas .sn-aviso{font-size:12px;color:var(--texto-secundario,#aab0b6);margin-top:18px;line-height:1.5}
+.senales-nativas .sn-estado{font-size:13px;padding:12px 14px;border-radius:10px;margin:0 0 16px;background:var(--superficie,#1d2329);border:1px solid var(--borde,#343c44)}
 @media(max-width:620px){.senales-nativas .sn-cabecera{flex-direction:column}.senales-nativas .sn-controles{grid-template-columns:1fr}.senales-nativas .sn-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.senales-nativas .sn-img{height:118px}.senales-nativas .sn-card{padding:9px}}
 `;
 
 export default function Senales({ volver }) {
+  const [senales, setSenales] = useState(MUESTRA);
+  const [estado, setEstado] = useState("Cargando el catálogo completo de señales…");
   const [busqueda, setBusqueda] = useState("");
   const [categoria, setCategoria] = useState("Todas");
   const [seleccionada, setSeleccionada] = useState(null);
-  const lista = useMemo(() => MUESTRA.filter((s) => {
+
+  useEffect(() => {
+    const controlador = new AbortController();
+    fetch(FUENTE_CATALOGO, { signal:controlador.signal, headers:{ Accept:"text/plain" } })
+      .then(respuesta => {
+        if (!respuesta.ok) throw new Error("No se ha podido consultar el catálogo de origen.");
+        return respuesta.text();
+      })
+      .then(texto => {
+        const catalogo = extraerSenales(texto);
+        if (catalogo.length < 400) throw new Error(`El catálogo recibido está incompleto (${catalogo.length} fichas detectadas).`);
+        setSenales(catalogo);
+        setEstado(`Catálogo completo cargado: ${catalogo.length} señales.`);
+      })
+      .catch(error => {
+        if (error.name === "AbortError") return;
+        setEstado("No se ha podido descargar el catálogo completo. Se mantiene la muestra de prueba de 23 señales.");
+      });
+    return () => controlador.abort();
+  }, []);
+
+  const categorias = useMemo(() => ["Todas", ...new Set(senales.map(s=>s.categoria))], [senales]);
+  const lista = useMemo(() => senales.filter((s) => {
     const q = busqueda.trim().toLocaleLowerCase("es");
     const coincide = !q || `${s.codigo} ${s.nombre} ${s.descripcion}`.toLocaleLowerCase("es").includes(q);
     return coincide && (categoria === "Todas" || s.categoria === categoria);
-  }), [busqueda, categoria]);
-  const imagen = (codigo) => `${BASE_IMAGENES}/${encodeURIComponent(codigo)}.png`;
+  }), [senales, busqueda, categoria]);
+  const imagen = (codigo) => `${BASE_IMAGENES}/${encodeURIComponent(codigo)}.png${PARAMETRO_IMAGEN}`;
 
   return (
     <section className="senales-nativas">
@@ -87,12 +166,12 @@ export default function Senales({ volver }) {
         <div className="sn-controles">
           <input aria-label="Buscar señales" placeholder="Buscar por código, nombre o descripción…" value={busqueda} onChange={e=>setBusqueda(e.target.value)} />
           <select aria-label="Filtrar por categoría" value={categoria} onChange={e=>setCategoria(e.target.value)}>
-            <option>Todas</option>
-            {[...new Set(MUESTRA.map(s=>s.categoria))].map(c=><option key={c}>{c}</option>)}
+            {categorias.map(c=><option key={c}>{c}</option>)}
           </select>
         </div>
       </div>
-      <div className="sn-resumen"><strong>{lista.length} señales</strong><span>Vista de prueba · fichas individuales</span></div>
+      <div className="sn-estado" role="status">{estado}</div>
+      <div className="sn-resumen"><strong>{lista.length} señales</strong><span>{categoria === "Todas" ? "Catálogo completo" : categoria}</span></div>
       <div className="sn-grid">
         {lista.map(s=><button type="button" className="sn-card" key={s.codigo} onClick={()=>setSeleccionada(s)}>
           <div className="sn-img"><img src={imagen(s.codigo)} alt={`Señal ${s.codigo}: ${s.nombre}`} loading="lazy" onError={e=>{e.currentTarget.style.visibility="hidden";}} /></div>
@@ -102,7 +181,6 @@ export default function Senales({ volver }) {
         </button>)}
       </div>
       {lista.length===0 && <div className="sn-panel">No hay señales que coincidan con la búsqueda.</div>}
-      <p className="sn-aviso">Esta es una primera prueba de diseño con una selección de señales. Las imágenes se muestran dentro de MOTOLISTOS; no se abre ninguna página externa al seleccionar una ficha.</p>
       {seleccionada && <div className="sn-detalle-fondo" onClick={()=>setSeleccionada(null)}>
         <article className="sn-detalle" role="dialog" aria-modal="true" aria-label={`Ficha ${seleccionada.codigo}`} onClick={e=>e.stopPropagation()}>
           <button className="sn-cerrar" onClick={()=>setSeleccionada(null)}>Cerrar ✕</button>
