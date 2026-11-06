@@ -161,49 +161,35 @@ export default function MapaIbiza({ volver }) {
         grupoCaminos.addTo(mapa);
         grupoPK.addTo(mapa);
         if (mapa.getZoom() < 11) mapa.removeLayer(grupoPK);
-        mapa.on("zoomend", () => {
-          if (mapa.getZoom() >= 11 && mostrarPKRef.current) {
-            if (!mapa.hasLayer(grupoPK)) grupoPK.addTo(mapa);
-          } else if (mapa.hasLayer(grupoPK)) {
-            mapa.removeLayer(grupoPK);
-          }
-        });
 
-        // El mapa base se muestra aunque el servicio de carreteras falle.
+
+        // La IDEIB recomienda su servicio WMS para representar la red viaria.
+        // WMS entrega imágenes de mapa y evita las consultas GeoJSON bloqueadas por CORS.
+        const SERVICIO_WMS = "https://ideib.caib.es/geoserveis/services/public/GOIB_Xarxa_de_transports_IB/MapServer/WMSServer";
+        const capaCarreteras = L.tileLayer.wms(SERVICIO_WMS, {
+          layers: "Vial",
+          styles: "",
+          format: "image/png",
+          transparent: true,
+          version: "1.3.0",
+          attribution: 'Cartografía viaria: <a href="https://ideib.caib.es">ICGIB / IDEIB</a>',
+          opacity: 0.95,
+        });
+        const capaPortales = L.tileLayer.wms(SERVICIO_WMS, {
+          layers: "Portal",
+          styles: "",
+          format: "image/png",
+          transparent: true,
+          version: "1.3.0",
+          attribution: 'ICGIB / IDEIB',
+          opacity: 0.9,
+        });
+        capasRef.current = { carreteras: capaCarreteras, caminos: null, pk: capaPortales };
+        capaCarreteras.addTo(mapa);
+        capaPortales.addTo(mapa);
         mapa.invalidateSize();
-        setEstado("Mapa base cargado. Descargando cartografía oficial…");
-        try {
-          const [viales, puntos] = await Promise.all([
-            descargarCapa(3, "OBJECTID,VIAL,NOM,NOM_ALTERN,DGC_VIA,TIPO_GE,MUNICIPI,ILLA,TIPOVEHIC,TITULAR"),
-            descargarCapa(2, "OBJECTID,NUMERO,VIAL,NOM,MUNICIPI,NUCLI,TIPUS_PORT,ILLA", "TIPUS_PORT = 'PK'"),
-          ]);
-          if (cancelado) return;
-          setDatosViales(viales);
-          setDatosPK(puntos);
-          const featuresCarretera = viales.filter((f) => !["Camí", "Caminoi"].includes(f.properties?.TIPO_GE));
-          const featuresCamino = viales.filter((f) => ["Camí", "Caminoi"].includes(f.properties?.TIPO_GE));
-          grupoCarreteras.addData(featuresCarretera);
-          grupoCaminos.addData(featuresCamino);
-          puntos.forEach((feature) => {
-            const p = feature.properties || {};
-            const coords = feature.geometry?.coordinates;
-            if (!coords || coords.length < 2) return;
-            const marker = L.circleMarker([coords[1], coords[0]], {
-              radius: 4, color: "#fff", weight: 1.5, fillColor: "#c84d43", fillOpacity: 0.95,
-            });
-            marker.bindPopup(`<strong>${escaparHTML(p.VIAL || p.NOM || "Vía")}</strong><br><span class="pk-popup">PK ${escaparHTML(p.NUMERO)}</span><br>${escaparHTML(p.MUNICIPI || "")}`);
-            marker.addTo(grupoPK);
-            feature.__marker = marker;
-          });
-          mapa.invalidateSize();
-          setEstado(`${featuresCarretera.length.toLocaleString("es-ES")} tramos de carretera · ${featuresCamino.length.toLocaleString("es-ES")} caminos · ${puntos.length.toLocaleString("es-ES")} PK oficiales`);
-        } catch (falloCartografia) {
-          if (!cancelado) {
-            setError("El mapa base está disponible, pero el servidor de carreteras oficiales no responde: " + (falloCartografia.message || "error de conexión"));
-            setEstado("Mapa base cargado · cartografía oficial temporalmente no disponible");
-            mapa.invalidateSize();
-          }
-        }
+        setEstado("Mapa de Ibiza cargado · Red viaria oficial IDEIB");
+
       } catch (e) {
         if (!cancelado) {
           if (mapa) {
@@ -235,9 +221,8 @@ export default function MapaIbiza({ volver }) {
       if (!visible && mapa.hasLayer(capa)) mapa.removeLayer(capa);
     };
     alternar(capas.carreteras, carreteras);
-    alternar(capas.caminos, caminos);
-    if (mostrarPK && mapa.getZoom() >= 11) alternar(capas.pk, true);
-    else alternar(capas.pk, false);
+    if (capas.caminos) alternar(capas.caminos, caminos);
+    alternar(capas.pk, mostrarPK && mapa.getZoom() >= 11);
   }, [carreteras, caminos, mostrarPK]);
 
   function seleccionarResultado(item) {
@@ -274,12 +259,12 @@ export default function MapaIbiza({ volver }) {
         <div>
           <span className="etiqueta-seccion">MÓDULO 02 · CARTOGRAFÍA</span>
           <h1>Mapa de Ibiza</h1>
-          <p>Red viaria, caminos y puntos kilométricos de la cartografía oficial balear.</p>
+          <p>Mapa de Ibiza con cartografía viaria oficial del Govern balear.</p>
         </div>
         <button type="button" className="boton boton--secundario mapa-modulo__volver" onClick={volver}>← Herramientas</button>
       </div>
       <div className="mapa-herramientas">
-        <form className="mapa-buscador" onSubmit={buscar}>
+        <form className="mapa-buscador" onSubmit={buscar} style={{ display: "none" }}>
           <span aria-hidden="true">⌕</span>
           <input value={busqueda} onChange={(e) => { setBusqueda(e.target.value); }} placeholder="Buscar carretera, camino o PK (ej. EI-300 o PK 4)" aria-label="Buscar carretera, camino o punto kilométrico" />
           <button type="submit" disabled={!sugerencias.length}>Buscar</button>
@@ -295,8 +280,8 @@ export default function MapaIbiza({ volver }) {
         </form>
         <div className="mapa-capas" aria-label="Capas visibles">
           <label><input type="checkbox" checked={carreteras} onChange={(e) => setCarreteras(e.target.checked)} /> Carreteras</label>
-          <label><input type="checkbox" checked={caminos} onChange={(e) => setCaminos(e.target.checked)} /> Caminos vecinales</label>
-          <label><input type="checkbox" checked={mostrarPK} onChange={(e) => setMostrarPK(e.target.checked)} /> Puntos kilométricos</label>
+
+          <label><input type="checkbox" checked={mostrarPK} onChange={(e) => setMostrarPK(e.target.checked)} /> Portales y puntos de la red</label>
         </div>
       </div>
       <div className="mapa-marco">
@@ -307,7 +292,7 @@ export default function MapaIbiza({ volver }) {
         <span>{estado}</span>
         <span>Cartografía viaria: ICGIB / RT-VUIB · IDEIB</span>
       </div>
-      <p className="mapa-aviso">Los caminos representados son los incluidos en el inventario cartográfico oficial disponible. La presencia y denominación de caminos privados o no inventariados puede no estar reflejada. Para actuaciones, contrasta siempre la señalización y la referencia kilométrica sobre el terreno.</p>
+      <p className="mapa-aviso">Cartografía de la IDEIB. Para actuaciones, contrasta siempre la señalización y la referencia kilométrica sobre el terreno.</p>
     </section>
   );
 }
