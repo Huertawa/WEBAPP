@@ -3984,16 +3984,19 @@ body{
 @media(max-width:600px){.portada-marca:before{height:8px}.portada-marca .portada-modulos__cabecera{padding-top:22px}}
 
 
-/* Caimán protagonista, fundido suavemente con el banner */
+/* Mascota integrada: imagen ampliada y desvanecida en todas las direcciones */
 .portada-marca .portada-modulos__cabecera{
-  grid-template-columns:116px minmax(0,1fr) 58px;
-  min-height:154px;
-  padding:18px 24px;
-  gap:8px;
+  grid-template-columns:150px minmax(0,1fr) 58px;
+  min-height:176px;
+  padding:10px 20px;
+  gap:0;
 }
 .portada-marca .portada-modulos__insignia{
-  width:116px;
-  height:116px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:150px;
+  height:150px;
   overflow:visible;
   border:0;
   border-radius:0;
@@ -4002,31 +4005,33 @@ body{
 }
 .portada-marca .portada-modulos__insignia img{
   display:block;
-  width:100%;
-  height:100%;
+  width:150px;
+  height:150px;
+  max-width:none;
   object-fit:cover;
   object-position:82% 23%;
-  transform:none;
   border:0;
   border-radius:0;
   box-shadow:none;
-  filter:drop-shadow(0 4px 8px rgba(0,0,0,.22));
-  -webkit-mask-image:radial-gradient(ellipse 68% 70% at 53% 45%,#000 48%,rgba(0,0,0,.92) 62%,transparent 100%);
-  mask-image:radial-gradient(ellipse 68% 70% at 53% 45%,#000 48%,rgba(0,0,0,.92) 62%,transparent 100%);
+  filter:drop-shadow(0 5px 9px rgba(0,0,0,.18));
+  -webkit-mask:radial-gradient(ellipse 76% 82% at 51% 48%,#000 0%,#000 35%,rgba(0,0,0,.88) 52%,rgba(0,0,0,.42) 70%,transparent 100%);
+  mask:radial-gradient(ellipse 76% 82% at 51% 48%,#000 0%,#000 35%,rgba(0,0,0,.88) 52%,rgba(0,0,0,.42) 70%,transparent 100%);
 }
 @media(max-width:600px){
   .portada-marca .portada-modulos__cabecera{
-    grid-template-columns:82px minmax(0,1fr) 34px;
-    min-height:104px;
-    padding:12px 11px 8px;
-    gap:6px;
+    grid-template-columns:104px minmax(0,1fr) 30px;
+    min-height:116px;
+    padding:5px 8px;
+    gap:0;
   }
-  .portada-marca .portada-modulos__insignia{
-    width:82px;
-    height:82px;
+  .portada-marca .portada-modulos__insignia,
+  .portada-marca .portada-modulos__insignia img{
+    width:112px;
+    height:112px;
   }
 }
 @media(max-width:370px){
-  .portada-marca .portada-modulos__cabecera{grid-template-columns:72px minmax(0,1fr) 30px}
-  .portada-marca .portada-modulos__insignia{width:72px;height:72px}
+  .portada-marca .portada-modulos__cabecera{grid-template-columns:94px minmax(0,1fr) 26px}
+  .portada-marca .portada-modulos__insignia,
+  .portada-marca .portada-modulos__insignia img{width:102px;height:102px}
 }
