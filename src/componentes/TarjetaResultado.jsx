@@ -100,6 +100,13 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
         <span className={`estado-conduccion ${claseEstado}`}>{etiquetaEstado}</span>
       </div>
 
+      {(denuncia?.codificado || resultado.orientacionSancion?.codificado) && (
+        <div className="propuesta-denuncia__codigo codificacion-principal">
+          <small>{denuncia?.codificado ? "CODIFICACIÓN DE REFERENCIA" : "CODIFICACIÓN ORIENTATIVA · PENDIENTE DE COMPROBACIÓN"}</small>
+          <strong>{normalizarCodificacion(denuncia?.codificado || resultado.orientacionSancion.codificado)}</strong>
+        </div>
+      )}
+
       <div className="resumen-operativo">
         <article className="dato-destacado dato-destacado--articulo">
           <span>ARTÍCULO APLICABLE</span>
@@ -157,10 +164,6 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
             <strong>{denuncia.calificacion}</strong>
           </div>
           <div className="propuesta-denuncia__grid">
-            <div className="propuesta-denuncia__codigo">
-              <small>CODIFICACIÓN DE REFERENCIA</small>
-              <strong>{normalizarCodificacion(denuncia.codificado)}</strong>
-            </div>
             <div><small>PRECEPTO INFRINGIDO</small><strong>{denuncia.preceptoInfringido}</strong></div>
             <div><small>PRECEPTO SANCIONADOR</small><strong>{denuncia.preceptoSancionador}</strong></div>
             <div><small>IMPORTE</small><strong>{denuncia.importe}</strong></div>
@@ -179,7 +182,6 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
             <strong>{resultado.orientacionSancion.calificacion}</strong>
           </div>
           <div className="propuesta-denuncia__grid">
-            {resultado.orientacionSancion.codificado && <div className="propuesta-denuncia__codigo"><small>CODIFICACIÓN CONDICIONADA</small><strong>{normalizarCodificacion(resultado.orientacionSancion.codificado)}</strong></div>}
             <div><small>IMPORTE ORIENTATIVO</small><strong>{resultado.orientacionSancion.importe}</strong></div>
             <div><small>PUNTOS</small><strong>{resultado.orientacionSancion.puntos}</strong></div>
             <div><small>PRECEPTO INFRINGIDO</small><strong>{resultado.orientacionSancion.preceptoInfringido}</strong></div>
@@ -242,7 +244,7 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
         <summary>Ver normativa y fuentes oficiales</summary>
         <div className="fuentes-juridicas">
           <h3>Fuentes oficiales para contrastar</h3>
-        <p className="fuentes-juridicas__revision">Revisión de referencias: 06/11/2026. La DGT publica en SIPP la guía codificada extendida vigente desde el 01/10/2026. Los códigos mostrados son referencias condicionadas: contrasta el precepto, opción, gravedad y puntos en la versión vigente antes de emitir el boletín.</p>
+        <p className="fuentes-juridicas__revision">Revisión de referencias: 06/11/2026. La DGT publica en SIPP la guía codificada extendida vigente desde el 01/10/2026. La codificación aparece una sola vez al inicio del resultado; si está pendiente, se identifica expresamente como orientativa. Contrasta siempre el precepto, opción, gravedad y puntos en la guía vigente antes de emitir el boletín.</p>
         <ul>
           <li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2009-9481" target="_blank" rel="noreferrer">Reglamento General de Conductores</a></li>
           <li><a href="https://www.boe.es/buscar/act.php?id=BOE-A-2015-11722" target="_blank" rel="noreferrer">Ley de Tráfico · texto consolidado</a></li>
@@ -251,7 +253,6 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
           <li><a href="https://www.dgt.es/nuestros-servicios/permisos-de-conducir/permisos-extranjeros-y-de-fuerzas-y-cuerpos-de-seguridad/conducir-con-un-permiso-extranjero/" target="_blank" rel="noreferrer">DGT · Conducir con un permiso extranjero</a></li>
           <li><a href="https://sede-org.dgt.gob.es/es/multas/tramites-para-administraciones/sipp-notificacion-de-sanciones/" target="_blank" rel="noreferrer">DGT · SIPP: guía codificada extendida vigente desde 01/10/2026 y versiones anteriores</a></li>
           <li><a href="https://www.dgt.es/comunicacion/noticias/20250221-sin-los-papeles-en-regla/" target="_blank" rel="noreferrer">DGT · Sin los papeles en regla: sanciones por permisos caducados y extranjeros</a></li>
-          <li><a href="https://sede.dgt.gob.es/export/sites/dgt/.galleries/multas/ARCI/Guia-codificada-de-infracciones-ARCI-Vigente-a-partir-del-01-07-2025.pdf" target="_blank" rel="noreferrer">DGT · Guía codificada ARCI en PDF (versión histórica 01/07/2025)</a></li>
           <li><a href="https://www.dgt.es/nuestros-servicios/permisos-de-conducir/permisos-extranjeros-y-de-fuerzas-y-cuerpos-de-seguridad/canjes-de-permisos/paises-con-convenio-de-canjes/" target="_blank" rel="noreferrer">DGT · Países con convenio de canje (actualizado 26/06/2026)</a></li>
           </ul>
         </div>
