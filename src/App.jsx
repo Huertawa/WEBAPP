@@ -28,11 +28,13 @@ const preguntas = {
   fechaFirmaConvenio: { titulo: "¿El permiso se obtuvo antes de la fecha de firma del convenio entre España y el país expedidor?", descripcion: "Algunos convenios permiten el canje si el permiso se obtuvo antes de la firma del acuerdo, aunque fuera después de adquirir la residencia en España. Comprueba la fecha exacta del convenio aplicable a ese país.", opciones: [{ valor: "convenioAnteriorFirma", texto: "Sí, antes de la firma del convenio" }, { valor: "profesionalTercero", texto: "No, después de la firma" }, { valor: "obtenidoDespuesNoAcreditado", texto: "No puedo acreditarlo" }] },
   profesionalTercero: { titulo: "¿Puede acogerse a la vía de canje para conductores profesionales?", descripcion: "Comprueba conjuntamente que el permiso esté comprendido en el artículo 21.1.a) o b), que acredita al menos seis meses contratado como conductor profesional por empresa legalmente establecida en España, que ha superado la prueba de circulación exigida y que no está privado, suspendido ni intervenido del derecho a conducir.", opciones: [{ valor: "profesionalPendiente", texto: "Sí, reúne y acredita todos los requisitos" }, { valor: "profesionalNoCanje", texto: "No / no reúne todos los requisitos" }] },
   fechaPermiso: {
-    titulo: "¿Cuándo obtuvo el permiso extranjero respecto a la fecha en que adquirió la residencia legal en España?",
-    descripcion: "La fecha de obtención puede determinar si el permiso es canjeable. Comprueba la documentación acreditativa, no solo la declaración del conductor.",
+    titulo: "¿En qué momento se obtuvo el permiso extranjero?",
+    descripcion: "Selecciona una sola opción tras comparar la fecha de expedición con la fecha de residencia normal en España y, cuando corresponda, con la fecha de firma del convenio. Comprueba ambas fechas en documentación oficial. Para Corea del Sur existe una regla específica.",
     opciones: [
-      { valor: "obtenidoAntes", texto: "Antes de ser residente en España" },
-      { valor: "obtenidoDespues", texto: "Después de ser residente en España" },
+      { valor: "obtenidoAntes", texto: "Antes de adquirir la residencia legal en España" },
+      { valor: "convenioAnteriorFirma", texto: "Después de adquirir la residencia, pero antes de la firma del convenio" },
+      { valor: "obtenidoDespues", texto: "Después de adquirir la residencia y después de la firma del convenio" },
+      { valor: "obtenidoDespuesNoAcreditado", texto: "No puedo acreditar la fecha exacta" },
     ],
   },
 };
@@ -100,25 +102,34 @@ function App() {
   };
 
   const resultado = resultados[resultadosPorPantalla[pantalla]];
-  const paisesFiltrados = paises.filter((pais) => normalizarBusqueda(pais.nombre).includes(normalizarBusqueda(busquedaPais)));
+  const paisesFiltrados = paises
+    .filter((pais) => normalizarBusqueda(pais.nombre).includes(normalizarBusqueda(busquedaPais)))
+    .sort((a, b) => {
+      if (!a.bandera) return 1;
+      if (!b.bandera) return -1;
+      return a.nombre.localeCompare(b.nombre, "es");
+    });
   const otroPais = paises.find((pais) => pais.nombre.includes("Otro país"));
 
   const seleccionarFechaObtencion = (destino, texto) => {
     const pais = paises.find((elemento) => elemento.nombre === paisSeleccionado);
     if (!pais) return;
-    // Registrar una sola vez la respuesta elegida para evitar duplicados en el resultado.
     setPilaNavegacion((anterior) => [...anterior, { pantalla, historial, paisSeleccionado }]);
     setHistorial((anterior) => [...anterior, texto]);
-    if (destino === "obtenidoAntes") {
-      setPantalla(pais.convenio ? "conConvenio" : "profesionalTercero");
+
+    if (destino === "obtenidoAntes" || destino === "convenioAnteriorFirma") {
+      setPantalla("conConvenio");
       return;
     }
-    // La DGT contempla una excepción específica para permisos de Corea del Sur.
-    if (pais.nombre.includes("Corea del Sur")) {
+    if (destino === "obtenidoDespuesNoAcreditado") {
+      setPantalla("obtenidoDespuesNoAcreditado");
+      return;
+    }
+    if (pais.nombre === "Corea del Sur") {
       setPantalla("coreaPosteriorResidencia");
       return;
     }
-    setPantalla(pais.convenio ? "fechaFirmaConvenio" : "profesionalTercero");
+    setPantalla("profesionalTercero");
   };
 
   return (
@@ -163,20 +174,14 @@ function App() {
             <label className="etiqueta-campo">País de expedición</label>
             <div className="lista-paises" role="group" aria-label="Seleccionar país de expedición">
               {paisesFiltrados.map((pais) => {
-                const caracteresPais = Array.from(pais.nombre);
-                const esBandera = caracteresPais.length > 1
-                  && caracteresPais[0].codePointAt(0) >= 0x1F1E6
-                  && caracteresPais[0].codePointAt(0) <= 0x1F1FF
-                  && caracteresPais[1].codePointAt(0) >= 0x1F1E6
-                  && caracteresPais[1].codePointAt(0) <= 0x1F1FF;
-                const bandera = esBandera ? caracteresPais.slice(0, 2).join("") : "🌐";
-                const nombreVisible = esBandera ? caracteresPais.slice(2).join("").trim() : pais.nombre;
                 const seleccionado = paisSeleccionado === pais.nombre;
                 return <button type="button" key={pais.nombre} aria-pressed={seleccionado}
                   className={`opcion-pais ${seleccionado ? "opcion-pais--seleccionada" : ""}`}
                   onClick={() => setPaisSeleccionado(pais.nombre)}>
-                  <span className="opcion-pais__bandera" aria-hidden="true">{bandera}</span>
-                  <span className="opcion-pais__nombre">{nombreVisible}</span>
+                  {pais.bandera
+                    ? <img className="opcion-pais__bandera" src={`https://flagcdn.com/w40/${pais.bandera}.png`} alt="" width="32" height="24" loading="lazy" decoding="async" />
+                    : <span className="opcion-pais__sin-bandera" aria-hidden="true">OTRO</span>}
+                  <span className="opcion-pais__nombre">{pais.nombre}</span>
                   <span className={`opcion-pais__estado ${pais.convenio ? "opcion-pais__estado--convenio" : ""}`}>{pais.convenio ? "Canje DGT" : "Sin convenio"}</span>
                   {seleccionado && <span className="opcion-pais__marca" aria-hidden="true">✓</span>}
                 </button>;
@@ -198,7 +203,13 @@ function App() {
             {busquedaPais && paisesFiltrados.length === 0 && <div className="pais-no-encontrado"><p className="texto-secundario">No se encuentra ese país en la lista de convenios bilaterales. Esto no significa necesariamente que el permiso no esté reconocido: comprueba también los convenios internacionales y el formato del documento.</p>{otroPais && <button type="button" className="boton boton--secundario" onClick={() => setPaisSeleccionado(otroPais.nombre)}>Continuar con otro país</button>}</div>}
             <div className="acciones-pregunta">
               <button className="boton boton--secundario" onClick={retroceder}>Volver</button>
-              <button className="boton boton--principal" disabled={!paisSeleccionado} onClick={() => avanzar(pantalla === "paisTerceroNoResidente" ? "categoriaTerceroNoResidente" : "fechaPermiso", `País de expedición: ${paisSeleccionado}`)}>Continuar</button>
+              <button className="boton boton--principal" disabled={!paisSeleccionado} onClick={() => {
+                const pais = paises.find((elemento) => elemento.nombre === paisSeleccionado);
+                const destino = pantalla === "paisTerceroNoResidente"
+                  ? "categoriaTerceroNoResidente"
+                  : pais?.convenio ? "fechaPermiso" : "profesionalTercero";
+                avanzar(destino, `País de expedición: ${paisSeleccionado}`);
+              }}>Continuar</button>
             </div>
           </section>
         )}
@@ -215,16 +226,6 @@ function App() {
                 : destino;
               avanzar(destinoFinal, texto);
             }}
-            alVolver={retroceder}
-          />
-        )}
-
-        {pantalla === "fechaFirmaConvenio" && (
-          <Pregunta
-            titulo={preguntas.fechaFirmaConvenio.titulo}
-            descripcion={preguntas.fechaFirmaConvenio.descripcion}
-            opciones={preguntas.fechaFirmaConvenio.opciones}
-            alSeleccionar={(destino, texto) => avanzar(destino, texto)}
             alVolver={retroceder}
           />
         )}
