@@ -11,7 +11,7 @@ function cargarLeaflet() {
       if (!document.querySelector('link[data-leaflet="true"]')) {
         const link = document.createElement("link");
         link.rel = "stylesheet";
-        link.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+        link.href = "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css";
         link.dataset.leaflet = "true";
         document.head.appendChild(link);
       }
@@ -196,8 +196,14 @@ export default function MapaIbiza({ volver }) {
         setEstado(`${featuresCarretera.length.toLocaleString("es-ES")} tramos de carretera · ${featuresCamino.length.toLocaleString("es-ES")} caminos · ${puntos.length.toLocaleString("es-ES")} PK oficiales`);
       } catch (e) {
         if (!cancelado) {
-          setError(e.message || "No se ha podido cargar el mapa.");
-          setEstado("No se ha podido cargar la cartografía.");
+          if (mapa) {
+            mapa.invalidateSize();
+            setError("El mapa base está disponible, pero no se ha podido descargar la cartografía oficial. " + (e.message || ""));
+            setEstado("Mapa base disponible · cartografía oficial no disponible");
+          } else {
+            setError(e.message || "No se ha podido cargar el mapa.");
+            setEstado("No se ha podido iniciar el mapa. Comprueba la conexión e inténtalo de nuevo.");
+          }
         }
       }
     }
