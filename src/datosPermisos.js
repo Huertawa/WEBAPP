@@ -169,7 +169,16 @@ export const resultados = {
     euros: "No determinar hasta confirmar la situación administrativa y la infracción concreta.",
     puntos: "No determinar hasta confirmar la infracción concreta.",
     actuacion: "Comprobar documentalmente la fecha de adquisición de la residencia y la fecha de obtención del permiso. Verificar la excepción específica de Corea del Sur y los supuestos de conductores profesionales antes de cerrar la actuación.",
-    observaciones: "La fecha de obtención posterior a la residencia no debe convertirse en una conclusión automática. Revisar las excepciones y condiciones específicas antes de determinar la habilitación."
+    observaciones: "La fecha de obtención posterior a la residencia no debe convertirse en una conclusión automática. Revisar las excepciones y condiciones específicas antes de determinar la habilitación.",
+    orientacionSancion: {
+      calificacion: "Muy grave, si se confirma que el permiso no es susceptible de canje",
+      importe: "500 € (referencia condicionada)",
+      puntos: "0 puntos",
+      preceptoInfringido: "Artículos 21.2.c) y 21.3 del Reglamento General de Conductores, en relación con el artículo 22.",
+      preceptoSancionador: "Artículo 77.k) de la Ley de Tráfico.",
+      codificado: "CON · Art. 001 · Apt. 1 · Opción 5E · 0 puntos",
+      fundamento: "La opción 5E de la guía ARCI contempla permisos extranjeros equivalentes no susceptibles de canje por incumplimiento de las condiciones y requisitos reglamentarios. Aplicar solo tras acreditar que la fecha de obtención impide el canje, descartar un convenio con regla especial y comprobar que no procede la vía profesional."
+    }
   },
   PER012: {
     codigo: "PER012",
