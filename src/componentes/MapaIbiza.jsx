@@ -222,9 +222,13 @@ export default function MapaIbiza({ volver }) {
     setBusqueda(item.nombre);
     if (item.tipo === "pk") {
       const marker = item.feature.__marker;
+      const grupoPK = capasRef.current.pk;
+      if (grupoPK && !mapa.hasLayer(grupoPK)) grupoPK.addTo(mapa);
+      mostrarPKRef.current = true;
+      setMostrarPK(true);
       if (marker) {
+        mapa.once("zoomend", () => marker.openPopup());
         mapa.setView(marker.getLatLng(), 17);
-        marker.openPopup();
       }
     } else {
       const capa = L.geoJSON(item.feature);
