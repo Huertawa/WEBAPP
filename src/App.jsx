@@ -205,11 +205,10 @@ function App() {
               <h1>MOTOLISTOS</h1>
               <p>Centro de consulta y apoyo para actuaciones de tráfico</p>
             </div>
-            <div className="portada-modulos__distintivo" aria-label="Tráfico · Consulta operativa">
-              <span className="portada-modulos__luz portada-modulos__luz--roja"></span>
-              <span className="portada-modulos__luz portada-modulos__luz--azul"></span>
-              <small>TRÁFICO</small>
-              <b>CONSULTA<br/>OPERATIVA</b>
+            <div className="portada-modulos__distintivo" aria-label="Semáforo · Tráfico">
+              <span className="semaforo-foto semaforo-foto--rojo"></span>
+              <span className="semaforo-foto semaforo-foto--ambar"></span>
+              <span className="semaforo-foto semaforo-foto--verde"></span>
             </div>
           </div>
           </div>
