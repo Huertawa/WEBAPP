@@ -93,7 +93,8 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
     PER027: ["Acreditar la duración de la pena y que ya se ha cumplido.", "Comprobar que la condena fue igual o inferior a dos años.", "Verificar que no se ha superado el curso de reeducación exigido por el artículo 73.2 LTSV."],
     PER028: ["Acreditar que la pena de hasta dos años ya se ha cumplido.", "Comprobar el certificado de superación del curso de reeducación y sensibilización vial.", "Descartar cualquier otra suspensión, pérdida de vigencia o restricción que impida conducir."],
     PER029: ["Identificar el código armonizado o la restricción concreta que figura en el permiso.", "Comprobar que la restricción sigue vigente y no existe adaptación o autorización posterior.", "Describir el incumplimiento concreto y contrastar CON 003.1 opción 5A."],
-    PER030: ["Obtener la resolución o anotación que acredita el canje de oficio.", "Comprobar si se ha expedido un nuevo permiso español y su fecha de efectos.", "Verificar en el Registro de Conductores que no existe autorización vigente y aplicar CON 001.1 opción 5D si procede."]
+    PER030: ["Obtener la resolución o anotación que acredita el canje de oficio.", "Comprobar si se ha expedido un nuevo permiso español y su fecha de efectos.", "Verificar en el Registro de Conductores que no existe autorización vigente y aplicar CON 001.1 opción 5D si procede."],
+    PER031: ["Obtener la resolución de la Jefatura que declara la pérdida de vigencia por desaparición de requisitos.", "Comprobar notificación, fecha de efectos y clases de permiso afectadas.", "Distinguirlo de pérdida total de puntos y de suspensión cautelar; aplicar CON 001.1 opción 5A si procede."]
   };
   const comprobaciones = resultado.comprobaciones || comprobacionesPorCaso[resultado.codigo] || [
     "Comprobar la identidad del conductor y la autenticidad del documento.",
