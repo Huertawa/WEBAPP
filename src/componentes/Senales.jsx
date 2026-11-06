@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 
 const BASE_IMAGENES = "https://www.dentrotest.com/senales";
+const PARAMETRO_IMAGEN = "?dpl=dpl_FKt9Ju86Nyy2Yd4JFEhoujGYBfsq";
 
 const MUESTRA = [
   { codigo:"P-1", nombre:"Intersección con prioridad", categoria:"Peligro", descripcion:"Peligro por la proximidad de una intersección con una vía, cuyos usuarios deben ceder el paso." },
