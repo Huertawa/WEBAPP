@@ -169,31 +169,41 @@ export default function MapaIbiza({ volver }) {
           }
         });
 
-        setEstado("Descargando carreteras, caminos y puntos kilométricos…");
-        const [viales, puntos] = await Promise.all([
-          descargarCapa(3, "OBJECTID,VIAL,NOM,NOM_ALTERN,DGC_VIA,TIPO_GE,MUNICIPI,ILLA,TIPOVEHIC,TITULAR"),
-          descargarCapa(2, "OBJECTID,NUMERO,VIAL,NOM,MUNICIPI,NUCLI,TIPUS_PORT,ILLA", "TIPUS_PORT = 'PK'"),
-        ]);
-        if (cancelado) return;
-        setDatosViales(viales);
-        setDatosPK(puntos);
-        const featuresCarretera = viales.filter((f) => !["Camí", "Caminoi"].includes(f.properties?.TIPO_GE));
-        const featuresCamino = viales.filter((f) => ["Camí", "Caminoi"].includes(f.properties?.TIPO_GE));
-        grupoCarreteras.addData(featuresCarretera);
-        grupoCaminos.addData(featuresCamino);
-        puntos.forEach((feature) => {
-          const p = feature.properties || {};
-          const coords = feature.geometry?.coordinates;
-          if (!coords || coords.length < 2) return;
-          const marker = L.circleMarker([coords[1], coords[0]], {
-            radius: 4, color: "#fff", weight: 1.5, fillColor: "#c84d43", fillOpacity: 0.95,
-          });
-          marker.bindPopup(`<strong>${escaparHTML(p.VIAL || p.NOM || "Vía")}</strong><br><span class="pk-popup">PK ${escaparHTML(p.NUMERO)}</span><br>${escaparHTML(p.MUNICIPI || "")}`);
-          marker.addTo(grupoPK);
-          feature.__marker = marker;
-        });
+        // El mapa base se muestra aunque el servicio de carreteras falle.
         mapa.invalidateSize();
-        setEstado(`${featuresCarretera.length.toLocaleString("es-ES")} tramos de carretera · ${featuresCamino.length.toLocaleString("es-ES")} caminos · ${puntos.length.toLocaleString("es-ES")} PK oficiales`);
+        setEstado("Mapa base cargado. Descargando cartografía oficial…");
+        try {
+          const [viales, puntos] = await Promise.all([
+            descargarCapa(3, "OBJECTID,VIAL,NOM,NOM_ALTERN,DGC_VIA,TIPO_GE,MUNICIPI,ILLA,TIPOVEHIC,TITULAR"),
+            descargarCapa(2, "OBJECTID,NUMERO,VIAL,NOM,MUNICIPI,NUCLI,TIPUS_PORT,ILLA", "TIPUS_PORT = 'PK'"),
+          ]);
+          if (cancelado) return;
+          setDatosViales(viales);
+          setDatosPK(puntos);
+          const featuresCarretera = viales.filter((f) => !["Camí", "Caminoi"].includes(f.properties?.TIPO_GE));
+          const featuresCamino = viales.filter((f) => ["Camí", "Caminoi"].includes(f.properties?.TIPO_GE));
+          grupoCarreteras.addData(featuresCarretera);
+          grupoCaminos.addData(featuresCamino);
+          puntos.forEach((feature) => {
+            const p = feature.properties || {};
+            const coords = feature.geometry?.coordinates;
+            if (!coords || coords.length < 2) return;
+            const marker = L.circleMarker([coords[1], coords[0]], {
+              radius: 4, color: "#fff", weight: 1.5, fillColor: "#c84d43", fillOpacity: 0.95,
+            });
+            marker.bindPopup(`<strong>${escaparHTML(p.VIAL || p.NOM || "Vía")}</strong><br><span class="pk-popup">PK ${escaparHTML(p.NUMERO)}</span><br>${escaparHTML(p.MUNICIPI || "")}`);
+            marker.addTo(grupoPK);
+            feature.__marker = marker;
+          });
+          mapa.invalidateSize();
+          setEstado(`${featuresCarretera.length.toLocaleString("es-ES")} tramos de carretera · ${featuresCamino.length.toLocaleString("es-ES")} caminos · ${puntos.length.toLocaleString("es-ES")} PK oficiales`);
+        } catch (falloCartografia) {
+          if (!cancelado) {
+            setError("El mapa base está disponible, pero el servidor de carreteras oficiales no responde: " + (falloCartografia.message || "error de conexión"));
+            setEstado("Mapa base cargado · cartografía oficial temporalmente no disponible");
+            mapa.invalidateSize();
+          }
+        }
       } catch (e) {
         if (!cancelado) {
           if (mapa) {
