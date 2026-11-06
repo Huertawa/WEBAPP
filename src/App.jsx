@@ -6,7 +6,7 @@ import Pregunta from "./componentes/Pregunta";
 
 const preguntas = {
   inicio: { titulo: "¿El conductor posee permiso de conducción?", descripcion: "Comprueba si dispone de una autorización de conducción obtenida en España o en otro país. Si la tiene, después identificaremos dónde se expidió y si está vigente.", opciones: [{ valor: "tipoPermiso", texto: "Sí, posee permiso" }, { valor: "situacionSinPermiso", texto: "No dispone de un permiso válido" }] },
-  situacionSinPermiso: { titulo: "¿Cuál es la situación administrativa o judicial del permiso?", descripcion: "Esta distinción es esencial. En la opción judicial, marca esa respuesta solo si la privación cautelar o la pena sigue vigente en el momento de la conducción. Si ya cumplió la pena pero no ha recuperado el permiso, selecciona «Otra causa / no está claro»: la Fiscalía ha fijado un criterio específico para ese supuesto en 2026.", opciones: [{ valor: "sinPermisoNunca", texto: "Nunca ha obtenido permiso de conducción" }, { valor: "sinPermisoPuntos", texto: "Tiene declarada la pérdida de vigencia por pérdida total de puntos" }, { valor: "sinPermisoPrivacion", texto: "Está privado del derecho a conducir por resolución judicial" }, { valor: "sinPermisoOtraSituacion", texto: "Otra causa / no está claro" }] },
+  situacionSinPermiso: { titulo: "¿Cuál es la situación administrativa o judicial del permiso?", descripcion: "No tener un permiso español no significa automáticamente cometer un delito. El artículo 384 del Código Penal se reserva a tres supuestos: no haber obtenido nunca permiso en ningún país; conducir tras una pérdida de vigencia por pérdida total de puntos declarada por resolución administrativa; o conducir mientras sigue vigente una privación cautelar o definitiva acordada por un juez. Un permiso caducado, una suspensión administrativa o un permiso extranjero que ha dejado de ser válido no se convierten por sí solos en delito del artículo 384. Comprueba la causa exacta y su vigencia.", opciones: [{ valor: "sinPermisoNunca", texto: "Nunca ha obtenido permiso de conducción" }, { valor: "sinPermisoPuntos", texto: "Tiene declarada la pérdida de vigencia por pérdida total de puntos" }, { valor: "sinPermisoPrivacion", texto: "Está privado del derecho a conducir por resolución judicial" }, { valor: "sinPermisoOtraSituacion", texto: "Otra causa / no está claro" }] },
   tipoPermiso: { titulo: "¿El permiso es español o extranjero?", descripcion: "Indica qué autoridad expidió el documento que presenta el conductor. Esta respuesta determina qué reglas de validez debemos comprobar.", opciones: [{ valor: "espanol", texto: "Español" }, { valor: "extranjero", texto: "Extranjero" }] },
   espanol: { titulo: "¿El permiso español está vigente?", descripcion: "Comprueba la fecha de validez que figura en el permiso o en el Registro de Conductores. No confundas un documento deteriorado con una autorización caducada.", opciones: [{ valor: "categoriaEspanol", texto: "Sí, está vigente" }, { valor: "espanolCaducado", texto: "No, está caducado" }] },
   extranjero: { titulo: "¿El permiso ha sido expedido en la UE o el EEE?", descripcion: "UE: Estados miembros de la Unión Europea. EEE: además de la UE, Islandia, Liechtenstein y Noruega. Su régimen de reconocimiento es distinto al de los terceros países.", opciones: [{ valor: "ue", texto: "Sí" }, { valor: "noUE", texto: "No" }] },
@@ -16,7 +16,7 @@ const preguntas = {
   ueResidenciaDosAnos: { titulo: "¿El titular lleva dos años o más de residencia normal en España?", descripcion: "Esta comprobación es relevante para determinados permisos de la UE o del EEE con periodos de vigencia muy largos o indefinidos.", opciones: [{ valor: "uePlazoLargo", texto: "Sí, lleva dos años o más" }, { valor: "ueRenovacionNo", texto: "No, lleva menos de dos años o no reside en España" }] },
   uePlazoLargo: { titulo: "¿El permiso tiene vigencia indefinida o un periodo superior al límite aplicable?", descripcion: "Límite: más de 15 años para el grupo 1 (motos y turismos) o más de 5 años para el grupo 2 (camiones y autobuses).", opciones: [{ valor: "ueRenovacionSi", texto: "Sí, supera el límite o es indefinido" }, { valor: "ueRenovacionNo", texto: "No, no supera ese límite" }] },
   noUE: { titulo: "¿El permiso de un tercer país está en vigor?", descripcion: "Un tercer país es cualquier Estado que no pertenece a la UE ni al EEE. Comprueba que el permiso nacional original no esté caducado, suspendido o retirado.", opciones: [{ valor: "terceroVigente", texto: "Sí, está en vigor" }, { valor: "terceroCaducado", texto: "No, está caducado" }] },
-  terceroVigente: { titulo: "¿El titular tiene su residencia normal en España?", descripcion: "La residencia normal es, con carácter general, el lugar donde la persona vive habitualmente por sus vínculos personales y profesionales. No equivale necesariamente a estar de visita o empadronado de forma aislada.", opciones: [{ valor: "residente", texto: "Sí" }, { valor: "paisTerceroNoResidente", texto: "No" }] },
+  terceroVigente: { titulo: "¿El titular tiene su residencia normal en España?", descripcion: "Para el Reglamento General de Conductores, residencia normal es, en general, permanecer en España al menos 185 días por año natural por vínculos personales o profesionales. Además, la permanencia debe ser regular y acreditable. No confundas residencia normal con una visita, el empadronamiento o tener un NIE.", opciones: [{ valor: "residente", texto: "Sí, tiene residencia normal en España" }, { valor: "paisTerceroNoResidente", texto: "No, está de visita o no la tiene acreditada" }] },
   residente: { titulo: "¿Han transcurrido más de seis meses desde que adquirió la residencia normal, debidamente acreditada, en España?", descripcion: "El plazo general del artículo 21.2.c) del Reglamento General de Conductores es de seis meses desde que se adquiere la residencia normal. Superarlo puede hacer que el permiso deje de ser válido en España, salvo reglas específicas o un canje ya realizado.", opciones: [{ valor: "mas6meses", texto: "Sí" }, { valor: "categoriaTerceroMenos6", texto: "No" }] },
   categoriaTerceroNoResidente: { titulo: "¿La categoría del permiso habilita para el vehículo que conduce?", descripcion: "Comprueba la clase del vehículo, las categorías autorizadas, las restricciones y la vigencia del permiso.", opciones: [{ valor: "terceroNoResidenteEdad", texto: "Sí, la categoría es adecuada" }, { valor: "categoriaNoCoincide", texto: "No, no habilita" }] },
   categoriaTerceroMenos6: { titulo: "¿La categoría del permiso habilita para el vehículo que conduce?", descripcion: "Comprueba la clase del vehículo, las categorías autorizadas, las restricciones y la vigencia del permiso.", opciones: [{ valor: "terceroMenos6Edad", texto: "Sí, la categoría es adecuada" }, { valor: "categoriaNoCoincide", texto: "No, no habilita" }] },
@@ -141,7 +141,10 @@ function App() {
             <span className="marca__descripcion">Herramienta de consulta de permisos</span>
           </div>
         </div>
-        <span className="cabecera-aplicacion__estado">VERSIÓN DE TRABAJO</span>
+        <div className="cabecera-aplicacion__acciones">
+          <span className="cabecera-aplicacion__estado">VERSIÓN DE TRABAJO</span>
+          {pantalla !== "inicio" && <button type="button" className="boton-inicio" onClick={reiniciar} aria-label="Volver al inicio y empezar una consulta nueva">⌂ <span>Inicio</span></button>}
+        </div>
       </header>
 
       <div className="contenido-principal">
@@ -153,13 +156,48 @@ function App() {
 
         {resultado && <TarjetaResultado resultado={resultado} historial={historial} alReiniciar={reiniciar} />}
 
-        {preguntas[pantalla] && pantalla !== "fechaPermiso" && pantalla !== "profesionalTercero" && pantalla !== "fechaFirmaConvenio" && (
+        {preguntas[pantalla] && pantalla !== "fechaPermiso" && pantalla !== "profesionalTercero" && pantalla !== "fechaFirmaConvenio" && pantalla !== "terceroVigente" && (
           <Pregunta
             titulo={preguntas[pantalla].titulo}
             descripcion={preguntas[pantalla].descripcion}
             opciones={preguntas[pantalla].opciones}
             alSeleccionar={(destino, texto) => avanzar(destino, texto)}
             alVolver={pilaNavegacion.length ? retroceder : null}
+          />
+        )}
+
+        {pantalla === "terceroVigente" && (
+          <section className="panel-residencia">
+            <div className="panel-residencia__cabecera">
+              <span>ACLARACIÓN JURÍDICA · RESIDENCIA NORMAL Y SITUACIÓN REGULAR</span>
+              <h2>¿Desde cuándo se considera que reside legalmente en España?</h2>
+            </div>
+            <div className="panel-residencia__bloques">
+              <article>
+                <strong>1. Residencia normal: criterio de 185 días</strong>
+                <p>El Reglamento General de Conductores considera residencia normal el lugar donde la persona permanece habitualmente al menos 185 días por cada año natural, atendiendo a sus vínculos personales y profesionales. La asistencia a una universidad o escuela, por sí sola, no traslada esa residencia.</p>
+              </article>
+              <article>
+                <strong>2. Situación regular: no basta con estar empadronado</strong>
+                <p>Para nacionales de terceros países, la Ley de Extranjería distingue entre estancia y residencia. Como regla general, es residente quien es titular de una autorización para residir. Un NIE, el padrón, una solicitud pendiente o una estancia turística no acreditan por sí solos una autorización de residencia.</p>
+              </article>
+              <article>
+                <strong>3. Fecha que debes comprobar en la intervención</strong>
+                <p>Localiza la resolución o autorización de residencia y comprueba su fecha de efectos y vigencia, junto con la documentación que permita fijar cuándo se alcanzó la residencia normal. La fecha de expedición de la TIE o del empadronamiento no debe tomarse automáticamente como fecha inicial. El momento concreto depende del tipo de autorización y de la situación personal.</p>
+              </article>
+            </div>
+            <p className="panel-residencia__nota"><strong>Importante:</strong> el criterio de los 185 días y la exigencia de situación regular son requisitos distintos que deben analizarse conjuntamente. Para ciudadanos UE/EEE existe un régimen propio; no apliques mecánicamente el régimen de autorizaciones de residencia de nacionales de terceros países.</p>
+            <div className="panel-residencia__fuentes">
+              <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2009-9481" target="_blank" rel="noreferrer">RGC · disposición adicional segunda (residencia normal)</a>
+              <a href="https://boe.es/buscar/act.php?id=BOE-A-2000-544" target="_blank" rel="noreferrer">LO 4/2000 · artículos 29, 30 y 30 bis (estancia y residencia)</a>
+            </div>
+          </section>
+          <Pregunta
+            titulo={preguntas.terceroVigente.titulo}
+            descripcion={preguntas.terceroVigente.descripcion}
+            opciones={preguntas.terceroVigente.opciones}
+            alSeleccionar={(destino, texto) => avanzar(destino, texto)}
+            alVolver={retroceder}
           />
         )}
 
