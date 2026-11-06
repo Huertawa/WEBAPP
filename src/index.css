@@ -2597,3 +2597,15 @@ a, .fuentes-juridicas a { color: #76c5e6; }
 .senales-informacion-final .senales-fuentes { margin-top:14px; }
 @media(max-width:760px) { .familias-grid,.elementos-grid--compactos { grid-template-columns:1fr; } }
 @media(max-width:480px) { .elemento-foto--compacto { grid-template-columns:112px minmax(0,1fr); } .elemento-foto__miniatura { min-height:116px;padding:5px; } .elemento-foto--compacto .elemento-foto__texto { padding:10px; } .familia-senal__laminas { grid-template-columns:1fr; } }
+
+.herramientas-lista{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:24px 0}
+.elementos-fotos-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0}
+.elemento-foto-simple{overflow:hidden;border:1px solid rgba(160,180,164,.2);border-radius:12px;background:#1b261f;color:#eef3ed}
+.elemento-foto-simple>img{display:block;width:100%;height:128px;object-fit:cover;background:#26352c}
+.elemento-foto-simple>div{padding:11px 13px}
+.elemento-foto-simple small{display:block;color:#a9c58e;font-size:10px;text-transform:uppercase;font-weight:800;letter-spacing:.06em}
+.elemento-foto-simple strong{display:block;margin:4px 0;font-size:15px}
+.elemento-foto-simple p{margin:0 0 8px;color:#c2ccc4;font-size:11px;line-height:1.45}
+.elemento-foto-simple a{color:#b9d99b;font-size:10px}
+@media(max-width:850px){.elementos-fotos-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.herramientas-lista,.elementos-fotos-grid{grid-template-columns:1fr}.elemento-foto-simple>img{height:145px}}
