@@ -2817,3 +2817,17 @@ a, .fuentes-juridicas a { color: #76c5e6; }
   .herramienta-acceso { grid-template-columns: 70px minmax(0, 1fr); }
   .herramienta-acceso__arte { width: 70px; }
 }
+
+/* Ajuste móvil de las fichas fotográficas: una columna y contenido sin desbordes */
+@media (max-width: 760px) {
+  .elementos-fotos-grid { grid-template-columns: minmax(0, 1fr) !important; }
+  .elemento-foto-simple { grid-template-columns: 112px minmax(0, 1fr) !important; align-items: start; }
+  .elemento-foto-simple img { width: 112px !important; height: 100px !important; object-fit: cover; object-position: center; }
+  .elemento-foto-simple > div { min-width: 0; }
+  .elemento-foto-simple strong { display:block; font-size: 14px; line-height:1.3; overflow-wrap:anywhere; }
+  .elemento-foto-simple p { margin-top:5px; line-height:1.45; overflow-wrap:anywhere; }
+}
+@media(max-width:380px) {
+  .elemento-foto-simple { grid-template-columns: 90px minmax(0,1fr) !important; }
+  .elemento-foto-simple img { width:90px !important; height:88px !important; }
+}
