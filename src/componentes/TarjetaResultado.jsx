@@ -30,8 +30,8 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
     if (puedeConducir === true) {
       return { estado: "NO PROCEDE", detalle: "El resultado confirma que el permiso habilita para conducir. No hay motivo de inmovilización por falta de autorización.", tipo: "no" };
     }
-    if (resultado.codigo === "PER003") {
-      return { estado: "NO AUTOMÁTICA", detalle: "El artículo 12.4 RGC ordena intervenir inmediatamente el permiso caducado. Esa intervención afecta al documento, no supone por sí sola inmovilizar el vehículo. El titular no puede seguir conduciendo; si procede, otro conductor con permiso vigente podrá hacerse cargo. Valora la inmovilización solo si concurre además una causa legal específica.", tipo: "depende" };
+    if (["PER003", "PER005", "PER011"].includes(resultado.codigo)) {
+      return { estado: "NO PROCEDE POR CADUCIDAD SOLA", detalle: "La caducidad del permiso no implica por sí misma inmovilizar el vehículo. La intervención del documento, cuando proceda conforme al artículo 12.4 RGC, es una medida distinta. Comprueba si existe otra causa legal independiente antes de adoptar una inmovilización.", tipo: "no" };
     }
     if (resultado.codigo === "PER013") {
       return { estado: "DEPENDE DEL VEHÍCULO", detalle: "Si conduce un vehículo que exige permiso C o D y carece de esa autorización, puede acordarse conforme al artículo 104.1.k de la Ley de Tráfico. Para otras categorías, no se aplica automáticamente este apartado.", tipo: "depende" };
@@ -83,7 +83,10 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
     PER020: ["Comprobar la resolución judicial y si la privación era efectiva en el momento de conducir.", "Verificar alcance, fechas, carácter cautelar o firmeza e identidad del conductor.", "No confundir privación judicial con suspensión administrativa."],
     PER021: ["Consultar el registro y concretar la causa exacta de falta de validez.", "Diferenciar caducidad, suspensión, pérdida de vigencia, retirada judicial y permiso extranjero no reconocido.", "No aplicar automáticamente el artículo 384 CP ni asignar sanción sin identificar el supuesto."],
     PER022: ["Acreditar la fecha de expedición del permiso mediante documento oficial del país emisor.", "Acreditar la fecha de adquisición de residencia normal en España y, si existe convenio, consultar la fecha de firma.", "No calificar como 5B o 5E ni fijar multa o puntos hasta comprobar la susceptibilidad de canje."],
-    PER023: ["Averiguar si el permiso fue expedido directamente o procede de un canje anterior.", "Identificar el país de origen del permiso inicial y comprobar el convenio aplicable.", "Mantener la calificación pendiente hasta completar esa verificación."]
+    PER023: ["Averiguar si el permiso fue expedido directamente o procede de un canje anterior.", "Identificar el país de origen del permiso inicial y comprobar el convenio aplicable.", "Mantener la calificación pendiente hasta completar esa verificación."],
+    PER024: ["Comprobar que la pena de privación del derecho a conducir ya se ha cumplido y su duración exacta.", "Verificar si superó los dos años y si se dictó pérdida de vigencia al amparo del artículo 47.3 CP.", "Comprobar si ha obtenido el nuevo permiso conforme al artículo 73.1 LTSV y aplicar la Consulta 1/2026 FGE."],
+    PER025: ["Identificar si la motocicleta exige A1, A2 o A y comprobar potencia y relación potencia/peso.", "Acreditar edad, antigüedad de la categoría y formación exigida para el acceso progresivo a A.", "Describir el requisito concreto incumplido y contrastar CON 001.1.5C."],
+    PER026: ["Obtener la resolución administrativa de suspensión cautelar o prohibición de uso.", "Comprobar notificación, vigencia, alcance y fecha de efectos de la medida.", "Aplicar el artículo 39.3 RGC y 76.s LTSV; no confundir con privación judicial."]
   };
   const comprobaciones = resultado.comprobaciones || comprobacionesPorCaso[resultado.codigo] || [
     "Comprobar la identidad del conductor y la autenticidad del documento.",
@@ -103,7 +106,7 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
 
       {(denuncia?.codificado || resultado.orientacionSancion?.codificado) && (
         <div className="propuesta-denuncia__codigo codificacion-principal">
-          <small>{denuncia?.codificado ? "CODIFICACIÓN DE REFERENCIA" : "CODIFICACIÓN ORIENTATIVA · PENDIENTE DE COMPROBACIÓN"}</small>
+          <small>{estadoPendiente ? "CODIFICACIÓN ORIENTATIVA · PENDIENTE DE COMPROBACIÓN" : "CODIFICACIÓN DE REFERENCIA"}</small>
           <strong>{normalizarCodificacion(denuncia?.codificado || resultado.orientacionSancion.codificado)}</strong>
         </div>
       )}
@@ -125,7 +128,7 @@ export default function TarjetaResultado({ resultado, historial, alReiniciar }) 
           <span>INMOVILIZACIÓN DEL VEHÍCULO</span>
           <strong className="inmovilizacion__estado">{inmovilizacion.estado}</strong>
           <p className="inmovilizacion__detalle">{inmovilizacion.detalle}</p>
-          {!estadoPendiente && puedeConducir === false && resultado.codigo !== "PER003" && (
+          {!estadoPendiente && puedeConducir === false && !["PER003", "PER005", "PER011"].includes(resultado.codigo) && (
             <div className="inmovilizacion__comprobacion">
               <p className="inmovilizacion__pregunta">¿Qué tipo de vehículo conduce?</p>
               <div className="inmovilizacion__opciones">
