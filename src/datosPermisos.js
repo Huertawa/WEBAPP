@@ -288,7 +288,16 @@ export const resultados = {
     euros: "No determinar hasta comprobar la validez del permiso y la infracción concreta.",
     puntos: "No determinar hasta identificar la infracción concreta.",
     actuacion: "Verificar documentalmente la fecha de entrada y la situación regular del titular. Comprobar si existe un convenio internacional que establezca una regla específica distinta y revisar los restantes requisitos del permiso antes de formular denuncia.",
-    observaciones: "Resultado pendiente: el plazo general de seis meses puede estar sujeto a reglas específicas de determinados convenios. No concluir automáticamente sin revisar el país y el reconocimiento aplicable."
+    observaciones: "Resultado pendiente: el plazo general de seis meses desde la entrada regular puede estar sujeto a reglas específicas de determinados convenios. No concluir automáticamente sin revisar el país y el reconocimiento aplicable.",
+    orientacionSancion: {
+      calificacion: "Grave o muy grave, según la posibilidad de canje",
+      importe: "200 € si es susceptible de canje / 500 € si no lo es",
+      puntos: "0 puntos en ambas opciones",
+      preceptoInfringido: "Artículo 21.2.c) y 21.3 del Reglamento General de Conductores.",
+      preceptoSancionador: "Artículo 76.ll) (opción 5B) o artículo 77.k) (opción 5E) de la Ley de Tráfico.",
+      codificado: "CON · Art. 001 · Apt. 1 · Opción 5B (200 €) / 5E (500 €) · 0 puntos",
+      fundamento: "La guía ARCI diferencia el permiso extranjero equivalente susceptible de canje (5B, grave, 200 €, 0 puntos) del no susceptible de canje por incumplimiento de requisitos (5E, muy grave, 500 €, 0 puntos). El plazo de seis meses para quien no acredita residencia se cuenta desde la entrada regular. Comprobar el convenio concreto, la categoría y las condiciones de canje antes de elegir una opción."
+    }
   },
   PER018: {
     codigo: "PER018",
