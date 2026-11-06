@@ -37,7 +37,11 @@ const preguntas = {
   },
 };
 
-function normalizarBusqueda(valor) {\n  return valor.normalize("NFD").replace(/[\\u0300-\\u036f]/g, "").toLocaleLowerCase("es").trim();\n}\n\nfunction App() {
+function normalizarBusqueda(valor) {
+  return valor.normalize("NFD").replace(/[\\u0300-\\u036f]/g, "").toLocaleLowerCase("es").trim();
+}
+
+function App() {
   const [pantalla, setPantalla] = useState("inicio");
   const [historial, setHistorial] = useState([]);
   const [paisSeleccionado, setPaisSeleccionado] = useState("");
@@ -95,7 +99,9 @@ function normalizarBusqueda(valor) {\n  return valor.normalize("NFD").replace(/[
     coreaPosteriorResidencia: "PER012",
   };
 
-  const resultado = resultados[resultadosPorPantalla[pantalla]];\n  const paisesFiltrados = paises.filter((pais) => normalizarBusqueda(pais.nombre).includes(normalizarBusqueda(busquedaPais)));\n  const otroPais = paises.find((pais) => pais.nombre.includes("Otro país"));
+  const resultado = resultados[resultadosPorPantalla[pantalla]];
+  const paisesFiltrados = paises.filter((pais) => normalizarBusqueda(pais.nombre).includes(normalizarBusqueda(busquedaPais)));
+  const otroPais = paises.find((pais) => pais.nombre.includes("Otro país"));
 
   const seleccionarFechaObtencion = (destino, texto) => {
     const pais = paises.find((elemento) => elemento.nombre === paisSeleccionado);
@@ -139,7 +145,6 @@ function normalizarBusqueda(valor) {\n  return valor.normalize("NFD").replace(/[
 
         {preguntas[pantalla] && (
           <Pregunta
-            pasoActual={pilaNavegacion.length + 1}
             titulo={preguntas[pantalla].titulo}
             descripcion={preguntas[pantalla].descripcion}
             opciones={preguntas[pantalla].opciones}
@@ -170,7 +175,6 @@ function normalizarBusqueda(valor) {\n  return valor.normalize("NFD").replace(/[
 
         {pantalla === "profesionalTercero" && (
           <Pregunta
-            pasoActual={pilaNavegacion.length + 1}
             titulo={preguntas.profesionalTercero.titulo}
             descripcion={preguntas.profesionalTercero.descripcion}
             opciones={preguntas.profesionalTercero.opciones}
@@ -187,7 +191,6 @@ function normalizarBusqueda(valor) {\n  return valor.normalize("NFD").replace(/[
 
         {pantalla === "fechaFirmaConvenio" && (
           <Pregunta
-            pasoActual={pilaNavegacion.length + 1}
             titulo={preguntas.fechaFirmaConvenio.titulo}
             descripcion={preguntas.fechaFirmaConvenio.descripcion}
             opciones={preguntas.fechaFirmaConvenio.opciones}
@@ -198,7 +201,6 @@ function normalizarBusqueda(valor) {\n  return valor.normalize("NFD").replace(/[
 
         {pantalla === "fechaPermiso" && (
           <Pregunta
-            pasoActual={pilaNavegacion.length + 1}
             titulo={preguntas.fechaPermiso.titulo}
             descripcion={preguntas.fechaPermiso.descripcion}
             opciones={preguntas.fechaPermiso.opciones}
