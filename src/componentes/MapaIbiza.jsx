@@ -257,6 +257,10 @@ export default function MapaIbiza({ volver }) {
     };
   }, []);
 
+  useEffect(() => {
+    if (mapaRef.current) mapaRef.current.fire("zoomend");
+  }, [mostrarPK, mostrarCarreteras]);
+
   return (
     <section className="mapa-modulo">
       <div className="mapa-modulo__cabecera">
