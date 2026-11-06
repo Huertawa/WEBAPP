@@ -6,19 +6,10 @@ export const resultados = {
     motivo: "El conductor manifiesta que nunca ha obtenido un permiso o licencia de conducción. Debe comprobarse que no fue titular de autorización en ningún Estado; no basta con que no tenga permiso español.",
     normativa: "Real Decreto 818/2009, Reglamento General de Conductores; Ley Orgánica 10/1995, Código Penal, cuando proceda.",
     articulo: "Artículo 1.1 del Reglamento General de Conductores y artículo 384 del Código Penal, si concurren sus elementos.",
-    euros: "500 € solo si se descarta la vía penal.",
+    euros: "No procede fijar sanción administrativa: comprobar posible delito del artículo 384 CP.",
     puntos: "Sin detracción de puntos.",
     actuacion: "Comprobar en el Registro de Conductores e Infractores si el conductor obtuvo alguna vez permiso, si existe pérdida de vigencia por pérdida total de puntos, suspensión o privación judicial. Si nunca lo obtuvo, perdió la vigencia por pérdida total de puntos o conduce durante una privación judicial, valorar la posible relevancia penal del artículo 384 del Código Penal antes de tramitar únicamente una infracción administrativa. Identificar la situación exacta y documentarla.",
     observaciones: "El artículo 384 CP exige que nunca haya obtenido permiso o licencia que habilite para conducir en ningún Estado. La Fiscalía General del Estado, Consulta 1/2026, precisa este alcance. Antes de atribuir el delito, comprobar la inexistencia de cualquier permiso extranjero, la clase de vehículo y todos los elementos del tipo. Si no procede la vía penal, la DGT recuerda que la conducción puede constituir infracción administrativa muy grave (art. 1.1 RGC y art. 77.k LTSV), con referencia general de 500 €; no fijar esa sanción sin concretar el supuesto y descartar duplicidad sancionadora.",
-    orientacionSancion: {
-      calificacion: "Muy grave, solo si se descarta la vía penal",
-      importe: "500 € (referencia condicionada)",
-      puntos: "0 puntos",
-      preceptoInfringido: "Artículo 1.1 del Reglamento General de Conductores.",
-      preceptoSancionador: "Artículo 77.k) de la Ley de Tráfico.",
-      codificado: "CON · Art. 001 · Apt. 1 · Opción 5A · 0 puntos",
-      fundamento: "La DGT contempla una sanción administrativa de 500 € por conducir sin haber obtenido autorización cuando no procede la vía penal. No tramitar simultáneamente sanción administrativa y procedimiento penal por los mismos hechos. Confirmar la codificación exacta en la guía SIPP vigente y documentar por qué no procede el artículo 384 CP."
-    }
   },
   PER002: {
     codigo: "PER002",
@@ -41,7 +32,7 @@ export const resultados = {
     articulo: "Artículo 12.4 del Reglamento General de Conductores, en relación con los artículos 76.ll) y 80.1 de la Ley de Tráfico.",
     euros: "200 €",
     puntos: "0 puntos",
-    actuacion: "No permitir que el titular continúe conduciendo: el permiso caducado ya no le habilita. Intervenir inmediatamente el permiso conforme al artículo 12.4 RGC y formular denuncia por infracción grave. Si el vehículo puede continuar, deberá hacerse cargo otro conductor que esté debidamente habilitado; no confundir la intervención del documento con la inmovilización del vehículo.",
+    actuacion: "No permitir que el titular continúe conduciendo: el permiso caducado ya no le habilita. Intervenir inmediatamente el permiso conforme al artículo 12.4 RGC y formular denuncia por infracción grave. Si acredita otro permiso o clase en vigor que le habilite para el vehículo, comprobar el alcance de la intervención antes de retirar el documento. Si el vehículo puede continuar, deberá hacerse cargo otro conductor que esté debidamente habilitado; no confundir la intervención del documento con la inmovilización del vehículo.",
     observaciones: "La DGT confirma expresamente que conducir con el permiso caducado es infracción grave sancionada con 200 €. No lleva detracción de puntos y no constituye por sí solo el delito del artículo 384 CP, porque el conductor sí obtuvo previamente el permiso. La caducidad tampoco equivale a una pérdida de vigencia por pérdida total de puntos. El artículo 12.4 RGC ordena intervenir el permiso caducado. La inmovilización del vehículo no es automática por esta sola circunstancia: valorar únicamente si concurre un supuesto legal específico adicional.",
     denuncia: {
       calificacion: "Grave",
@@ -71,11 +62,11 @@ export const resultados = {
     puedeConducir: false,
     motivo: "El permiso UE/EEE indicado no está en vigor.",
     normativa: "Reglamento General de Conductores.",
-    articulo: "Artículo 15.",
+    articulo: "Artículo 12.4 del Reglamento General de Conductores, en relación con los artículos 76.ll) y 80.1 de la Ley de Tráfico, cuando no sea residente en España.",
     euros: "200 €",
     puntos: "0 puntos",
-    actuacion: "Comprobar la fecha de caducidad y si existe renovación, prórroga o reconocimiento válido antes de formular denuncia.",
-    observaciones: "No confundir caducidad del documento con una pérdida o retirada del derecho a conducir.",
+    actuacion: "Comprobar la fecha de caducidad y si existe renovación o reconocimiento válido. Este resultado se reserva al titular que no tenga residencia normal en España; si reside aquí, comprobar el artículo 15.4 RGC y utilizar el resultado de renovación de permiso UE/EEE. La intervención del documento debe ajustarse a las instrucciones DGT aplicables a permisos comunitarios.",
+    observaciones: "Para titulares UE/EEE sin residencia normal en España, la guía codificada distingue la caducidad por el artículo 12.4 RGC (200 €, grave, 0 puntos). Si el titular reside en España, debe comprobarse el artículo 15.4 RGC. No confundir caducidad con suspensión o retirada del derecho a conducir.",
     denuncia: {
       calificacion: "Grave",
       preceptoInfringido: "Artículo 12.4 del Reglamento General de Conductores",
@@ -128,14 +119,6 @@ export const resultados = {
       codificado: "CON · Art. 001 · Apt. 1 · Opción 5B · 0 puntos",
       fundamento: "La guía codificada ARCI de la DGT (vigente desde 01/07/2025) recoge esta opción para permiso extranjero equivalente susceptible de canje, incluyendo los supuestos del artículo 21.2.c) del Reglamento General de Conductores. Confirmar que el permiso concreto pertenece al grupo canjeable y que se cumplen los requisitos."
     },
-    orientacionSancion: {
-      calificacion: "Grave (si se confirma la susceptibilidad de canje)",
-      importe: "200 €",
-      puntos: "0 puntos",
-      preceptoInfringido: "Artículo 21.2.c) del Reglamento General de Conductores, en relación con el artículo 22.",
-      preceptoSancionador: "Artículo 76.ll) de la Ley de Tráfico.",
-      fundamento: "La DGT señala que, superado el plazo de seis meses, cuando el permiso es susceptible de canje, la sanción puede ser de 200 €. No aplicar hasta comprobar que ese permiso concreto reúne los requisitos del convenio y que no existe una excepción."
-    },
     actuacion: "Comprobar el convenio concreto y su fecha de firma, la fecha de obtención del permiso, las categorías y los requisitos de canje. Verificar si el canje ya se ha realizado y si existe alguna excepción aplicable antes de concluir si puede conducir.",
     observaciones: "El convenio puede permitir el canje en determinados supuestos, incluidos los permisos obtenidos antes de su firma. No mantiene por sí solo la validez del permiso extranjero una vez agotado el plazo."
   },
@@ -156,14 +139,6 @@ export const resultados = {
       puntos: "0 puntos",
       codificado: "CON · Art. 001 · Apt. 1 · Opción 5E · 0 puntos",
       fundamento: "La guía codificada ARCI de la DGT contempla esta opción para permisos extranjeros equivalentes no susceptibles de canje por incumplir las condiciones o requisitos reglamentarios. Confirmar el texto y código exactos en la versión vigente del catálogo, acreditar la falta de requisitos esenciales y descartar una vía excepcional de canje profesional."
-    },
-    orientacionSancion: {
-      calificacion: "Pendiente de calificación definitiva",
-      importe: "Hasta 500 €",
-      puntos: "Comprobar anexo II y codificación aplicable.",
-      preceptoInfringido: "Artículo 21 del Reglamento General de Conductores, en relación con la falta de reconocimiento o canje.",
-      preceptoSancionador: "Pendiente de concretar según la causa exacta de invalidez.",
-      fundamento: "La DGT indica que la sanción puede alcanzar 500 € cuando el permiso no es susceptible de canje o no existe convenio. Verificar previamente el modelo, reconocimiento internacional, requisitos esenciales y posibles vías especiales de canje profesional."
     },
     actuacion: "Comprobar si existe convenio aplicable y si el permiso permite un canje. Para permisos profesionales, verificar además los supuestos especiales admitidos por la DGT. No concluir que puede o no puede conducir hasta comprobar esas circunstancias y la situación del permiso.",
     observaciones: "La ausencia de convenio general no excluye todos los supuestos de canje: la DGT contempla determinados permisos profesionales de países sin convenio. Verificar siempre país, clase y requisitos concretos."
@@ -228,11 +203,20 @@ export const resultados = {
     puedeConducir: false,
     motivo: "El permiso extranjero no se encuentra en vigor.",
     normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
-    articulo: "Artículo 21.2.a).",
-    euros: "Pendiente de determinar según el supuesto y la codificación vigente.",
-    puntos: "Sin detracción de puntos, con carácter general.",
-    actuacion: "Comprobar el documento y la eventual renovación o sustitución reconocida por el Estado expedidor. No permitir que continúe conduciendo con un permiso no vigente.",
-    observaciones: "También deben verificarse los restantes requisitos de validez en España."
+    articulo: "Artículo 12.4 del Reglamento General de Conductores, en relación con los artículos 76.ll) y 80.1 de la Ley de Tráfico.",
+    euros: "200 €",
+    puntos: "0 puntos",
+    actuacion: "Comprobar que el permiso nacional está efectivamente caducado y que no existe renovación o prórroga reconocida. El documento caducado no habilita para conducir: intervenirlo conforme al artículo 12.4 RGC y tramitar denuncia grave por 200 €, salvo que exista otra autorización en vigor que habilite al conductor.",
+    observaciones: "La caducidad del permiso extranjero no equivale a conducir sin haber obtenido nunca permiso y no constituye por sí sola el delito del artículo 384 CP. La inmovilización del vehículo no es automática por la mera caducidad; no confundir intervención del documento con inmovilización.",
+    denuncia: {
+      calificacion: "Grave",
+      preceptoInfringido: "Artículo 12.4 del Reglamento General de Conductores.",
+      preceptoSancionador: "Artículo 76.ll) de la Ley de Tráfico.",
+      importe: "200 €",
+      puntos: "0 puntos",
+      codificado: "CON · Art. 012 · Apt. 4 · Opción 5B · 0 puntos",
+      fundamento: "La guía codificada contempla la conducción con un permiso cuya vigencia ha vencido como infracción grave de 200 € y 0 puntos. Comprobar que el permiso está realmente caducado y no existe otra autorización vigente que habilite."
+    }
   },
   PER014: {
     codigo: "PER014",
@@ -241,19 +225,10 @@ export const resultados = {
     motivo: "El titular no alcanza la edad mínima exigida en España para obtener el permiso español equivalente a la categoría que pretende utilizar.",
     normativa: "Real Decreto 818/2009, Reglamento General de Conductores.",
     articulo: "Artículo 21.2.b).",
-    euros: "No determinar sin identificar la infracción concreta y su codificación vigente.",
-    puntos: "No determinar sin identificar la infracción concreta.",
+    euros: "Pendiente de determinar según la categoría y el motivo de la edad mínima.",
+    puntos: "No determinar sin identificar la categoría y el supuesto.",
     actuacion: "Comprobar la edad del conductor, la categoría extranjera y la edad mínima española aplicable. Documentar la comprobación y evitar que continúe conduciendo esa categoría mientras no reúna el requisito.",
-    observaciones: "Resultado limitado al requisito de edad. No sustituye la comprobación de la vigencia, formato, autenticidad y demás condiciones del permiso.",
-    orientacionSancion: {
-      calificacion: "Muy grave, solo si los hechos encajan en la opción 5C",
-      importe: "500 € (referencia condicionada)",
-      puntos: "4 puntos (opción 5C)",
-      preceptoInfringido: "Artículo 1.1 del Reglamento General de Conductores.",
-      preceptoSancionador: "Artículo 77.k) de la Ley de Tráfico.",
-      codificado: "CON · Art. 001 · Apt. 1 · Opción 5C · 4 puntos",
-      fundamento: "La guía codificada ARCI contempla la opción 5C para conducir un vehículo con permiso que no habilita. Su nota incluye expresamente motocicletas A1/A2/A cuando no se cumple la edad o antigüedad mínima o la formación exigida. No aplicar automáticamente a cualquier categoría: identificar primero el permiso, el vehículo y el requisito incumplido."
-    }
+    observaciones: "No aplicar automáticamente la opción 5C a cualquier categoría. La guía codificada contempla expresamente esa opción para motocicletas A1/A2/A cuando no se cumple la edad o antigüedad mínima o la formación exigida. Para otras categorías, concretar el supuesto y la base sancionadora antes de denunciar.",
   },
   PER015: {
     codigo: "PER015",
@@ -284,14 +259,6 @@ export const resultados = {
       puntos: "0 puntos",
       codificado: "CON · Art. 015 · Apt. 4 · Opción 5B · 0 puntos",
       fundamento: "La guía codificada ARCI de la DGT recoge específicamente la conducción con permiso comunitario sin renovar su periodo de vigencia una vez adquirida residencia en España. Confirmar el código exacto en la versión vigente y aplicar solo si se cumplen las condiciones del artículo 15.4 RGC."
-    },
-    orientacionSancion: {
-      calificacion: "Grave (si se confirma el incumplimiento)",
-      importe: "200 €",
-      puntos: "0 puntos",
-      preceptoInfringido: "Artículo 15.4 del Reglamento General de Conductores.",
-      preceptoSancionador: "Artículo 76.ll) de la Ley de Tráfico.",
-      fundamento: "La DGT confirma que el incumplimiento de la obligación de renovar en España determinados permisos UE/EEE tras dos años de residencia constituye infracción grave sancionada con 200 €. Comprobar grupo, periodo de vigencia y fecha de residencia antes de denunciar."
     },
     actuacion: "Comprobar fecha de adquisición de residencia normal, grupo de permiso, periodo de vigencia original y si se ha realizado la renovación o anotación correspondiente en España. Consultar el Registro de Conductores e Infractores y confirmar la situación administrativa antes de formular denuncia.",
     observaciones: "Resultado de comprobación, no una declaración automática de pérdida de validez. La DGT indica que la renovación es obligatoria tras dos años de residencia para permisos indefinidos o superiores a 15 años en grupo 1 y a 5 años en grupo 2."
@@ -343,19 +310,19 @@ export const resultados = {
   },
   PER020: {
     codigo: "PER020",
-    nombre: "Conducción durante privación judicial del derecho a conducir",
+    nombre: "Conducción mientras sigue vigente una privación judicial del derecho a conducir",
     puedeConducir: false,
     motivo: "Mientras esté vigente la privación cautelar o definitiva acordada por el órgano judicial, el titular no está autorizado para conducir. Para atribuir el delito del artículo 384 CP debe comprobarse el alcance y la vigencia de la resolución en el momento de los hechos.",
     normativa: "Ley Orgánica 10/1995, Código Penal.",
     articulo: "Artículo 384, párrafo segundo, del Código Penal.",
     euros: "No procede fijar una sanción administrativa en esta pantalla: comprobar posible ilícito penal.",
     puntos: "No aplicar detracción administrativa sin determinar el procedimiento que corresponda.",
-    actuacion: "Comprobar testimonio o consulta de la resolución judicial, alcance de la privación, fecha de inicio y finalización, firmeza o carácter cautelar y que la medida se encontraba vigente en el momento de la conducción. Verificar la identidad del conductor y documentar la consulta antes de calificar los hechos.",
-    observaciones: "Resultado pendiente de comprobación documental. No equiparar una privación judicial vigente con una suspensión administrativa."
+    actuacion: "Comprobar testimonio o consulta de la resolución judicial, alcance de la privación, fecha de inicio y finalización, firmeza o carácter cautelar y que la pena o medida seguía vigente en el momento de la conducción. Si el tiempo de privación ya se cumplió y lo que subsiste es la pérdida de vigencia judicial del artículo 47.3 CP, no utilizar este resultado: comprobar el supuesto específico de pena cumplida.",
+    observaciones: "El artículo 384.2 CP exige conducir mientras siga vigente la privación cautelar o la pena judicial. La conducción después de cumplir una pena superior a dos años, cuando solo subsiste la pérdida de vigencia derivada del artículo 47.3 CP y no se ha obtenido nuevo permiso, se trata separadamente conforme a la Consulta 1/2026 de la Fiscalía y la STS 850/2025; no debe calificarse automáticamente como delito del artículo 384 ni de quebrantamiento."
   },
   PER021: {
     codigo: "PER021",
-    nombre: "Permiso sin validez por otra causa o situación no determinada",
+    nombre: "Otra causa de falta de validez o situación administrativa no determinada",
     puedeConducir: null,
     motivo: "No se ha podido identificar con precisión la causa por la que el conductor carece de una autorización válida.",
     normativa: "Real Decreto 818/2009, Reglamento General de Conductores; Ley de Tráfico y Código Penal, si procede.",
@@ -363,7 +330,7 @@ export const resultados = {
     euros: "No determinar hasta identificar el supuesto y el precepto sancionador.",
     puntos: "No determinar hasta identificar la infracción concreta.",
     actuacion: "Consultar el Registro de Conductores e Infractores y comprobar si se trata de caducidad, suspensión administrativa, pérdida de aptitudes, retirada cautelar, pérdida de vigencia por causa distinta de la pérdida total de puntos, permiso extranjero no reconocido u otra circunstancia. Separar siempre las causas administrativas de las judiciales y penales.",
-    observaciones: "No utilizar automáticamente el artículo 384 CP. La falta de validez de un permiso previamente obtenido no equivale necesariamente a conducir sin haberlo obtenido nunca. Si la pérdida de vigencia deriva de una condena ya cumplida, aplicar el criterio de la Consulta 1/2026 de la Fiscalía General del Estado y remitir, en su caso, la información a la autoridad administrativa."
+    observaciones: "No utilizar automáticamente el artículo 384 CP. La falta de validez de un permiso previamente obtenido no equivale necesariamente a conducir sin haberlo obtenido nunca. Diferenciar suspensión cautelar administrativa (art. 39.3 RGC y 76.s LTSV), retirada o suspensión en el Estado expedidor, pérdida de requisitos, anulación y pérdida de vigencia judicial tras cumplir condena. Si deriva de condena ya cumplida, aplicar la Consulta 1/2026 de la Fiscalía y no presumir delito."
   },
   PER022: {
     codigo: "PER022",
@@ -388,5 +355,60 @@ export const resultados = {
     puntos: "No determinar hasta identificar la infracción concreta.",
     actuacion: "Solicitar documentación del país expedidor que permita reconstruir el origen del permiso. Si hubo canje, identificar el Estado que expidió la autorización original y comprobar si España mantiene convenio con él. Verificar también vigencia, categoría y requisitos del acuerdo antes de decidir si procede denuncia.",
     observaciones: "La falta de documentación sobre el origen no permite afirmar por sí sola que el permiso sea no canjeable ni asignar automáticamente una sanción. Mantener el resultado como comprobación necesaria."
+  },
+
+  PER024: {
+    codigo: "PER024",
+    nombre: "Pena judicial cumplida, pero no se ha obtenido un nuevo permiso",
+    puedeConducir: false,
+    motivo: "La pena de privación del derecho a conducir ya se ha cumplido, pero el permiso perdió su vigencia por decisión judicial al superar la condena los dos años y todavía no se ha obtenido un nuevo permiso.",
+    normativa: "Código Penal, artículo 47.3; Ley de Tráfico, artículo 73.1; Fiscalía General del Estado, Consulta 1/2026, de 5 de marzo; STS 850/2025, de 16 de octubre.",
+    articulo: "Artículo 73.1 de la Ley de Tráfico y artículo 47.3 del Código Penal.",
+    euros: "No fijar importe ni puntos sin determinar el encaje administrativo concreto.",
+    puntos: "Pendiente de determinar por la autoridad administrativa.",
+    actuacion: "Acreditar la duración exacta de la pena, su cumplimiento y la resolución que declaró la pérdida de vigencia. Comprobar si la condena fue superior a dos años y si el interesado ha obtenido el nuevo permiso conforme al artículo 73.1 LTSV. Documentar la intervención y remitir la información a la autoridad administrativa competente para que determine las consecuencias procedentes.",
+    observaciones: "La Consulta 1/2026 de la Fiscalía, siguiendo la STS 850/2025, establece que conducir una vez cumplida la pena, aunque subsista la pérdida de vigencia judicial del artículo 47.3 CP por no haber obtenido un nuevo permiso, no debe calificarse por los fiscales como delito de los artículos 384.1, 384.2 o 468.1 CP. No confundir con conducir mientras sigue vigente la pena o medida judicial."
+  },
+  PER025: {
+    codigo: "PER025",
+    nombre: "Permiso de motocicleta A1, A2 o A sin edad, antigüedad o formación exigida",
+    puedeConducir: false,
+    motivo: "El titular conduce una motocicleta con una autorización A1, A2 o A que no habilita todavía por faltar la edad mínima, la antigüedad exigida o la formación legalmente requerida.",
+    normativa: "Real Decreto 818/2009, Reglamento General de Conductores; Ley de Tráfico.",
+    articulo: "Artículo 1.1 del Reglamento General de Conductores.",
+    euros: "500 €",
+    puntos: "4 puntos",
+    actuacion: "Comprobar la clase exacta de motocicleta, potencia y relación potencia/peso cuando proceda, categoría del permiso, fecha de obtención, edad del conductor y formación exigida para el acceso progresivo a la clase A. Describir en el boletín qué requisito concreto falta.",
+    observaciones: "La guía codificada de la DGT contempla la opción CON 001.1.5C para esta conducta, con 500 € y 4 puntos, incluyendo expresamente motocicletas A1/A2/A cuando no se cumplen edad, antigüedad mínima o formación. No extender esta codificación a otras categorías por analogía.",
+    denuncia: {
+      calificacion: "Muy grave",
+      preceptoInfringido: "Artículo 1.1 del Reglamento General de Conductores.",
+      preceptoSancionador: "Artículo 77.k) de la Ley de Tráfico.",
+      importe: "500 €",
+      puntos: "4 puntos",
+      codificado: "CON · Art. 001 · Apt. 1 · Opción 5C · 4 puntos",
+      fundamento: "La opción 5C contempla conducir un vehículo con un permiso que no habilita para ello. La propia guía codificada incluye las motocicletas A1/A2/A sin edad, antigüedad mínima o formación legalmente exigida."
+    }
+  },
+  PER026: {
+    codigo: "PER026",
+    nombre: "Conducción con el permiso suspendido cautelarmente por la Administración",
+    puedeConducir: false,
+    motivo: "El permiso se encuentra suspendido como medida cautelar o existe una prohibición administrativa vigente de uso. No debe confundirse con la privación judicial del derecho a conducir.",
+    normativa: "Real Decreto 818/2009, Reglamento General de Conductores; Real Decreto Legislativo 6/2015, Ley de Tráfico.",
+    articulo: "Artículo 39.3 del Reglamento General de Conductores y artículo 76.s) de la Ley de Tráfico.",
+    euros: "200 €",
+    puntos: "4 puntos",
+    actuacion: "Comprobar la resolución administrativa motivada que acuerda la suspensión cautelar o la prohibición de uso, su notificación, alcance y vigencia en la fecha de los hechos. Identificar el vehículo y documentar la consulta. No tramitarlo como delito del artículo 384 CP por el solo hecho de tratarse de una suspensión administrativa.",
+    observaciones: "La conducción con el permiso suspendido cautelarmente constituye infracción grave, sancionada con 200 € y detracción de 4 puntos. La medida cautelar se contempla en el artículo 72 LTSV y su conducción en el artículo 76.s).",
+    denuncia: {
+      calificacion: "Grave",
+      preceptoInfringido: "Artículo 39.3 del Reglamento General de Conductores.",
+      preceptoSancionador: "Artículo 76.s) de la Ley de Tráfico.",
+      importe: "200 €",
+      puntos: "4 puntos",
+      codificado: "CON · Art. 039 · Apt. 3 · Opción 5A · 4 puntos",
+      fundamento: "La guía codificada recoge la conducción con el permiso suspendido cautelarmente como infracción grave, 200 € y 4 puntos. Debe acreditarse la resolución cautelar y que seguía vigente."
+    }
   },
 };
