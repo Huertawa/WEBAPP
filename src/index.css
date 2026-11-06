@@ -1972,3 +1972,81 @@ a, .fuentes-juridicas a { color: #76c5e6; }
   font-size: clamp(17px, 2.2vw, 21px) !important;
   line-height: 1.6;
 }
+
+
+/* Aclaraciones jurídicas plegables: primero la decisión, después el detalle */
+.aclaracion-desplegable {
+  margin: 12px 0;
+  border: 1px solid rgba(112,174,232,.28);
+  border-radius: 10px;
+  background: rgba(12,20,29,.58);
+  overflow: hidden;
+}
+.aclaracion-desplegable > summary {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 43px;
+  padding: 11px 15px;
+  color: #a9d5f2;
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: .01em;
+  cursor: pointer;
+  list-style: none;
+}
+.aclaracion-desplegable > summary::-webkit-details-marker { display: none; }
+.aclaracion-desplegable > summary::before {
+  content: "+";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 21px;
+  width: 21px;
+  height: 21px;
+  border: 1px solid rgba(112,174,232,.48);
+  border-radius: 6px;
+  color: #bce4fb;
+  font-size: 16px;
+  line-height: 1;
+}
+.aclaracion-desplegable[open] > summary {
+  border-bottom: 1px solid rgba(112,174,232,.18);
+  background: rgba(45,112,174,.09);
+}
+.aclaracion-desplegable[open] > summary::before { content: "−"; }
+.aclaracion-desplegable > summary:focus-visible {
+  outline: 3px solid rgba(118,197,230,.65);
+  outline-offset: -3px;
+}
+.aclaracion-desplegable > p,
+.aclaracion-desplegable > .pregunta__descripcion {
+  margin: 12px 15px 15px !important;
+}
+.aclaracion-desplegable .panel-residencia__cabecera,
+.aclaracion-desplegable .panel-residencia__bloques,
+.aclaracion-desplegable .panel-residencia__bloque-ue,
+.aclaracion-desplegable .panel-residencia__nota,
+.aclaracion-desplegable .panel-residencia__fuentes {
+  margin-left: 14px;
+  margin-right: 14px;
+}
+.aclaracion-desplegable .panel-residencia__fuentes { margin-bottom: 14px; }
+.aclaracion-desplegable--amplia { padding: 0 0 1px; }
+.aclaracion-desplegable--amplia > summary { min-height: 48px; }
+.aclaracion-desplegable--pais { margin: 12px 0; }
+.aclaracion-desplegable--compacta { margin: 8px 0 0; background: rgba(5,12,19,.3); }
+.aclaracion-desplegable--compacta > p { color: var(--texto-secundario); font-size: 12px; line-height: 1.6; }
+.aclaracion-desplegable--penal { border-color: rgba(224,82,82,.38); }
+.aclaracion-desplegable--penal > summary { color: #ffaaaa; }
+.aclaracion-desplegable .consecuencia-penal { margin: 12px 14px 14px; }
+.pregunta__ayuda { margin-top: 12px; }
+.pregunta__descripcion { margin-top: 12px !important; }
+.tarjeta-resultado > .aclaracion-desplegable { margin-top: 13px; }
+.tarjeta-resultado > .aclaracion-desplegable .lista-comprobacion { margin: 12px 14px 14px; }
+.tarjeta-resultado > .aclaracion-desplegable .tarjeta-resultado__contenido { margin: 12px 14px 14px; }
+.tarjeta-resultado > .aclaracion-desplegable .fuentes-juridicas { margin: 12px 14px 14px; }
+@media(max-width:560px) {
+  .aclaracion-desplegable > summary { padding: 10px 12px; font-size: 11px; }
+}
